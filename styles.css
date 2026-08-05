@@ -4225,3 +4225,17 @@ body {
     }
 
 }
+
+
+
+/* FIX REGISTRATION FEE COLOR */
+
+.fee-box strong {
+    color: #001f54 !important;
+}
+
+#registrationFee,
+#amountPayable,
+#verifyAmount {
+    color: #d32f2f !important;
+}
