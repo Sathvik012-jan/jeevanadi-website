@@ -89,62 +89,42 @@ let registrationData = {};
 // =======================
 // COHORT FEE DISPLAY
 // =======================
-
-const cohortSelect = document.getElementById("cohortSelect");
-
-const registrationFeeDisplay = document.getElementById("registrationFee");
-
-const amountPayableDisplay = document.getElementById("amountPayable");
-
+// =======================
+// COHORT FEE DISPLAY
+// =======================
 
 if (cohortSelect) {
 
     cohortSelect.addEventListener("change", function () {
 
-
         const selectedOption = this.options[this.selectedIndex];
 
-
-        // Get fee from data-fee
-        const fee = selectedOption.getAttribute("data-fee");
+        const fee = selectedOption.dataset.fee;
 
 
         if (fee) {
 
-
             registrationFeeDisplay.textContent = "₹" + fee;
 
-
             if (amountPayableDisplay) {
-
                 amountPayableDisplay.textContent = "₹" + fee;
-
             }
 
-
-            // Store fee for payment section
             localStorage.setItem("quizFee", fee);
 
+        }
 
-        } 
-        
         else {
-
 
             registrationFeeDisplay.textContent = "₹0";
 
-
             if (amountPayableDisplay) {
-
                 amountPayableDisplay.textContent = "₹0";
-
             }
-
 
             localStorage.removeItem("quizFee");
 
         }
-
 
     });
 
