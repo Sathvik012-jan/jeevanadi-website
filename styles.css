@@ -4207,13 +4207,14 @@ body {
 #verifyAmount {
     color: #d32f2f !important;
 }
-
-  footer {
+footer {
   background:#001f54;
   color:white;
   border-top:4px solid #d4af37;
   padding:70px 8% 25px;
   position:relative;
   overflow:hidden;
+  text-align:center;   /* centers text */
 }
+
 
