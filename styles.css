@@ -164,35 +164,67 @@ header nav ul li a:hover {
   margin-bottom: 35px;
   animation: slideUp 1.2s ease;
 }
+/* ===================================================
+   HERO BUTTONS
+=================================================== */
+/* ===================================================
+   HERO BUTTONS
+=================================================== */
 
-.hero-buttons .btn {
-  display: inline-block;
-  padding: 15px 35px;
-  margin: 8px;
-  border-radius: 40px;
-  text-decoration: none;
-  font-weight: bold;
-  background: linear-gradient(45deg, #ffd700, #ffb300);
-  color: #001f54;
-  transition: 0.4s;
-  box-shadow: 0 10px 25px rgba(255, 193, 7, 0.4);
+.hero-buttons .btn{
+
+    display:inline-block;
+
+    padding:15px 35px;
+
+    margin:8px;
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    background:linear-gradient(45deg,#ffd700,#ffb300);
+
+    color:#001f54;
+
+    transition:all 0.4s ease;
+
+    box-shadow:0 10px 25px rgba(255,193,7,0.4);
+
 }
 
-.hero-buttons .btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(255, 193, 7, 0.45);
+
+.hero-buttons .btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 20px 40px rgba(255,193,7,0.45);
+
 }
 
-.hero-buttons .btn-secondary {
-  background: linear-gradient(90deg, #001f54, #0d47a1);
-  color: white;
+
+/* ===================================================
+   SECONDARY HERO BUTTON
+=================================================== */
+
+.hero-buttons .btn-secondary{
+
+    background:linear-gradient(90deg,#001f54,#0d47a1);
+
+    color:white;
+
 }
 
-.hero-buttons .btn-secondary:hover {
-  background: linear-gradient(45deg, #ffd700, #ffb300);
-  color: #001f54;
-}
 
+.hero-buttons .btn-secondary:hover{
+
+    background:linear-gradient(45deg,#ffdgold,#ffb300);
+
+    color:#001f54;
+
+}
 .welcome {
   padding: 60px 20px;
   background: rgb(244, 244, 242) !important;
@@ -337,22 +369,39 @@ header nav ul li a:hover {
   color: #333;
   margin-bottom: 15px;
 }
+/* ===================================================
+   SERMON CARD BUTTON
+=================================================== */
 
-.sermon-card .btn {
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  color: #001f54;
-  transition: background-color 0.3s ease;
-  border-radius: 50px;
-  padding: 12px 30px;
-  background: linear-gradient(45deg, #ffd700, #ffb300);
+.sermon-card .btn{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    color:#001f54;
+
+    border-radius:50px;
+
+    padding:12px 30px;
+
+    background:linear-gradient(45deg,#ffd700,#ffb300);
+
+    transition:all 0.3s ease;
+
 }
 
-.sermon-card .btn:hover {
-  transform: translateY(-5px);
-  background: linear-gradient(45deg, #001f54, #0d47a1);
-  color: white;
+
+.sermon-card .btn:hover{
+
+    transform:translateY(-5px);
+
+    background:linear-gradient(45deg,#001f54,#0d47a1);
+
+    color:white;
+
 }
 
 .testimonies {
@@ -436,20 +485,39 @@ header nav ul li a:hover {
   line-height: 1.8;
 }
 
-.book-card .btn {
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  border-radius: 50px;
-  padding: 12px 30px;
-  background: linear-gradient(45deg, #ecebe9, #ffb300);
-  color: #001f54;
+/* ===================================================
+   BOOK CARD BUTTON
+=================================================== */
+
+.book-card .btn{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    border-radius:50px;
+
+    padding:12px 30px;
+
+    background:linear-gradient(45deg,#ecebe9,#ffb300);
+
+    color:#001f54;
+
+    transition:all 0.3s ease;
+
 }
 
-.book-card .btn:hover {
-  background: linear-gradient(45deg, #001f54, #0d47a1);
-  color: white;
+
+.book-card .btn:hover{
+
+    transform:translateY(-5px);
+
+    background:linear-gradient(45deg,#001f54,#0d47a1);
+
+    color:white;
+
 }
 
 .books .youtube-link {
@@ -711,22 +779,41 @@ img {
   transform: translateY(-8px);
 }
 
-.pastor .btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 15px 35px;
-  border-radius: 50px;
-  background: linear-gradient(45deg, #ffd700, #ffb300);
-  color: #001f54;
-  text-decoration: none;
-  font-weight: 700;
-  transition: 0.4s;
+/* ===================================================
+   PASTOR SECTION BUTTON
+=================================================== */
+
+.pastor .btn{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:15px 35px;
+
+    border-radius:50px;
+
+    background:linear-gradient(45deg,#ffd700,#ffb300);
+
+    color:#001f54;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    transition:all 0.4s ease;
+
 }
 
-.pastor .btn:hover {
-  background: #001f54;
-  color: #fff;
-  transform: translateY(-3px);
+
+.pastor .btn:hover{
+
+    background:#001f54;
+
+    color:#ffffff;
+
+    transform:translateY(-3px);
+
 }
 
 .sermon-card, .book-card, .event-card, .testimony-card {
@@ -1134,16 +1221,29 @@ footer p:last-child {
   border: none;
   display: block;
 }
+/* ===================================================
+   LIVE BUTTON
+=================================================== */
 
-.btn-live {
-  background: linear-gradient(45deg, #ff0000, #ff5252);
-  color: white;
-  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+.btn-live{
+
+    background:linear-gradient(45deg,#ff0000,#ff5252);
+
+    color:white;
+
+    box-shadow:0 10px 30px rgba(255,0,0,0.4);
+
+    transition:all 0.3s ease;
+
 }
 
-.btn-live:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(255, 0, 0, 0.6);
+
+.btn-live:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 20px 40px rgba(255,0,0,0.6);
+
 }
 
 header:hover {
@@ -2669,12 +2769,17 @@ footer h3 {
     }
 
 
-    .hero-buttons .btn{
-        display:block;
-        width:80%;
-        margin:15px auto;
-    }
+   /* Mobile hero button layout */
 
+.hero-buttons .btn{
+
+    display:block;
+
+    width:80%;
+
+    margin:15px auto;
+
+}
 
     .about-container{
         flex-direction:column;
@@ -2778,10 +2883,15 @@ footer h3 {
     }
 
 
-    .hero-buttons .btn{
-        width:90%;
-        padding:14px;
-    }
+   /* Mobile hero button adjustment */
+
+.hero-buttons .btn{
+
+    width:90%;
+
+    padding:14px;
+
+}
 
 
     .welcome h2,
@@ -3459,8 +3569,9 @@ footer h3 {
     font-weight:700;
 
 }
-
-
+/* ===================================================
+   SUCCESS BUTTON HOVER
+=================================================== */
 
 .success-card .home-btn:hover{
 
@@ -3469,30 +3580,29 @@ footer h3 {
 }
 
 
+/* ===================================================
+   SUCCESS POPUP ANIMATION
+=================================================== */
 
-@keyframes successPop{
+@keyframes successPop {
 
-from{
+    from{
+        transform:scale(0.8);
+        opacity:0;
+    }
 
-transform:scale(0.8);
 
-opacity:0;
-
-}
-
-to{
-
-transform:scale(1);
-
-opacity:1;
-
-}
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
 
 }
-/* ==========================================
+
+
+/* ===================================================
    ELIGIBILITY & VENUE SIDE BY SIDE
-========================================== */
-
+=================================================== */
 
 .info-container{
 
@@ -3507,7 +3617,6 @@ opacity:1;
     margin-top:40px;
 
 }
-
 
 
 .info-card{
@@ -3962,11 +4071,15 @@ body {
         flex-direction: column;
         align-items: center;
     }
+/* Small mobile hero button */
 
-    .hero-buttons .btn {
-        width: 100%;
-        max-width: 300px;
-    }
+.hero-buttons .btn{
+
+    width:100%;
+
+    max-width:300px;
+
+}
 
     /* About */
     .about-container {
