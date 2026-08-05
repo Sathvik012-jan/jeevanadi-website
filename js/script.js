@@ -179,20 +179,18 @@ studentClass:
 document.getElementById("cohortSelect")?.value.trim() || "",
 
 
-fee:Number(
-document.getElementById("cohortSelect")?.value || 0
-)
 
+    fee: Number(
+        localStorage.getItem("quizFee") || 0
+    )
 
 };
 
 
-
 console.log(
-"Registration Data:",
-registrationData
+    "Registration Data:",
+    registrationData
 );
-
 
 
 
