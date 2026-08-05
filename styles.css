@@ -164,35 +164,67 @@ header nav ul li a:hover {
   margin-bottom: 35px;
   animation: slideUp 1.2s ease;
 }
+/* ===================================================
+   HERO BUTTONS
+=================================================== */
+/* ===================================================
+   HERO BUTTONS
+=================================================== */
 
-.hero-buttons .btn {
-  display: inline-block;
-  padding: 15px 35px;
-  margin: 8px;
-  border-radius: 40px;
-  text-decoration: none;
-  font-weight: bold;
-  background: linear-gradient(45deg, #ffd700, #ffb300);
-  color: #001f54;
-  transition: 0.4s;
-  box-shadow: 0 10px 25px rgba(255, 193, 7, 0.4);
+.hero-buttons .btn{
+
+    display:inline-block;
+
+    padding:15px 35px;
+
+    margin:8px;
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    background:linear-gradient(45deg,#ffd700,#ffb300);
+
+    color:#001f54;
+
+    transition:all 0.4s ease;
+
+    box-shadow:0 10px 25px rgba(255,193,7,0.4);
+
 }
 
-.hero-buttons .btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(255, 193, 7, 0.45);
+
+.hero-buttons .btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 20px 40px rgba(255,193,7,0.45);
+
 }
 
-.hero-buttons .btn-secondary {
-  background: linear-gradient(90deg, #001f54, #0d47a1);
-  color: white;
+
+/* ===================================================
+   SECONDARY HERO BUTTON
+=================================================== */
+
+.hero-buttons .btn-secondary{
+
+    background:linear-gradient(90deg,#001f54,#0d47a1);
+
+    color:white;
+
 }
 
-.hero-buttons .btn-secondary:hover {
-  background: linear-gradient(45deg, #ffd700, #ffb300);
-  color: #001f54;
-}
 
+.hero-buttons .btn-secondary:hover{
+
+    background:linear-gradient(45deg,#ffdgold,#ffb300);
+
+    color:#001f54;
+
+}
 .welcome {
   padding: 60px 20px;
   background: rgb(244, 244, 242) !important;
@@ -337,22 +369,39 @@ header nav ul li a:hover {
   color: #333;
   margin-bottom: 15px;
 }
+/* ===================================================
+   SERMON CARD BUTTON
+=================================================== */
 
-.sermon-card .btn {
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  color: #001f54;
-  transition: background-color 0.3s ease;
-  border-radius: 50px;
-  padding: 12px 30px;
-  background: linear-gradient(45deg, #ffd700, #ffb300);
+.sermon-card .btn{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    color:#001f54;
+
+    border-radius:50px;
+
+    padding:12px 30px;
+
+    background:linear-gradient(45deg,#ffd700,#ffb300);
+
+    transition:all 0.3s ease;
+
 }
 
-.sermon-card .btn:hover {
-  transform: translateY(-5px);
-  background: linear-gradient(45deg, #001f54, #0d47a1);
-  color: white;
+
+.sermon-card .btn:hover{
+
+    transform:translateY(-5px);
+
+    background:linear-gradient(45deg,#001f54,#0d47a1);
+
+    color:white;
+
 }
 
 .testimonies {
@@ -436,20 +485,39 @@ header nav ul li a:hover {
   line-height: 1.8;
 }
 
-.book-card .btn {
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  border-radius: 50px;
-  padding: 12px 30px;
-  background: linear-gradient(45deg, #ecebe9, #ffb300);
-  color: #001f54;
+/* ===================================================
+   BOOK CARD BUTTON
+=================================================== */
+
+.book-card .btn{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    border-radius:50px;
+
+    padding:12px 30px;
+
+    background:linear-gradient(45deg,#ecebe9,#ffb300);
+
+    color:#001f54;
+
+    transition:all 0.3s ease;
+
 }
 
-.book-card .btn:hover {
-  background: linear-gradient(45deg, #001f54, #0d47a1);
-  color: white;
+
+.book-card .btn:hover{
+
+    transform:translateY(-5px);
+
+    background:linear-gradient(45deg,#001f54,#0d47a1);
+
+    color:white;
+
 }
 
 .books .youtube-link {
@@ -711,22 +779,41 @@ img {
   transform: translateY(-8px);
 }
 
-.pastor .btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 15px 35px;
-  border-radius: 50px;
-  background: linear-gradient(45deg, #ffd700, #ffb300);
-  color: #001f54;
-  text-decoration: none;
-  font-weight: 700;
-  transition: 0.4s;
+/* ===================================================
+   PASTOR SECTION BUTTON
+=================================================== */
+
+.pastor .btn{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:15px 35px;
+
+    border-radius:50px;
+
+    background:linear-gradient(45deg,#ffd700,#ffb300);
+
+    color:#001f54;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    transition:all 0.4s ease;
+
 }
 
-.pastor .btn:hover {
-  background: #001f54;
-  color: #fff;
-  transform: translateY(-3px);
+
+.pastor .btn:hover{
+
+    background:#001f54;
+
+    color:#ffffff;
+
+    transform:translateY(-3px);
+
 }
 
 .sermon-card, .book-card, .event-card, .testimony-card {
@@ -1134,16 +1221,29 @@ footer p:last-child {
   border: none;
   display: block;
 }
+/* ===================================================
+   LIVE BUTTON
+=================================================== */
 
-.btn-live {
-  background: linear-gradient(45deg, #ff0000, #ff5252);
-  color: white;
-  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+.btn-live{
+
+    background:linear-gradient(45deg,#ff0000,#ff5252);
+
+    color:white;
+
+    box-shadow:0 10px 30px rgba(255,0,0,0.4);
+
+    transition:all 0.3s ease;
+
 }
 
-.btn-live:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(255, 0, 0, 0.6);
+
+.btn-live:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 20px 40px rgba(255,0,0,0.6);
+
 }
 
 header:hover {
@@ -2329,14 +2429,6 @@ hr {
   font-size: 25px;
 }
 
-.registration-section {
-  padding: 80px 10%;
-  background: linear-gradient(
-135deg,
-#061a40,
-#020617
-);
-}
 
 #quizForm {
   max-width: 700px;
@@ -2361,22 +2453,6 @@ hr {
   border: none;
   outline: none;
   font-size: 16px;
-}
-
-.fee-box {
-  background: black;
-  padding: 20px;
-  border-radius: 15px;
-  font-size: 22px;
-  margin: 25px 0;
-  color: var(--gold);
-}
-
-.payment-box {
-  background: rgba(255,255,255,.1);
-  padding: 30px;
-  border-radius: 20px;
-  margin-top: 30px;
 }
 
 .qr {
@@ -2590,281 +2666,337 @@ footer h3 {
     }
 }
 
-@media (max-width: 700px) {
-  .live-info div {
-    width: 100%;
-  }
+/* ===================================================
+   RESPONSIVE DESIGN
+=================================================== */
 
-  .live-container {
-    padding: 30px 20px;
-  }
 
-  .live-header h2 {
-    font-size: 32px;
-  }
+/* ================= TABLET & SMALL LAPTOP ================= */
 
-  .video-container {
-    height: 250px;
-  }
+@media (max-width:1000px){
+
+    .sermon-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
 }
 
-@media (max-width: 900px) {
-  .pastor-container {
-    flex-direction: column;
-    text-align: center;
-  }
 
-  .pastor-content h3 {
-    font-size: 32px;
-  }
+/* ================= TABLET ================= */
 
-  .pastor h2 {
-    font-size: 38px;
-  }
+@media (max-width:900px){
 
-  .pastor-features {
-    grid-template-columns: 1fr;
-  }
+    .live-info div{
+        width:100%;
+    }
 
-  header {
-    flex-direction: column;
-    padding: 20px;
-  }
 
-  header .logo h2 {
-    font-size: 22px;
-  }
+    .live-container{
+        padding:30px 20px;
+    }
 
-  header nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-  }
 
-  header nav ul li a {
-    font-size: 14px;
-  }
+    .live-header h2{
+        font-size:32px;
+    }
 
-  .hero {
-    height: auto;
-    min-height: 100vh;
-    padding: 80px 20px;
-  }
 
-  .hero p {
-    font-size: 18px;
-  }
+    .video-container{
+        height:250px;
+    }
 
-  .hero-buttons .btn {
-    display: block;
-    margin: 15px auto;
-    width: 80%;
-  }
 
-  .live-container {
-    padding: 30px 20px;
-  }
+    .pastor-container{
+        flex-direction:column;
+        text-align:center;
+        gap:40px;
+    }
 
-  .live-header h2 {
-    font-size: 32px;
-  }
 
-  .video-container {
-    height: 250px;
-  }
+    .pastor-content h3{
+        font-size:32px;
+    }
 
-  .about-container {
-    flex-direction: column;
-  }
 
-  .about-text h2 {
-    font-size: 32px;
-  }
+    .pastor h2{
+        font-size:38px;
+    }
 
-  .pastor {
-    padding: 60px 20px;
-  }
 
-  .sermon-card, .book-card, .event-card, .testimony-card {
-    width: 90%;
-  }
+    .pastor-features{
+        grid-template-columns:1fr;
+    }
 
-  .contact address {
-    width: 90%;
-    margin: 15px auto;
-  }
 
-  footer p:first-child strong {
-    font-size: 24px;
-  }
+    header{
+        flex-direction:column;
+        padding:20px;
+    }
 
-  .hero-content h1 {
-    font-size: 35px;
-  }
 
-  .event-grid, .prize-container {
-    grid-template-columns: 1fr;
-  }
+    header .logo h2{
+        font-size:22px;
+    }
 
-  .countdown {
-    gap: 8px;
-  }
 
-  .countdown div {
-    min-width: 70px;
-    padding: 12px;
-  }
+    header nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:15px;
+        margin-top:20px;
+    }
 
-  .countdown span {
-    font-size: 25px;
-  }
 
-  .event-header {
-    padding: 15px 5%;
-  }
+    header nav ul li a{
+        font-size:14px;
+    }
 
-  .logo-area h2 {
-    font-size: 16px;
-  }
+
+    .hero{
+        height:auto;
+        min-height:100vh;
+        padding:80px 20px;
+    }
+
+
+    .hero-content h1{
+        font-size:35px;
+    }
+
+
+    .hero p{
+        font-size:18px;
+    }
+
+
+   /* Mobile hero button layout */
+
+.hero-buttons .btn{
+
+    display:block;
+
+    width:80%;
+
+    margin:15px auto;
+
 }
 
-@media (max-width: 600px) {
-  header {
-    padding: 15px 20px;
-  }
+    .about-container{
+        flex-direction:column;
+    }
 
-  header .logo img {
-    height: 40px;
-  }
 
-  header .logo h2 {
-    font-size: 20px;
-  }
+    .about-text h2{
+        font-size:32px;
+    }
 
-  header nav ul {
-    gap: 10px;
-  }
 
-  header nav ul li a {
-    font-size: 13px;
-  }
+    .pastor{
+        padding:60px 20px;
+    }
 
-  .hero p {
-    font-size: 16px;
-  }
 
-  .hero-buttons .btn {
-    width: 90%;
-    padding: 14px;
-  }
+    .sermon-card,
+    .book-card,
+    .event-card,
+    .testimony-card{
+        width:90%;
+    }
 
-  .welcome h2, .about-text h2, .sermons h2, .testimonies h2, .books h2, .events h2, .contact h2, .pastor h2 {
-    font-size: 32px;
-  }
 
-  .sermon-card, .book-card, .event-card, .testimony-card {
-    width: 100%;
-  }
+    .contact address{
+        width:90%;
+        margin:15px auto;
+    }
 
-  .pastor-container {
-    gap: 40px;
-  }
 
-  .pastor-content h3 {
-    font-size: 32px;
-  }
+    footer p:first-child strong{
+        font-size:24px;
+    }
 
-  .contact address {
-    width: 100%;
-    margin: 15px 0;
-  }
 
-  .video-container {
-    aspect-ratio: 16/9;
-  }
+    .event-grid,
+    .prize-container{
+        grid-template-columns:1fr;
+    }
+
+
+    .countdown{
+        gap:8px;
+    }
+
+
+    .countdown div{
+        min-width:70px;
+        padding:12px;
+    }
+
+
+    .countdown span{
+        font-size:25px;
+    }
+
+
+    .event-header{
+        padding:15px 5%;
+    }
+
+
+    .logo-area h2{
+        font-size:16px;
+    }
+
 }
 
-@media (max-width: 768px) {
-  .contact-hero {
-    padding: 60px 20px;
-  }
 
-  .contact-hero h1 {
-    font-size: 2.2rem;
-  }
+/* ================= MOBILE ================= */
 
-  .contact-card {
-    padding: 25px;
-  }
+@media (max-width:600px){
 
-  .map-container iframe {
-    height: 300px;
-  }
+    header{
+        padding:15px 20px;
+    }
 
-  .social-links {
-    gap: 15px;
-  }
+
+    header .logo img{
+        height:40px;
+    }
+
+
+    header .logo h2{
+        font-size:20px;
+    }
+
+
+    header nav ul{
+        gap:10px;
+    }
+
+
+    header nav ul li a{
+        font-size:13px;
+    }
+
+
+    .hero p{
+        font-size:16px;
+    }
+
+
+   /* Mobile hero button adjustment */
+
+.hero-buttons .btn{
+
+    width:90%;
+
+    padding:14px;
+
 }
 
-@media (max-width: 1000px) {
-  .sermon-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
+    .welcome h2,
+    .about-text h2,
+    .sermons h2,
+    .testimonies h2,
+    .books h2,
+    .events h2,
+    .contact h2,
+    .pastor h2{
+        font-size:32px;
+    }
+
+
+    .sermon-card,
+    .book-card,
+    .event-card,
+    .testimony-card{
+        width:100%;
+    }
+
+
+    .contact address{
+        width:100%;
+        margin:15px 0;
+    }
+
+
+    .video-container{
+        aspect-ratio:16/9;
+    }
+
+
+    .sermon-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .sermon-hero h1{
+        font-size:35px;
+    }
+
+
+    #sermonSearch{
+        width:95%;
+    }
+
 }
 
-@media (max-width: 650px) {
-  .sermon-grid {
-    grid-template-columns: 1fr;
-  }
 
-  .sermon-hero h1 {
-    font-size: 35px;
-  }
+/* ================= CONTACT MOBILE ================= */
 
-  #sermonSearch {
-    width: 95%;
-  }
+@media (max-width:768px){
+
+    .contact-hero{
+        padding:60px 20px;
+    }
+
+
+    .contact-hero h1{
+        font-size:2.2rem;
+    }
+
+
+    .contact-card{
+        padding:25px;
+    }
+
+
+    .map-container iframe{
+        height:300px;
+    }
+
+
+    .social-links{
+        gap:15px;
+    }
+
 }
+
+
 
 /* ===================================================
    PAYMENT SECTION
 =================================================== */
 
 .payment-box{
-
     margin-top:30px;
-
     background:#ffffff;
-
     padding:25px;
-
     border-radius:15px;
-
     box-shadow:0 10px 25px rgba(0,0,0,0.12);
-
     text-align:center;
-
 }
 
 .payment-box h3{
-
     font-size:28px;
-
     color:#1b5e20;
-
     margin-bottom:15px;
-
 }
 
 .payment-box p{
-
     color:#555;
-
     margin-bottom:20px;
-
     font-size:16px;
-
 }
 
 .fee-box{
@@ -2985,24 +3117,6 @@ footer h3 {
 
 }
 
-.qr-image{
-
-    display:block;
-
-    width:260px;
-
-    max-width:100%;
-
-    margin:20px auto;
-
-    border-radius:12px;
-
-    border:5px solid #eeeeee;
-
-    box-shadow:0 5px 15px rgba(0,0,0,0.15);
-
-}
-
 /* ================= PAYMENT AMOUNT ================= */
 
 .payment-amount{
@@ -3036,65 +3150,37 @@ footer h3 {
     margin:0;
 
 }
+/* ===================================================
+   PAYMENT VERIFICATION INPUTS
+=================================================== */
 
 .payment-verification .input-group{
-
     margin-top:18px;
-
 }
+
 
 .payment-verification label{
-
     display:block;
-
     margin-bottom:8px;
-
     font-weight:600;
-
 }
 
-.payment-verification .input-group{
-
-    margin-top:18px;
-
-}
-
-.payment-verification label{
-
-    display:block;
-
-    margin-bottom:8px;
-
-    font-weight:600;
-
-}
 
 .payment-verification input{
-
     width:100%;
-
     padding:14px;
-
     border:1px solid #cccccc;
-
     border-radius:8px;
-
     font-size:16px;
-
-    transition:0.3s;
-
+    transition:0.3s ease;
 }
+
 
 .payment-verification input:focus{
-
     outline:none;
-
     border-color:#1b5e20;
-
     box-shadow:0 0 8px rgba(27,94,32,0.25);
-
 }
-
 .checkbox-area{
 
     display:flex;
@@ -3153,144 +3239,156 @@ footer h3 {
 
 }
 
-
-
 /* ===================================================
-   MOBILE RESPONSIVE
+   MOBILE RESPONSIVE - PAYMENT SECTION
 =================================================== */
 
-@media(max-width:768px){
+@media screen and (max-width:768px){
 
-.payment-box,
-.payment-verification{
+    .payment-box,
+    .payment-verification{
+        padding:20px;
+    }
 
-    padding:20px;
 
-}
+    .payment-box h3{
+        font-size:24px;
+    }
 
-.payment-box h3{
 
-    font-size:24px;
+    .payment-verification h2{
+        font-size:26px;
+    }
 
-}
 
-.payment-verification h2{
-
-    font-size:26px;
-
-}
-
-.qr-image{
-
-    width:220px;
+    #payButton,
+    #continueButton{
+        width:100%;
+    }
 
 }
 
-#payButton,
-#continueButton{
-
-    width:100%;
-
-}
-
-}
-/* ================= ABOUT EVENT ================= */
+/* ===================================================
+   ABOUT EVENT SECTION
+=================================================== */
 
 .about-event {
-  background: #21499a; /* same deep blue background */
-  padding: 120px 8%;
-  position: relative;
-  overflow: hidden;
+
+    background:#21499a;
+
+    padding:120px 8%;
+
+    position:relative;
+
+    overflow:hidden;
+
 }
 
 
-/* Heading */
+/* About Event Heading */
 
 .about-event h2 {
-  font-family: "Cinzel", serif;
-  font-size: 44px;
-  font-weight: 700;
-  color: #d4af37; /* gold heading */
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 60px;
-  text-align: center;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+
+    font-family:"Cinzel", serif;
+
+    font-size:44px;
+
+    font-weight:700;
+
+    color:#d4af37;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    margin-bottom:60px;
+
+    text-align:center;
+
+    text-shadow:2px 2px 8px rgba(0,0,0,0.5);
+
 }
 
 
-/* Boxes container */
+/* About Cards Container */
 
 .about-container {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 40px;
-  flex-wrap: wrap;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:stretch;
+
+    gap:40px;
+
+    flex-wrap:wrap;
+
 }
 
 
-/* Individual cards */
+/* Individual About Cards */
 
 .about-box {
 
-  background: rgba(255,255,255,0.95);
-  border-radius: 25px;
+    background:rgba(255,255,255,0.95);
 
-  padding: 40px;
+    border-radius:25px;
 
-  flex: 1;
-  min-width: 320px;
+    padding:40px;
 
-  box-shadow:
-  0 15px 35px rgba(0,0,0,0.25);
+    flex:1;
 
-  border: 2px solid rgba(212,175,55,0.4);
+    min-width:320px;
 
-  transition: all 0.3s ease;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+
+    border:2px solid rgba(212,175,55,0.4);
+
+    transition:all 0.3s ease;
+
 }
 
 
-/* Hover effect */
+/* Hover Animation */
 
 .about-box:hover {
 
-  transform: translateY(-10px);
+    transform:translateY(-10px);
 
-  box-shadow:
-  0 25px 50px rgba(0,0,0,0.35);
+    box-shadow:0 25px 50px rgba(0,0,0,0.35);
 
-  border-color:#d4af37;
+    border-color:#d4af37;
+
 }
 
 
-/* Card heading */
+/* About Card Heading */
 
 .about-box h3 {
 
-  font-family: "Cinzel", serif;
+    font-family:"Cinzel", serif;
 
-  font-size: 24px;
+    font-size:24px;
 
-  color:#0d47a1;
+    color:#0d47a1;
 
-  margin-bottom:15px;
+    margin-bottom:15px;
 
 }
 
 
-/* Card paragraph */
+/* About Card Text */
 
 .about-box p {
 
-  font-size:17px;
+    font-size:17px;
 
-  color:#333;
+    color:#333;
 
-  line-height:1.8;
+    line-height:1.8;
 
 }
-
 /* ==========================================
    CONFIRM PAYMENT BUTTON
 ========================================== */
@@ -3471,8 +3569,9 @@ footer h3 {
     font-weight:700;
 
 }
-
-
+/* ===================================================
+   SUCCESS BUTTON HOVER
+=================================================== */
 
 .success-card .home-btn:hover{
 
@@ -3481,30 +3580,29 @@ footer h3 {
 }
 
 
+/* ===================================================
+   SUCCESS POPUP ANIMATION
+=================================================== */
 
-@keyframes successPop{
+@keyframes successPop {
 
-from{
+    from{
+        transform:scale(0.8);
+        opacity:0;
+    }
 
-transform:scale(0.8);
 
-opacity:0;
-
-}
-
-to{
-
-transform:scale(1);
-
-opacity:1;
-
-}
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
 
 }
-/* ==========================================
+
+
+/* ===================================================
    ELIGIBILITY & VENUE SIDE BY SIDE
-========================================== */
-
+=================================================== */
 
 .info-container{
 
@@ -3519,7 +3617,6 @@ opacity:1;
     margin-top:40px;
 
 }
-
 
 
 .info-card{
@@ -3785,14 +3882,6 @@ footer {
 
 
 /* Fix background color for registration section */
-.registration-section {
-  background-color: #0a1a3a; /* dark navy tone */
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  border-radius: 12px;
-}
-
 
 /* Page background */
 body {
@@ -3800,19 +3889,10 @@ body {
 }
 
 /* Registration section background */
-.registration-section {
-  background-color: #0a1a3a !important; /* dark navy */
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
+
 
 /* Add spacing between Registration and FAQ sections */
-.registration-section {
-  margin-bottom: 80px; /* space below the form */
-}
+
 
 .faq-section {
   margin-top: 80px; /* space above FAQ */
@@ -3872,15 +3952,14 @@ body {
 }
 
 .registration-section {
-  width: 90%;                /* wider section */
-  max-width: 1200px;         /* consistent with other pages */
-  margin: 0 auto;            /* centers horizontally */
-  background: #001f54;       /* same navy background */
-  padding: 60px 5%;          /* balanced spacing */
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 80px auto;
+    padding: 60px 5%;
+    background: linear-gradient(135deg, #061a40, #020617);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
-
 .registration-form {
   width: 100%;
   display: flex;
@@ -3992,11 +4071,15 @@ body {
         flex-direction: column;
         align-items: center;
     }
+/* Small mobile hero button */
 
-    .hero-buttons .btn {
-        width: 100%;
-        max-width: 300px;
-    }
+.hero-buttons .btn{
+
+    width:100%;
+
+    max-width:300px;
+
+}
 
     /* About */
     .about-container {
