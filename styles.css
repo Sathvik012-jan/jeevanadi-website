@@ -4043,3 +4043,46 @@ body {
         padding: 25px 15px;
     }
 }
+
+/* Hamburger Button */
+
+.menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:#fff;
+    font-size:32px;
+    cursor:pointer;
+}
+
+
+/* Mobile Navigation */
+
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+    }
+
+    nav{
+        display:none;
+        width:100%;
+    }
+
+    nav.active{
+        display:block;
+    }
+
+    nav ul{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        margin-top:20px;
+        gap:15px;
+    }
+
+    nav ul li{
+        text-align:center;
+    }
+
+}
