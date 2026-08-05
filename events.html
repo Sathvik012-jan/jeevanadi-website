@@ -248,180 +248,201 @@ Bowenpally, Hyderabad
 </section>
 <!-- ================= REGISTRATION SECTION START ================= -->
 
-
 <section id="registration" class="registration-section">
 
 
-
-<h2>
-Registration Form
-</h2>
-
+    <h2>
+        Registration Form
+    </h2>
 
 
-<p>
-Fields marked with * are compulsory
-</p>
-<!-- ================= REGISTRATION FORM ================= -->
-
-<form id="quizForm">
-
-
-    <!-- FULL NAME -->
-    <div class="input-group">
-
-        <label for="fullName">
-            Full Name *
-        </label>
-
-        <input 
-            type="text"
-            id="fullName"
-            name="fullName"
-            required
-            placeholder="Enter participant name">
-
-    </div>
+    <p>
+        Fields marked with * are compulsory
+    </p>
 
 
 
-    <!-- AGE -->
-    <div class="input-group">
+    <!-- ================= REGISTRATION FORM ================= -->
 
-        <label for="age">
-            Age *
-        </label>
-
-        <input 
-            type="number"
-            id="age"
-            name="age"
-            min="5"
-            required
-            placeholder="Enter age">
-
-    </div>
+    <form id="quizForm">
 
 
+        <!-- FULL NAME -->
+        <div class="input-group">
 
-    <!-- PHONE NUMBER -->
-    <div class="input-group">
+            <label for="fullName">
+                Full Name *
+            </label>
 
-        <label for="phone">
-            Phone Number *
-        </label>
+            <input 
+                type="text"
+                id="fullName"
+                name="fullName"
+                required
+                placeholder="Enter participant name">
 
-        <input 
-            type="tel"
-            id="phone"
-            name="phone"
-            maxlength="10"
-            minlength="10"
-            pattern="[0-9]{10}"
-            inputmode="numeric"
-            required
-            placeholder="Enter 10 digit mobile number">
-
-    </div>
+        </div>
 
 
 
-    <!-- EMAIL -->
-    <div class="input-group">
 
-        <label>
-            Email Address
-        </label>
+        <!-- AGE -->
+        <div class="input-group">
 
-        <input 
-            type="email"
-            id="email"
-            name="email"
-            placeholder="example@gmail.com">
+            <label for="age">
+                Age *
+            </label>
 
-    </div>
+            <input 
+                type="number"
+                id="age"
+                name="age"
+                min="5"
+                required
+                placeholder="Enter age">
 
-
-
-    <!-- LOCATION -->
-    <div class="input-group">
-
-        <label>
-            Location *
-        </label>
-
-        <input 
-            type="text"
-            id="location"
-            name="location"
-            required
-            placeholder="City / Village">
-
-    </div>
+        </div>
 
 
 
-    <!-- CHURCH -->
-    <div class="input-group">
 
-        <label>
-            Church Name *
-        </label>
+        <!-- PHONE NUMBER -->
+        <div class="input-group">
 
-        <input 
-            type="text"
-            id="church"
-            name="church"
-            required
-            placeholder="Enter Church Name">
+            <label for="phone">
+                Phone Number *
+            </label>
 
-    </div>
+            <input 
+                type="tel"
+                id="phone"
+                name="phone"
+                minlength="10"
+                maxlength="10"
+                pattern="[0-9]{10}"
+                inputmode="numeric"
+                required
+                placeholder="Enter 10 digit mobile number">
 
-
-<!-- ================= COHORT / FEE SELECT ================= -->
-
-<div class="input-group">
-
-    <label for="cohortSelect">
-        Select Cohort *
-    </label>
-
-    <select id="cohortSelect" name="group" required>
-
-        <option value="">
-            Select Group
-        </option>
-
-        <option value="30">
-            Class 5–7
-        </option>
-
-        <option value="50">
-            Class 8–10
-        </option>
-
-        <option value="70">
-            Class 11+
-        </option>
-
-    </select>
-
-</div>
+        </div>
 
 
-<!-- ================= REGISTRATION FEE ================= -->
 
-<div class="fee-box">
 
-    <strong>
-        Registration Fee:
-    </strong>
+        <!-- EMAIL -->
+        <div class="input-group">
 
-    <span id="registrationFee">
-        ₹0
-    </span>
+            <label for="email">
+                Email Address
+            </label>
 
-</div>
+            <input 
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@gmail.com">
+
+        </div>
+
+
+
+
+        <!-- LOCATION -->
+        <div class="input-group">
+
+            <label for="location">
+                Location *
+            </label>
+
+            <input 
+                type="text"
+                id="location"
+                name="location"
+                required
+                placeholder="City / Village">
+
+        </div>
+
+
+
+
+        <!-- CHURCH NAME -->
+        <div class="input-group">
+
+            <label for="church">
+                Church Name *
+            </label>
+
+            <input 
+                type="text"
+                id="church"
+                name="church"
+                required
+                placeholder="Enter Church Name">
+
+        </div>
+
+
+
+
+        <!-- GROUP SELECTION -->
+
+        <div class="input-group">
+
+            <label for="cohortSelect">
+                Select Group *
+            </label>
+
+
+            <select 
+                id="cohortSelect"
+                name="group"
+                required>
+
+
+                <option value="">
+                    Select Group
+                </option>
+
+
+                <option value="Class 5-7" data-fee="30">
+                    Class 5–7 (₹30)
+                </option>
+
+
+                <option value="Class 8-10" data-fee="50">
+                    Class 8–10 (₹50)
+                </option>
+
+
+                <option value="Class 11+" data-fee="70">
+                    Class 11+ (₹70)
+                </option>
+
+
+            </select>
+
+        </div>
+
+
+
+
+        <!-- REGISTRATION FEE -->
+
+        <div class="fee-box">
+
+            <strong>
+                Registration Fee:
+            </strong>
+
+
+            <span id="registrationFee">
+                ₹0
+            </span>
+
+        </div>
+
+
 
 <!-- ================= PROCEED PAYMENT BUTTON ================= -->
 
