@@ -1039,10 +1039,11 @@ header nav ul li a:hover::after {
 }
 
 .prayer-meeting::after {
-  content: "🙏";   /* prayer symbol */
+  content: "🙏";
   display: block;
   font-size: 45px;
   margin-top: 20px;
+  line-height: 1;
 }
 
 .contact > p:first-of-type {
