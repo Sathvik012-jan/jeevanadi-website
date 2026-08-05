@@ -590,9 +590,9 @@ header nav ul li a:hover {
   margin: 15px 0 10px;
   font-family: "Cinzel", serif;
   font-size: 26px;
-  color: #ffd700;              /* gold heading */
+  color: #ff0000 !important;
+  text-shadow: 0 0 8px rgba(255,0,0,0.3);
 }
-
 .event-card p {
   font-size: 16px;
   color: #001f54;              /* navy text for readability */
