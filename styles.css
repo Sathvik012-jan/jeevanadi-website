@@ -478,7 +478,7 @@ header nav ul li a:hover {
 
 .events {
     width: 100%;
-    background: #0d47a1;
+    background: linear-gradient(135deg, #001f54, #0d47a1);
     padding: 90px 8%;
     position: relative;
     overflow: hidden;
@@ -508,27 +508,38 @@ header nav ul li a:hover {
     border-radius: 50px;
     box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
 }
-
 .events h2 {
-    font-family: "Cinzel", serif;
-    font-size: 42px;
-    color: #d4af37;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
     position: relative;
     z-index: 2;
+
+    font-family: "Cinzel", serif;
+    font-size: 44px;
+    font-weight: 700;
+
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .events h2::after {
     content: "";
     display: block;
-    width: 90px;
+
+    width: 100px;
     height: 4px;
+
     margin: 18px auto 0;
+
     border-radius: 50px;
-    background: linear-gradient(90deg, #ffd700, #ffffff);
+
+    background: linear-gradient(90deg, #d4af37, #ffffff, #d4af37);
+
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
 .events-container {
@@ -546,15 +557,27 @@ header nav ul li a:hover {
 .event-card {
     flex: 1 1 300px;
     max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     background: #ffffff;
     color: #001f54;
     text-align: center;
+
     padding: 35px 30px;
-    border-radius: 22px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-    transition: all 0.4s ease;
+    border-radius: 25px;
+    border: 2px solid transparent;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+
     position: relative;
     overflow: hidden;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
 }
 
 .event-card::before {
@@ -564,25 +587,27 @@ header nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, #ffd700, #0d47a1);
+    background: linear-gradient(90deg, #d4af37, #001f54);
 }
-
 .event-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.22);
+    transform: translateY(-12px) scale(1.03);
+    border-color: #d4af37;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
 }
 
 .event-card h3 {
     font-family: "Cinzel", serif;
-    font-size: 25px;
+    font-size: 28px;
     color: #001f54;
     margin: 18px 0 15px;
+    line-height: 1.4;
 }
 
 .event-card p {
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.8;
     color: #555;
+    margin-bottom: 20px;
 }
 
 
@@ -596,17 +621,15 @@ header nav ul li a:hover {
 }
 
 .contact h2 {
-  font-family: "Cinzel", serif;
-  font-size: 42px;
-  font-weight: 700;
-  color: #0d47a1;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  position: relative;
-  animation: slideDown 1s ease;
+    font-family: "Cinzel", serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #001f54;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
 }
 
 .contact p {
@@ -1082,52 +1105,56 @@ header nav ul li a:hover::after {
   margin-top: 20px;
   line-height: 1;
 }
+/* ===================================================
+   CONTACT DETAILS
+=================================================== */
 
 .contact > p:first-of-type {
-  max-width: 800px;
-  margin: 0 auto 40px;
-  font-size: 18px;
-  line-height: 1.8;
-  color: #555;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555555;
 }
 
 .contact h3 {
-  text-align: center;
-  font-family: "Cinzel", serif;
-  color: #0d47a1;
-  font-size: 28px;
-  margin-top: 45px;
+    font-family: "Cinzel", serif;
+    font-size: 28px;
+    color: #001f54;
+    text-align: center;
+    margin: 45px 0 25px;
+    letter-spacing: 1px;
 }
 
 .contact a {
-  text-decoration: none;
-  color: #001f54;
-  font-weight: 700;
-  transition: 0.3s;
+    color: #001f54;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .contact a:hover {
-  color: #ffd700;
+    color: #d4af37;
 }
 
 .contact address {
-  display: inline-block;
-  width: 300px;
-  min-height: 140px;
-  margin: 20px;
-  padding: 30px;
-  background: white;
-  border-radius: 25px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-  font-style: normal;
-  line-height: 1.8;
-  transition: 0.4s;
-  border-top: 6px solid #ffd700;
+    display: inline-block;
+    width: 300px;
+    min-height: 150px;
+    margin: 20px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 20px;
+    border-top: 5px solid #d4af37;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    font-style: normal;
+    line-height: 1.9;
+    transition: all 0.4s ease;
 }
 
 .contact address:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 30px 60px rgba(13, 71, 161, 0.25);
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 31, 84, 0.20);
 }
 
 footer::before {
