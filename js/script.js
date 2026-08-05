@@ -612,62 +612,35 @@ alert(
 
 
 
-
 // ==========================================
 // QUIZ POPUP
 // ==========================================
 
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener(
-"DOMContentLoaded",
-function(){
+    const popup = document.getElementById("quizPopup");
+    const closeBtn = document.getElementById("closeQuiz");
 
+    if (popup) {
 
-const popup =
-document.getElementById("quizPopup");
+        setTimeout(function () {
+            popup.classList.add("show");
+        }, 2000);
 
+    }
 
-const closeBtn =
-document.getElementById("closeQuiz");
+    if (closeBtn) {
 
+        closeBtn.addEventListener("click", function () {
+            popup.classList.remove("show");
+        });
 
+    }
 
-if(popup){
-
-
-setTimeout(function(){
-
-
-popup.classList.add("show");
-
-
-},2000);
+}); // <-- DOMContentLoaded ends here
 
 
-
-}
-
-
-
-if(closeBtn){
-
-
-closeBtn.addEventListener(
-"click",
-function(){
-
-
-popup.classList.remove("show");
-
-
-});
-
-
-}
-
-
-
-});// ================= COUNTDOWN =================
+// ================= COUNTDOWN =================
 
 const daysElement = document.getElementById("days");
 const hoursElement = document.getElementById("hours");
@@ -712,13 +685,16 @@ if (daysElement && hoursElement && minutesElement && secondsElement) {
     }, 1000);
 }
 
+
 // ================= MOBILE MENU =================
 
 const menuToggle = document.querySelector(".menu-toggle");
 const navMenu = document.querySelector("header nav ul");
 
 if (menuToggle && navMenu) {
+
     menuToggle.addEventListener("click", function () {
         navMenu.classList.toggle("show");
     });
+
 }
