@@ -3043,6 +3043,8 @@ footer h3 {
     font-size:16px;
 }
 
+/* ================= REGISTRATION FEE BOX ================= */
+
 .fee-box{
 
     margin:20px auto;
@@ -3060,6 +3062,18 @@ footer h3 {
     width:fit-content;
 
 }
+
+
+/* Registration Fee label */
+
+.fee-box strong{
+
+    color:#001f54 !important;
+
+}
+
+
+/* Fee Amount */
 
 #registrationFee,
 #amountPayable,
