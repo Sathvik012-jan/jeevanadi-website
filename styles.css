@@ -1169,9 +1169,9 @@ footer::before {
   opacity: 0.08;
   border-radius: 50%;
   top: -180px;
-  left: -100px;          /* moved to left side */
+  left: 50%;             /* anchor to middle */
+  transform: translateX(-50%); /* center horizontally */
 }
-
 
 .footer-bottom strong {
   font-family: "Cinzel", serif;
