@@ -54,40 +54,35 @@ if (searchBox) {
     });
 
 }
-
 // =======================
 // PAYMENT & REGISTRATION SYSTEM
 // =======================
 
 
-// Buttons / Elements
+// =======================
+// BUTTONS / ELEMENTS
+// =======================
 
-const payButton = 
-document.getElementById("payButton");
+const payButton = document.getElementById("payButton");
 
+const paymentBox = document.getElementById("paymentBox");
 
-const paymentBox =
-document.getElementById("paymentBox");
+const continueToVerification = document.getElementById("continueToVerification");
 
+const paymentVerification = document.getElementById("paymentVerification");
 
-const continueToVerification =
-document.getElementById("continueToVerification");
+const continueButton = document.getElementById("continueButton");
 
+const registrationFeeDisplay = document.getElementById("registrationFee");
 
-const paymentVerification =
-document.getElementById("paymentVerification");
+const amountPayableDisplay = document.getElementById("amountPayable");
 
-
-const continueButton =
-document.getElementById("continueButton");
-
-
-const verifyAmount =
-document.getElementById("amountPayable");
+const cohortSelect = document.getElementById("cohortSelect");
 
 
-
-// Temporary registration storage
+// =======================
+// REGISTRATION DATA STORAGE
+// =======================
 
 let registrationData = {};
 
@@ -96,29 +91,72 @@ let registrationData = {};
 // COHORT FEE DISPLAY
 // =======================
 
-const cohortSelect = document.getElementById("cohortSelect");
-const registrationFeeDisplay = document.getElementById("registrationFee");
-const amountPayableDisplay = document.getElementById("amountPayable");
-
-
 if (cohortSelect) {
 
     cohortSelect.addEventListener("change", function () {
 
-        const fee = this.options[this.selectedIndex].dataset.fee;
+
+        const selectedOption = this.options[this.selectedIndex];
 
 
-        registrationFeeDisplay.textContent = "₹" + fee;
+        const fee = selectedOption.getAttribute("data-fee");
 
 
-        if (amountPayableDisplay) {
-            amountPayableDisplay.textContent = "₹" + fee;
+        if (fee && fee !== "0") {
+
+
+            // Registration Fee Display
+
+            if (registrationFeeDisplay) {
+
+                registrationFeeDisplay.textContent = "₹" + fee;
+
+            }
+
+
+
+            // Payment Amount Display
+
+            if (amountPayableDisplay) {
+
+                amountPayableDisplay.textContent = "₹" + fee;
+
+            }
+
+
+
+            // Save fee temporarily
+
+            localStorage.setItem("quizFee", fee);
+
+
+        } 
+        else {
+
+
+            if (registrationFeeDisplay) {
+
+                registrationFeeDisplay.textContent = "₹0";
+
+            }
+
+
+            if (amountPayableDisplay) {
+
+                amountPayableDisplay.textContent = "₹0";
+
+            }
+
+
+            localStorage.setItem("quizFee", "0");
+
+
         }
+
 
     });
 
 }
-
 // =======================
 // OPEN PAYMENT SECTION
 // =======================
