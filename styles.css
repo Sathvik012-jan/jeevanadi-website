@@ -3942,3 +3942,104 @@ body {
 .pastor-image img:hover {
     transform: scale(1.08);
 }
+
+/* =================================
+   MOBILE RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 768px) {
+
+    /* Header */
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .logo {
+        flex-direction: column;
+    }
+
+    .logo img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .logo h2 {
+        font-size: 1.3rem;
+    }
+
+    /* Navigation */
+    nav ul {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 15px;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: auto;
+        padding: 80px 20px;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* About */
+    .about-container {
+        flex-direction: column;
+    }
+
+    .about-image img {
+        width: 100%;
+    }
+
+    /* Pastor */
+    .pastor-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pastor-image img {
+        width: 220px;
+    }
+
+    /* Live */
+    .live-info {
+        grid-template-columns: 1fr;
+    }
+
+    /* Testimonies */
+    .testimonies-container {
+        flex-direction: column;
+    }
+
+    /* Events */
+    .events-container {
+        flex-direction: column;
+    }
+
+    .event-card {
+        width: 100%;
+    }
+
+    /* Footer */
+    footer {
+        padding: 25px 15px;
+    }
+}
