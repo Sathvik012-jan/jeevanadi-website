@@ -54,81 +54,106 @@ if (searchBox) {
     });
 
 }
+
 // =======================
 // PAYMENT & REGISTRATION SYSTEM
 // =======================
 
 
-// =======================
-// BUTTONS / ELEMENTS
-// =======================
+// Buttons / Elements
 
-const payButton = document.getElementById("payButton");
-
-const paymentBox = document.getElementById("paymentBox");
-
-const continueToVerification = document.getElementById("continueToVerification");
-
-const paymentVerification = document.getElementById("paymentVerification");
-
-const continueButton = document.getElementById("continueButton");
-
-const registrationFeeDisplay = document.getElementById("registrationFee");
-
-const amountPayableDisplay = document.getElementById("amountPayable");
-
-const cohortSelect = document.getElementById("cohortSelect");
+const payButton = 
+document.getElementById("payButton");
 
 
-// =======================
-// REGISTRATION DATA STORAGE
-// =======================
+const paymentBox =
+document.getElementById("paymentBox");
+
+
+const continueToVerification =
+document.getElementById("continueToVerification");
+
+
+const paymentVerification =
+document.getElementById("paymentVerification");
+
+
+const continueButton =
+document.getElementById("continueButton");
+
+
+const verifyAmount =
+document.getElementById("amountPayable");
+
+
+
+// Temporary registration storage
 
 let registrationData = {};
 
+
+
+
 // =======================
 // COHORT FEE DISPLAY
 // =======================
-// =======================
-// COHORT FEE DISPLAY
-// =======================
-
-if (cohortSelect) {
-
-    cohortSelect.addEventListener("change", function () {
-
-        const selectedOption = this.options[this.selectedIndex];
-
-        const fee = selectedOption.dataset.fee;
 
 
-        if (fee) {
+const cohortSelect =
+document.getElementById("cohortSelect");
 
-            registrationFeeDisplay.textContent = "₹" + fee;
 
-            if (amountPayableDisplay) {
-                amountPayableDisplay.textContent = "₹" + fee;
-            }
+const registrationFeeDisplay =
+document.getElementById("registrationFee");
 
-            localStorage.setItem("quizFee", fee);
+
+const amountPayableDisplay =
+document.getElementById("amountPayable");
+
+
+
+if(cohortSelect){
+
+    cohortSelect.addEventListener("change",function(){
+
+
+        let fee = this.value;
+
+
+        if(fee !== ""){
+
+
+            registrationFeeDisplay.textContent =
+            "₹" + fee;
+
+
+            amountPayableDisplay.textContent =
+            "₹" + fee;
+
+
+        }
+        else{
+
+
+            registrationFeeDisplay.textContent =
+            "₹0";
+
+
+            amountPayableDisplay.textContent =
+            "₹0";
 
         }
 
-        else {
-
-            registrationFeeDisplay.textContent = "₹0";
-
-            if (amountPayableDisplay) {
-                amountPayableDisplay.textContent = "₹0";
-            }
-
-            localStorage.removeItem("quizFee");
-
-        }
 
     });
 
 }
+
+
+
+
+
+
 // =======================
 // OPEN PAYMENT SECTION
 // =======================
@@ -179,18 +204,20 @@ studentClass:
 document.getElementById("cohortSelect")?.value.trim() || "",
 
 
+fee:Number(
+document.getElementById("cohortSelect")?.value || 0
+)
 
-    fee: Number(
-        localStorage.getItem("quizFee") || 0
-    )
 
 };
 
 
+
 console.log(
-    "Registration Data:",
-    registrationData
+"Registration Data:",
+registrationData
 );
+
 
 
 
@@ -585,35 +612,62 @@ alert(
 
 
 
+
 // ==========================================
 // QUIZ POPUP
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", function () {
 
-    const popup = document.getElementById("quizPopup");
-    const closeBtn = document.getElementById("closeQuiz");
-
-    if (popup) {
-
-        setTimeout(function () {
-            popup.classList.add("show");
-        }, 2000);
-
-    }
-
-    if (closeBtn) {
-
-        closeBtn.addEventListener("click", function () {
-            popup.classList.remove("show");
-        });
-
-    }
-
-}); // <-- DOMContentLoaded ends here
+document.addEventListener(
+"DOMContentLoaded",
+function(){
 
 
-// ================= COUNTDOWN =================
+const popup =
+document.getElementById("quizPopup");
+
+
+const closeBtn =
+document.getElementById("closeQuiz");
+
+
+
+if(popup){
+
+
+setTimeout(function(){
+
+
+popup.classList.add("show");
+
+
+},2000);
+
+
+
+}
+
+
+
+if(closeBtn){
+
+
+closeBtn.addEventListener(
+"click",
+function(){
+
+
+popup.classList.remove("show");
+
+
+});
+
+
+}
+
+
+
+});// ================= COUNTDOWN =================
 
 const daysElement = document.getElementById("days");
 const hoursElement = document.getElementById("hours");
@@ -658,16 +712,13 @@ if (daysElement && hoursElement && minutesElement && secondsElement) {
     }, 1000);
 }
 
-
 // ================= MOBILE MENU =================
 
 const menuToggle = document.querySelector(".menu-toggle");
 const navMenu = document.querySelector("header nav ul");
 
 if (menuToggle && navMenu) {
-
     menuToggle.addEventListener("click", function () {
         navMenu.classList.toggle("show");
     });
-
 }
