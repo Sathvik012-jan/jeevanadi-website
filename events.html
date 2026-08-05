@@ -270,7 +270,7 @@ Fields marked with * are compulsory
     <!-- FULL NAME -->
     <div class="input-group">
 
-        <label>
+        <label for="fullName">
             Full Name *
         </label>
 
@@ -288,7 +288,7 @@ Fields marked with * are compulsory
     <!-- AGE -->
     <div class="input-group">
 
-        <label>
+        <label for="age">
             Age *
         </label>
 
@@ -296,6 +296,7 @@ Fields marked with * are compulsory
             type="number"
             id="age"
             name="age"
+            min="5"
             required
             placeholder="Enter age">
 
@@ -303,21 +304,23 @@ Fields marked with * are compulsory
 
 
 
-    <!-- PHONE -->
+    <!-- PHONE NUMBER -->
     <div class="input-group">
 
-        <label>
+        <label for="phone">
             Phone Number *
         </label>
 
-      <input 
-type="tel"
-id="phone"
-name="phone"
-maxlength="10"
-pattern="[0-9]{10}"
-required
-placeholder="Enter 10 digit mobile number">
+        <input 
+            type="tel"
+            id="phone"
+            name="phone"
+            maxlength="10"
+            minlength="10"
+            pattern="[0-9]{10}"
+            inputmode="numeric"
+            required
+            placeholder="Enter 10 digit mobile number">
 
     </div>
 
