@@ -385,63 +385,51 @@ Bowenpally, Hyderabad
 
 
 
-        <!-- GROUP SELECTION -->
+   <!-- ================= GROUP SELECTION ================= -->
 
-        <div class="input-group">
+<div class="input-group">
 
-            <label for="cohortSelect">
-                Select Group *
-            </label>
+    <label for="cohortSelect">
+        Select Group *
+    </label>
 
+    <select id="cohortSelect" name="group" required>
 
-            <select 
-                id="cohortSelect"
-                name="group"
-                required>
+        <option value="" data-fee="0">
+            Select Group
+        </option>
 
+        <option value="Class 5-7" data-fee="30">
+            Class 5–7 
+        </option>
 
-                <option value="">
-                    Select Group
-                </option>
+        <option value="Class 8-10" data-fee="50">
+            Class 8–10 
+        </option>
 
+        <option value="Class 11+" data-fee="70">
+            Class 11+ 
+        </option>
 
-                <option value="Class 5-7" data-fee="30">
-                    Class 5–7 (₹30)
-                </option>
+    </select>
 
-
-                <option value="Class 8-10" data-fee="50">
-                    Class 8–10 (₹50)
-                </option>
-
-
-                <option value="Class 11+" data-fee="70">
-                    Class 11+ (₹70)
-                </option>
-
-
-            </select>
-
-        </div>
+</div>
 
 
 
+<!-- ================= REGISTRATION FEE ================= -->
 
-        <!-- REGISTRATION FEE -->
+<div class="fee-box">
 
-        <div class="fee-box">
+    <strong>
+        Registration Fee:
+    </strong>
 
-            <strong>
-                Registration Fee:
-            </strong>
+    <span id="registrationFee">
+        ₹0
+    </span>
 
-
-            <span id="registrationFee">
-                ₹0
-            </span>
-
-        </div>
-
+</div>
 
 <!-- ================= PROCEED PAYMENT BUTTON ================= -->
 
