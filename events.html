@@ -443,7 +443,6 @@ Bowenpally, Hyderabad
         </div>
 
 
-
 <!-- ================= PROCEED PAYMENT BUTTON ================= -->
 
 <button
@@ -457,9 +456,10 @@ Bowenpally, Hyderabad
 
 
 
+
 <!-- ================= PAYMENT SECTION ================= -->
 
-<div
+<div 
     id="paymentBox"
     class="payment-box"
     style="display:none;">
@@ -512,6 +512,7 @@ Bowenpally, Hyderabad
 
 
 
+
 <!-- ================= PAYMENT VERIFICATION SECTION ================= -->
 
 <div
@@ -531,6 +532,7 @@ Bowenpally, Hyderabad
 
 
 
+
     <!-- UTR INPUT -->
 
     <div class="input-group">
@@ -546,11 +548,14 @@ Bowenpally, Hyderabad
             name="utr"
             maxlength="12"
             minlength="12"
+            pattern="[0-9]{12}"
             inputmode="numeric"
             autocomplete="off"
+            required
             placeholder="Enter 12-digit UTR Number">
 
     </div>
+
 
 
 
@@ -563,7 +568,8 @@ Bowenpally, Hyderabad
         <input
             type="checkbox"
             id="confirmPayment"
-            name="confirmPayment">
+            name="confirmPayment"
+            required>
 
 
         <label for="confirmPayment">
@@ -593,7 +599,6 @@ Bowenpally, Hyderabad
 
 
 </div>
-
 <!-- ================= FAQ ================= -->
 
 
