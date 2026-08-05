@@ -644,24 +644,6 @@ header nav ul li a:hover {
   margin-bottom: 10px;
 }
 
-footer {
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background:#001f54;
-border-top:4px solid #d4af37;
-  color: white;
-  padding: 40px;
-}
-
-footer p {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
-  margin: 20px auto;
-  font-size: 16px;
-  line-height: 1.8;
-}
 
 html {
   scroll-behavior: smooth;
@@ -1177,38 +1159,31 @@ header nav ul li a:hover::after {
   transform: translateY(-12px);
   box-shadow: 0 30px 60px rgba(13, 71, 161, 0.25);
 }
-
+/* Modern Footer Decorative + Text Rules */
 footer::before {
   content: "";
   position: absolute;
   width: 350px;
   height: 350px;
-  background: #ffd700;
-  opacity: 0.12;
+  background: #d4af37;   /* softer gold tone */
+  opacity: 0.08;
   border-radius: 50%;
-  top: -150px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: -180px;
+  right: -100px;         /* moved to right side */
 }
 
-footer strong {
+.footer-bottom strong {
   font-family: "Cinzel", serif;
-  color: #ffd700;
+  color: #d4af37;
 }
 
-footer p:first-child strong {
-  font-family: "Cinzel", serif;
-  font-size: 32px;
-  color: #ffd700;
-  letter-spacing: 2px;
-}
-
-footer p:nth-child(3) {
+.verse {
   font-style: italic;
-  font-size: 20px;
+  font-size: 18px;
+  color: #d4af37 !important;
 }
 
-footer p:last-child {
+.footer-bottom p {
   margin-top: 35px;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -2529,9 +2504,13 @@ hr {
 }
 
 footer h3 {
-  color: var(--gold);
-  font-family: 'Cinzel';
+  font-family:"Cinzel", serif;
+  color:#d4af37;   /* consistent gold shade */
+  font-size:24px;
+  text-transform:uppercase;
+  margin-bottom:20px;
 }
+
 
 #payButton {
   margin-top: 25px;
@@ -2851,11 +2830,6 @@ footer h3 {
     .contact address{
         width:90%;
         margin:15px auto;
-    }
-
-
-    footer p:first-child strong{
-        font-size:24px;
     }
 
 
@@ -3824,9 +3798,6 @@ footer h3 {
   margin-bottom: 60px; /* adds space below the events section */
 }
 
-footer {
-  margin-top: 40px; /* optional: adds space above footer */
-}
 /* Hover Gold Effect for All Event Cards */
 .event-card:hover {
   background: #fff8dc !important; /* light gold background */
@@ -4178,11 +4149,7 @@ body {
     }
 
     /* Footer */
-    footer {
-        padding: 25px 15px;
-    }
-}
-
+  
 /* Hamburger Button */
 
 .menu-toggle{
@@ -4239,3 +4206,13 @@ body {
 #verifyAmount {
     color: #d32f2f !important;
 }
+
+  footer {
+  background:#001f54;
+  color:white;
+  border-top:4px solid #d4af37;
+  padding:70px 8% 25px;
+  position:relative;
+  overflow:hidden;
+}
+
