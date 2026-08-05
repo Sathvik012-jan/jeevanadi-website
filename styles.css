@@ -1161,41 +1161,55 @@ header nav ul li a:hover::after {
 }
 /* Modern Footer Decorative + Text Rules */
 footer::before {
-  content: "";
-  position: absolute;
-  width: 350px;
-  height: 350px;
-  background: #d4af37;   /* softer gold tone */
-  opacity: 0.08;
-  border-radius: 50%;
-  top: -180px;
-  left: 50%;             /* anchor to middle */
-  transform: translateX(-50%); /* center horizontally */
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: #d4af37;
+    opacity: 0.08;
+    border-radius: 50%;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
 }
+
+/* ===================================================
+   FOOTER
+=================================================== */
 
 .footer-bottom strong {
-  font-family: "Cinzel", serif;
-  color: #d4af37;
+    font-family: "Cinzel", serif;
+    color: #d4af37;
+    font-weight: 700;
 }
 
-.verse {
-  font-style: italic;
-  font-size: 18px;
-  color: #d4af37 !important;
+footer .verse {
+    font-style: italic;
+    font-size: 18px;
+    color: #d4af37;
+    margin: 15px 0;
+    line-height: 1.8;
 }
 
 .footer-bottom p {
-  margin-top: 35px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 14px;
+    margin: 35px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+    text-align: center;
 }
 
+
+/* ===================================================
+   VIDEO
+=================================================== */
+
 .video-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 /* ===================================================
    LIVE BUTTON
@@ -4207,17 +4221,18 @@ body {
 #verifyAmount {
     color: #d32f2f !important;
 }
-  
-footer {
-  background:#001f54;
-  color:white;
-  border-top:4px solid #d4af37;
-  padding:70px 8% 25px;
-  position:relative;
-  overflow:hidden;
-  text-align:center;   /* <-- add this */
-}
+ /* ===================================================
+   FOOTER
+=================================================== */
 
+footer {
+    background: #001f54;
+    color: #ffffff;
+    border-top: 4px solid #d4af37;
+    padding: 70px 8% 25px;
+    position: relative;
+    overflow: hidden;
+}
 
 .footer-container {
     max-width: 1200px;
@@ -4226,4 +4241,10 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
     align-items: start;
+    justify-items: start;
+}
+
+.footer-column {
+    width: 100%;
+    text-align: left;
 }
