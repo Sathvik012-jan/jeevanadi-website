@@ -92,15 +92,12 @@ document.getElementById("amountPayable");
 let registrationData = {};
 
 
-
 // =======================
 // COHORT FEE DISPLAY
 // =======================
 
 const cohortSelect = document.getElementById("cohortSelect");
-
 const registrationFeeDisplay = document.getElementById("registrationFee");
-
 const amountPayableDisplay = document.getElementById("amountPayable");
 
 
@@ -108,36 +105,19 @@ if (cohortSelect) {
 
     cohortSelect.addEventListener("change", function () {
 
-        const selectedOption = this.options[this.selectedIndex];
-
-        const fee = selectedOption.getAttribute("data-fee");
+        const fee = this.options[this.selectedIndex].dataset.fee;
 
 
-        if (fee && fee !== "0") {
-
-            registrationFeeDisplay.textContent = "₹" + fee;
+        registrationFeeDisplay.textContent = "₹" + fee;
 
 
-            if (amountPayableDisplay) {
-                amountPayableDisplay.textContent = "₹" + fee;
-            }
-
-        } 
-        else {
-
-            registrationFeeDisplay.textContent = "₹0";
-
-
-            if (amountPayableDisplay) {
-                amountPayableDisplay.textContent = "₹0";
-            }
-
+        if (amountPayableDisplay) {
+            amountPayableDisplay.textContent = "₹" + fee;
         }
 
     });
 
 }
-
 
 // =======================
 // OPEN PAYMENT SECTION
