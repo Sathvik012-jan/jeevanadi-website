@@ -1014,7 +1014,6 @@ header nav ul li a:hover::after {
   transition: 0.5s ease;
   color: #001f54;
 }
-
 .event-card::before {
   content: "";
   position: absolute;
@@ -1039,14 +1038,12 @@ header nav ul li a:hover::after {
   margin-top: 20px;
 }
 
-.youth-meeting::after {
-  content: "👥";   /* group/people symbol */
+.prayer-meeting::after {
+  content: "🙏";   /* prayer symbol */
   display: block;
   font-size: 45px;
   margin-top: 20px;
 }
-
-
 
 .contact > p:first-of-type {
   max-width: 800px;
