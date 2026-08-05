@@ -20,6 +20,9 @@
 
 <body>
 
+    <!-- Mobile Menu Button -->
+    <button class="menu-toggle" type="button">☰</button>
+
     <!-- ================= HEADER ================= -->
     <header class="event-header">
 
@@ -39,7 +42,6 @@
         </a>
 
     </header>
-
 
 <!-- ================= HERO SECTION ================= -->
 
@@ -248,173 +250,162 @@ Bowenpally, Hyderabad
 </section>
 <!-- ================= REGISTRATION SECTION START ================= -->
 
+
 <section id="registration" class="registration-section">
 
 
-    <h2>
-        Registration Form
-    </h2>
 
-
-    <p>
-        Fields marked with * are compulsory
-    </p>
+<h2>
+Registration Form
+</h2>
 
 
 
-    <!-- ================= REGISTRATION FORM ================= -->
+<p>
+Fields marked with * are compulsory
+</p>
+<!-- ================= REGISTRATION FORM ================= -->
 
-    <form id="quizForm">
-
-
-        <!-- FULL NAME -->
-        <div class="input-group">
-
-            <label for="fullName">
-                Full Name *
-            </label>
-
-            <input 
-                type="text"
-                id="fullName"
-                name="fullName"
-                required
-                placeholder="Enter participant name">
-
-        </div>
+<form id="quizForm">
 
 
+    <!-- FULL NAME -->
+    <div class="input-group">
 
+        <label>
+            Full Name *
+        </label>
 
-        <!-- AGE -->
-        <div class="input-group">
+        <input 
+            type="text"
+            id="fullName"
+            name="fullName"
+            required
+            placeholder="Enter participant name">
 
-            <label for="age">
-                Age *
-            </label>
-
-            <input 
-                type="number"
-                id="age"
-                name="age"
-                min="5"
-                required
-                placeholder="Enter age">
-
-        </div>
+    </div>
 
 
 
+    <!-- AGE -->
+    <div class="input-group">
 
-        <!-- PHONE NUMBER -->
-        <div class="input-group">
+        <label>
+            Age *
+        </label>
 
-            <label for="phone">
-                Phone Number *
-            </label>
+        <input 
+            type="number"
+            id="age"
+            name="age"
+            required
+            placeholder="Enter age">
 
-            <input 
-                type="tel"
-                id="phone"
-                name="phone"
-                minlength="10"
-                maxlength="10"
-                pattern="[0-9]{10}"
-                inputmode="numeric"
-                required
-                placeholder="Enter 10 digit mobile number">
-
-        </div>
+    </div>
 
 
 
+    <!-- PHONE -->
+    <div class="input-group">
 
-        <!-- EMAIL -->
-        <div class="input-group">
+        <label>
+            Phone Number *
+        </label>
 
-            <label for="email">
-                Email Address
-            </label>
+        <input 
+            type="tel"
+            id="phone"
+            name="phone"
+            maxlength="10"
+            required
+            placeholder="Enter 10 digit mobile number">
 
-            <input 
-                type="email"
-                id="email"
-                name="email"
-                placeholder="example@gmail.com">
-
-        </div>
-
-
-
-
-        <!-- LOCATION -->
-        <div class="input-group">
-
-            <label for="location">
-                Location *
-            </label>
-
-            <input 
-                type="text"
-                id="location"
-                name="location"
-                required
-                placeholder="City / Village">
-
-        </div>
+    </div>
 
 
 
+    <!-- EMAIL -->
+    <div class="input-group">
 
-        <!-- CHURCH NAME -->
-        <div class="input-group">
+        <label>
+            Email Address
+        </label>
 
-            <label for="church">
-                Church Name *
-            </label>
+        <input 
+            type="email"
+            id="email"
+            name="email"
+            placeholder="example@gmail.com">
 
-            <input 
-                type="text"
-                id="church"
-                name="church"
-                required
-                placeholder="Enter Church Name">
-
-        </div>
+    </div>
 
 
 
+    <!-- LOCATION -->
+    <div class="input-group">
 
-   <!-- ================= GROUP SELECTION ================= -->
+        <label>
+            Location *
+        </label>
+
+        <input 
+            type="text"
+            id="location"
+            name="location"
+            required
+            placeholder="City / Village">
+
+    </div>
+
+
+
+    <!-- CHURCH -->
+    <div class="input-group">
+
+        <label>
+            Church Name *
+        </label>
+
+        <input 
+            type="text"
+            id="church"
+            name="church"
+            required
+            placeholder="Enter Church Name">
+
+    </div>
+
+
+<!-- ================= COHORT / FEE SELECT ================= -->
 
 <div class="input-group">
 
     <label for="cohortSelect">
-        Select Group *
+        Select Cohort *
     </label>
 
-    <select id="cohortSelect" name="group" required>
+   <select id="cohortSelect" name="cohort" required>
 
-        <option value="" data-fee="0">
+
+        <option value="">
             Select Group
         </option>
 
-        <option value="Class 5-7" data-fee="30">
-            Class 5–7 
+        <option value="30">
+            Class 5–7
         </option>
 
-        <option value="Class 8-10" data-fee="50">
-            Class 8–10 
+        <option value="50">
+            Class 8–10
         </option>
 
-        <option value="Class 11+" data-fee="70">
-            Class 11+ 
+        <option value="70">
+            Class 11+
         </option>
 
     </select>
 
 </div>
-
 
 
 <!-- ================= REGISTRATION FEE ================= -->
@@ -444,10 +435,9 @@ Bowenpally, Hyderabad
 
 
 
-
 <!-- ================= PAYMENT SECTION ================= -->
 
-<div 
+<div
     id="paymentBox"
     class="payment-box"
     style="display:none;">
@@ -500,7 +490,6 @@ Bowenpally, Hyderabad
 
 
 
-
 <!-- ================= PAYMENT VERIFICATION SECTION ================= -->
 
 <div
@@ -520,7 +509,6 @@ Bowenpally, Hyderabad
 
 
 
-
     <!-- UTR INPUT -->
 
     <div class="input-group">
@@ -536,14 +524,11 @@ Bowenpally, Hyderabad
             name="utr"
             maxlength="12"
             minlength="12"
-            pattern="[0-9]{12}"
             inputmode="numeric"
             autocomplete="off"
-            required
             placeholder="Enter 12-digit UTR Number">
 
     </div>
-
 
 
 
@@ -556,8 +541,7 @@ Bowenpally, Hyderabad
         <input
             type="checkbox"
             id="confirmPayment"
-            name="confirmPayment"
-            required>
+            name="confirmPayment">
 
 
         <label for="confirmPayment">
@@ -571,112 +555,86 @@ Bowenpally, Hyderabad
 
 
 
-<!-- ================= FINAL SUBMIT BUTTON ================= -->
+    <!-- FINAL SUBMIT BUTTON -->
 
-<button
-    type="button"
-    id="continueButton"
-    class="payment-btn">
+    <button
+        type="button"
+        id="continueButton"
+        class="payment-btn">
 
-    Confirm Payment & Register
+        Confirm Payment & Register
 
-</button>
+    </button>
 
-
-</div> <!-- End Payment Verification Section -->
-
-
-
-<!-- ================= CLOSE REGISTRATION SECTION ================= -->
+</div>
 
 </form>
 
-</section>
-
-
-
-
-
-<!-- ================= FAQ SECTION ================= -->
+<!-- ================= FAQ ================= -->
 
 <section class="dark-section">
 
-
-    <h2>
-        Frequently Asked Questions
-    </h2>
-
+<h2>
+Frequently Asked Questions
+</h2>
 
 
-    <div class="faq">
+
+<div class="faq">
 
 
-        <div class="faq-item">
+<h3>
+Who can participate?
+</h3>
 
-            <h3>
-                Who can participate?
-            </h3>
 
-            <p>
-                All are welcome.
-            </p>
-
-        </div>
+<p>
+All are welcome.
+</p>
 
 
 
 
-        <div class="faq-item">
 
-            <h3>
-                What is the Bible portion?
-            </h3>
+<h3>
+What is the Bible portion?
+</h3>
 
-            <p>
-                Gospel According to John.
-            </p>
 
-        </div>
+<p>
+Gospel According to John.
+</p>
 
 
 
 
-        <div class="faq-item">
 
-            <h3>
-                Will certificates be provided?
-            </h3>
+<h3>
+Will certificates be provided?
+</h3>
 
-            <p>
-                Yes, certificates will be provided to participants.
-            </p>
+<p>
+    Yes, certificates will be provided to participants.
+</p>
 
-        </div>
-
-
-    </div>
-
+</div>
 
 </section>
-
-
-
-
-
 
 <!-- ================= FOOTER ================= -->
 
 <footer>
-
 
     <h3>
         Jeeva Nadi Ministries
     </h3>
 
 
-    <p>
-        Worship • Word • Fellowship
-    </p>
+
+<p>
+Worship • Word • Fellowship
+</p>
+
 
 
 </footer>
@@ -685,27 +643,16 @@ Bowenpally, Hyderabad
 
 
 
-
-
-<!-- ================= JAVASCRIPT FILES ================= -->
-
-
+<!-- Razorpay Checkout -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-
+<!-- Project Scripts -->
 <script src="js/firebase.js"></script>
-
-
 <script src="js/script.js"></script>
 
-
-
 </body>
-
 </html>
