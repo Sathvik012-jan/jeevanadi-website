@@ -1729,18 +1729,18 @@ hr {
 }
 
 .pastors-section {
-  padding: 90px 8%;
-  background: linear-gradient(135deg, #f9fbff, #eef5ff);
-  text-align: center;
+    padding: 90px 8%;
+    background: linear-gradient(135deg, #0a1a3a, #102a63);
+    text-align: center;
 }
 
 .pastors-section h2 {
-  font-family: 'Cinzel', serif;
-  font-size: 42px;
-  color: #0D47A1;
-  text-transform: uppercase;
-  margin-bottom: 50px;
-  position: relative;
+    font-family: 'Cinzel', serif;
+    font-size: 42px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    position: relative;
 }
 
 .pastors-grid {
