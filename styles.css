@@ -1,3 +1,4 @@
+
 /* Cleaned & deduplicated stylesheet */
 
 /* ====== GLOBAL ====== */
@@ -1012,6 +1013,7 @@ header nav ul li a:hover::after {
   transition: 0.5s ease;
   color: #001f54;
 }
+
 .event-card::before {
   content: "";
   position: absolute;
@@ -1036,13 +1038,14 @@ header nav ul li a:hover::after {
   margin-top: 20px;
 }
 
-.prayer-meeting::after {
-  content: "🙏";
+.youth-meeting::after {
+  content: "👥";   /* group/people symbol */
   display: block;
   font-size: 45px;
   margin-top: 20px;
-  line-height: 1;
 }
+
+
 
 .contact > p:first-of-type {
   max-width: 800px;
@@ -1493,16 +1496,20 @@ header nav ul li {
 }
 
 .contact-section {
+  width: 100%;
   max-width: 1300px;
   margin: 70px auto;
-  padding: 0 20px;
+  padding: 40px 60px;
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 35px;
-}
+
+
 
 .contact-card {
   background: #ffffff;
@@ -1516,6 +1523,7 @@ header nav ul li {
   transform: translateY(30px);
   animation: fadeUp 0.8s ease forwards;
 }
+
 
 .contact-card:hover {
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
@@ -1552,21 +1560,36 @@ header nav ul li {
 .contact-btn {
   display: inline-block;
   margin-top: 20px;
-  background: #001f54;
-  color: white;
+  background: #001f54; /* deep navy background */
+  color: #ffffff;      /* pure white text */
   text-decoration: none;
   padding: 14px 28px;
   border-radius: 50px;
-  transition: 0.35s;
   font-weight: 600;
-  animation: slideUp 1s ease;
+  transition: 0.35s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+
+
 .contact-btn:hover {
-  background: #d4af37;
-  color: #001f54;
+  background: #d4af37; /* gold hover */
+  color: #001f54;      /* navy text on hover */
   transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4);
 }
+
+
+.contact-card:nth-child(3) .contact-btn { /* YouTube */
+  background: #FF0000;
+  color: #ffffff;
+}
+.contact-card:nth-child(4) .contact-btn { /* Instagram */
+  background: linear-gradient(45deg, #E1306C, #F77737, #FFDC80);
+  color: #ffffff;
+}
+
+
 
 .phone-number {
   display: flex;
@@ -1610,11 +1633,6 @@ header nav ul li {
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 
-.map-container iframe {
-  width: 100%;
-  height: 450px;
-  border: none;
-}
 
 .prayer-banner {
   margin-top: 70px;
@@ -2798,9 +2816,6 @@ footer h3 {
     padding: 25px;
   }
 
-  .map-container iframe {
-    height: 300px;
-  }
 
   .social-links {
     gap: 15px;
@@ -3924,214 +3939,238 @@ body {
   box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
-
-/* Pastor Image Zoom Hover Effect */
-.pastor-image {
-    overflow: hidden;
-    border-radius: 15px;
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.pastor-image img {
-    width: 100%;
-    display: block;
-    transition: transform 0.5s ease;
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
 }
 
-.pastor-image img:hover {
-    transform: scale(1.08);
+.contact-card {
+  flex: 1 1 280px;
+  min-height: 250px;
+}
+.contact-card h3 {
+  color: #ffd700; /* gold heading */
+  margin-bottom: 15px;
 }
 
-/* =================================
-   MOBILE RESPONSIVE DESIGN
-================================= */
-
-@media (max-width: 768px) {
-
-    /* Header */
-    header {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px;
-    }
-
-    .logo {
-        flex-direction: column;
-    }
-
-    .logo img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .logo h2 {
-        font-size: 1.3rem;
-    }
-
-    /* Navigation */
-    nav ul {
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 15px;
-    }
-
-    /* Hero */
-    .hero {
-        min-height: auto;
-        padding: 80px 20px;
-    }
-
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-buttons .btn {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    /* About */
-    .about-container {
-        flex-direction: column;
-    }
-
-    .about-image img {
-        width: 100%;
-    }
-
-    /* Pastor */
-    .pastor-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .pastor-image img {
-        width: 220px;
-    }
-
-    /* Live */
-    .live-info {
-        grid-template-columns: 1fr;
-    }
-
-    /* Testimonies */
-    .testimonies-container {
-        flex-direction: column;
-    }
-
-    /* Events */
-    .events-container {
-        flex-direction: column;
-    }
-
-    .event-card {
-        width: 100%;
-    }
-
-    /* Footer */
-    footer {
-        padding: 25px 15px;
-    }
+.youtube-icon{
+    color:#FF0000;
+    font-size:48px;
+    vertical-align:middle;
+    margin-right:15px;
 }
 
-/* Hamburger Button */
+.instagram-icon{
+    font-size:48px;
+    vertical-align:middle;
+    margin-right:15px;
 
-.menu-toggle{
-    display:none;
-    background:none;
-    border:none;
-    color:#fff;
-    font-size:32px;
-    cursor:pointer;
+    background: linear-gradient(
+        45deg,
+        #feda75,
+        #fa7e1e,
+        #d62976,
+        #962fbf,
+        #4f5bd5
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
 
+.contact-card h2 i {
+  font-size: 1.6rem;          /* consistent size for all icons */
+  vertical-align: middle;     /* aligns icon with text baseline */
+  margin-right: 8px;          /* space between icon and text */
+  color: #001f54;             /* default navy color */
+}
 
-/* Mobile Navigation */
+.contact-card h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #001f54;
+}
 
-@media (max-width:768px){
+.contact-section h2 i {
+  font-size: 1.8rem;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: #d4af37; /* gold accent */
+}
+.contact-section h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #001f54;
+  font-weight: 700;
+}
 
-    .menu-toggle{
-        display:block;
-    }
+.contact-card:nth-child(1) i { color: #e91e63; }   /* Phone - pinkish red */
+.contact-card:nth-child(2) i { color: #001f54; }   /* Email - navy */
+.contact-card:nth-child(3) i { color: #FF0000; }   /* YouTube - red */
+.contact-card:nth-child(4) i { color: #E1306C; }   /* Instagram - magenta */
 
-    nav{
-        display:none;
-        width:100%;
-    }
+.map-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;      /* stack heading above map */
+  justify-content: center;
+  align-items: center;         /* centers horizontally */
+  text-align: center;
+  padding: 40px 60px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
 
-    nav.active{
-        display:block;
-    }
-
-    nav ul{
-        display:flex;
-        flex-direction:column;
-        width:100%;
-        margin-top:20px;
-        gap:15px;
-    }
-
-    nav ul li{
-        text-align:center;
-    }
-
+.map-container iframe {
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  display: block;
+  margin: 0 auto;
 }
 
 
 
+.map-container {
+  padding: 60px 60px; /* increased vertical padding */
+}
+
+
+.map-container h2 {
+  flex: 1;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #001f54;
+  margin-bottom: 40px; /* adds proper gap between heading and map */
+}
+
+
+.map-container iframe {
+  width: 100%;
+  max-width: 900px;            /* larger map */
+  height: 500px;               /* taller map for balance */
+  border-radius: 15px;
+  border: 3px solid #d4af37;   /* gold border for elegance */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  display: block;
+  margin: 0 auto;
+}
 
 
 
+.map-container iframe:hover {
+  transform: scale(1.02);
+  transition: 0.4s ease;
+  box-shadow: 0 25px 60px rgba(13, 71, 161, 0.25);
+}
 
 
+.ministry-section {
+  text-align: center;
+  padding: 60px 60px;
+  background-color: #fff;
+  border-radius: 12px;
+  margin: 70px auto;
+  max-width: 1300px;
+}
 
+.ministry-section h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #001f54;
+  margin-bottom: 40px;
+}
 
+.ministry-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
 
+.ministry-card {
+  flex: 1 1 280px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  border-top: 5px solid #d4af37;
+  transition: 0.35s ease;
+}
 
+.ministry-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
+  background: #0d47a1;
+  color: #ffd700;
+}
 
+.visit-church {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+.visit-church iframe {
+  width: 100%;
+  height: 400px; /* or use 100% if the parent has fixed height */
+  border-radius: 10px;
+  border: none;
+}
 
+.ministry-family {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.church-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
 
+.section-box {
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
 
+.church-card {
+  margin: 0 auto;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.section-box {
+  margin: 0 auto;
+  max-width: 1200px;
+}
 
