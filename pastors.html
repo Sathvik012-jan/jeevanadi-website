@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="images/Wb.png">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles.css">
@@ -48,14 +48,14 @@
         <h1>Meet Our Pastoral Team</h1>
 
         <p>
-            Our pastors are committed to faithfully proclaiming God's Word,
-            shepherding His people with love, and leading the church in worship,
-            prayer, and service for the glory of Jesus Christ.
+            Our pastors are devoted to preaching the Gospel,
+            shepherding God's people, and leading the church
+            in worship, prayer, discipleship, and Christian service.
         </p>
 
     </section>
 
-    <!-- Pastors Section -->
+    <!-- Pastors -->
     <section class="pastors-section">
 
         <div class="pastors-grid">
@@ -64,7 +64,7 @@
             <div class="pastor-card fade-in">
 
                 <img src="images/christina-malligary.jpg"
-                     alt="Pastor Christina Malligary">
+                    alt="Pastor Christina Malligary">
 
                 <span class="pastor-badge">
                     ✝ Senior Pastor
@@ -73,14 +73,14 @@
                 <h3>Pastor Christina Malligary</h3>
 
                 <p class="verse">
-                    "Feed My sheep."
-                    <br>
+                    <em>"Feed My sheep."</em><br>
                     <strong>John 21:17</strong>
                 </p>
 
                 <p>
-                    Faithfully leading the ministry through Biblical preaching,
-                    prayer, discipleship, and compassionate pastoral care.
+                    Pastor Christina faithfully leads the ministry through
+                    Biblical preaching, prayer, discipleship, pastoral care,
+                    and a heart for serving God's people.
                 </p>
 
                 <p class="contact">
@@ -96,7 +96,7 @@
             <div class="pastor-card fade-in">
 
                 <img src="images/caleb-malligary.jpg"
-                     alt="Pastor Caleb Malligary">
+                    alt="Pastor Caleb Malligary">
 
                 <span class="pastor-badge">
                     ✝ Associate Pastor
@@ -105,15 +105,14 @@
                 <h3>Pastor Caleb Malligary</h3>
 
                 <p class="verse">
-                    "The Lord is my light and my salvation."
-                    <br>
+                    <em>"The Lord is my light and my salvation."</em><br>
                     <strong>Psalm 27:1</strong>
                 </p>
 
                 <p>
-                    Serving the church through teaching, worship,
-                    youth ministry, and encouraging believers
-                    to grow in Christ.
+                    Pastor Caleb serves with dedication through Biblical
+                    teaching, youth ministry, worship, prayer, and
+                    encouraging believers to grow in their walk with Christ.
                 </p>
 
                 <p class="contact">
@@ -132,9 +131,7 @@
     <!-- Footer -->
     <footer>
 
-        <p>
-            <strong>Jeeva Nadi Ministries</strong>
-        </p>
+        <p><strong>Jeeva Nadi Ministries</strong></p>
 
         <p>
             Serving Christ through
@@ -145,28 +142,29 @@
         </p>
 
         <p>
-            "The Lord is my Shepherd; I shall not want."
-            <br>
+            "The Lord is my Shepherd; I shall not want."<br>
             <strong>Psalm 23:1</strong>
         </p>
 
-        <p>
-            Hyderabad, Telangana, India
-        </p>
+        <p>Hyderabad, Telangana, India</p>
 
-        <p>
-            © 2026 Jeeva Nadi Ministries. All Rights Reserved.
-        </p>
+        <p>© 2026 Jeeva Nadi Ministries. All Rights Reserved.</p>
 
     </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll(".fade-in").forEach((card, index) => {
+
+            const cards = document.querySelectorAll(".fade-in");
+
+            cards.forEach((card, index) => {
+
                 setTimeout(() => {
                     card.classList.add("visible");
-                }, 250 * index);
+                }, index * 250);
+
             });
+
         });
     </script>
 
