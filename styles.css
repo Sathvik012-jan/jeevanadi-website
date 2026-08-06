@@ -472,82 +472,95 @@ header nav ul li a:hover {
   background: linear-gradient(45deg, #eff0f2, #eeeeec);
   color: white;
   transform: scale(1.05);
-}/* ===============================
+
+ /* ===============================
    UPCOMING EVENTS SECTION
 =============================== */
+
 .events {
-  width: 100%;
-  max-width: 1200px;           /* keeps consistent width */
-  margin: 0 auto;              /* centers horizontally */
-  background: #0d47a1;         /* navy background */
-  padding: 90px 8% 60px;
-  position: relative;
-  overflow: visible;           /* ensures ::after is visible */
-  z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffffff;              /* changed from navy to white */
+    padding: 90px 8% 60px;
+    position: relative;
+    overflow: visible;
+    z-index: 1;
 }
 
+
+/* Section Heading */
 .events h2 {
-  font-family: "Cinzel", serif;
-  font-size: 42px;
-  font-weight: 700;
-  color: #d4af37;              /* gold heading */
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 40px;
-  text-align: center;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    font-family: "Cinzel", serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #0d47a1;                   /* dark blue heading */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    text-align: center;
+    text-shadow: none;
 }
 
+
+/* Events Container */
 .events-container {
-  max-width: 1200px;           /* aligns with other sections */
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 35px;
-  flex-wrap: wrap;             /* responsive wrapping */
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 35px;
+    flex-wrap: wrap;
 }
 
+
+/* Event Cards */
 .event-card {
-  flex: 1 1 300px;             /* flexible width */
-  max-width: 350px;
-  text-align: center;
-  padding: 35px 30px;
-  border-radius: 25px;
-  background: #ffffff;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-  transition: 0.5s ease;
-  color: #001f54;
+    flex: 1 1 300px;
+    max-width: 350px;
+    text-align: center;
+    padding: 35px 30px;
+    border-radius: 25px;
+    background: #ffffff;
+    border: 2px solid #d4af37;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    transition: 0.5s ease;
+    color: #001f54;
 }
 
+
+/* Card Heading */
 .event-card h3 {
-  margin: 15px 0 10px;
-  font-family: "Cinzel", serif;
-  font-size: 26px;
-  color: #ffd700;              /* gold heading */
+    margin: 15px 0 10px;
+    font-family: "Cinzel", serif;
+    font-size: 26px;
+    color: #0d47a1;
 }
 
+
+/* Card Text */
 .event-card p {
-  font-size: 16px;
-  color: #001f54;              /* navy text for readability */
-  line-height: 1.9;
+    font-size: 16px;
+    color: #001f54;
+    line-height: 1.9;
 }
 
-/* ✨ Gold divider line between sections */
+
+/* Gold Divider Line */
 .events::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  height: 4px;
-  background: linear-gradient(90deg, #ffd700, #d4af37);
-  border-radius: 50px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-  z-index: 2;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 4px;
+    background: linear-gradient(90deg, #ffd700, #d4af37);
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    z-index: 2;
 }
-
 
 .contact {
   background-color: rgb(246, 239, 239);
