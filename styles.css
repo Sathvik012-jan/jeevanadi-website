@@ -121,27 +121,7 @@ header nav ul li a:hover {
 
 
 /* Gold glow effect */
-.hero::before{
 
-    content:"";
-
-    position:absolute;
-
-    width:450px;
-    height:450px;
-
-    background:#ffd700;
-
-    opacity:0.12;
-
-    border-radius:50%;
-
-    top:-100px;
-    right:-100px;
-
-    filter:blur(120px);
-
-}
 
 .hero-content {
   max-width: 900px;
@@ -507,17 +487,7 @@ header nav ul li a:hover {
   flex-wrap: wrap;             /* responsive wrapping */
 }
 
-.event-card {
-  flex: 1 1 300px;             /* flexible width */
-  max-width: 350px;
-  text-align: center;
-  padding: 35px 30px;
-  border-radius: 25px;
-  background: #ffffff;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-  transition: 0.5s ease;
-  color: #001f54;
-}
+
 
 .event-card h3 {
   margin: 15px 0 10px;
@@ -728,26 +698,6 @@ img {
   background: #001f54;
   color: #fff;
   transform: translateY(-3px);
-}
-
-.sermon-card, .book-card, .event-card, .testimony-card {
-  background: #ffffff;
-  border-radius: 22px;
-  padding: 28px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  transition: all 0.35s ease;
-  overflow: hidden;
-  position: relative;
-}
-
-.sermon-card::before, .book-card::before, .event-card::before, .testimony-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  background: linear-gradient(90deg, #ffd700, #0d47a1);
 }
 
 .live-container {
@@ -1393,12 +1343,7 @@ header nav ul li {
   border-radius: 50px;
 }
 
-.event-card:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 30px 60px rgba(13, 71, 161, 0.25);
-  background: #0d47a1;
-  color: #ffd700;
-}
+
 
 .events::before {
   content: "";
@@ -2704,9 +2649,7 @@ footer h3 {
     padding: 60px 20px;
   }
 
-  .sermon-card, .book-card, .event-card, .testimony-card {
-    width: 90%;
-  }
+ 
 
   .contact address {
     width: 90%;
@@ -2781,9 +2724,6 @@ footer h3 {
     font-size: 32px;
   }
 
-  .sermon-card, .book-card, .event-card, .testimony-card {
-    width: 100%;
-  }
 
   .pastor-container {
     gap: 40px;
@@ -2816,11 +2756,6 @@ footer h3 {
     padding: 25px;
   }
 
-
-  .social-links {
-    gap: 15px;
-  }
-}
 
 @media (max-width: 1000px) {
   .sermon-grid {
