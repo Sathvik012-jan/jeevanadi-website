@@ -2059,51 +2059,20 @@ hr {
   transform: translateY(-3px);
 }
 
-/* =====================================================
-                QUIZ POPUP CLOSE BUTTON
-===================================================== */
-
 .quiz-close {
-
-    position: absolute;
-
-    top: 18px;
-    right: 18px;
-
-    width: 46px;
-    height: 46px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 2px solid #d4af37;
-    border-radius: 50%;
-
-    background: transparent;
-
-    color: #d4af37;
-
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1;
-
-    cursor: pointer;
-
-    transition: all .35s ease;
-
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #444;
+  transition: .3s;
 }
 
 .quiz-close:hover {
-
-    background: #d4af37;
-
-    color: #001f54;
-
-    transform: rotate(90deg) scale(1.08);
-
-    box-shadow: 0 8px 20px rgba(212,175,55,.35);
-
+  color: #d32f2f;
+  transform: scale(1.2);
 }
 
 .announcement-bar {
@@ -6251,42 +6220,21 @@ hr {
 .quiz-register-btn:hover {
   transform: translateY(-3px);
 }
-/* =====================================================
-                QUIZ POPUP CLOSE BUTTON
-===================================================== */
 
-.quiz-close{
-    position:absolute;
-    top:18px;
-    right:18px;
-
-    width:46px;
-    height:46px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:2px solid #d4af37;
-    border-radius:50%;
-
-    background:transparent;
-    color:#d4af37;
-
-    font-size:30px;
-    font-weight:700;
-    line-height:1;
-
-    cursor:pointer;
-
-    transition:all .35s ease;
+.quiz-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #444;
+  transition: .3s;
 }
 
-.quiz-close:hover{
-    background:#d4af37;
-    color:#001f54;
-    transform:rotate(90deg) scale(1.08);
-    box-shadow:0 8px 20px rgba(212,175,55,.35);
+.quiz-close:hover {
+  color: #d32f2f;
+  transform: scale(1.2);
 }
 
 .announcement-bar {
