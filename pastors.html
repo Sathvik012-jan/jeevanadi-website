@@ -1,164 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pastors | Jeeva Nadi Ministries</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Our Pastors | Jeeva Nadi Ministries</title>
 
-  <!-- Stylesheet -->
- <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Wb.png">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<header>
-  <div class="logo">
-    <img src="images/Logo.jpg" alt="Jeeva Nadi Ministries Logo">
-    <h2>Jeeva Nadi Ministries</h2>
-    
-  </div>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="pastors.html" class="active">Pastors</a></li>
-      <li><a href="sermons.html">Sermons</a></li>
-      <li><a href="live.html">Live</a></li>
-      <li><a href="books.html">Books</a></li>
-      <li><a href="events.html">Events</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+    <!-- Header -->
+    <header>
 
-<section class="pastors-section">
-  <h2>Our Pastors</h2>
-  <div class="pastors-grid">
+        <div class="logo">
+            <img src="images/Logo.jpg" alt="Jeeva Nadi Ministries Logo">
+            <h2>Jeeva Nadi Ministries</h2>
+        </div>
 
-    <!-- Senior Pastor -->
-   <div class="pastor-card fade-in">
-  <img src="images/christina- malligary.jpg" alt="Senior Pastor Christina Malligary">
-  <h3>Christina Malligary</h3>
-  <p class="role">Senior Pastor</p>
-  <p class="verse">“Feed my sheep.” – John 21:17</p>
-  <p class="contact">📞 <a href="tel:+919347348805">+91 93473 48805</a></p>
-</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="pastors.html" class="active">Pastors</a></li>
+                <li><a href="sermons.html">Sermons</a></li>
+                <li><a href="live.html">Live</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-<div class="pastor-card fade-in">
-  <img src="images/caleb-malligary.jpg" alt="Associate Pastor Caleb Malligary">
-  <h3>Caleb Malligary</h3>
-  <p class="role">Associate Pastor</p>
-  <p class="verse">“The Lord is my light.” – Psalm 27:1</p>
-  <p class="contact">📞 <a href="tel:+917702713577">+91 77027 13577</a></p>
-</div>
+    </header>
 
+    <!-- Hero Section -->
+    <section class="pastors-hero">
 
-  </div>
-</section>
+        <h1>Meet Our Pastoral Team</h1>
 
-<footer>
-  <p><strong>Jeeva Nadi Ministries</strong></p>
-  <p>Serving Christ through Calvary Fundamental Baptist Church, Rehoboth Baptist Church, Emmanuel Baptist Church.</p>
-  <p>"The Lord is my Shepherd; I shall not want." <br><strong>Psalm 23:1</strong></p>
-  <p>© 2026 Jeeva Nadi Ministries</p>
-</footer>
+        <p>
+            Our pastors are committed to faithfully proclaiming God's Word,
+            shepherding His people with love, and leading the church in worship,
+            prayer, and service for the glory of Jesus Christ.
+        </p>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll(".fade-in");
-    elements.forEach(el => {
-      setTimeout(() => {
-        el.classList.add("visible");
-      }, 300);
-    });
-  });
-</script>
+    </section>
+
+    <!-- Pastors Section -->
+    <section class="pastors-section">
+
+        <div class="pastors-grid">
+
+            <!-- Senior Pastor -->
+            <div class="pastor-card fade-in">
+
+                <img src="images/christina-malligary.jpg"
+                     alt="Pastor Christina Malligary">
+
+                <span class="pastor-badge">
+                    ✝ Senior Pastor
+                </span>
+
+                <h3>Pastor Christina Malligary</h3>
+
+                <p class="verse">
+                    "Feed My sheep."
+                    <br>
+                    <strong>John 21:17</strong>
+                </p>
+
+                <p>
+                    Faithfully leading the ministry through Biblical preaching,
+                    prayer, discipleship, and compassionate pastoral care.
+                </p>
+
+                <p class="contact">
+                    📞
+                    <a href="tel:+919347348805">
+                        +91 93473 48805
+                    </a>
+                </p>
+
+            </div>
+
+            <!-- Associate Pastor -->
+            <div class="pastor-card fade-in">
+
+                <img src="images/caleb-malligary.jpg"
+                     alt="Pastor Caleb Malligary">
+
+                <span class="pastor-badge">
+                    ✝ Associate Pastor
+                </span>
+
+                <h3>Pastor Caleb Malligary</h3>
+
+                <p class="verse">
+                    "The Lord is my light and my salvation."
+                    <br>
+                    <strong>Psalm 27:1</strong>
+                </p>
+
+                <p>
+                    Serving the church through teaching, worship,
+                    youth ministry, and encouraging believers
+                    to grow in Christ.
+                </p>
+
+                <p class="contact">
+                    📞
+                    <a href="tel:+917702713577">
+                        +91 77027 13577
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            <strong>Jeeva Nadi Ministries</strong>
+        </p>
+
+        <p>
+            Serving Christ through
+            <strong>Calvary Fundamental Baptist Church</strong>,
+            <strong>Rehoboth Baptist Church</strong>,
+            and
+            <strong>Emmanuel Baptist Church</strong>.
+        </p>
+
+        <p>
+            "The Lord is my Shepherd; I shall not want."
+            <br>
+            <strong>Psalm 23:1</strong>
+        </p>
+
+        <p>
+            Hyderabad, Telangana, India
+        </p>
+
+        <p>
+            © 2026 Jeeva Nadi Ministries. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".fade-in").forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add("visible");
+                }, 250 * index);
+            });
+        });
+    </script>
 
 </body>
+
 </html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pastors | Jeeva Nadi Ministries</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Stylesheet -->
- <link rel="stylesheet" href="styles.css">
-
-</head>
-<body>
-
-<header>
-  <div class="logo">
-    <img src="images/Logo.jpg" alt="Jeeva Nadi Ministries Logo">
-    <h2>Jeeva Nadi Ministries</h2>
-    
-  </div>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="pastors.html" class="active">Pastors</a></li>
-      <li><a href="sermons.html">Sermons</a></li>
-      <li><a href="live.html">Live</a></li>
-      <li><a href="books.html">Books</a></li>
-      <li><a href="events.html">Events</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header>
-
-<section class="pastors-section">
-  <h2>Our Pastors</h2>
-  <div class="pastors-grid">
-
-    <!-- Senior Pastor -->
-   <div class="pastor-card fade-in">
-  <img src="images/christina- malligary.jpg" alt="Senior Pastor Christina Malligary">
-  <h3>Christina Malligary</h3>
-  <p class="role">Senior Pastor</p>
-  <p class="verse">“Feed my sheep.” – John 21:17</p>
-  <p class="contact">📞 <a href="tel:+919347348805">+91 93473 48805</a></p>
-</div>
-
-<div class="pastor-card fade-in">
-  <img src="images/caleb-malligary.jpg" alt="Associate Pastor Caleb Malligary">
-  <h3>Caleb Malligary</h3>
-  <p class="role">Associate Pastor</p>
-  <p class="verse">“The Lord is my light.” – Psalm 27:1</p>
-  <p class="contact">📞 <a href="tel:+917702713577">+91 77027 13577</a></p>
-</div>
-
-
-  </div>
-</section>
-
-<footer>
-  <p><strong>Jeeva Nadi Ministries</strong></p>
-  <p>Serving Christ through Calvary Fundamental Baptist Church, Rehoboth Baptist Church, Emmanuel Baptist Church.</p>
-  <p>"The Lord is my Shepherd; I shall not want." <br><strong>Psalm 23:1</strong></p>
-  <p>© 2026 Jeeva Nadi Ministries</p>
-</footer>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll(".fade-in");
-    elements.forEach(el => {
-      setTimeout(() => {
-        el.classList.add("visible");
-      }, 300);
-    });
-  });
-</script>
-
-</body>
-</html>
->>>>>>> 47beac1692346e878c1e511f864e0c5d8924582a
