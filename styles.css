@@ -2,14 +2,15 @@
 /* Cleaned & deduplicated stylesheet */
 
 /* ====== GLOBAL ====== */
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-background:#1a4298;   /* deep navy */
-  color: #ffffff;
-  line-height: 1.7;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: #0a1a3a;
+    color: #ffffff;
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
 section {
@@ -290,7 +291,7 @@ header nav ul li a:hover {
 
 .sermons {
   padding: 60px 20px;
-  background-color: white;
+   white;
   padding-top: 90px;
   padding-bottom: 90px;
   position: relative;
@@ -357,7 +358,7 @@ header nav ul li a:hover {
 }
 
 .testimonies {
-  background-color: #f9f9f9;
+   #f9f9f9;
   padding: 90px 8%;
   background: linear-gradient(135deg, #f9fbff, #eef5ff);
   position: relative;
@@ -385,7 +386,7 @@ header nav ul li a:hover {
 }
 
 .books {
-  background-color: white;
+   white;
   padding: 90px 8%;
   background: linear-gradient(135deg, #ffffff, #f3f7ff);
   position: relative;
@@ -3809,10 +3810,6 @@ footer {
 }
 
 
-/* Page background */
-body {
-  background-color: #0a1a3a !important; /* dark navy */
-}
 
 /* Registration section background */
 .registration-section {
