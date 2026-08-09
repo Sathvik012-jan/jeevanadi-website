@@ -3991,21 +3991,24 @@ body {
     transform: translateY(0);
   }
 }
-
 .contact-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
 }
 
 .contact-card {
-  flex: 1 1 280px;
-  min-height: 250px;
+    width: 100%;
+    min-height: 250px;
+    box-sizing: border-box;
 }
+
 .contact-card h3 {
-  color: #ffd700; /* gold heading */
-  margin-bottom: 15px;
+    color: #ffd700;
+    margin-bottom: 15px;
 }
 
 .youtube-icon{
