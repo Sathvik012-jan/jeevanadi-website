@@ -984,139 +984,145 @@ document.addEventListener(
            PROVERBS 3:5
         ================================================= */
 
-        const verses = {
+      
+const verses = {
 
-            Telugu: {
-                text: "నీ పూర్ణహృదయముతో యెహోవాను నమ్ముకొనుము; నీ స్వబుద్ధిని ఆధారము చేసికొనకుము.",
-                reference: "— సామెతలు 3:5"
-            },
+    English: {
+        text: "Trust in the Lord with all your heart and lean not on your own understanding.",
+        reference: "— Proverbs 3:5"
+    },
 
-            Hindi: {
-                text: "तू अपनी समझ का सहारा न लेना, वरन् सम्पूर्ण मन से यहोवा पर भरोसा रखना।",
-                reference: "— नीतिवचन 3:5"
-            },
+    Telugu: {
+        text: "నీ పూర్ణహృదయముతో యెహోవాను నమ్ముకొనుము; నీ స్వబుద్ధిని ఆధారము చేసికొనకుము.",
+        reference: "— సామెతలు 3:5"
+    },
 
-            Tamil: {
-                text: "உன் முழு இருதயத்தோடும் கர்த்தரில் நம்பிக்கையாயிருந்து, உன் சுயபுத்தியின் மேல் சாயாதே.",
-                reference: "— நீதிமொழிகள் 3:5"
-            },
+    Hindi: {
+        text: "तू अपनी समझ का सहारा न लेना, वरन् सम्पूर्ण मन से यहोवा पर भरोसा रखना।",
+        reference: "— नीतिवचन 3:5"
+    },
 
-            Kannada: {
-                text: "ನಿನ್ನ ಪೂರ್ಣ ಹೃದಯದಿಂದ ಯೆಹೋವನಲ್ಲಿ ಭರವಸವಿಡು; ನಿನ್ನ ಸ್ವಂತ ಬುದ್ಧಿಯ ಮೇಲೆ ಆಧಾರಪಡಬೇಡ.",
-                reference: "— ಜ್ಞಾನೋಕ್ತಿಗಳು 3:5"
-            },
+    Tamil: {
+        text: "உன் முழு இருதயத்தோடும் கர்த்தரில் நம்பிக்கையாயிருந்து, உன் சுயபுத்தியின் மேல் சாயாதே.",
+        reference: "— நீதிமொழிகள் 3:5"
+    },
 
-            Malayalam: {
-                text: "പൂർണ്ണഹൃദയത്തോടെ യഹോവയിൽ ആശ്രയിക്ക; സ്വന്തബുദ്ധിയിൽ ഊന്നരുത്.",
-                reference: "— സദൃശവാക്യങ്ങൾ 3:5"
-            },
+    Kannada: {
+        text: "ನಿನ್ನ ಪೂರ್ಣ ಹೃದಯದಿಂದ ಯೆಹೋವನಲ್ಲಿ ಭರವಸವಿಡು; ನಿನ್ನ ಸ್ವಂತ ಬುದ್ಧಿಯ ಮೇಲೆ ಆಧಾರಪಡಬೇಡ.",
+        reference: "— ಜ್ಞಾನೋಕ್ತಿಗಳು 3:5"
+    },
 
-            Bengali: {
-                text: "তোমার সমস্ত হৃদয় দিয়ে সদাপ্রভুর উপর নির্ভর কর এবং নিজের বুদ্ধির উপর নির্ভর করো না।",
-                reference: "— হিতোপদেশ 3:5"
-            },
+    Malayalam: {
+        text: "പൂർണ്ണഹൃദയത്തോടെ യഹോവയിൽ ആശ്രയിക്ക; സ്വന്തബുദ്ധിയിൽ ഊന്നരുത്.",
+        reference: "— സദൃശവാക്യങ്ങൾ 3:5"
+    },
 
-            Marathi: {
-                text: "तू आपल्या संपूर्ण मनाने परमेश्वरावर विश्वास ठेव आणि स्वतःच्या बुद्धीवर अवलंबून राहू नकोस.",
-                reference: "— नीतिसूत्रे 3:5"
-            },
+    Bengali: {
+        text: "তোমার সমস্ত হৃদয় দিয়ে সদাপ্রভুর উপর নির্ভর কর এবং নিজের বুদ্ধির উপর নির্ভর করো না।",
+        reference: "— হিতোপদেশ 3:5"
+    },
 
-            Gujarati: {
-                text: "તારા સંપૂર્ણ હૃદયથી યહોવા પર ભરોસો રાખ અને પોતાની સમજ પર આધાર રાખશો નહિ.",
-                reference: "— નીતિવચનો 3:5"
-            },
+    Marathi: {
+        text: "तू आपल्या संपूर्ण मनाने परमेश्वरावर विश्वास ठेव आणि स्वतःच्या बुद्धीवर अवलंबून राहू नकोस.",
+        reference: "— नीतिसूत्रे 3:5"
+    },
 
-            Punjabi: {
-                text: "ਆਪਣੇ ਸਾਰੇ ਦਿਲ ਨਾਲ ਯਹੋਵਾਹ ਉੱਤੇ ਭਰੋਸਾ ਰੱਖ ਅਤੇ ਆਪਣੀ ਸਮਝ ਉੱਤੇ ਆਸਰਾ ਨਾ ਰੱਖ।",
-                reference: "— ਕਹਾਉਤਾਂ 3:5"
-            },
+    Gujarati: {
+        text: "તારા સંપૂર્ણ હૃદયથી યહોવા પર ભરોસો રાખ અને પોતાની સમજ પર આધાર રાખશો નહિ.",
+        reference: "— નીતિવચનો 3:5"
+    },
 
-            Spanish: {
-                text: "Confía en el Señor con todo tu corazón y no te apoyes en tu propia prudencia.",
-                reference: "— Proverbios 3:5"
-            },
+    Punjabi: {
+        text: "ਆਪਣੇ ਸਾਰੇ ਦਿਲ ਨਾਲ ਯਹੋਵਾਹ ਉੱਤੇ ਭਰੋਸਾ ਰੱਖ ਅਤੇ ਆਪਣੀ ਸਮਝ ਉੱਤੇ ਆਸਰਾ ਨਾ ਰੱਖ।",
+        reference: "— ਕਹਾਉਤਾਂ 3:5"
+    },
 
-            French: {
-                text: "Confie-toi en l'Éternel de tout ton cœur et ne t'appuie pas sur ta sagesse.",
-                reference: "— Proverbes 3:5"
-            },
+    Spanish: {
+        text: "Confía en el Señor con todo tu corazón y no te apoyes en tu propia prudencia.",
+        reference: "— Proverbios 3:5"
+    },
 
-            German: {
-                text: "Vertraue auf den HERRN von ganzem Herzen und verlass dich nicht auf deinen Verstand.",
-                reference: "— Sprüche 3:5"
-            },
+    French: {
+        text: "Confie-toi en l'Éternel de tout ton cœur et ne t'appuie pas sur ta sagesse.",
+        reference: "— Proverbes 3:5"
+    },
 
-            Italian: {
-                text: "Confida nel Signore con tutto il cuore e non ti appoggiare sul tuo discernimento.",
-                reference: "— Proverbi 3:5"
-            },
+    German: {
+        text: "Vertraue auf den HERRN von ganzem Herzen und verlass dich nicht auf deinen Verstand.",
+        reference: "— Sprüche 3:5"
+    },
 
-            Portuguese: {
-                text: "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.",
-                reference: "— Provérbios 3:5"
-            },
+    Italian: {
+        text: "Confida nel Signore con tutto il cuore e non ti appoggiare sul tuo discernimento.",
+        reference: "— Proverbi 3:5"
+    },
 
-            Dutch: {
-                text: "Vertrouw op de HEER met heel je hart en steun niet op eigen inzicht.",
-                reference: "— Spreuken 3:5"
-            },
+    Portuguese: {
+        text: "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.",
+        reference: "— Provérbios 3:5"
+    },
 
-            Greek: {
-                text: "Έλπιζε στον Κύριο με όλη σου την καρδιά και μη στηρίζεσαι στη δική σου σύνεση.",
-                reference: "— Παροιμίες 3:5"
-            },
+    Dutch: {
+        text: "Vertrouw op de HEER met heel je hart en steun niet op eigen inzicht.",
+        reference: "— Spreuken 3:5"
+    },
 
-            Russian: {
-                text: "Надейся на Господа всем сердцем твоим и не полагайся на разум твой.",
-                reference: "— Притчи 3:5"
-            },
+    Greek: {
+        text: "Έλπιζε στον Κύριο με όλη σου την καρδιά και μη στηρίζεσαι στη δική σου σύνεση.",
+        reference: "— Παροιμίες 3:5"
+    },
 
-            Ukrainian: {
-                text: "Надійся на Господа всім своїм серцем і не покладайся на власний розум.",
-                reference: "— Приповісті 3:5"
-            },
+    Russian: {
+        text: "Надейся на Господа всем сердцем твоим и не полагайся на разум твой.",
+        reference: "— Притчи 3:5"
+    },
 
-            Polish: {
-                text: "Zaufaj Panu z całego swojego serca i nie polegaj na własnym rozumie.",
-                reference: "— Przysłów 3:5"
-            },
+    Ukrainian: {
+        text: "Надійся на Господа всім своїм серцем і не покладайся на власний розум.",
+        reference: "— Приповісті 3:5"
+    },
 
-            Romanian: {
-                text: "Încrede-te în Domnul din toată inima ta și nu te bizui pe înțelepciunea ta.",
-                reference: "— Proverbe 3:5"
-            },
+    Polish: {
+        text: "Zaufaj Panu z całego swojego serca i nie polegaj na własnym rozumie.",
+        reference: "— Przysłów 3:5"
+    },
 
-            Chinese: {
-                text: "你要专心仰赖耶和华，不可倚靠自己的聪明。",
-                reference: "— 箴言 3:5"
-            },
+    Romanian: {
+        text: "Încrede-te în Domnul din toată inima ta și nu te bizui pe înțelepciunea ta.",
+        reference: "— Proverbe 3:5"
+    },
 
-            Japanese: {
-                text: "心を尽くして主に信頼し、自分の悟りに頼ってはならない。",
-                reference: "— 箴言 3:5"
-            },
+    Chinese: {
+        text: "你要专心仰赖耶和华，不可倚靠自己的聪明。",
+        reference: "— 箴言 3:5"
+    },
 
-            Korean: {
-                text: "너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라.",
-                reference: "— 잠언 3:5"
-            },
+    Japanese: {
+        text: "心を尽くして主に信頼し、自分の悟りに頼ってはならない。",
+        reference: "— 箴言 3:5"
+    },
 
-            Arabic: {
-                text: "تَوَكَّلْ عَلَى الرَّبِّ بِكُلِّ قَلْبِكَ وَلاَ تَعْتَمِدْ عَلَى فَهْمِكَ.",
-                reference: "— أمثال 3:5"
-            },
+    Korean: {
+        text: "너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라.",
+        reference: "— 잠언 3:5"
+    },
 
-            Hebrew: {
-                text: "בְּטַח אֶל־יְהוָה בְּכָל־לִבֶּךָ וְאֶל־בִּינָתְךָ אַל־תִּשָּׁעֵן.",
-                reference: "— משלי 3:5"
-            },
+    Arabic: {
+        text: "تَوَكَّلْ عَلَى الرَّبِّ بِكُلِّ قَلْبِكَ وَلاَ تَعْتَمِدْ عَلَى فَهْمِكَ.",
+        reference: "— أمثال 3:5"
+    },
 
-            Turkish: {
-                text: "Bütün yüreğinle RAB'be güven ve kendi aklına dayanma.",
-                reference: "— Süleyman'ın Özdeyişleri 3:5"
-            }
+    Hebrew: {
+        text: "בְּטַח אֶל־יְהוָה בְּכָל־לִבֶּךָ וְאֶל־בִּינָתְךָ אַל־תִּשָּׁעֵן.",
+        reference: "— משלי 3:5"
+    },
 
-        };
+    Turkish: {
+        text: "Bütün yüreğinle RAB'be güven ve kendi aklına dayanma.",
+        reference: "— Süleyman'ın Özdeyişleri 3:5"
+    }
+
+};
 
 
         /* =================================================
