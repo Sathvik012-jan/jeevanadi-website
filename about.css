@@ -1,0 +1,1393 @@
+/* =========================================================
+   JEEVA NADI MINISTRIES
+   ABOUT PAGE
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #ffffff;
+    color: #333;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+section {
+    width: 100%;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 50px;
+
+    background: rgba(0, 31, 84, 0.97);
+    backdrop-filter: blur(12px);
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.logo h2 {
+    font-family: "Cinzel", serif;
+    color: #ffd700;
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    list-style: none;
+}
+
+nav a {
+    position: relative;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    padding: 8px 3px;
+
+    transition: 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: #ffd700;
+}
+
+nav a::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+
+    width: 0;
+    height: 3px;
+
+    border-radius: 20px;
+
+    background: #ffd700;
+
+    transition: 0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.about-hero {
+    min-height: 78vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 15, 45, 0.68),
+            rgba(0, 15, 45, 0.78)
+        ),
+        url("../images/about-1.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+.about-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    top: -200px;
+    right: -150px;
+
+    background: #ffd700;
+
+    opacity: 0.12;
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        180deg,
+        rgba(0, 31, 84, 0.15),
+        rgba(0, 15, 45, 0.35)
+    );
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(900px, 90%);
+
+    padding: 60px 40px;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    backdrop-filter: blur(14px);
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+
+    animation: fadeUp 1s ease;
+}
+
+.hero-badge {
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    padding: 8px 22px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        45deg,
+        #ffd700,
+        #ffb300
+    );
+
+    color: #001f54;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.about-hero h1 {
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(38px, 6vw, 64px);
+
+    line-height: 1.2;
+
+    margin-bottom: 20px;
+
+    color: #ffd700;
+}
+
+.about-hero p {
+    max-width: 700px;
+
+    margin: 0 auto 30px;
+
+    color: #ffffff;
+
+    font-size: 19px;
+}
+
+.hero-btn {
+    display: inline-block;
+
+    padding: 14px 32px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        45deg,
+        #ffd700,
+        #ffb300
+    );
+
+    color: #001f54;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: 0.4s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(255, 193, 7, 0.4);
+}
+
+
+/* =========================================================
+   COMMON SECTION HEADING
+========================================================= */
+
+.section-heading {
+    max-width: 850px;
+
+    margin: 0 auto 55px;
+
+    text-align: center;
+}
+
+.small-heading {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #d4af37;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 4px;
+}
+
+.section-heading h2 {
+    font-family: "Cinzel", serif;
+
+    color: #0d47a1;
+
+    font-size: clamp(34px, 5vw, 48px);
+
+    line-height: 1.2;
+}
+
+.gold-line {
+    width: 85px;
+    height: 4px;
+
+    margin: 18px auto;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        90deg,
+        #ffd700,
+        #0d47a1
+    );
+}
+
+.gold-line.left {
+    margin-left: 0;
+}
+
+.section-heading p {
+    color: #666;
+
+    font-size: 17px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.welcome {
+    padding: 90px 8%;
+
+    text-align: center;
+
+    background: linear-gradient(
+        135deg,
+        #f9fbff,
+        #eef5ff
+    );
+}
+
+.welcome-text {
+    max-width: 850px;
+
+    margin: auto;
+
+    color: #555;
+
+    font-size: 18px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   OUR STORY
+========================================================= */
+
+.about-section {
+    padding: 100px 8%;
+
+    background: #ffffff;
+}
+
+.about-container {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    align-items: center;
+
+    gap: 80px;
+}
+
+.about-text h2 {
+    font-family: "Cinzel", serif;
+
+    font-size: 48px;
+
+    color: #0d47a1;
+}
+
+.about-text p {
+    margin-bottom: 18px;
+
+    color: #555;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+}
+
+.image-frame {
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.2);
+
+    border: 3px solid #d4af37;
+}
+
+.image-frame img {
+    width: 100%;
+
+    height: 500px;
+
+    object-fit: cover;
+
+    transition: 0.6s ease;
+}
+
+.image-frame:hover img {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   MINISTRY
+========================================================= */
+
+.ministry-section {
+    padding: 100px 8%;
+
+    background: #ffffff;
+}
+
+.ministry-grid {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.ministry-card {
+    position: relative;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.1);
+
+    transition: 0.4s ease;
+
+    overflow: hidden;
+}
+
+.ministry-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background: linear-gradient(
+        90deg,
+        #ffd700,
+        #0d47a1
+    );
+}
+
+.ministry-card:hover {
+    transform: translateY(-8px);
+
+    background: #0d47a1;
+}
+
+.card-icon {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+
+    color: #ffd700;
+}
+
+.ministry-card h3 {
+    margin-bottom: 12px;
+
+    font-family: "Cinzel", serif;
+
+    color: #001f54;
+
+    font-size: 23px;
+}
+
+.ministry-card p {
+    color: #555;
+}
+
+.ministry-card:hover h3,
+.ministry-card:hover p {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   SENIOR PASTOR
+========================================================= */
+
+.senior-pastor {
+    position: relative;
+
+    padding: 110px 8%;
+
+    background: linear-gradient(
+        135deg,
+        #f9fbff,
+        #eef5ff,
+        #ffffff
+    );
+
+    overflow: hidden;
+}
+
+.senior-pastor::before {
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    top: -220px;
+    left: -180px;
+
+    background: #ffd700;
+
+    opacity: 0.07;
+
+    border-radius: 50%;
+
+    filter: blur(5px);
+}
+
+.senior-pastor::after {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    right: -150px;
+    bottom: -150px;
+
+    background: #0d47a1;
+
+    opacity: 0.06;
+
+    border-radius: 50%;
+}
+
+.pastor-heading {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+
+    margin: 0 auto 75px;
+
+    text-align: center;
+}
+
+.section-label {
+    display: inline-block;
+
+    padding: 9px 24px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        45deg,
+        #ffd700,
+        #ffb300
+    );
+
+    color: #001f54;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.pastor-heading h2 {
+    margin: 22px 0 15px;
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(38px, 5vw, 55px);
+
+    color: #0d47a1;
+}
+
+.pastor-heading p {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: #666;
+
+    font-size: 18px;
+}
+
+.senior-pastor-container {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1350px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(380px, 0.9fr)
+        minmax(450px, 1.1fr);
+
+    gap: 85px;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   PASTOR IMAGE
+========================================================= */
+
+.pastor-hero-image {
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.image-glow {
+    position: absolute;
+
+    width: 390px;
+    height: 390px;
+
+    background: #ffd700;
+
+    opacity: 0.12;
+
+    border-radius: 50%;
+
+    filter: blur(45px);
+
+    animation: pastorGlow 5s ease-in-out infinite;
+}
+
+.pastor-image-frame {
+    position: relative;
+
+    width: min(100%, 470px);
+
+    padding: 12px;
+
+    border-radius: 35px;
+
+    background: linear-gradient(
+        145deg,
+        #ffd700,
+        #d4af37,
+        #ffffff,
+        #d4af37,
+        #ffd700
+    );
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.22);
+
+    transform: rotate(-1deg);
+
+    transition: 0.5s ease;
+}
+
+.pastor-image-frame:hover {
+    transform:
+        rotate(0deg)
+        translateY(-10px)
+        scale(1.02);
+}
+
+.pastor-image-frame img {
+    width: 100%;
+
+    height: 560px;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 27px;
+
+    background: #ffffff;
+}
+
+.image-caption {
+    position: absolute;
+
+    left: 50%;
+    bottom: 25px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 11px 25px;
+
+    border-radius: 50px;
+
+    background: rgba(0, 31, 84, 0.94);
+
+    color: #ffffff;
+
+    font-family: "Cinzel", serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.image-caption span {
+    color: #ffd700;
+}
+
+
+/* =========================================================
+   PASTOR CONTENT
+========================================================= */
+
+.pastor-badge {
+    display: inline-block;
+
+    padding: 9px 22px;
+
+    margin-bottom: 18px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        45deg,
+        #ffd700,
+        #ffb300
+    );
+
+    color: #001f54;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.senior-pastor-content h3 {
+    margin: 0;
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(36px, 4vw, 52px);
+
+    line-height: 1.2;
+
+    color: #001f54;
+}
+
+.qualification {
+    margin-top: 12px;
+
+    color: #d4af37;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   PASTOR VERSE
+========================================================= */
+
+.pastor-verse {
+    position: relative;
+
+    margin: 28px 0;
+
+    padding: 25px 30px 25px 55px;
+
+    background: #ffffff;
+
+    border-left: 5px solid #ffd700;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.quote-mark {
+    position: absolute;
+
+    left: 15px;
+    top: 5px;
+
+    font-family: Georgia, serif;
+
+    font-size: 65px;
+
+    color: #ffd700;
+
+    opacity: 0.65;
+}
+
+.pastor-verse p {
+    margin: 0 0 8px;
+
+    color: #555;
+
+    font-size: 18px;
+
+    font-style: italic;
+
+    line-height: 1.7;
+}
+
+.pastor-verse strong {
+    color: #0d47a1;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   PASTOR TEXT
+========================================================= */
+
+.senior-pastor-content > p {
+    margin-bottom: 16px;
+
+    color: #555;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+}
+
+.pastor-introduction {
+    color: #444 !important;
+
+    font-size: 19px !important;
+}
+
+
+/* =========================================================
+   MINISTRY HIGHLIGHTS
+========================================================= */
+
+.ministry-highlights {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.ministry-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(13, 71, 161, 0.08);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.07);
+
+    transition: 0.35s ease;
+}
+
+.ministry-item:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 18px 35px rgba(13, 71, 161, 0.15);
+}
+
+.ministry-icon {
+    min-width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #fff4b0,
+        #ffd700
+    );
+
+    font-size: 21px;
+}
+
+.ministry-item h4 {
+    margin-bottom: 5px;
+
+    font-family: "Cinzel", serif;
+
+    color: #001f54;
+
+    font-size: 17px;
+}
+
+.ministry-item p {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   PASTOR MISSION
+========================================================= */
+
+.pastor-mission {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+    padding: 20px 25px;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #001f54,
+        #0d47a1
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 15px 35px rgba(0, 31, 84, 0.22);
+}
+
+.pastor-mission > span {
+    color: #ffd700;
+
+    font-size: 25px;
+}
+
+.pastor-mission p {
+    margin: 0;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery-section {
+    padding: 100px 8%;
+
+    background: linear-gradient(
+        135deg,
+        #f9fbff,
+        #eef5ff
+    );
+}
+
+.gallery-grid {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.gallery-card {
+    overflow: hidden;
+
+    min-height: 280px;
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.12);
+
+    transition: 0.45s ease;
+}
+
+.gallery-card img {
+    width: 100%;
+
+    height: 300px;
+
+    object-fit: cover;
+
+    transition: 0.6s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+}
+
+.gallery-card:hover img {
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   VIDEO SECTION
+========================================================= */
+
+.video-section {
+    padding: 100px 8%;
+
+    background: #ffffff;
+}
+
+.video-grid {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 35px;
+}
+
+.video-card {
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.12);
+
+    transition: 0.4s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-8px);
+}
+
+.video-wrapper {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    background: #001f54;
+
+    overflow: hidden;
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 25px 28px 30px;
+}
+
+.video-number {
+    color: #d4af37;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.video-content h3 {
+    margin: 7px 0 10px;
+
+    font-family: "Cinzel", serif;
+
+    color: #001f54;
+
+    font-size: 23px;
+}
+
+.video-content p {
+    color: #555;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 50px 20px;
+
+    text-align: center;
+
+    background: #001f54;
+
+    border-top: 4px solid #d4af37;
+
+    color: #ffffff;
+}
+
+footer p {
+    margin: 12px auto;
+
+    font-size: 15px;
+}
+
+footer p:first-child {
+    font-family: "Cinzel", serif;
+
+    font-size: 30px;
+
+    color: #ffd700;
+}
+
+footer p:nth-child(2) {
+    font-style: italic;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pastorGlow {
+    0%,
+    100% {
+        transform: scale(0.95);
+        opacity: 0.10;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 0.18;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .main-header {
+        padding: 15px 25px;
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+
+    .about-container,
+    .senior-pastor-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .ministry-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .senior-pastor-container {
+        max-width: 750px;
+    }
+}
+
+
+@media (max-width: 750px) {
+
+    .main-header {
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 15px 20px;
+    }
+
+    .logo h2 {
+        font-size: 22px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    .about-hero {
+        min-height: 70vh;
+    }
+
+    .about-hero-content {
+        padding: 45px 25px;
+    }
+
+    .about-hero h1 {
+        font-size: 38px;
+    }
+
+    .about-hero p {
+        font-size: 17px;
+    }
+
+    .ministry-grid,
+    .gallery-grid,
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ministry-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section,
+    .ministry-section,
+    .senior-pastor,
+    .gallery-section,
+    .video-section {
+        padding: 70px 6%;
+    }
+
+    .pastor-image-frame img {
+        height: 450px;
+    }
+
+    .pastor-heading h2 {
+        font-size: 36px;
+    }
+
+    .senior-pastor-content h3 {
+        font-size: 34px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .logo h2 {
+        font-size: 18px;
+
+        letter-spacing: 1px;
+    }
+
+    .about-hero h1 {
+        font-size: 31px;
+    }
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+    .about-text h2 {
+        font-size: 36px;
+    }
+
+    .pastor-image-frame {
+        width: 95%;
+    }
+
+    .pastor-image-frame img {
+        height: 420px;
+    }
+
+    .pastor-mission {
+        align-items: flex-start;
+    }
+}

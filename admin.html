@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#050b18"
+    >
+
+    <meta
+        name="description"
+        content="Jeeva Nadi Books Administration Panel"
+    >
+
+    <!-- FAVICON -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="./images/account.png"
+    >
+
+    <link
+        rel="shortcut icon"
+        type="image/png"
+        href="./images/account.png"
+    >
+
+    <title>Jeeva Nadi Books | Admin</title>
+
+
+    <!-- GOOGLE FONTS -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- FONT AWESOME -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- ADMIN CSS -->
+
+    <link
+        rel="stylesheet"
+        href="./admin.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<main class="admin-page">
+
+
+    <!-- =====================================================
+         LOGIN VIEW
+    ====================================================== -->
+
+    <section
+        id="adminLoginView"
+        class="admin-login-view"
+    >
+
+        <div class="admin-login-card">
+
+
+            <div class="admin-brand">
+
+                <div class="admin-brand-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+                <div>
+
+                    <h1>
+                        Jeeva Nadi Books
+                    </h1>
+
+                    <p>
+                        Administration Panel
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-login-content">
+
+                <div class="admin-login-icon">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+
+                <h2>
+                    Admin Login
+                </h2>
+
+
+                <p>
+                    Sign in with your authorized Google
+                    administrator account.
+                </p>
+
+
+                <button
+                    type="button"
+                    id="googleAdminLoginBtn"
+                    class="google-admin-button"
+                >
+
+                    <i class="fa-brands fa-google"></i>
+
+                    <span>
+                        Continue with Google
+                    </span>
+
+                </button>
+
+
+                <div
+                    id="adminLoginMessage"
+                    class="admin-message hidden"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+
+                <div class="admin-security-note">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <span>
+                        Authorized administrators only.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
+    <section
+        id="adminDashboard"
+        class="admin-dashboard hidden"
+    >
+
+
+        <!-- HEADER -->
+
+        <header class="admin-header">
+
+            <div class="admin-header-brand">
+
+                <div class="admin-header-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+                <div>
+
+                    <h1>
+                        Jeeva Nadi Books
+                    </h1>
+
+                    <span>
+                        Admin Panel
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-header-user">
+
+                <div class="admin-user-details">
+
+                    <strong id="adminName">
+                        Administrator
+                    </strong>
+
+                    <span id="adminEmail">
+                        —
+                    </span>
+
+                </div>
+
+
+                <img
+                    id="adminPhoto"
+                    class="admin-photo"
+                    src="./images/account.png"
+                    alt="Administrator"
+                >
+
+
+                <button
+                    type="button"
+                    id="adminLogoutBtn"
+                    class="logout-button"
+                >
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Sign Out
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <div class="admin-container">
+
+
+            <!-- PAGE TITLE -->
+
+            <div class="admin-page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        JEEVA NADI BOOKS
+                    </span>
+
+                    <h2>
+                        Order Management
+                    </h2>
+
+                    <p>
+                        Review payments and manage customer
+                        orders.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="refreshOrdersBtn"
+                    class="refresh-button"
+                >
+
+                    <i class="fa-solid fa-rotate"></i>
+
+                    Refresh Orders
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <div class="admin-stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Orders
+                        </span>
+
+                        <strong id="statTotalOrders">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card pending">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Pending
+                        </span>
+
+                        <strong id="statPending">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card approved">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Approved
+                        </span>
+
+                        <strong id="statApproved">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card rejected">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Rejected
+                        </span>
+
+                        <strong id="statRejected">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ORDERS
+            ================================================== -->
+
+            <section class="orders-card">
+
+
+                <div class="orders-card-heading">
+
+                    <div>
+
+                        <h3>
+                            Customer Orders
+                        </h3>
+
+                        <p>
+                            Verify UPI payments before approving
+                            an order.
+                        </p>
+
+                    </div>
+
+
+                    <select
+                        id="orderFilter"
+                        class="order-filter"
+                    >
+
+                        <option value="all">
+                            All Orders
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Approved">
+                            Approved
+                        </option>
+
+                        <option value="Rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- LOADING -->
+
+                <div
+                    id="ordersLoading"
+                    class="orders-loading hidden"
+                >
+
+                    <div class="spinner"></div>
+
+                    <span>
+                        Loading orders...
+                    </span>
+
+                </div>
+
+
+
+                <!-- EMPTY -->
+
+                <div
+                    id="ordersEmpty"
+                    class="orders-empty hidden"
+                >
+
+                    <i class="fa-solid fa-box-open"></i>
+
+                    <h3>
+                        No Orders Found
+                    </h3>
+
+                    <p>
+                        There are no orders matching this filter.
+                    </p>
+
+                </div>
+
+
+
+                <!-- ORDER LIST -->
+
+                <div
+                    id="ordersList"
+                    class="orders-list"
+                ></div>
+
+            </section>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     CONFIRMATION MODAL
+====================================================== -->
+
+<div
+    id="actionModal"
+    class="action-modal hidden"
+>
+
+    <div
+        id="actionModalBackdrop"
+        class="action-modal-backdrop"
+    ></div>
+
+
+    <div class="action-modal-card">
+
+        <div
+            id="actionModalIcon"
+            class="action-modal-icon"
+        >
+            <i class="fa-solid fa-circle-question"></i>
+        </div>
+
+
+        <h2 id="actionModalTitle">
+            Confirm Action
+        </h2>
+
+
+        <p id="actionModalText">
+            Are you sure?
+        </p>
+
+
+        <div class="action-modal-buttons">
+
+            <button
+                type="button"
+                id="cancelActionBtn"
+                class="cancel-button"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                type="button"
+                id="confirmActionBtn"
+                class="confirm-button"
+            >
+                Confirm
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+====================================================== -->
+
+<div
+    id="adminToast"
+    class="admin-toast"
+    role="status"
+    aria-live="polite"
+></div>
+
+
+
+<!-- =====================================================
+     FIREBASE / ADMIN JS
+====================================================== -->
+
+<script
+    type="module"
+    src="./js/admin.js"
+></script>
+
+
+</body>
+
+</html>

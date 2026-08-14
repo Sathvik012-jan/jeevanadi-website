@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Manage your Jeeva Nadi Books account, orders and profile."
+    >
+
+    <meta
+        name="theme-color"
+        content="#071936"
+    >
+
+    <title>
+        My Account | Jeeva Nadi Books
+    </title>
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- =====================================================
+         ACCOUNT CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="account.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         PAGE LOADER
+    ====================================================== -->
+
+    <div
+        id="loadingView"
+        class="page-state loading-state"
+    >
+
+        <div class="loading-card">
+
+            <div class="brand-mark">
+
+                <i class="fa-solid fa-book-open"></i>
+
+            </div>
+
+            <div class="loading-spinner"></div>
+
+            <h2>
+                Preparing your account
+            </h2>
+
+            <p>
+                Please wait while we securely connect you.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         LOGIN VIEW
+    ====================================================== -->
+
+    <main
+        id="loginView"
+        class="auth-view hidden"
+    >
+
+        <section class="auth-shell">
+
+            <div class="auth-visual">
+
+                <div class="visual-glow glow-one"></div>
+                <div class="visual-glow glow-two"></div>
+
+                <div class="visual-content">
+
+                    <div class="brand-icon-large">
+
+                        <i class="fa-solid fa-book-open"></i>
+
+                    </div>
+
+                    <span class="eyebrow">
+                        JEEVA NADI BOOKS
+                    </span>
+
+                    <h1>
+                        Your books.
+                        <br>
+                        Your account.
+                        <br>
+                        <em>Your journey.</em>
+                    </h1>
+
+                    <p>
+                        Access your orders, track purchases,
+                        and manage your Jeeva Nadi Books account
+                        from one secure place.
+                    </p>
+
+                    <div class="trust-row">
+
+                        <span>
+                            <i class="fa-solid fa-shield-halved"></i>
+                            Secure
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-cloud"></i>
+                            Cloud synced
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-bolt"></i>
+                            Fast access
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="auth-panel">
+
+                <div class="auth-panel-inner">
+
+                    <div class="mobile-brand">
+
+                        <div class="brand-mark">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                        <span>
+                            Jeeva Nadi Books
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-heading">
+
+                        <span class="section-kicker">
+                            CUSTOMER ACCOUNT
+                        </span>
+
+                        <h2>
+                            Welcome back
+                        </h2>
+
+                        <p>
+                            Sign in to continue to your account.
+                        </p>
+
+                    </div>
+
+
+                    <!-- GOOGLE -->
+
+                    <button
+                        id="googleLoginBtn"
+                        class="auth-button google-button"
+                        type="button"
+                    >
+
+                        <span class="button-icon">
+                            <i class="fa-brands fa-google"></i>
+                        </span>
+
+                        <span>
+                            Continue with Google
+                        </span>
+
+                    </button>
+
+
+                    <div class="auth-divider">
+
+                        <span></span>
+
+                        <small>
+                            OR
+                        </small>
+
+                        <span></span>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="field-group">
+
+                        <label
+                            for="phoneNumber"
+                        >
+                            Mobile number
+                        </label>
+
+                        <div class="phone-field">
+
+                            <span class="country-code">
+                                +91
+                            </span>
+
+                            <input
+                                id="phoneNumber"
+                                type="tel"
+                                inputmode="numeric"
+                                autocomplete="tel"
+                                maxlength="10"
+                                placeholder="Enter 10-digit mobile number"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        id="sendOtpBtn"
+                        class="auth-button primary-button"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+
+                        <span>
+                            Continue with Phone
+                        </span>
+
+                    </button>
+
+
+                    <div
+                        id="loginMessage"
+                        class="message hidden"
+                        role="alert"
+                    ></div>
+
+
+                    <div class="auth-note">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <span>
+                            Your account is protected by
+                            Firebase Authentication.
+                        </span>
+
+                    </div>
+
+
+                    <!-- Firebase reCAPTCHA -->
+
+                    <div
+                        id="recaptcha-container"
+                        aria-hidden="true"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         OTP VIEW
+    ====================================================== -->
+
+    <main
+        id="otpView"
+        class="auth-view hidden"
+    >
+
+        <section class="otp-shell">
+
+            <div class="otp-card">
+
+                <div class="otp-icon">
+
+                    <i class="fa-solid fa-message"></i>
+
+                </div>
+
+                <span class="section-kicker">
+                    PHONE VERIFICATION
+                </span>
+
+                <h1>
+                    Verify your number
+                </h1>
+
+                <p
+                    id="otpDescription"
+                    class="otp-description"
+                >
+                    Enter the 6-digit OTP sent to your mobile.
+                </p>
+
+
+                <div class="otp-field">
+
+                    <input
+                        id="otpCode"
+                        type="text"
+                        inputmode="numeric"
+                        autocomplete="one-time-code"
+                        maxlength="6"
+                        placeholder="000000"
+                        aria-label="6 digit verification code"
+                    >
+
+                </div>
+
+
+                <button
+                    id="verifyOtpBtn"
+                    class="auth-button primary-button"
+                    type="button"
+                >
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    <span>
+                        Verify & Continue
+                    </span>
+
+                </button>
+
+
+                <div
+                    id="otpMessage"
+                    class="message hidden"
+                    role="alert"
+                ></div>
+
+
+                <div class="otp-actions">
+
+                    <button
+                        id="resendOtpBtn"
+                        class="text-button"
+                        type="button"
+                    >
+                        Resend OTP
+                    </button>
+
+                    <button
+                        id="changePhoneBtn"
+                        class="text-button"
+                        type="button"
+                    >
+                        Change number
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
+    <main
+        id="dashboardView"
+        class="dashboard hidden"
+    >
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="dashboard-header">
+
+            <div class="header-inner">
+
+                <a
+                    href="index.html"
+                    class="site-brand"
+                >
+
+                    <span class="brand-mark">
+
+                        <i class="fa-solid fa-book-open"></i>
+
+                    </span>
+
+                    <span class="brand-name">
+
+                        <strong>
+                            Jeeva Nadi
+                        </strong>
+
+                        <small>
+                            BOOKS
+                        </small>
+
+                    </span>
+
+                </a>
+
+
+                <nav class="header-actions">
+
+                    <a
+                        href="books.html"
+                        class="header-link"
+                    >
+                        <i class="fa-solid fa-store"></i>
+                        <span>Books</span>
+                    </a>
+
+                    <button
+                        id="refreshOrdersBtn"
+                        class="icon-button"
+                        type="button"
+                        title="Refresh orders"
+                        aria-label="Refresh orders"
+                    >
+                        <i class="fa-solid fa-rotate"></i>
+                    </button>
+
+                    <button
+                        id="logoutBtn"
+                        class="logout-button"
+                        type="button"
+                    >
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Sign out</span>
+                    </button>
+
+                </nav>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="account-hero">
+
+            <div class="hero-inner">
+
+                <div class="hero-copy">
+
+                    <span class="section-kicker">
+                        MY ACCOUNT
+                    </span>
+
+                    <h1>
+                        Welcome,
+                        <span id="customerName">
+                            Customer
+                        </span>
+                    </h1>
+
+                    <p id="customerSubtitle">
+                        Your Jeeva Nadi Books account
+                    </p>
+
+                </div>
+
+
+                <div class="hero-avatar-wrap">
+
+                    <div class="avatar-ring">
+
+                        <img
+                            id="customerAvatar"
+                            src="images/account.png"
+                            alt="Customer profile"
+                        >
+
+                    </div>
+
+                    <span class="online-dot"></span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <div class="dashboard-container">
+
+            <!-- =================================================
+                 SUMMARY CARDS
+            ================================================== -->
+
+            <section class="summary-grid">
+
+                <article class="summary-card">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+
+                    <div>
+                        <span>
+                            Total orders
+                        </span>
+
+                        <strong id="totalOrders">
+                            0
+                        </strong>
+                    </div>
+
+                </article>
+
+
+                <article class="summary-card">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <div>
+                        <span>
+                            Books purchased
+                        </span>
+
+                        <strong id="totalBooks">
+                            0
+                        </strong>
+                    </div>
+
+                </article>
+
+
+                <article class="summary-card">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                    </div>
+
+                    <div>
+                        <span>
+                            Total spent
+                        </span>
+
+                        <strong id="totalSpent">
+                            ₹0
+                        </strong>
+                    </div>
+
+                </article>
+
+
+                <article class="summary-card">
+
+                    <div class="summary-icon pending-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>
+                            Pending
+                        </span>
+
+                        <strong id="pendingOrders">
+                            0
+                        </strong>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 ORDERS
+            ================================================== -->
+
+            <section class="orders-section">
+
+                <div class="section-heading-row">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            PURCHASE HISTORY
+                        </span>
+
+                        <h2>
+                            Your orders
+                        </h2>
+
+                        <p>
+                            Everything you've purchased from
+                            Jeeva Nadi Books.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        id="refreshOrdersBtnSecondary"
+                        class="refresh-secondary"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-rotate"></i>
+
+                        Refresh
+
+                    </button>
+
+                </div>
+
+
+                <!-- Loading -->
+
+                <div
+                    id="ordersLoading"
+                    class="orders-loading hidden"
+                >
+
+                    <div class="order-skeleton"></div>
+                    <div class="order-skeleton"></div>
+
+                </div>
+
+
+                <!-- Orders -->
+
+                <div
+                    id="ordersList"
+                    class="orders-list"
+                ></div>
+
+
+                <!-- Empty -->
+
+                <div
+                    id="ordersEmpty"
+                    class="empty-orders hidden"
+                >
+
+                    <div class="empty-icon">
+
+                        <i class="fa-solid fa-box-open"></i>
+
+                    </div>
+
+                    <h3>
+                        No orders yet
+                    </h3>
+
+                    <p>
+                        Your purchased books will appear here.
+                    </p>
+
+                    <a
+                        href="books.html"
+                        class="shop-button"
+                    >
+
+                        <i class="fa-solid fa-store"></i>
+
+                        Explore Books
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PROFILE
+            ================================================== -->
+
+            <section class="profile-section">
+
+                <div class="section-heading-row">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            ACCOUNT INFORMATION
+                        </span>
+
+                        <h2>
+                            Profile
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-card">
+
+                    <div class="profile-item">
+
+                        <span>
+                            Name
+                        </span>
+
+                        <strong id="profileName">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-item">
+
+                        <span>
+                            Email
+                        </span>
+
+                        <strong id="profileEmail">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-item">
+
+                        <span>
+                            Mobile
+                        </span>
+
+                        <strong id="profilePhone">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-item">
+
+                        <span>
+                            Sign-in method
+                        </span>
+
+                        <strong id="profileProvider">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-item profile-uid">
+
+                        <span>
+                            Account ID
+                        </span>
+
+                        <strong id="profileUid">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="account-footer">
+
+            <p>
+                © 2026 Jeeva Nadi Books.
+                Your trusted Christian bookstore.
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =====================================================
+         LOGOUT MODAL
+    ====================================================== -->
+
+    <div
+        id="logoutModal"
+        class="modal hidden"
+        aria-hidden="true"
+    >
+
+        <div
+            id="logoutBackdrop"
+            class="modal-backdrop"
+        ></div>
+
+
+        <div
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="logoutTitle"
+        >
+
+            <div class="modal-icon">
+
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+            </div>
+
+            <h2 id="logoutTitle">
+                Sign out?
+            </h2>
+
+            <p>
+                Are you sure you want to sign out
+                of your Jeeva Nadi Books account?
+            </p>
+
+            <div class="modal-actions">
+
+                <button
+                    id="cancelLogoutBtn"
+                    class="modal-cancel"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="confirmLogoutBtn"
+                    class="modal-confirm"
+                    type="button"
+                >
+                    Sign out
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ACCOUNT JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        type="module"
+        src="js/account.js"
+    ></script>
+
+</body>
+
+</html>
