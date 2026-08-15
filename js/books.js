@@ -11,6 +11,7 @@
    • Product searching
    • Product sorting
    • Product image galleries
+   • Image fallback handling
    • Bible-cover variants
    • Bible-cover pricing
    • Promise-card variants
@@ -32,7 +33,6 @@
    IMPORTANT
    ------------------------------------------------------------
    DESIGN SELECTOR NEVER SHOWS PRICE.
-
 ============================================================ */
 
 "use strict";
@@ -122,7 +122,7 @@ let toastTimer = null;
 const BIBLE_COVERS = Object.freeze([
 
     /* ========================================================
-       ENGLISH — REGULAR
+       ENGLISH
     ======================================================== */
 
     Object.freeze({
@@ -153,7 +153,6 @@ const BIBLE_COVERS = Object.freeze([
 
     }),
 
-
     Object.freeze({
 
         id:
@@ -182,7 +181,6 @@ const BIBLE_COVERS = Object.freeze([
 
     }),
 
-
     Object.freeze({
 
         id:
@@ -210,7 +208,6 @@ const BIBLE_COVERS = Object.freeze([
             "Artistic abstract patterned English Bible cover with a colorful contemporary design."
 
     }),
-
 
     Object.freeze({
 
@@ -273,7 +270,6 @@ const BIBLE_COVERS = Object.freeze([
 
     }),
 
-
     Object.freeze({
 
         id:
@@ -301,7 +297,6 @@ const BIBLE_COVERS = Object.freeze([
             "Beautiful maroon patterned Telugu Bible cover with decorative fabric detailing."
 
     }),
-
 
     Object.freeze({
 
@@ -331,7 +326,6 @@ const BIBLE_COVERS = Object.freeze([
 
     }),
 
-
     Object.freeze({
 
         id:
@@ -359,7 +353,6 @@ const BIBLE_COVERS = Object.freeze([
             "Black leather-style Telugu Bible pouch designed to provide practical protection for your Bible."
 
     }),
-
 
     Object.freeze({
 
@@ -431,12 +424,20 @@ const BIBLE_COVERS = Object.freeze([
 
 function $(selector, root = document) {
 
+    if (!selector) {
+        return null;
+    }
+
     return root.querySelector(selector);
 
 }
 
 
 function $$(selector, root = document) {
+
+    if (!selector) {
+        return [];
+    }
 
     return Array.from(
         root.querySelectorAll(selector)
@@ -451,19 +452,26 @@ function $$(selector, root = document) {
 
 function clean(value) {
 
-    return String(value ?? "").trim();
+    return String(
+        value ?? ""
+    ).trim();
 
 }
 
 
 function normalize(value) {
 
-    return clean(value).toLowerCase();
+    return clean(value)
+        .toLowerCase()
+        .replace(/\s+/g, " ");
 
 }
 
 
-function getNumber(value, fallback = 0) {
+function getNumber(
+    value,
+    fallback = 0
+) {
 
     const number =
         Number(value);
@@ -471,6 +479,91 @@ function getNumber(value, fallback = 0) {
     return Number.isFinite(number)
         ? number
         : fallback;
+
+}
+
+
+/* ============================================================
+   IMAGE PATH HELPERS
+   ------------------------------------------------------------
+   IMPORTANT
+   ------------------------------------------------------------
+   Do not blindly encode an entire URL.
+
+   Browser automatically handles spaces in filenames.
+
+   These helpers mainly protect against:
+   • accidental leading spaces
+   • duplicate slashes
+   • Windows-style backslashes
+   • empty image paths
+============================================================ */
+
+function normalizeImagePath(
+    source
+) {
+
+    const value =
+        clean(source);
+
+    if (!value) {
+        return "";
+    }
+
+    if (
+        value.startsWith("data:") ||
+        value.startsWith("blob:") ||
+        value.startsWith("http://") ||
+        value.startsWith("https://") ||
+        value.startsWith("//")
+    ) {
+
+        return value;
+
+    }
+
+    return value
+        .replace(/\\/g, "/")
+        .replace(/^\.\/+/, "");
+
+}
+
+
+function getImageCandidates(
+    primary,
+    fallback = []
+) {
+
+    const candidates = [];
+
+    const add = value => {
+
+        const path =
+            normalizeImagePath(value);
+
+        if (
+            path &&
+            !candidates.includes(path)
+        ) {
+
+            candidates.push(path);
+
+        }
+
+    };
+
+
+    add(primary);
+
+
+    if (Array.isArray(fallback)) {
+
+        fallback.forEach(add);
+
+    }
+
+
+    return candidates;
 
 }
 
@@ -490,12 +583,6 @@ function getProductGrid() {
 
 /* ============================================================
    PRODUCT CARDS
-   ------------------------------------------------------------
-   IMPORTANT:
-   ALWAYS USE .jn-books-product-card FIRST.
-
-   Do NOT depend on data-product-card because
-   not every product currently has that attribute.
 ============================================================ */
 
 function getProductCards() {
@@ -508,14 +595,10 @@ function getProductCards() {
     }
 
 
-    const cards =
-        $$(
-            ".jn-books-product-card",
-            grid
-        );
-
-
-    return cards;
+    return $$(
+        ".jn-books-product-card",
+        grid
+    );
 
 }
 
@@ -554,8 +637,13 @@ function storeOriginalProductOrder() {
 
 function getCardPrice(card) {
 
+    if (!card) {
+        return 0;
+    }
+
+
     return getNumber(
-        card?.dataset?.price,
+        card.dataset.price,
         0
     );
 
@@ -578,8 +666,21 @@ function getCardName(card) {
             card
         )?.textContent ||
 
+        $("h3", card)?.textContent ||
+
+        $("h2", card)?.textContent ||
+
         ""
 
+    );
+
+}
+
+
+function getCardCategory(card) {
+
+    return normalize(
+        card?.dataset?.category || "all"
     );
 
 }
@@ -594,7 +695,6 @@ function applySorting() {
     const grid =
         getProductGrid();
 
-
     if (!grid) {
         return;
     }
@@ -602,7 +702,6 @@ function applySorting() {
 
     const cards =
         getProductCards();
-
 
     if (!cards.length) {
         return;
@@ -616,9 +715,11 @@ function applySorting() {
         [...cards];
 
 
-    switch (state.sort) {
+    switch (normalize(state.sort)) {
 
         case "low":
+        case "price-low":
+        case "price-asc":
 
             sorted.sort(
                 (a, b) =>
@@ -630,6 +731,8 @@ function applySorting() {
 
 
         case "high":
+        case "price-high":
+        case "price-desc":
 
             sorted.sort(
                 (a, b) =>
@@ -641,6 +744,8 @@ function applySorting() {
 
 
         case "name":
+        case "a-z":
+        case "alphabetical":
 
             sorted.sort(
                 (a, b) =>
@@ -648,7 +753,8 @@ function applySorting() {
                         getCardName(b),
                         undefined,
                         {
-                            sensitivity: "base"
+                            sensitivity:
+                                "base"
                         }
                     )
             );
@@ -657,7 +763,6 @@ function applySorting() {
 
 
         case "featured":
-
         default:
 
             sorted.sort(
@@ -675,12 +780,21 @@ function applySorting() {
     }
 
 
+    const fragment =
+        document.createDocumentFragment();
+
+
     sorted.forEach(
         card => {
 
-            grid.appendChild(card);
+            fragment.appendChild(card);
 
         }
+    );
+
+
+    grid.appendChild(
+        fragment
     );
 
 }
@@ -705,7 +819,7 @@ function setupSearch() {
     }
 
 
-    function performSearch() {
+    const performSearch = () => {
 
         state.search =
             normalize(
@@ -715,7 +829,7 @@ function setupSearch() {
 
         refreshProducts();
 
-    }
+    };
 
 
     input.addEventListener(
@@ -729,8 +843,7 @@ function setupSearch() {
         event => {
 
             if (
-                event.key !==
-                "Enter"
+                event.key !== "Enter"
             ) {
 
                 return;
@@ -771,12 +884,15 @@ function setupCategories() {
                 "click",
                 () => {
 
+                    const category =
+                        button.dataset.storeCategory ||
+                        button.dataset.category ||
+                        "all";
+
+
                     state.category =
-                        normalize(
-                            button.dataset.storeCategory ||
-                            button.dataset.category ||
-                            "all"
-                        ) || "all";
+                        normalize(category) ||
+                        "all";
 
 
                     buttons.forEach(
@@ -870,14 +986,13 @@ function refreshProducts() {
         card => {
 
             const category =
-                normalize(
-                    card.dataset.category
-                );
+                getCardCategory(card);
 
 
             const name =
                 normalize(
-                    card.dataset.name
+                    card.dataset.name ||
+                    getCardName(card)
                 );
 
 
@@ -885,14 +1000,21 @@ function refreshProducts() {
                 normalize(
 
                     [
+
                         card.dataset.search,
 
                         card.dataset.name,
 
+                        card.dataset.title,
+
+                        card.dataset.product,
+
                         card.textContent
 
                     ]
+
                         .filter(Boolean)
+
                         .join(" ")
 
                 );
@@ -906,9 +1028,7 @@ function refreshProducts() {
             const searchMatch =
                 !state.search ||
                 name.includes(state.search) ||
-                searchable.includes(
-                    state.search
-                );
+                searchable.includes(state.search);
 
 
             const shouldShow =
@@ -980,8 +1100,7 @@ function updateResultText(
 
 
     if (
-        state.category ===
-        "all"
+        state.category === "all"
     ) {
 
         result.textContent =
@@ -1026,7 +1145,7 @@ function updateEmptyState(
 
 
 /* ============================================================
-   IMAGE FALLBACK
+   IMAGE SOURCE LOADER
 ============================================================ */
 
 function setImageSource(
@@ -1040,11 +1159,14 @@ function setImageSource(
 
 
     const list =
-        Array.isArray(sources)
-            ? sources
-                .map(clean)
-                .filter(Boolean)
-            : [];
+        getImageCandidates(
+            Array.isArray(sources)
+                ? sources[0]
+                : sources,
+            Array.isArray(sources)
+                ? sources.slice(1)
+                : []
+        );
 
 
     if (!list.length) {
@@ -1056,22 +1178,28 @@ function setImageSource(
         0;
 
 
-    function loadNext() {
+    const loadNext = () => {
 
         if (
-            index >=
-            list.length
+            index >= list.length
         ) {
+
+            image.dataset.imageFailed =
+                "true";
 
             return;
 
         }
 
 
+        image.dataset.imageIndex =
+            String(index);
+
+
         image.src =
             list[index];
 
-    }
+    };
 
 
     image.onerror = () => {
@@ -1083,20 +1211,88 @@ function setImageSource(
     };
 
 
+    image.onload = () => {
+
+        image.dataset.imageFailed =
+            "false";
+
+    };
+
+
     loadNext();
 
 }
 
 
 /* ============================================================
+   PRODUCT IMAGE FALLBACK
+============================================================ */
+
+function setupProductImageFallbacks() {
+
+    const cards =
+        getProductCards();
+
+
+    cards.forEach(
+        card => {
+
+            const image =
+                $(
+                    ".jn-books-product-image, img",
+                    card
+                );
+
+
+            if (!image) {
+                return;
+            }
+
+
+            const primary =
+                image.getAttribute("src");
+
+
+            const fallback =
+                image.dataset.fallback ||
+                card.dataset.fallbackImage ||
+                "";
+
+
+            if (!primary) {
+                return;
+            }
+
+
+            const sources =
+                getImageCandidates(
+                    primary,
+                    [fallback]
+                );
+
+
+            if (
+                sources.length <= 1
+            ) {
+
+                return;
+
+            }
+
+
+            setImageSource(
+                image,
+                sources
+            );
+
+        }
+    );
+
+}
+
+
+/* ============================================================
    PRODUCT IMAGE GALLERY
-   ------------------------------------------------------------
-   Works for:
-
-   • Songs Book
-   • Telugu Bible
-   • Any future product gallery
-
 ============================================================ */
 
 function setupProductGalleries() {
@@ -1122,7 +1318,9 @@ function setupProductGalleries() {
 
             const raw =
                 image.dataset.images ||
-                image.dataset.galleryImages;
+                image.dataset.galleryImages ||
+                card.dataset.images ||
+                card.dataset.galleryImages;
 
 
             if (!raw) {
@@ -1142,7 +1340,9 @@ function setupProductGalleries() {
             try {
 
                 images =
-                    JSON.parse(raw);
+                    typeof raw === "string"
+                        ? JSON.parse(raw)
+                        : raw;
 
             }
 
@@ -1165,13 +1365,40 @@ function setupProductGalleries() {
 
 
             if (
-                !Array.isArray(images) ||
+                !Array.isArray(images)
+            ) {
+
+                hideGalleryControls(
+                    card
+                );
+
+                return;
+
+            }
+
+
+            images =
+                images
+                    .map(normalizeImagePath)
+                    .filter(Boolean);
+
+
+            if (
                 images.length <= 1
             ) {
 
                 hideGalleryControls(
                     card
                 );
+
+                if (images.length === 1) {
+
+                    setImageSource(
+                        image,
+                        images
+                    );
+
+                }
 
                 return;
 
@@ -1216,12 +1443,10 @@ function setupProductGalleries() {
             }
 
 
-            function render() {
+            const render = () => {
 
                 const source =
-                    clean(
-                        images[index]
-                    );
+                    images[index];
 
 
                 if (!source) {
@@ -1233,8 +1458,10 @@ function setupProductGalleries() {
                     String(index);
 
 
-                image.src =
-                    source;
+                setImageSource(
+                    image,
+                    [source]
+                );
 
 
                 renderDots(
@@ -1243,12 +1470,10 @@ function setupProductGalleries() {
                     index
                 );
 
-            }
+            };
 
 
-            function move(
-                direction
-            ) {
+            const move = direction => {
 
                 index =
                     (
@@ -1261,7 +1486,7 @@ function setupProductGalleries() {
 
                 render();
 
-            }
+            };
 
 
             previous?.addEventListener(
@@ -1365,6 +1590,12 @@ function renderDots(
         );
 
 
+        dot.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
         container.appendChild(
             dot
         );
@@ -1414,7 +1645,6 @@ function getCoversByLanguageAndSize(
             normalize(
                 cover.language
             ) === targetLanguage &&
-
             normalize(
                 cover.size
             ) === targetSize
@@ -1431,7 +1661,8 @@ function getAvailableSizes(
         ...new Set(
             getCoversByLanguage(
                 language
-            ).map(
+            )
+            .map(
                 cover =>
                     cover.size
             )
@@ -1540,7 +1771,7 @@ function rebuildSizeSelector(
 /* ============================================================
    REBUILD DESIGN SELECTOR
    ------------------------------------------------------------
-   PRICE IS NEVER SHOWN IN OPTION TEXT.
+   PRICE IS NEVER SHOWN HERE.
 ============================================================ */
 
 function rebuildCoverDesignSelector(
@@ -1578,13 +1809,6 @@ function rebuildCoverDesignSelector(
                 cover.id;
 
 
-            /*
-             * IMPORTANT:
-             * DESIGN ONLY.
-             *
-             * NO PRICE.
-             */
-
             option.textContent =
                 cover.design;
 
@@ -1592,6 +1816,11 @@ function rebuildCoverDesignSelector(
             option.dataset.coverId =
                 cover.id;
 
+
+            /*
+             * Price remains available internally
+             * but is NOT displayed.
+             */
 
             option.dataset.price =
                 String(
@@ -1774,8 +2003,7 @@ function updateCoverPrice(
     }
 
 
-    element.innerHTML =
-        "";
+    element.replaceChildren();
 
 
     const amount =
@@ -1953,7 +2181,7 @@ function setupBibleCovers() {
 
 
     /* ========================================================
-       UPDATE CART BUTTON
+       UPDATE CART DATA
     ======================================================== */
 
     function updateCoverCartData(
@@ -1994,7 +2222,9 @@ function setupBibleCovers() {
 
 
         addButton.dataset.image =
-            selected.image;
+            normalizeImagePath(
+                selected.image
+            );
 
 
         addButton.dataset.coverName =
@@ -2020,7 +2250,7 @@ function setupBibleCovers() {
 
 
     /* ========================================================
-       RENDER COVER
+       RENDER SELECTED COVER
     ======================================================== */
 
     function renderSelectedCover() {
@@ -2044,7 +2274,8 @@ function setupBibleCovers() {
 
         if (currentIndex < 0) {
 
-            currentIndex = 0;
+            currentIndex =
+                0;
 
         }
 
@@ -2143,7 +2374,8 @@ function setupBibleCovers() {
             );
 
 
-        currentIndex = 0;
+        currentIndex =
+            0;
 
 
         renderSelectedCover();
@@ -2183,7 +2415,8 @@ function setupBibleCovers() {
                 );
 
 
-            currentIndex = 0;
+            currentIndex =
+                0;
 
 
             renderSelectedCover();
@@ -2288,8 +2521,29 @@ function setupBibleCovers() {
        ENGLISH → REGULAR → LIGHT BLUE FABRIC
     ======================================================== */
 
-    language.value =
-        "English";
+    const englishOption =
+        Array.from(
+            language.options
+        )
+        .find(
+            option =>
+                normalize(option.value) ===
+                "english"
+        );
+
+
+    if (englishOption) {
+
+        language.value =
+            englishOption.value;
+
+    }
+    else {
+
+        language.value =
+            "English";
+
+    }
 
 
     rebuildCoverSystem(
@@ -2374,6 +2628,10 @@ function setupPromiseCards() {
 
 
                 button.dataset.product =
+                    "Promise Cards";
+
+
+                button.dataset.title =
                     "Promise Cards";
 
 
@@ -2556,7 +2814,8 @@ function addToCart(
     const product =
         clean(
             button.dataset.product ||
-            button.dataset.title
+            button.dataset.title ||
+            button.dataset.name
         );
 
 
@@ -2574,7 +2833,7 @@ function addToCart(
 
 
     const image =
-        clean(
+        normalizeImagePath(
             button.dataset.image
         );
 
@@ -2680,10 +2939,12 @@ function addToCart(
         }
 
 
+        const result =
+            cart.add(item);
+
+
         const success =
-            Boolean(
-                cart.add(item)
-            );
+            result !== false;
 
 
         if (!success) {
@@ -2708,7 +2969,7 @@ function addToCart(
     catch (error) {
 
         console.error(
-            "Jeeva Nadi Books: Cart error",
+            "Jeeva Nadi Books: Cart error:",
             error
         );
 
@@ -2802,7 +3063,8 @@ function refreshCartCount() {
     }
 
 
-    let count = 0;
+    let count =
+        0;
 
 
     try {
@@ -2875,6 +3137,15 @@ function animateButton(
     }
 
 
+    const originalHTML =
+        button.dataset.originalHTML ||
+        button.innerHTML;
+
+
+    button.dataset.originalHTML =
+        originalHTML;
+
+
     button.disabled =
         true;
 
@@ -2901,6 +3172,7 @@ function animateButton(
 
 
             button.innerHTML =
+                button.dataset.originalHTML ||
                 "<span>+</span> Add to Cart";
 
         },
@@ -2935,7 +3207,7 @@ function notify(
 
 
     toast.textContent =
-        message;
+        clean(message);
 
 
     toast.classList.add(
@@ -2946,7 +3218,7 @@ function notify(
 
     if (toastTimer) {
 
-        clearTimeout(
+        window.clearTimeout(
             toastTimer
         );
 
@@ -3015,8 +3287,7 @@ function restoreState() {
 
 
             const active =
-                category ===
-                "all";
+                category === "all";
 
 
             button.classList.toggle(
@@ -3046,8 +3317,29 @@ function restoreState() {
 
     if (sort) {
 
-        sort.value =
-            "featured";
+        const featuredOption =
+            Array.from(
+                sort.options
+            )
+            .find(
+                option =>
+                    normalize(option.value) ===
+                    "featured"
+            );
+
+
+        if (featuredOption) {
+
+            sort.value =
+                featuredOption.value;
+
+        }
+        else {
+
+            sort.value =
+                "featured";
+
+        }
 
     }
 
@@ -3069,8 +3361,7 @@ function setupImageErrorMonitoring() {
 
 
             if (
-                !(image instanceof
-                  HTMLImageElement)
+                !(image instanceof HTMLImageElement)
             ) {
 
                 return;
@@ -3080,9 +3371,7 @@ function setupImageErrorMonitoring() {
 
             const source =
                 clean(
-                    image.getAttribute(
-                        "src"
-                    )
+                    image.getAttribute("src")
                 );
 
 
@@ -3092,12 +3381,8 @@ function setupImageErrorMonitoring() {
 
 
             if (
-                source.startsWith(
-                    "data:"
-                ) ||
-                source.startsWith(
-                    "blob:"
-                )
+                source.startsWith("data:") ||
+                source.startsWith("blob:")
             ) {
 
                 return;
@@ -3126,6 +3411,131 @@ function setupImageErrorMonitoring() {
 
         },
         true
+    );
+
+}
+
+
+/* ============================================================
+   PRODUCT DATA INITIALIZATION
+   ------------------------------------------------------------
+   Reads product information already present in HTML.
+============================================================ */
+
+function initializeProductImages() {
+
+    const cards =
+        getProductCards();
+
+
+    cards.forEach(
+        card => {
+
+            const image =
+                $(
+                    ".jn-books-product-image, img",
+                    card
+                );
+
+
+            if (!image) {
+                return;
+            }
+
+
+            const source =
+                image.getAttribute("src");
+
+
+            if (!source) {
+                return;
+            }
+
+
+            const normalized =
+                normalizeImagePath(
+                    source
+                );
+
+
+            if (
+                normalized &&
+                normalized !== source
+            ) {
+
+                image.setAttribute(
+                    "src",
+                    normalized
+                );
+
+            }
+
+
+            if (
+                !image.alt ||
+                !image.alt.trim()
+            ) {
+
+                const name =
+                    getCardName(card);
+
+
+                if (name) {
+
+                    image.alt =
+                        name;
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+function setupAccessibility() {
+
+    const cards =
+        getProductCards();
+
+
+    cards.forEach(
+        card => {
+
+            const button =
+                $(
+                    "[data-add-product], " +
+                    "[data-add-cover], " +
+                    ".jn-books-add-cart",
+                    card
+                );
+
+
+            if (!button) {
+                return;
+            }
+
+
+            if (
+                !button.getAttribute(
+                    "type"
+                )
+            ) {
+
+                button.setAttribute(
+                    "type",
+                    "button"
+                );
+
+            }
+
+        }
     );
 
 }
@@ -3165,13 +3575,23 @@ function bootBooksStore() {
         true;
 
 
-    /*
-     * Capture the ORIGINAL HTML order
-     * before sorting.
-     */
+    /* --------------------------------------------------------
+       Preserve original HTML order
+    -------------------------------------------------------- */
 
     storeOriginalProductOrder();
 
+
+    /* --------------------------------------------------------
+       Normalize image paths already in HTML
+    -------------------------------------------------------- */
+
+    initializeProductImages();
+
+
+    /* --------------------------------------------------------
+       Setup store systems
+    -------------------------------------------------------- */
 
     setupSearch();
 
@@ -3180,6 +3600,8 @@ function bootBooksStore() {
     setupSorting();
 
     setupProductGalleries();
+
+    setupProductImageFallbacks();
 
     setupBibleCovers();
 
@@ -3191,7 +3613,19 @@ function bootBooksStore() {
 
     setupImageErrorMonitoring();
 
+    setupAccessibility();
+
+
+    /* --------------------------------------------------------
+       Restore initial state
+    -------------------------------------------------------- */
+
     restoreState();
+
+
+    /* --------------------------------------------------------
+       Initial render
+    -------------------------------------------------------- */
 
     applySorting();
 
@@ -3276,7 +3710,7 @@ window.JeevaNadiBooksStore = {
 
 
 /* ============================================================
-   START
+   START STORE
 ============================================================ */
 
 if (
@@ -3293,7 +3727,6 @@ if (
     );
 
 }
-
 else {
 
     bootBooksStore();
