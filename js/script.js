@@ -764,201 +764,220 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+/* =================================================
+   3. JEEVA NADI BOOKS STORE POPUP
+================================================= */
 
-    /* =================================================
-       3. JEEVA NADI BOOKS STORE POPUP
-    ================================================= */
+const booksPopup =
+    document.getElementById("booksPopup");
 
-    const booksPopup =
-        document.getElementById("booksPopup");
+const closeBooksPopup =
+    document.getElementById("closeBooksPopup");
 
-    const closeBooksPopup =
-        document.getElementById(
-            "closeBooksPopup"
-        );
+const booksLaterBtn =
+    document.getElementById("booksLaterBtn");
 
-    const booksLaterBtn =
-        document.getElementById(
-            "booksLaterBtn"
-        );
-
-    const exploreBooksBtn =
-        document.getElementById(
-            "exploreBooksBtn"
-        );
+const exploreBooksBtn =
+    document.getElementById("exploreBooksBtn");
 
 
-    /* -------------------------------------------------
-       OPEN BOOKS POPUP
-    ------------------------------------------------- */
+/* -------------------------------------------------
+   OPEN BOOKS POPUP
+------------------------------------------------- */
 
-    function openBooksPopup() {
+function openBooksPopup() {
 
-        if (!booksPopup) {
+    if (!booksPopup) {
+        console.warn("Books popup element not found.");
+        return;
+    }
 
-            return;
+    /* ---------------------------------------------
+       Remove hidden state FIRST
+    --------------------------------------------- */
+
+    booksPopup.hidden = false;
+    booksPopup.removeAttribute("hidden");
+
+    /* ---------------------------------------------
+       Prevent background scrolling
+    --------------------------------------------- */
+
+    document.body.classList.add(
+        "books-popup-open"
+    );
+
+    /* ---------------------------------------------
+       Wait for browser to render the visible state
+       before starting animation
+    --------------------------------------------- */
+
+    requestAnimationFrame(function () {
+
+        requestAnimationFrame(function () {
+
+            booksPopup.classList.add(
+                "books-popup-visible"
+            );
+
+        });
+
+    });
+
+}
+
+
+/* -------------------------------------------------
+   CLOSE BOOKS POPUP
+------------------------------------------------- */
+
+function closeBooksStorePopup() {
+
+    if (!booksPopup) {
+        return;
+    }
+
+    /* ---------------------------------------------
+       Remove visible state
+    --------------------------------------------- */
+
+    booksPopup.classList.remove(
+        "books-popup-visible"
+    );
+
+    /* ---------------------------------------------
+       Restore page scrolling
+    --------------------------------------------- */
+
+    document.body.classList.remove(
+        "books-popup-open"
+    );
+
+    /* ---------------------------------------------
+       Wait for closing animation
+    --------------------------------------------- */
+
+    setTimeout(function () {
+
+        /*
+           Only hide if popup is still closed.
+           Prevents a race condition if the popup
+           is opened again during the animation.
+        */
+
+        if (
+            !booksPopup.classList.contains(
+                "books-popup-visible"
+            )
+        ) {
+
+            booksPopup.hidden = true;
+
+            booksPopup.setAttribute(
+                "hidden",
+                ""
+            );
 
         }
 
+    }, 350);
 
-        booksPopup.hidden =
-            false;
-
-
-        document.body.classList.add(
-            "books-popup-open"
-        );
+}
 
 
-        requestAnimationFrame(
-            function () {
+/* -------------------------------------------------
+   CLOSE BUTTON
+------------------------------------------------- */
 
-                booksPopup.classList.add(
-                    "books-popup-visible"
-                );
+if (closeBooksPopup) {
 
-            }
-        );
-
-    }
-
-
-    /* -------------------------------------------------
-       CLOSE BOOKS POPUP
-    ------------------------------------------------- */
-
-    function closeBooksStorePopup() {
-
-        if (!booksPopup) {
-
-            return;
-
-        }
-
-
-        booksPopup.classList.remove(
-            "books-popup-visible"
-        );
-
-
-        document.body.classList.remove(
-            "books-popup-open"
-        );
-
-
-        setTimeout(
-            function () {
-
-                booksPopup.hidden =
-                    true;
-
-            },
-            300
-        );
-
-    }
-
-
-    /* -------------------------------------------------
-       CLOSE BUTTON
-    ------------------------------------------------- */
-
-    if (closeBooksPopup) {
-
-        closeBooksPopup.addEventListener(
-            "click",
-            function () {
-
-                closeBooksStorePopup();
-
-            }
-        );
-
-    }
-
-
-    /* -------------------------------------------------
-       MAYBE LATER
-    ------------------------------------------------- */
-
-    if (booksLaterBtn) {
-
-        booksLaterBtn.addEventListener(
-            "click",
-            function () {
-
-                sessionStorage.setItem(
-                    "jeevaNadiBooksPopupDismissed",
-                    "true"
-                );
-
-
-                closeBooksStorePopup();
-
-            }
-        );
-
-    }
-
-
-    /* -------------------------------------------------
-       EXPLORE BOOKS
-    ------------------------------------------------- */
-
-    if (exploreBooksBtn) {
-
-        exploreBooksBtn.addEventListener(
-            "click",
-            function () {
-
-                sessionStorage.setItem(
-                    "jeevaNadiBooksPopupDismissed",
-                    "true"
-                );
-
-            }
-        );
-
-    }
-
-
-    /* -------------------------------------------------
-       CLICK OUTSIDE POPUP
-    ------------------------------------------------- */
-
-    if (booksPopup) {
-
-        booksPopup.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    event.target ===
-                    booksPopup
-                ) {
-
-                    closeBooksStorePopup();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* -------------------------------------------------
-       ESCAPE KEY
-    ------------------------------------------------- */
-
-    document.addEventListener(
-        "keydown",
+    closeBooksPopup.addEventListener(
+        "click",
         function (event) {
 
+            event.preventDefault();
+
+            closeBooksStorePopup();
+
+        }
+    );
+
+}
+
+
+/* -------------------------------------------------
+   MAYBE LATER BUTTON
+------------------------------------------------- */
+
+if (booksLaterBtn) {
+
+    booksLaterBtn.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            /*
+               Remember that the visitor dismissed
+               the popup during this browser session.
+            */
+
+            sessionStorage.setItem(
+                "jeevaNadiBooksPopupDismissed",
+                "true"
+            );
+
+            closeBooksStorePopup();
+
+        }
+    );
+
+}
+
+
+/* -------------------------------------------------
+   EXPLORE BOOKS BUTTON
+------------------------------------------------- */
+
+if (exploreBooksBtn) {
+
+    exploreBooksBtn.addEventListener(
+        "click",
+        function () {
+
+            /*
+               Remember that the visitor has already
+               interacted with the popup.
+            */
+
+            sessionStorage.setItem(
+                "jeevaNadiBooksPopupDismissed",
+                "true"
+            );
+
+        }
+    );
+
+}
+
+
+/* -------------------------------------------------
+   CLICK OUTSIDE POPUP
+------------------------------------------------- */
+
+if (booksPopup) {
+
+    booksPopup.addEventListener(
+        "click",
+        function (event) {
+
+            /*
+               Only close when the dark overlay itself
+               is clicked, not the popup content.
+            */
+
             if (
-                event.key === "Escape" &&
-                booksPopup &&
-                !booksPopup.hidden
+                event.target === booksPopup
             ) {
 
                 closeBooksStorePopup();
@@ -968,42 +987,64 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     );
 
-
-    /* -------------------------------------------------
-       AUTOMATICALLY SHOW BOOKS POPUP
-    ------------------------------------------------- */
-
-    const booksPopupDismissed =
-        sessionStorage.getItem(
-            "jeevaNadiBooksPopupDismissed"
-        );
+}
 
 
-    /*
-       Popup appears after 4 seconds.
+/* -------------------------------------------------
+   ESCAPE KEY
+------------------------------------------------- */
 
-       It will not appear again during the
-       same browser session after the visitor
-       chooses "Maybe Later" or "Explore Books".
-    */
+document.addEventListener(
+    "keydown",
+    function (event) {
 
-    if (
-        booksPopup &&
-        !booksPopupDismissed
-    ) {
+        if (
+            event.key === "Escape" &&
+            booksPopup &&
+            !booksPopup.hidden
+        ) {
 
-        setTimeout(
-            function () {
+            closeBooksStorePopup();
 
-                openBooksPopup();
-
-            },
-            4000
-        );
+        }
 
     }
+);
 
 
+/* -------------------------------------------------
+   AUTOMATICALLY SHOW BOOKS POPUP
+------------------------------------------------- */
+
+const booksPopupDismissed =
+    sessionStorage.getItem(
+        "jeevaNadiBooksPopupDismissed"
+    );
+
+
+/*
+   Popup appears after 4 seconds.
+
+   It will not appear again during the same
+   browser session after the visitor chooses
+   "Maybe Later" or "Explore Books".
+*/
+
+if (
+    booksPopup &&
+    !booksPopupDismissed
+) {
+
+    setTimeout(
+        function () {
+
+            openBooksPopup();
+
+        },
+        4000
+    );
+
+}
     /* =================================================
        4. COUNTDOWN TIMER
     ================================================= */
