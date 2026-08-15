@@ -1,21 +1,40 @@
 /* ============================================================
    JEEVA NADI BOOKS
-   PREMIUM CUSTOMER ACCOUNT ENGINE
+   CUSTOMER ACCOUNT ENGINE
    ------------------------------------------------------------
-   Firebase Authentication
+   FILE:
+   js/account.js
+
+   AUTHENTICATION
+   ------------------------------------------------------------
    • Google
    • Phone OTP
+   • Firebase Local Persistence
+   • Shared Firebase Auth instance
 
-   Firestore
-   • users
+   FIRESTORE
+   ------------------------------------------------------------
+   • users/{uid}
    • orders
 
-   IMPORTANT
+   IMPORTANT ARCHITECTURE
    ------------------------------------------------------------
-   Orders are queried only by userId.
 
-   No Firestore orderBy() is used.
-   Orders are sorted locally.
+       firebase-config.js
+              │
+              ├── auth
+              ├── db
+              └── Firebase functions
+                     │
+             ┌───────┼────────┐
+             │       │        │
+         account.js books.js cart.js
+             │       │        │
+             └───────┼────────┘
+                     │
+                 SAME USER
+
+   DO NOT INITIALIZE FIREBASE AGAIN IN THIS FILE.
 
 ============================================================ */
 
@@ -24,178 +43,69 @@
 
 /* ============================================================
    FIREBASE IMPORTS
+   ------------------------------------------------------------
+   IMPORTANT:
+   Everything comes from firebase-config.js.
+
+   This prevents account.js from creating a second Firebase
+   Auth instance.
 ============================================================ */
 
 import {
+    auth,
+    db,
 
-    initializeApp,
+    googleProvider,
 
-    getApps
-
-} from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-
-import {
-
-    getAuth,
-
-    setPersistence,
-
-    browserLocalPersistence,
+    signInWithPopup,
+    signInWithPhoneNumber,
+    RecaptchaVerifier,
+    signOut,
 
     onAuthStateChanged,
 
-    GoogleAuthProvider,
-
-    signInWithPopup,
-
-    signInWithRedirect,
-
-    getRedirectResult,
-
-    signInWithPhoneNumber,
-
-    RecaptchaVerifier,
-
-    signOut
-
-} from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-
-import {
-
-    getFirestore,
-
-    doc,
-
-    setDoc,
-
     collection,
-
     query,
-
     where,
-
     getDocs,
 
-    serverTimestamp
+    doc,
+    setDoc,
+    getDoc,
 
-} from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+    serverTimestamp,
 
+    updateProfile,
+    reload,
 
-/* ============================================================
-   FIREBASE CONFIG
-============================================================ */
+    getCurrentUser
 
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyC3_2DjUY-LoC6aeTcA5ldn1xiqeqY0mg4",
-
-    authDomain:
-        "jeevanadi-biblequiz-2026.firebaseapp.com",
-
-    projectId:
-        "jeevanadi-biblequiz-2026",
-
-    storageBucket:
-        "jeevanadi-biblequiz-2026.firebasestorage.app",
-
-    messagingSenderId:
-        "861542495844",
-
-    appId:
-        "1:861542495844:web:55b1c9b8ca6691e3c95171",
-
-    measurementId:
-        "G-YLLMSQV1L8"
-
-};
-
-
-const STORE_APP_NAME =
-    "JeevaNadiBooksStore";
-
-
-const USERS_COLLECTION =
-    "users";
-
-
-const ORDERS_COLLECTION =
-    "orders";
+} from "./firebase-config.js";
 
 
 /* ============================================================
-   FIREBASE INITIALIZATION
+   CONFIGURATION
 ============================================================ */
 
-let storeApp;
+const ACCOUNT_CONFIG = Object.freeze({
 
+    collections: Object.freeze({
 
-try {
+        users:
+            "users",
 
-    const existing =
-        getApps().find(
-            app =>
-                app.name === STORE_APP_NAME
-        );
+        orders:
+            "orders"
 
+    }),
 
-    storeApp =
-        existing ||
-        initializeApp(
-            firebaseConfig,
-            STORE_APP_NAME
-        );
+    fallbackAvatar:
+        "images/account.png",
 
-} catch (error) {
-
-    console.error(
-        "Jeeva Nadi Books: Firebase initialization failed.",
-        error
-    );
-
-}
-
-
-/* ============================================================
-   SERVICES
-============================================================ */
-
-const auth =
-    storeApp
-        ? getAuth(storeApp)
-        : null;
-
-
-const db =
-    storeApp
-        ? getFirestore(storeApp)
-        : null;
-
-
-/* ============================================================
-   GOOGLE
-============================================================ */
-
-const googleProvider =
-    new GoogleAuthProvider();
-
-
-googleProvider.setCustomParameters({
-
-    prompt:
-        "select_account"
+    defaultProductImage:
+        "images/books/english-bible.jpg"
 
 });
-
-
-googleProvider.addScope(
-    "email"
-);
 
 
 /* ============================================================
@@ -205,6 +115,9 @@ googleProvider.addScope(
 const state = {
 
     started:
+        false,
+
+    authObserverStarted:
         false,
 
     authReady:
@@ -222,29 +135,29 @@ const state = {
     recaptcha:
         null,
 
-    authObserverStarted:
-        false,
-
-    ordersLoading:
-        false,
-
-    lastOrders:
-        [],
-
     googleBusy:
         false,
 
     otpBusy:
         false,
 
+    verifyBusy:
+        false,
+
     logoutBusy:
-        false
+        false,
+
+    ordersLoading:
+        false,
+
+    lastOrders:
+        []
 
 };
 
 
 /* ============================================================
-   DOM
+   DOM HELPERS
 ============================================================ */
 
 function $(id) {
@@ -253,10 +166,6 @@ function $(id) {
 
 }
 
-
-/* ============================================================
-   VISIBILITY
-============================================================ */
 
 function show(element) {
 
@@ -267,6 +176,8 @@ function show(element) {
     element.classList.remove(
         "hidden"
     );
+
+    element.hidden = false;
 
 }
 
@@ -281,27 +192,31 @@ function hide(element) {
         "hidden"
     );
 
+    element.hidden = true;
+
 }
 
 
-/* ============================================================
-   VIEW SWITCHER
-============================================================ */
+function showOnly(id) {
 
-function showOnly(viewId) {
-
-    [
+    const views = [
 
         "loadingView",
+
         "loginView",
+
         "otpView",
+
         "dashboardView"
 
-    ].forEach(
-        id => {
+    ];
+
+
+    views.forEach(
+        viewId => {
 
             const element =
-                $(id);
+                $(viewId);
 
 
             if (!element) {
@@ -310,12 +225,14 @@ function showOnly(viewId) {
 
 
             if (
-                id === viewId
+                viewId === id
             ) {
 
                 show(element);
 
-            } else {
+            }
+
+            else {
 
                 hide(element);
 
@@ -328,7 +245,29 @@ function showOnly(viewId) {
 
 
 /* ============================================================
-   HTML ESCAPE
+   STRING HELPERS
+============================================================ */
+
+function clean(value) {
+
+    return String(
+        value ?? ""
+    ).trim();
+
+}
+
+
+function normalize(value) {
+
+    return clean(
+        value
+    ).toLowerCase();
+
+}
+
+
+/* ============================================================
+   SAFE HTML
 ============================================================ */
 
 function escapeHtml(value) {
@@ -336,22 +275,27 @@ function escapeHtml(value) {
     return String(
         value ?? ""
     )
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
@@ -361,7 +305,7 @@ function escapeHtml(value) {
 
 
 /* ============================================================
-   MESSAGE
+   MESSAGES
 ============================================================ */
 
 function showMessage(
@@ -380,19 +324,24 @@ function showMessage(
 
 
     element.textContent =
-        message;
+        clean(message);
 
 
     element.className =
-        "message";
+        `message ${type}`;
 
 
-    element.classList.add(
-        type
-    );
+    if (message) {
 
+        show(element);
 
-    show(element);
+    }
+
+    else {
+
+        hide(element);
+
+    }
 
 }
 
@@ -452,20 +401,28 @@ function setButtonLoading(
             true;
 
 
+        button.setAttribute(
+            "aria-busy",
+            "true"
+        );
+
+
         button.innerHTML = `
-
             <i class="fa-solid fa-spinner fa-spin"></i>
-
-            <span>
-                ${escapeHtml(text)}
-            </span>
-
+            <span>${escapeHtml(text)}</span>
         `;
 
-    } else {
+    }
+
+    else {
 
         button.disabled =
             false;
+
+
+        button.removeAttribute(
+            "aria-busy"
+        );
 
 
         if (
@@ -483,10 +440,26 @@ function setButtonLoading(
 
 
 /* ============================================================
-   AUTH ERROR
+   FIREBASE AVAILABILITY
 ============================================================ */
 
-function friendlyAuthError(error) {
+function isFirebaseReady() {
+
+    return Boolean(
+        auth &&
+        db
+    );
+
+}
+
+
+/* ============================================================
+   AUTH ERROR MESSAGES
+============================================================ */
+
+function friendlyAuthError(
+    error
+) {
 
     const code =
         error?.code || "";
@@ -503,29 +476,32 @@ function friendlyAuthError(error) {
         "auth/cancelled-popup-request":
             "A Google sign-in window is already open.",
 
+        "auth/network-request-failed":
+            "Network connection failed. Please check your internet connection.",
+
         "auth/invalid-phone-number":
-            "Please enter a valid Indian mobile number.",
+            "Please enter a valid 10-digit Indian mobile number.",
+
+        "auth/missing-phone-number":
+            "Please enter your mobile number.",
 
         "auth/invalid-verification-code":
             "The OTP you entered is incorrect.",
 
         "auth/code-expired":
-            "This OTP has expired. Please request a new one.",
+            "This OTP has expired. Please request a new OTP.",
 
         "auth/too-many-requests":
-            "Too many attempts. Please wait and try again.",
+            "Too many attempts were made. Please wait and try again.",
 
         "auth/quota-exceeded":
             "Firebase SMS quota has been reached.",
 
         "auth/billing-not-enabled":
-            "Phone OTP requires Firebase billing to be enabled for SMS authentication.",
+            "Phone OTP requires Firebase billing to be enabled.",
 
         "auth/operation-not-allowed":
             "This authentication method is not enabled in Firebase.",
-
-        "auth/network-request-failed":
-            "Network connection failed. Please check your internet.",
 
         "auth/user-disabled":
             "This account has been disabled.",
@@ -534,15 +510,31 @@ function friendlyAuthError(error) {
             "This website domain is not authorized in Firebase.",
 
         "auth/invalid-credential":
-            "The authentication credential is invalid."
+            "The authentication credential is invalid.",
+
+        "auth/account-exists-with-different-credential":
+            "An account already exists with another sign-in method.",
+
+        "auth/internal-error":
+            "Firebase returned an internal authentication error.",
+
+        "auth/weak-password":
+            "The password is too weak.",
+
+        "auth/email-already-in-use":
+            "This email address is already registered."
 
     };
 
 
     return (
+
         messages[code] ||
+
         error?.message ||
+
         "Authentication failed. Please try again."
+
     );
 
 }
@@ -552,7 +544,9 @@ function friendlyAuthError(error) {
    FIRESTORE ERROR
 ============================================================ */
 
-function friendlyFirestoreError(error) {
+function friendlyFirestoreError(
+    error
+) {
 
     const code =
         error?.code || "";
@@ -564,18 +558,9 @@ function friendlyFirestoreError(error) {
         )
     ) {
 
-        return "Your account does not have permission to access orders.";
-
-    }
-
-
-    if (
-        code.includes(
-            "unavailable"
-        )
-    ) {
-
-        return "Firebase is temporarily unavailable.";
+        return (
+            "Your account does not have permission to access this information."
+        );
 
     }
 
@@ -586,41 +571,50 @@ function friendlyFirestoreError(error) {
         )
     ) {
 
-        return "Your session has expired. Please sign in again.";
+        return (
+            "Your session has expired. Please sign in again."
+        );
 
     }
 
 
-    return "Unable to load your orders right now.";
+    if (
+        code.includes(
+            "unavailable"
+        )
+    ) {
+
+        return (
+            "Firebase is temporarily unavailable. Please try again."
+        );
+
+    }
+
+
+    return (
+        "Unable to load your account information right now."
+    );
 
 }
 
 
 /* ============================================================
-   PROVIDER
+   PROVIDER NAME
 ============================================================ */
 
-function getProviderName(user) {
-
-    if (
-        !user?.providerData
-    ) {
-
-        return "—";
-
-    }
-
+function getProviderName(
+    user
+) {
 
     const providers =
-        user.providerData.map(
-            item =>
-                item.providerId
-        );
+        user?.providerData || [];
 
 
     if (
-        providers.includes(
-            "google.com"
+        providers.some(
+            provider =>
+                provider.providerId ===
+                "google.com"
         )
     ) {
 
@@ -630,8 +624,10 @@ function getProviderName(user) {
 
 
     if (
-        providers.includes(
-            "phone"
+        providers.some(
+            provider =>
+                provider.providerId ===
+                "phone"
         )
     ) {
 
@@ -640,16 +636,33 @@ function getProviderName(user) {
     }
 
 
-    return "Firebase Authentication";
+    if (
+        providers.some(
+            provider =>
+                provider.providerId ===
+                "password"
+        )
+    ) {
+
+        return "Email / Password";
+
+    }
+
+
+    return providers.length
+        ? "Firebase Authentication"
+        : "—";
 
 }
 
 
 /* ============================================================
-   PHONE
+   PHONE NORMALIZATION
 ============================================================ */
 
-function normalizePhone(value) {
+function normalizePhone(
+    value
+) {
 
     if (!value) {
         return "";
@@ -668,7 +681,9 @@ function normalizePhone(value) {
         digits.length === 10
     ) {
 
-        return "+91 " + digits;
+        return (
+            `+91 ${digits}`
+        );
 
     }
 
@@ -678,16 +693,23 @@ function normalizePhone(value) {
         digits.startsWith("91")
     ) {
 
-        return "+91 " +
-            digits.slice(2);
+        return (
+            `+91 ${digits.slice(2)}`
+        );
 
     }
 
 
-    return String(value);
+    return String(
+        value
+    );
 
 }
 
+
+/* ============================================================
+   PHONE INPUT
+============================================================ */
 
 function getPhoneNumber() {
 
@@ -697,9 +719,17 @@ function getPhoneNumber() {
 
     if (!input) {
 
-        throw new Error(
-            "Mobile number field is missing."
-        );
+        const error =
+            new Error(
+                "Mobile number field is missing."
+            );
+
+
+        error.code =
+            "INVALID_PHONE";
+
+
+        throw error;
 
     }
 
@@ -741,16 +771,39 @@ function getPhoneNumber() {
     }
 
 
-    return "+91" + digits;
+    return (
+        `+91${digits}`
+    );
 
 }
 
 
 /* ============================================================
-   PROFILE
+   CURRENT USER
+   ------------------------------------------------------------
+   IMPORTANT:
+   Always use the auth instance from firebase-config.js.
 ============================================================ */
 
-async function syncUserProfile(user) {
+function getAuthenticatedUser() {
+
+    return (
+        auth?.currentUser ||
+        state.currentUser ||
+        getCurrentUser?.() ||
+        null
+    );
+
+}
+
+
+/* ============================================================
+   PROFILE SYNC
+============================================================ */
+
+async function syncUserProfile(
+    user
+) {
 
     if (
         !user ||
@@ -767,30 +820,42 @@ async function syncUserProfile(user) {
         const userRef =
             doc(
                 db,
-                USERS_COLLECTION,
+                ACCOUNT_CONFIG.collections.users,
                 user.uid
             );
 
 
-        const data = {
+        const existing =
+            await getDoc(
+                userRef
+            );
+
+
+        const profile = {
 
             uid:
                 user.uid,
 
             name:
-                user.displayName || "",
+                user.displayName ||
+                "",
 
             email:
-                user.email || "",
+                user.email ||
+                "",
 
             phone:
-                user.phoneNumber || "",
+                user.phoneNumber ||
+                "",
 
             photoURL:
-                user.photoURL || "",
+                user.photoURL ||
+                "",
 
             provider:
-                getProviderName(user),
+                getProviderName(
+                    user
+                ),
 
             updatedAt:
                 serverTimestamp(),
@@ -801,22 +866,106 @@ async function syncUserProfile(user) {
         };
 
 
+        if (
+            !existing.exists()
+        ) {
+
+            profile.createdAt =
+                serverTimestamp();
+
+        }
+
+
         await setDoc(
             userRef,
-            data,
+            profile,
             {
-                merge:
-                    true
+                merge: true
             }
         );
 
 
-        return data;
+        return {
+            ...profile,
+            uid:
+                user.uid
+        };
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.warn(
-            "Jeeva Nadi Books: Profile sync skipped.",
+            "Jeeva Nadi Books: profile sync skipped.",
+            error
+        );
+
+
+        return null;
+
+    }
+
+}
+
+
+/* ============================================================
+   LOAD USER PROFILE
+============================================================ */
+
+async function loadUserProfile(
+    user
+) {
+
+    if (
+        !user ||
+        !db
+    ) {
+
+        return null;
+
+    }
+
+
+    try {
+
+        const userRef =
+            doc(
+                db,
+                ACCOUNT_CONFIG.collections.users,
+                user.uid
+            );
+
+
+        const snapshot =
+            await getDoc(
+                userRef
+            );
+
+
+        if (
+            !snapshot.exists()
+        ) {
+
+            return null;
+
+        }
+
+
+        return {
+
+            id:
+                snapshot.id,
+
+            ...snapshot.data()
+
+        };
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Jeeva Nadi Books: profile loading failed.",
             error
         );
 
@@ -844,21 +993,39 @@ function populateCustomer(
 
     const name =
         profile?.name ||
+
         user.displayName ||
+
         "Customer";
 
 
     const email =
         profile?.email ||
+
         user.email ||
+
         "";
 
 
     const phone =
         profile?.phone ||
+
         user.phoneNumber ||
+
         "";
 
+
+    const photo =
+        profile?.photoURL ||
+
+        user.photoURL ||
+
+        ACCOUNT_CONFIG.fallbackAvatar;
+
+
+    /* --------------------------------------------------------
+       AVATAR
+    -------------------------------------------------------- */
 
     const avatar =
         $("customerAvatar");
@@ -867,9 +1034,11 @@ function populateCustomer(
     if (avatar) {
 
         avatar.src =
-            profile?.photoURL ||
-            user.photoURL ||
-            "images/account.png";
+            photo;
+
+
+        avatar.alt =
+            `${name} profile picture`;
 
 
         avatar.onerror =
@@ -879,12 +1048,16 @@ function populateCustomer(
                     null;
 
                 avatar.src =
-                    "images/account.png";
+                    ACCOUNT_CONFIG.fallbackAvatar;
 
             };
 
     }
 
+
+    /* --------------------------------------------------------
+       MAIN NAME
+    -------------------------------------------------------- */
 
     const customerName =
         $("customerName");
@@ -898,6 +1071,10 @@ function populateCustomer(
     }
 
 
+    /* --------------------------------------------------------
+       SUBTITLE
+    -------------------------------------------------------- */
+
     const subtitle =
         $("customerSubtitle");
 
@@ -905,12 +1082,21 @@ function populateCustomer(
     if (subtitle) {
 
         subtitle.textContent =
+
             email ||
-            normalizePhone(phone) ||
+
+            normalizePhone(
+                phone
+            ) ||
+
             "Your Jeeva Nadi Books account";
 
     }
 
+
+    /* --------------------------------------------------------
+       PROFILE FIELDS
+    -------------------------------------------------------- */
 
     const fields = {
 
@@ -921,10 +1107,14 @@ function populateCustomer(
             email || "—",
 
         profilePhone:
-            normalizePhone(phone) || "—",
+            normalizePhone(
+                phone
+            ) || "—",
 
         profileProvider:
-            getProviderName(user),
+            getProviderName(
+                user
+            ),
 
         profileUid:
             user.uid || "—"
@@ -955,21 +1145,30 @@ function populateCustomer(
 
 
 /* ============================================================
-   DATE
+   DATE HELPERS
 ============================================================ */
 
-function getOrderDate(order) {
+function getOrderDate(
+    order
+) {
 
     const value =
-        order?.createdAt ||
-        order?.created_at ||
-        order?.orderDate ||
-        order?.date ||
+
+        order?.createdAt ??
+
+        order?.created_at ??
+
+        order?.orderDate ??
+
+        order?.date ??
+
         order?.timestamp;
 
 
     if (!value) {
+
         return 0;
+
     }
 
 
@@ -998,7 +1197,10 @@ function getOrderDate(order) {
         "number"
     ) {
 
-        return value.seconds * 1000;
+        return (
+            value.seconds *
+            1000
+        );
 
     }
 
@@ -1008,7 +1210,10 @@ function getOrderDate(order) {
         "number"
     ) {
 
-        return value._seconds * 1000;
+        return (
+            value._seconds *
+            1000
+        );
 
     }
 
@@ -1047,7 +1252,13 @@ function getOrderDate(order) {
 }
 
 
-function formatOrderDate(order) {
+/* ============================================================
+   FORMAT DATE
+============================================================ */
+
+function formatOrderDate(
+    order
+) {
 
     const timestamp =
         getOrderDate(
@@ -1080,7 +1291,9 @@ function formatOrderDate(order) {
             }
         );
 
-    } catch {
+    }
+
+    catch {
 
         return "Date unavailable";
 
@@ -1093,10 +1306,14 @@ function formatOrderDate(order) {
    CURRENCY
 ============================================================ */
 
-function formatCurrency(amount) {
+function formatCurrency(
+    amount
+) {
 
     const number =
-        Number(amount);
+        Number(
+            amount
+        );
 
 
     const safe =
@@ -1107,14 +1324,15 @@ function formatCurrency(amount) {
             : 0;
 
 
-    return "₹" +
-        safe.toLocaleString(
+    return (
+        `₹${safe.toLocaleString(
             "en-IN",
             {
                 maximumFractionDigits:
                     2
             }
-        );
+        )}`
+    );
 
 }
 
@@ -1123,7 +1341,9 @@ function formatCurrency(amount) {
    ORDER ITEMS
 ============================================================ */
 
-function getOrderItems(order) {
+function getOrderItems(
+    order
+) {
 
     if (
         Array.isArray(
@@ -1156,7 +1376,9 @@ function getOrderItems(order) {
    ITEM NAME
 ============================================================ */
 
-function getItemName(item) {
+function getItemName(
+    item
+) {
 
     return (
 
@@ -1181,31 +1403,56 @@ function getItemName(item) {
    ITEM VARIANT
 ============================================================ */
 
-function getItemVariant(item) {
+function getItemVariant(
+    item
+) {
 
     const product =
-        String(
+        clean(
+
             item?.product ||
+
             item?.name ||
+
             item?.title ||
+
             ""
-        ).trim();
+
+        );
 
 
     const variant =
-        String(
+        clean(
+
             item?.variant ||
+
             item?.edition ||
+
             item?.language ||
+
             item?.bookType ||
+
             ""
-        ).trim();
+
+        );
 
 
     if (
-        !variant ||
-        variant.toLowerCase() ===
-        product.toLowerCase()
+        !variant
+    ) {
+
+        return "";
+
+    }
+
+
+    if (
+        normalize(
+            variant
+        ) ===
+        normalize(
+            product
+        )
     ) {
 
         return "";
@@ -1222,20 +1469,29 @@ function getItemVariant(item) {
    ITEM QUANTITY
 ============================================================ */
 
-function getItemQuantity(item) {
+function getItemQuantity(
+    item
+) {
 
-    const value =
+    const quantity =
         Number(
             item?.quantity
         );
 
 
-    return (
-        Number.isFinite(value) &&
-        value > 0
-    )
-        ? value
-        : 1;
+    if (
+        Number.isFinite(
+            quantity
+        ) &&
+        quantity > 0
+    ) {
+
+        return quantity;
+
+    }
+
+
+    return 1;
 
 }
 
@@ -1244,9 +1500,11 @@ function getItemQuantity(item) {
    ITEM PRICE
 ============================================================ */
 
-function getItemPrice(item) {
+function getItemPrice(
+    item
+) {
 
-    const values = [
+    const candidates = [
 
         item?.price,
 
@@ -1262,15 +1520,19 @@ function getItemPrice(item) {
 
 
     for (
-        const value of values
+        const value of candidates
     ) {
 
         const number =
-            Number(value);
+            Number(
+                value
+            );
 
 
         if (
-            Number.isFinite(number)
+            Number.isFinite(
+                number
+            )
         ) {
 
             return number;
@@ -1286,235 +1548,14 @@ function getItemPrice(item) {
 
 
 /* ============================================================
-   PRODUCT IMAGE
-   ------------------------------------------------------------
-   Priority:
-   1. Firestore image
-   2. Known product image mapping
-   3. SVG fallback
-
-============================================================ */
-
-function getProductImage(item) {
-
-    const storedImage =
-
-        item?.image ||
-
-        item?.imageUrl ||
-
-        item?.imageURL ||
-
-        item?.productImage ||
-
-        item?.thumbnail ||
-
-        item?.photo;
-
-
-    if (storedImage) {
-
-        return String(
-            storedImage
-        );
-
-    }
-
-
-    const text =
-        (
-            getItemName(item) +
-            " " +
-            getItemVariant(item)
-        ).toLowerCase();
-
-
-    /*
-       Adjust these paths if your actual
-       filenames are different.
-    */
-
-    if (
-        text.includes("telugu") &&
-        text.includes("bible")
-    ) {
-
-        return "images/books/telugu-bible-bsi.jpg";
-
-    }
-
-
-    if (
-        text.includes("song")
-    ) {
-
-        return "images/books/songs-book.jpg";
-
-    }
-
-
-    if (
-        text.includes("english") &&
-        text.includes("bible")
-    ) {
-
-        return "images/books/english-bible.jpg";
-
-    }
-
-
-    if (
-        text.includes("cover")
-    ) {
-
-        return "images/books/bible-cover.jpg";
-
-    }
-
-
-    if (
-        text.includes("calendar")
-    ) {
-
-        return "images/books/calendar.jpg";
-
-    }
-
-
-    return createFallbackImage(
-        getItemName(item)
-    );
-
-}
-
-
-/* ============================================================
-   SVG FALLBACK IMAGE
-============================================================ */
-
-function createFallbackImage(title) {
-
-    const safeTitle =
-        String(
-            title || "BOOK"
-        )
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            );
-
-
-    const svg = `
-
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="240"
-            height="300"
-            viewBox="0 0 240 300"
-        >
-
-            <defs>
-
-                <linearGradient
-                    id="bg"
-                    x1="0"
-                    y1="0"
-                    x2="1"
-                    y2="1"
-                >
-
-                    <stop
-                        offset="0%"
-                        stop-color="#071936"
-                    />
-
-                    <stop
-                        offset="100%"
-                        stop-color="#153b6f"
-                    />
-
-                </linearGradient>
-
-            </defs>
-
-            <rect
-                width="240"
-                height="300"
-                rx="18"
-                fill="url(#bg)"
-            />
-
-            <circle
-                cx="120"
-                cy="92"
-                r="42"
-                fill="#d6ad43"
-                opacity=".15"
-            />
-
-            <text
-                x="120"
-                y="105"
-                text-anchor="middle"
-                fill="#f0d27b"
-                font-size="42"
-                font-family="Arial"
-            >
-                ✦
-            </text>
-
-            <text
-                x="120"
-                y="180"
-                text-anchor="middle"
-                fill="#ffffff"
-                font-size="15"
-                font-weight="700"
-                font-family="Arial"
-            >
-                ${safeTitle.slice(0, 24)}
-            </text>
-
-            <text
-                x="120"
-                y="210"
-                text-anchor="middle"
-                fill="#d6ad43"
-                font-size="11"
-                font-family="Arial"
-                letter-spacing="2"
-            >
-                JEEVA NADI BOOKS
-            </text>
-
-        </svg>
-
-    `;
-
-
-    return (
-        "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(svg)
-    );
-
-}
-
-
-/* ============================================================
    ORDER TOTAL
 ============================================================ */
 
-function getOrderTotal(order) {
+function getOrderTotal(
+    order
+) {
 
-    const possible = [
+    const candidates = [
 
         order?.pricing?.total,
 
@@ -1528,15 +1569,19 @@ function getOrderTotal(order) {
 
 
     for (
-        const value of possible
+        const value of candidates
     ) {
 
         const number =
-            Number(value);
+            Number(
+                value
+            );
 
 
         if (
-            Number.isFinite(number)
+            Number.isFinite(
+                number
+            )
         ) {
 
             return number;
@@ -1546,36 +1591,41 @@ function getOrderTotal(order) {
     }
 
 
-    const items =
-        getOrderItems(
-            order
-        );
+    return getOrderItems(
+        order
+    ).reduce(
 
-
-    return items.reduce(
         (
             total,
             item
-        ) => {
+        ) =>
 
-            return (
-                total +
-                getItemPrice(item) *
-                getItemQuantity(item)
-            );
+            total +
 
-        },
+            (
+                getItemPrice(
+                    item
+                ) *
+
+                getItemQuantity(
+                    item
+                )
+            ),
+
         0
+
     );
 
 }
 
 
 /* ============================================================
-   STATUS
+   ORDER STATUS
 ============================================================ */
 
-function getOrderStatus(order) {
+function getOrderStatus(
+    order
+) {
 
     return (
 
@@ -1596,7 +1646,13 @@ function getOrderStatus(order) {
 }
 
 
-function getPaymentStatus(order) {
+/* ============================================================
+   PAYMENT STATUS
+============================================================ */
+
+function getPaymentStatus(
+    order
+) {
 
     return (
 
@@ -1613,20 +1669,35 @@ function getPaymentStatus(order) {
 }
 
 
-function getStatusClass(status) {
+/* ============================================================
+   STATUS CLASS
+============================================================ */
 
-    const clean =
-        String(
-            status || "pending"
-        )
-            .toLowerCase()
-            .trim();
+function getStatusClass(
+    status
+) {
+
+    const value =
+        normalize(
+            status ||
+            "pending"
+        );
 
 
     if (
-        clean.includes("reject") ||
-        clean.includes("cancel") ||
-        clean.includes("fail")
+
+        value.includes(
+            "reject"
+        ) ||
+
+        value.includes(
+            "cancel"
+        ) ||
+
+        value.includes(
+            "fail"
+        )
+
     ) {
 
         return "rejected";
@@ -1635,11 +1706,27 @@ function getStatusClass(status) {
 
 
     if (
-        clean.includes("complete") ||
-        clean.includes("approve") ||
-        clean.includes("success") ||
-        clean.includes("deliver") ||
-        clean.includes("paid")
+
+        value.includes(
+            "complete"
+        ) ||
+
+        value.includes(
+            "approve"
+        ) ||
+
+        value.includes(
+            "success"
+        ) ||
+
+        value.includes(
+            "deliver"
+        ) ||
+
+        value.includes(
+            "paid"
+        )
+
     ) {
 
         return "completed";
@@ -1648,7 +1735,9 @@ function getStatusClass(status) {
 
 
     if (
-        clean.includes("process")
+        value.includes(
+            "process"
+        )
     ) {
 
         return "processing";
@@ -1657,8 +1746,15 @@ function getStatusClass(status) {
 
 
     if (
-        clean.includes("await") ||
-        clean.includes("verification")
+
+        value.includes(
+            "await"
+        ) ||
+
+        value.includes(
+            "verification"
+        )
+
     ) {
 
         return "verification";
@@ -1671,18 +1767,34 @@ function getStatusClass(status) {
 }
 
 
-function getStatusIcon(status) {
+/* ============================================================
+   STATUS ICON
+============================================================ */
 
-    const clean =
-        String(
-            status || ""
-        ).toLowerCase();
+function getStatusIcon(
+    status
+) {
+
+    const value =
+        normalize(
+            status
+        );
 
 
     if (
-        clean.includes("reject") ||
-        clean.includes("cancel") ||
-        clean.includes("fail")
+
+        value.includes(
+            "reject"
+        ) ||
+
+        value.includes(
+            "cancel"
+        ) ||
+
+        value.includes(
+            "fail"
+        )
+
     ) {
 
         return "fa-circle-xmark";
@@ -1691,11 +1803,27 @@ function getStatusIcon(status) {
 
 
     if (
-        clean.includes("complete") ||
-        clean.includes("approve") ||
-        clean.includes("success") ||
-        clean.includes("deliver") ||
-        clean.includes("paid")
+
+        value.includes(
+            "complete"
+        ) ||
+
+        value.includes(
+            "approve"
+        ) ||
+
+        value.includes(
+            "success"
+        ) ||
+
+        value.includes(
+            "deliver"
+        ) ||
+
+        value.includes(
+            "paid"
+        )
+
     ) {
 
         return "fa-circle-check";
@@ -1704,10 +1832,23 @@ function getStatusIcon(status) {
 
 
     if (
-        clean.includes("process") ||
-        clean.includes("pending") ||
-        clean.includes("await") ||
-        clean.includes("verification")
+
+        value.includes(
+            "process"
+        ) ||
+
+        value.includes(
+            "pending"
+        ) ||
+
+        value.includes(
+            "await"
+        ) ||
+
+        value.includes(
+            "verification"
+        )
+
     ) {
 
         return "fa-clock";
@@ -1721,64 +1862,39 @@ function getStatusIcon(status) {
 
 
 /* ============================================================
-   BOOK COUNT
+   PENDING ORDER
 ============================================================ */
 
-function getBookCount(orders) {
-
-    return orders.reduce(
-        (
-            total,
-            order
-        ) => {
-
-            return (
-                total +
-                getOrderItems(order)
-                    .reduce(
-                        (
-                            count,
-                            item
-                        ) => {
-
-                            return (
-                                count +
-                                getItemQuantity(item)
-                            );
-
-                        },
-                        0
-                    )
-            );
-
-        },
-        0
-    );
-
-}
-
-
-/* ============================================================
-   PENDING
-============================================================ */
-
-function isPendingOrder(order) {
+function isPendingOrder(
+    order
+) {
 
     const status =
-        (
-            getOrderStatus(order) +
-            " " +
-            getPaymentStatus(order)
-        )
-            .toLowerCase();
+
+        `${getOrderStatus(
+            order
+        )} ${getPaymentStatus(
+            order
+        )}`.toLowerCase();
 
 
     return (
 
-        status.includes("pending") ||
-        status.includes("processing") ||
-        status.includes("verification") ||
-        status.includes("awaiting")
+        status.includes(
+            "pending"
+        ) ||
+
+        status.includes(
+            "processing"
+        ) ||
+
+        status.includes(
+            "verification"
+        ) ||
+
+        status.includes(
+            "awaiting"
+        )
 
     );
 
@@ -1786,7 +1902,7 @@ function isPendingOrder(order) {
 
 
 /* ============================================================
-   SUMMARY
+   SUMMARY RESET
 ============================================================ */
 
 function resetSummary() {
@@ -1830,9 +1946,15 @@ function resetSummary() {
 }
 
 
-function updateSummary(orders) {
+/* ============================================================
+   SUMMARY
+============================================================ */
 
-    const safe =
+function updateSummary(
+    orders
+) {
+
+    const safeOrders =
         Array.isArray(
             orders
         )
@@ -1840,25 +1962,61 @@ function updateSummary(orders) {
             : [];
 
 
-    const totalSpent =
-        safe.reduce(
+    const totalBooks =
+        safeOrders.reduce(
+
             (
                 total,
                 order
-            ) => {
+            ) =>
 
-                return (
-                    total +
-                    getOrderTotal(order)
-                );
+                total +
 
-            },
+                getOrderItems(
+                    order
+                ).reduce(
+
+                    (
+                        count,
+                        item
+                    ) =>
+
+                        count +
+
+                        getItemQuantity(
+                            item
+                        ),
+
+                    0
+
+                ),
+
             0
+
+        );
+
+
+    const totalSpent =
+        safeOrders.reduce(
+
+            (
+                total,
+                order
+            ) =>
+
+                total +
+
+                getOrderTotal(
+                    order
+                ),
+
+            0
+
         );
 
 
     const pending =
-        safe.filter(
+        safeOrders.filter(
             isPendingOrder
         ).length;
 
@@ -1866,10 +2024,14 @@ function updateSummary(orders) {
     const values = {
 
         totalOrders:
-            safe.length,
+            String(
+                safeOrders.length
+            ),
 
         totalBooks:
-            getBookCount(safe),
+            String(
+                totalBooks
+            ),
 
         totalSpent:
             formatCurrency(
@@ -1877,7 +2039,9 @@ function updateSummary(orders) {
             ),
 
         pendingOrders:
-            pending
+            String(
+                pending
+            )
 
     };
 
@@ -1905,10 +2069,280 @@ function updateSummary(orders) {
 
 
 /* ============================================================
-   RENDER SINGLE ITEM
+   FALLBACK IMAGE
 ============================================================ */
 
-function createOrderItem(item) {
+function createFallbackImage(
+    title
+) {
+
+    const safeTitle =
+        String(
+            title ||
+            "BOOK"
+        )
+
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+
+            .replace(
+                /</g,
+                "&lt;"
+            )
+
+            .replace(
+                />/g,
+                "&gt;"
+            );
+
+
+    const svg = `
+
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="240"
+            height="300"
+            viewBox="0 0 240 300"
+        >
+
+            <defs>
+
+                <linearGradient
+                    id="jnFallbackBg"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="1"
+                >
+
+                    <stop
+                        offset="0%"
+                        stop-color="#071936"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stop-color="#153b6f"
+                    />
+
+                </linearGradient>
+
+            </defs>
+
+
+            <rect
+                width="240"
+                height="300"
+                rx="18"
+                fill="url(#jnFallbackBg)"
+            />
+
+
+            <circle
+                cx="120"
+                cy="92"
+                r="42"
+                fill="#d6ad43"
+                opacity=".15"
+            />
+
+
+            <text
+                x="120"
+                y="105"
+                text-anchor="middle"
+                fill="#f0d27b"
+                font-size="42"
+                font-family="Arial"
+            >
+                ✦
+            </text>
+
+
+            <text
+                x="120"
+                y="180"
+                text-anchor="middle"
+                fill="#ffffff"
+                font-size="15"
+                font-weight="700"
+                font-family="Arial"
+            >
+                ${safeTitle.slice(
+                    0,
+                    24
+                )}
+            </text>
+
+
+            <text
+                x="120"
+                y="210"
+                text-anchor="middle"
+                fill="#d6ad43"
+                font-size="11"
+                font-family="Arial"
+                letter-spacing="2"
+            >
+                JEEVA NADI BOOKS
+            </text>
+
+        </svg>
+
+    `;
+
+
+    return (
+
+        "data:image/svg+xml;charset=UTF-8," +
+
+        encodeURIComponent(
+            svg
+        )
+
+    );
+
+}
+
+
+/* ============================================================
+   PRODUCT IMAGE
+============================================================ */
+
+function getProductImage(
+    item
+) {
+
+    const stored =
+
+        item?.image ||
+
+        item?.imageUrl ||
+
+        item?.imageURL ||
+
+        item?.productImage ||
+
+        item?.thumbnail ||
+
+        item?.photo;
+
+
+    if (stored) {
+
+        return String(
+            stored
+        );
+
+    }
+
+
+    const text = (
+
+        `${getItemName(
+            item
+        )} ${getItemVariant(
+            item
+        )}`
+
+    ).toLowerCase();
+
+
+    if (
+
+        text.includes(
+            "telugu"
+        ) &&
+
+        text.includes(
+            "bible"
+        )
+
+    ) {
+
+        return (
+            "images/books/telugu-bible-bsi.jpg"
+        );
+
+    }
+
+
+    if (
+        text.includes(
+            "song"
+        )
+    ) {
+
+        return (
+            "images/books/songs-book.jpg"
+        );
+
+    }
+
+
+    if (
+
+        text.includes(
+            "english"
+        ) &&
+
+        text.includes(
+            "bible"
+        )
+
+    ) {
+
+        return (
+            "images/books/english-bible.jpg"
+        );
+
+    }
+
+
+    if (
+        text.includes(
+            "cover"
+        )
+    ) {
+
+        return (
+            "images/books/bible-cover.jpg"
+        );
+
+    }
+
+
+    if (
+        text.includes(
+            "calendar"
+        )
+    ) {
+
+        return (
+            "images/books/calendar.jpg"
+        );
+
+    }
+
+
+    return createFallbackImage(
+        getItemName(
+            item
+        )
+    );
+
+}
+
+
+/* ============================================================
+   ORDER ITEM
+============================================================ */
+
+function createOrderItem(
+    item
+) {
 
     const row =
         document.createElement(
@@ -1921,23 +2355,33 @@ function createOrderItem(item) {
 
 
     const name =
-        getItemName(item);
+        getItemName(
+            item
+        );
 
 
     const variant =
-        getItemVariant(item);
+        getItemVariant(
+            item
+        );
 
 
     const quantity =
-        getItemQuantity(item);
+        getItemQuantity(
+            item
+        );
 
 
     const price =
-        getItemPrice(item);
+        getItemPrice(
+            item
+        );
 
 
     const image =
-        getProductImage(item);
+        getProductImage(
+            item
+        );
 
 
     row.innerHTML = `
@@ -1946,7 +2390,9 @@ function createOrderItem(item) {
 
             <img
                 class="order-item-image"
-                alt="${escapeHtml(name)}"
+                alt="${escapeHtml(
+                    name
+                )}"
                 loading="lazy"
             >
 
@@ -1956,21 +2402,25 @@ function createOrderItem(item) {
         <div class="order-item-info">
 
             <div class="order-item-name">
-
-                ${escapeHtml(name)}
-
+                ${escapeHtml(
+                    name
+                )}
             </div>
 
 
             ${
                 variant
+
                     ? `
+
                         <div class="order-item-variant">
-
-                            ${escapeHtml(variant)}
-
+                            ${escapeHtml(
+                                variant
+                            )}
                         </div>
+
                     `
+
                     : ""
             }
 
@@ -1979,7 +2429,11 @@ function createOrderItem(item) {
 
                 ${
                     price > 0
-                        ? `${formatCurrency(price)} each`
+
+                        ? `${formatCurrency(
+                            price
+                        )} each`
+
                         : "Price unavailable"
                 }
 
@@ -2020,6 +2474,7 @@ function createOrderItem(item) {
                 imageElement.onerror =
                     null;
 
+
                 imageElement.src =
                     createFallbackImage(
                         name
@@ -2041,10 +2496,12 @@ function createOrderItem(item) {
 
 
 /* ============================================================
-   RENDER ORDER
+   ORDER CARD
 ============================================================ */
 
-function createOrderCard(order) {
+function createOrderCard(
+    order
+) {
 
     const card =
         document.createElement(
@@ -2057,8 +2514,11 @@ function createOrderCard(order) {
 
 
     const orderId =
+
         order?.id ||
+
         order?.orderId ||
+
         "Order";
 
 
@@ -2074,30 +2534,6 @@ function createOrderCard(order) {
         );
 
 
-    const statusClass =
-        getStatusClass(
-            status
-        );
-
-
-    const paymentClass =
-        getStatusClass(
-            payment
-        );
-
-
-    const statusIcon =
-        getStatusIcon(
-            status
-        );
-
-
-    const paymentIcon =
-        getStatusIcon(
-            payment
-        );
-
-
     const items =
         getOrderItems(
             order
@@ -2105,31 +2541,35 @@ function createOrderCard(order) {
 
 
     const safeItems =
-        Array.isArray(items)
+        Array.isArray(
+            items
+        )
             ? items
             : [];
 
 
     const itemCount =
         safeItems.reduce(
+
             (
                 total,
                 item
-            ) => {
+            ) =>
 
-                return (
-                    total +
-                    getItemQuantity(item)
-                );
+                total +
 
-            },
+                getItemQuantity(
+                    item
+                ),
+
             0
+
         );
 
 
-    /* ========================================================
+    /* --------------------------------------------------------
        HEADER
-    ======================================================== */
+    -------------------------------------------------------- */
 
     const header =
         document.createElement(
@@ -2152,7 +2592,9 @@ function createOrderCard(order) {
                 </span>
 
                 <strong>
-                    ${escapeHtml(orderId)}
+                    ${escapeHtml(
+                        orderId
+                    )}
                 </strong>
 
             </div>
@@ -2161,7 +2603,9 @@ function createOrderCard(order) {
             <div class="order-date">
 
                 ${escapeHtml(
-                    formatOrderDate(order)
+                    formatOrderDate(
+                        order
+                    )
                 )}
 
             </div>
@@ -2176,14 +2620,23 @@ function createOrderCard(order) {
             </div>
 
 
-            <div class="order-status ${statusClass}">
+            <div
+                class="order-status ${getStatusClass(
+                    status
+                )}"
+            >
 
                 <i
-                    class="fa-solid ${statusIcon}"
+                    class="fa-solid ${getStatusIcon(
+                        status
+                    )}"
                 ></i>
 
+
                 <span>
-                    ${escapeHtml(status)}
+                    ${escapeHtml(
+                        status
+                    )}
                 </span>
 
             </div>
@@ -2198,9 +2651,9 @@ function createOrderCard(order) {
     );
 
 
-    /* ========================================================
+    /* --------------------------------------------------------
        ITEMS
-    ======================================================== */
+    -------------------------------------------------------- */
 
     const itemsContainer =
         document.createElement(
@@ -2236,6 +2689,7 @@ function createOrderCard(order) {
                         Jeeva Nadi Book
                     </div>
 
+
                     <div class="order-item-variant">
                         Product details unavailable
                     </div>
@@ -2246,7 +2700,10 @@ function createOrderCard(order) {
                 <div class="order-item-quantity">
 
                     ×
-                    <strong>1</strong>
+
+                    <strong>
+                        1
+                    </strong>
 
                 </div>
 
@@ -2270,13 +2727,17 @@ function createOrderCard(order) {
 
         }
 
-    } else {
+    }
+
+    else {
 
         safeItems.forEach(
             item => {
 
                 itemsContainer.appendChild(
-                    createOrderItem(item)
+                    createOrderItem(
+                        item
+                    )
                 );
 
             }
@@ -2290,9 +2751,21 @@ function createOrderCard(order) {
     );
 
 
-    /* ========================================================
+    /* --------------------------------------------------------
        FOOTER
-    ======================================================== */
+    -------------------------------------------------------- */
+
+    const paymentClass =
+        getStatusClass(
+            payment
+        );
+
+
+    const paymentIcon =
+        getStatusIcon(
+            payment
+        );
+
 
     const footer =
         document.createElement(
@@ -2312,9 +2785,17 @@ function createOrderCard(order) {
                 Items
             </span>
 
+
             <strong>
+
                 ${itemCount}
-                item${itemCount === 1 ? "" : "s"}
+
+                item${
+                    itemCount === 1
+                        ? ""
+                        : "s"
+                }
+
             </strong>
 
         </div>
@@ -2326,6 +2807,7 @@ function createOrderCard(order) {
                 Payment Status
             </span>
 
+
             <strong
                 class="payment-status ${paymentClass}"
             >
@@ -2334,7 +2816,10 @@ function createOrderCard(order) {
                     class="fa-solid ${paymentIcon}"
                 ></i>
 
-                ${escapeHtml(payment)}
+
+                ${escapeHtml(
+                    payment
+                )}
 
             </strong>
 
@@ -2347,10 +2832,15 @@ function createOrderCard(order) {
                 Order Total
             </span>
 
+
             <strong>
+
                 ${formatCurrency(
-                    getOrderTotal(order)
+                    getOrderTotal(
+                        order
+                    )
                 )}
+
             </strong>
 
         </div>
@@ -2372,7 +2862,9 @@ function createOrderCard(order) {
    RENDER ORDERS
 ============================================================ */
 
-function renderOrders(orders) {
+function renderOrders(
+    orders
+) {
 
     const list =
         $("ordersList");
@@ -2391,14 +2883,18 @@ function renderOrders(orders) {
 
 
     if (
-        !Array.isArray(orders) ||
+
+        !Array.isArray(
+            orders
+        ) ||
+
         orders.length === 0
+
     ) {
 
         if (empty) {
             show(empty);
         }
-
 
         return;
 
@@ -2438,7 +2934,9 @@ function renderOrders(orders) {
    ORDER ERROR
 ============================================================ */
 
-function renderOrderError(message) {
+function renderOrderError(
+    message
+) {
 
     const list =
         $("ordersList");
@@ -2464,7 +2962,9 @@ function renderOrderError(message) {
 
             <div class="empty-icon">
 
-                <i class="fa-solid fa-triangle-exclamation"></i>
+                <i
+                    class="fa-solid fa-triangle-exclamation"
+                ></i>
 
             </div>
 
@@ -2475,7 +2975,9 @@ function renderOrderError(message) {
 
 
             <p>
-                ${escapeHtml(message)}
+                ${escapeHtml(
+                    message
+                )}
             </p>
 
         </div>
@@ -2492,14 +2994,17 @@ function renderOrderError(message) {
 async function loadOrders() {
 
     const user =
-        auth?.currentUser ||
-        state.currentUser;
+        getAuthenticatedUser();
 
 
     if (
         !user ||
         !db
     ) {
+
+        resetSummary();
+
+        renderOrders([]);
 
         return [];
 
@@ -2510,7 +3015,9 @@ async function loadOrders() {
         state.ordersLoading
     ) {
 
-        return state.lastOrders;
+        return (
+            state.lastOrders
+        );
 
     }
 
@@ -2530,27 +3037,30 @@ async function loadOrders() {
 
     try {
 
-        const ordersRef =
-            collection(
-                db,
-                ORDERS_COLLECTION
-            );
-
-
         /*
-           IMPORTANT:
-           Only userId filter.
-           No orderBy().
-        */
+         * IMPORTANT:
+         *
+         * We query ONLY by userId.
+         *
+         * No orderBy() is used.
+         *
+         * Therefore no composite index is required.
+         */
 
         const ordersQuery =
             query(
-                ordersRef,
+
+                collection(
+                    db,
+                    ACCOUNT_CONFIG.collections.orders
+                ),
+
                 where(
                     "userId",
                     "==",
                     user.uid
                 )
+
             );
 
 
@@ -2562,29 +3072,27 @@ async function loadOrders() {
 
         const orders =
             snapshot.docs.map(
-                item => ({
+                snapshotDoc => ({
 
                     id:
-                        item.id,
+                        snapshotDoc.id,
 
-                    ...item.data()
+                    ...snapshotDoc.data()
 
                 })
             );
 
 
         orders.sort(
-            (
-                a,
-                b
-            ) => {
+            (a, b) =>
 
-                return (
-                    getOrderDate(b) -
-                    getOrderDate(a)
-                );
+                getOrderDate(
+                    b
+                ) -
 
-            }
+                getOrderDate(
+                    a
+                )
         );
 
 
@@ -2604,7 +3112,9 @@ async function loadOrders() {
 
         return orders;
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(
             "Jeeva Nadi Books: Order loading failed.",
@@ -2628,7 +3138,9 @@ async function loadOrders() {
 
         return [];
 
-    } finally {
+    }
+
+    finally {
 
         state.ordersLoading =
             false;
@@ -2644,7 +3156,7 @@ async function loadOrders() {
 
 
 /* ============================================================
-   RECAPTCHA
+   RECAPTCHA CLEANUP
 ============================================================ */
 
 function destroyRecaptcha() {
@@ -2657,10 +3169,12 @@ function destroyRecaptcha() {
 
             state.recaptcha.clear();
 
-        } catch (error) {
+        }
+
+        catch (error) {
 
             console.warn(
-                "reCAPTCHA cleanup warning.",
+                "Jeeva Nadi Books: reCAPTCHA cleanup warning.",
                 error
             );
 
@@ -2686,6 +3200,10 @@ function destroyRecaptcha() {
 
 }
 
+
+/* ============================================================
+   CREATE RECAPTCHA
+============================================================ */
 
 async function createRecaptcha() {
 
@@ -2716,12 +3234,16 @@ async function createRecaptcha() {
 
     state.recaptcha =
         new RecaptchaVerifier(
+
             auth,
+
             "recaptcha-container",
+
             {
 
                 size:
                     "invisible",
+
 
                 callback:
                     () => {
@@ -2732,33 +3254,38 @@ async function createRecaptcha() {
 
                     },
 
+
                 "expired-callback":
                     () => {
 
                         console.warn(
-                            "reCAPTCHA expired."
+                            "Jeeva Nadi Books: reCAPTCHA expired."
                         );
 
                     },
+
 
                 "error-callback":
                     error => {
 
                         console.warn(
-                            "reCAPTCHA error.",
+                            "Jeeva Nadi Books: reCAPTCHA error.",
                             error
                         );
 
                     }
 
             }
+
         );
 
 
     await state.recaptcha.render();
 
 
-    return state.recaptcha;
+    return (
+        state.recaptcha
+    );
 
 }
 
@@ -2770,8 +3297,11 @@ async function createRecaptcha() {
 async function handleGoogleLogin() {
 
     if (
+
         state.googleBusy ||
+
         !auth
+
     ) {
 
         return;
@@ -2801,61 +3331,45 @@ async function handleGoogleLogin() {
 
     try {
 
+        /*
+         * THIS AUTH INSTANCE IS THE SAME INSTANCE
+         * USED BY cart.js.
+         */
+
         await signInWithPopup(
             auth,
             googleProvider
         );
 
-    } catch (error) {
+
+        /*
+         * Do not manually set state.currentUser.
+         *
+         * onAuthStateChanged() is the single
+         * source of truth.
+         */
+
+    }
+
+    catch (error) {
 
         console.error(
-            "Google sign-in failed.",
+            "Jeeva Nadi Books: Google sign-in failed.",
             error
         );
 
 
-        if (
-            error.code ===
-            "auth/popup-blocked"
-        ) {
+        showMessage(
+            "loginMessage",
+            friendlyAuthError(
+                error
+            ),
+            "error"
+        );
 
-            try {
+    }
 
-                await signInWithRedirect(
-                    auth,
-                    googleProvider
-                );
-
-
-                return;
-
-            } catch (
-                redirectError
-            ) {
-
-                showMessage(
-                    "loginMessage",
-                    friendlyAuthError(
-                        redirectError
-                    ),
-                    "error"
-                );
-
-            }
-
-        } else {
-
-            showMessage(
-                "loginMessage",
-                friendlyAuthError(
-                    error
-                ),
-                "error"
-            );
-
-        }
-
-    } finally {
+    finally {
 
         state.googleBusy =
             false;
@@ -2872,52 +3386,17 @@ async function handleGoogleLogin() {
 
 
 /* ============================================================
-   GOOGLE REDIRECT
-============================================================ */
-
-async function handleGoogleRedirectResult() {
-
-    if (!auth) {
-        return;
-    }
-
-
-    try {
-
-        await getRedirectResult(
-            auth
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Google redirect result failed.",
-            error
-        );
-
-
-        showMessage(
-            "loginMessage",
-            friendlyAuthError(
-                error
-            ),
-            "error"
-        );
-
-    }
-
-}
-
-
-/* ============================================================
    SEND OTP
 ============================================================ */
 
 async function sendOtp() {
 
     if (
+
         state.otpBusy ||
+
         !auth
+
     ) {
 
         return;
@@ -2933,15 +3412,15 @@ async function sendOtp() {
         $("sendOtpBtn");
 
 
+    clearMessage(
+        "loginMessage"
+    );
+
+
     setButtonLoading(
         button,
         true,
         "Sending OTP..."
-    );
-
-
-    clearMessage(
-        "loginMessage"
     );
 
 
@@ -2956,10 +3435,15 @@ async function sendOtp() {
 
 
         state.confirmationResult =
+
             await signInWithPhoneNumber(
+
                 auth,
+
                 phoneNumber,
+
                 verifier
+
             );
 
 
@@ -2970,7 +3454,10 @@ async function sendOtp() {
         if (description) {
 
             description.textContent =
-                `Enter the 6-digit OTP sent to ${phoneNumber}.`;
+
+                `Enter the 6-digit OTP sent to ${normalizePhone(
+                    phoneNumber
+                )}.`;
 
         }
 
@@ -3006,10 +3493,12 @@ async function sendOtp() {
             100
         );
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(
-            "OTP sending failed.",
+            "Jeeva Nadi Books: OTP sending failed.",
             error
         );
 
@@ -3018,7 +3507,7 @@ async function sendOtp() {
 
 
         if (
-            error.code ===
+            error?.code ===
             "INVALID_PHONE"
         ) {
 
@@ -3028,7 +3517,9 @@ async function sendOtp() {
                 "error"
             );
 
-        } else {
+        }
+
+        else {
 
             showMessage(
                 "loginMessage",
@@ -3040,7 +3531,9 @@ async function sendOtp() {
 
         }
 
-    } finally {
+    }
+
+    finally {
 
         state.otpBusy =
             false;
@@ -3062,6 +3555,15 @@ async function sendOtp() {
 
 async function verifyOtp() {
 
+    if (
+        state.verifyBusy
+    ) {
+
+        return;
+
+    }
+
+
     const input =
         $("otpCode");
 
@@ -3080,9 +3582,13 @@ async function verifyOtp() {
     ) {
 
         showMessage(
+
             "otpMessage",
+
             "This OTP session has expired. Please request a new OTP.",
+
             "error"
+
         );
 
 
@@ -3093,12 +3599,27 @@ async function verifyOtp() {
 
     const otp =
         String(
-            input?.value || ""
+            input?.value ||
+            ""
         )
+
             .replace(
                 /\D/g,
                 ""
+            )
+
+            .slice(
+                0,
+                6
             );
+
+
+    if (input) {
+
+        input.value =
+            otp;
+
+    }
 
 
     if (
@@ -3106,15 +3627,23 @@ async function verifyOtp() {
     ) {
 
         showMessage(
+
             "otpMessage",
+
             "Please enter the complete 6-digit OTP.",
+
             "error"
+
         );
 
 
         return;
 
     }
+
+
+    state.verifyBusy =
+        true;
 
 
     setButtonLoading(
@@ -3125,6 +3654,11 @@ async function verifyOtp() {
 
 
     try {
+
+        /*
+         * confirmationResult.confirm()
+         * signs the user into THE SAME auth instance.
+         */
 
         await state.confirmationResult.confirm(
             otp
@@ -3137,10 +3671,17 @@ async function verifyOtp() {
 
         destroyRecaptcha();
 
-    } catch (error) {
+
+        /*
+         * onAuthStateChanged() handles the rest.
+         */
+
+    }
+
+    catch (error) {
 
         console.error(
-            "OTP verification failed.",
+            "Jeeva Nadi Books: OTP verification failed.",
             error
         );
 
@@ -3153,7 +3694,13 @@ async function verifyOtp() {
             "error"
         );
 
-    } finally {
+    }
+
+    finally {
+
+        state.verifyBusy =
+            false;
+
 
         setButtonLoading(
             button,
@@ -3170,6 +3717,15 @@ async function verifyOtp() {
 ============================================================ */
 
 async function resendOtp() {
+
+    if (
+        state.otpBusy
+    ) {
+
+        return;
+
+    }
+
 
     state.confirmationResult =
         null;
@@ -3262,8 +3818,17 @@ function openLogoutModal() {
         "false"
     );
 
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
 }
 
+
+/* ============================================================
+   CLOSE LOGOUT MODAL
+============================================================ */
 
 function closeLogoutModal() {
 
@@ -3272,7 +3837,9 @@ function closeLogoutModal() {
 
 
     if (!modal) {
+
         return;
+
     }
 
 
@@ -3282,6 +3849,11 @@ function closeLogoutModal() {
     modal.setAttribute(
         "aria-hidden",
         "true"
+    );
+
+
+    document.body.classList.remove(
+        "modal-open"
     );
 
 }
@@ -3294,8 +3866,11 @@ function closeLogoutModal() {
 async function performLogout() {
 
     if (
+
         state.logoutBusy ||
+
         !auth
+
     ) {
 
         return;
@@ -3320,9 +3895,17 @@ async function performLogout() {
 
     try {
 
+        destroyRecaptcha();
+
+
         await signOut(
             auth
         );
+
+
+        /*
+         * The shared auth observer will now receive null.
+         */
 
 
         state.currentUser =
@@ -3341,26 +3924,36 @@ async function performLogout() {
             null;
 
 
-        destroyRecaptcha();
+        resetSummary();
 
 
         closeLogoutModal();
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(
-            "Logout failed.",
+            "Jeeva Nadi Books: Logout failed.",
             error
         );
 
 
         showMessage(
+
             "loginMessage",
-            "Unable to sign out right now. Please try again.",
+
+            friendlyAuthError(
+                error
+            ),
+
             "error"
+
         );
 
-    } finally {
+    }
+
+    finally {
 
         state.logoutBusy =
             false;
@@ -3377,81 +3970,7 @@ async function performLogout() {
 
 
 /* ============================================================
-   DASHBOARD
-============================================================ */
-
-async function openDashboard(user) {
-
-    if (!user) {
-
-        showOnly(
-            "loginView"
-        );
-
-        return;
-
-    }
-
-
-    state.currentUser =
-        user;
-
-
-    showOnly(
-        "dashboardView"
-    );
-
-
-    populateCustomer(
-        user
-    );
-
-
-    /*
-       Profile is deliberately non-blocking.
-    */
-
-    syncUserProfile(
-        user
-    )
-        .then(
-            profile => {
-
-                if (!profile) {
-                    return;
-                }
-
-
-                state.currentProfile =
-                    profile;
-
-
-                populateCustomer(
-                    user,
-                    profile
-                );
-
-            }
-        )
-        .catch(
-            error => {
-
-                console.warn(
-                    "Profile synchronization warning.",
-                    error
-                );
-
-            }
-        );
-
-
-    await loadOrders();
-
-}
-
-
-/* ============================================================
-   LOGIN
+   SHOW LOGIN
 ============================================================ */
 
 function showLogin() {
@@ -3479,18 +3998,128 @@ function showLogin() {
         "loginView"
     );
 
+
+    clearMessage(
+        "otpMessage"
+    );
+
 }
 
 
 /* ============================================================
-   REFRESH
+   OPEN DASHBOARD
+============================================================ */
+
+async function openDashboard(
+    user
+) {
+
+    if (!user) {
+
+        showLogin();
+
+        return;
+
+    }
+
+
+    state.currentUser =
+        user;
+
+
+    /*
+     * Show dashboard immediately.
+     *
+     * Do not wait for Firestore profile/order loading
+     * before displaying authenticated state.
+     */
+
+    showOnly(
+        "dashboardView"
+    );
+
+
+    populateCustomer(
+        user
+    );
+
+
+    try {
+
+        const profile =
+            await loadUserProfile(
+                user
+            );
+
+
+        if (profile) {
+
+            state.currentProfile =
+                profile;
+
+
+            populateCustomer(
+                user,
+                profile
+            );
+
+        }
+
+        else {
+
+            const createdProfile =
+                await syncUserProfile(
+                    user
+                );
+
+
+            if (
+                createdProfile
+            ) {
+
+                state.currentProfile =
+                    createdProfile;
+
+
+                populateCustomer(
+                    user,
+                    createdProfile
+                );
+
+            }
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Jeeva Nadi Books: profile loading warning.",
+            error
+        );
+
+    }
+
+
+    await loadOrders();
+
+}
+
+
+/* ============================================================
+   REFRESH ORDERS
 ============================================================ */
 
 async function refreshOrders() {
 
-    if (
-        !state.currentUser
-    ) {
+    const user =
+        getAuthenticatedUser();
+
+
+    if (!user) {
+
+        showLogin();
 
         return;
 
@@ -3500,29 +4129,42 @@ async function refreshOrders() {
     const buttons = [
 
         $("refreshOrdersBtn"),
+
         $("refreshOrdersBtnSecondary")
 
-    ];
+    ].filter(
+        Boolean
+    );
 
 
     buttons.forEach(
         button => {
 
-            if (button) {
+            button.disabled =
+                true;
 
-                button.disabled =
-                    true;
+
+            if (
+                !button.dataset.oldHtml
+            ) {
 
                 button.dataset.oldHtml =
                     button.innerHTML;
 
-                button.innerHTML =
-                    `
-                        <i class="fa-solid fa-spinner fa-spin"></i>
-                        Refreshing...
-                    `;
-
             }
+
+
+            button.innerHTML = `
+
+                <i
+                    class="fa-solid fa-spinner fa-spin"
+                ></i>
+
+                <span>
+                    Refreshing...
+                </span>
+
+            `;
 
         }
     );
@@ -3532,15 +4174,12 @@ async function refreshOrders() {
 
         await loadOrders();
 
-    } finally {
+    }
+
+    finally {
 
         buttons.forEach(
             button => {
-
-                if (!button) {
-                    return;
-                }
-
 
                 button.disabled =
                     false;
@@ -3564,7 +4203,7 @@ async function refreshOrders() {
 
 
 /* ============================================================
-   KEYBOARD
+   KEYBOARD INPUT
 ============================================================ */
 
 function setupKeyboard() {
@@ -3580,11 +4219,14 @@ function setupKeyboard() {
             () => {
 
                 phone.value =
+
                     phone.value
+
                         .replace(
                             /\D/g,
                             ""
                         )
+
                         .slice(
                             0,
                             10
@@ -3626,11 +4268,14 @@ function setupKeyboard() {
             () => {
 
                 otp.value =
+
                     otp.value
+
                         .replace(
                             /\D/g,
                             ""
                         )
+
                         .slice(
                             0,
                             6
@@ -3664,7 +4309,7 @@ function setupKeyboard() {
 
 
 /* ============================================================
-   EVENTS
+   EVENT LISTENERS
 ============================================================ */
 
 function setupEventListeners() {
@@ -3770,13 +4415,18 @@ function setupEventListeners() {
 
 /* ============================================================
    AUTH OBSERVER
+   ------------------------------------------------------------
+   THIS IS THE MOST IMPORTANT PART.
 ============================================================ */
 
 function startAuthObserver() {
 
     if (
+
         state.authObserverStarted ||
+
         !auth
+
     ) {
 
         return;
@@ -3789,7 +4439,9 @@ function startAuthObserver() {
 
 
     onAuthStateChanged(
+
         auth,
+
         async user => {
 
             state.authReady =
@@ -3797,7 +4449,41 @@ function startAuthObserver() {
 
 
             state.currentUser =
-                user || null;
+                user ||
+                null;
+
+
+            console.log(
+
+                user
+
+                    ? "Jeeva Nadi Account: user authenticated."
+
+                    : "Jeeva Nadi Account: user signed out."
+
+            );
+
+
+            /*
+             * Notify the rest of the website.
+             *
+             * cart.js uses the SAME Firebase auth instance.
+             */
+
+            window.dispatchEvent(
+
+                new CustomEvent(
+                    "jeevaNadiAuthChanged",
+                    {
+                        detail: {
+                            user:
+                                user ||
+                                null
+                        }
+                    }
+                )
+
+            );
 
 
             if (user) {
@@ -3806,7 +4492,9 @@ function startAuthObserver() {
                     user
                 );
 
-            } else {
+            }
+
+            else {
 
                 destroyRecaptcha();
 
@@ -3815,6 +4503,7 @@ function startAuthObserver() {
             }
 
         }
+
     );
 
 }
@@ -3847,22 +4536,28 @@ async function initializeAccountEngine() {
     setupEventListeners();
 
 
-    if (!auth) {
+    if (
+        !isFirebaseReady()
+    ) {
 
         console.error(
-            "Jeeva Nadi Books: Firebase Authentication unavailable."
-        );
-
-
-        showMessage(
-            "loginMessage",
-            "The account service could not initialize. Please check your Firebase configuration.",
-            "error"
+            "Jeeva Nadi Books: Shared Firebase instance is unavailable."
         );
 
 
         showOnly(
             "loginView"
+        );
+
+
+        showMessage(
+
+            "loginMessage",
+
+            "The account service could not initialize. Please check firebase-config.js.",
+
+            "error"
+
         );
 
 
@@ -3873,27 +4568,149 @@ async function initializeAccountEngine() {
 
     try {
 
-        await setPersistence(
-            auth,
-            browserLocalPersistence
+        /*
+         * firebase-config.js already configures:
+         *
+         * browserLocalPersistence
+         *
+         * Therefore we do NOT call setPersistence()
+         * again here.
+         */
+
+
+        startAuthObserver();
+
+
+        /*
+         * If Firebase already knows the current user,
+         * the observer will handle it.
+         *
+         * This fallback makes the account page robust
+         * if currentUser is already populated.
+         */
+
+        const existingUser =
+            auth.currentUser ||
+            getCurrentUser?.() ||
+            null;
+
+
+        if (
+            existingUser &&
+            !state.currentUser
+        ) {
+
+            state.currentUser =
+                existingUser;
+
+
+            await openDashboard(
+                existingUser
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "Jeeva Nadi Books: Account initialization failed.",
+
+            error
+
         );
 
-    } catch (error) {
 
-        console.warn(
-            "Authentication persistence warning.",
-            error
+        showOnly(
+            "loginView"
+        );
+
+
+        showMessage(
+
+            "loginMessage",
+
+            friendlyAuthError(
+                error
+            ),
+
+            "error"
+
         );
 
     }
 
-
-    await handleGoogleRedirectResult();
-
-
-    startAuthObserver();
-
 }
+
+
+/* ============================================================
+   PUBLIC ACCOUNT API
+============================================================ */
+
+window.JeevaNadiAccount = {
+
+    getCurrentUser() {
+
+        return (
+            auth?.currentUser ||
+            state.currentUser ||
+            null
+        );
+
+    },
+
+
+    isAuthenticated() {
+
+        return Boolean(
+            auth?.currentUser ||
+            state.currentUser
+        );
+
+    },
+
+
+    isAuthReady() {
+
+        return Boolean(
+            state.authReady
+        );
+
+    },
+
+
+    async refreshOrders() {
+
+        return refreshOrders();
+
+    },
+
+
+    async loadOrders() {
+
+        return loadOrders();
+
+    },
+
+
+    getState() {
+
+        return {
+            ...state
+        };
+
+    },
+
+
+    logout() {
+
+        return performLogout();
+
+    }
+
+};
 
 
 /* ============================================================
@@ -3906,15 +4723,21 @@ if (
 ) {
 
     document.addEventListener(
+
         "DOMContentLoaded",
+
         initializeAccountEngine,
+
         {
             once:
                 true
         }
+
     );
 
-} else {
+}
+
+else {
 
     initializeAccountEngine();
 
@@ -3922,19 +4745,9 @@ if (
 
 
 /* ============================================================
-   OPTIONAL DEBUG API
+   FINAL DIAGNOSTIC
 ============================================================ */
 
-window.JeevaNadiAccount = {
-
-    getCurrentUser:
-        () =>
-            auth?.currentUser || null,
-
-    loadOrders,
-
-    refreshOrders,
-
-    state
-
-};
+console.log(
+    "Jeeva Nadi Account: Customer account engine loaded using shared Firebase Auth."
+);
