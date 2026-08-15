@@ -1,31 +1,42 @@
 /* =========================================================
    JEEVA NADI BOOKS
-   ADVANCED ADMIN PANEL
+   ADMIN PANEL
    ---------------------------------------------------------
    Firebase Authentication + Firestore
    ---------------------------------------------------------
-   IMPORTANT ARCHITECTURE
 
-   ADMIN AUTH IS COMPLETELY SEPARATED FROM CUSTOMER AUTH.
+   ARCHITECTURE
+   ---------------------------------------------------------
+   CUSTOMER AUTH:
+       Default Firebase App
+       Default Firebase Auth
 
-   Customer account.js:
-       default Firebase App
-       default Firebase Auth
-
-   Admin admin.js:
-       named Firebase App: "JeevaNadiAdmin"
-       separate Firebase Auth persistence
+   ADMIN AUTH:
+       Named Firebase App: "JeevaNadiAdmin"
+       Separate Firebase Auth instance
+       Session persistence
 
    Therefore:
 
-       Admin login
-             ↓
-       DOES NOT replace
-       customer login session
+       Admin Login
+            ↓
+       Admin Auth only
 
-       Admin logout
-             ↓
-       DOES NOT sign customer out
+       Customer Login
+            ↓
+       Customer Auth only
+
+       Admin Logout
+            ↓
+       Customer remains signed in
+
+   IMPORTANT SECURITY NOTE
+   ---------------------------------------------------------
+   The ADMIN_EMAILS whitelist below is NOT sufficient
+   security by itself.
+
+   Firestore Security Rules MUST ALSO restrict access
+   to authorized administrators.
 
 ========================================================= */
 
@@ -94,16 +105,8 @@ const firebaseConfig = {
 
 
 /* =========================================================
-   FIREBASE APP INITIALIZATION
+   ADMIN APP
 ========================================================= */
-
-/*
- * DO NOT use the default Firebase Auth instance here.
- *
- * The Store account page uses the default Firebase app.
- *
- * We create a separate named Firebase app for Admin.
- */
 
 const ADMIN_APP_NAME =
     "JeevaNadiAdmin";
@@ -113,8 +116,8 @@ let adminApp;
 
 
 /*
- * Prevent duplicate initialization if this script
- * is ever loaded more than once.
+ * Reuse the existing named app if the script is loaded
+ * more than once.
  */
 
 const existingAdminApp =
@@ -159,71 +162,45 @@ const adminDb =
    ADMIN AUTH PERSISTENCE
 ========================================================= */
 
-/*
- * IMPORTANT
- *
- * browserSessionPersistence means the Admin login
- * belongs only to the Admin browser session/tab.
- *
- * More importantly, because Admin uses a NAMED Firebase
- * APP, its Auth persistence storage is separate from the
- * Store's default Firebase Auth persistence.
- */
-
 let adminPersistenceReady =
     false;
 
 
 async function initializeAdminPersistence() {
 
-    if (adminPersistenceReady) {
+    if (
+        adminPersistenceReady
+    ) {
 
         return;
 
     }
 
 
-    try {
-
-        await setPersistence(
-            adminAuth,
-            browserSessionPersistence
-        );
+    await setPersistence(
+        adminAuth,
+        browserSessionPersistence
+    );
 
 
-        adminPersistenceReady =
-            true;
+    adminPersistenceReady =
+        true;
 
 
-        console.log(
-            "Admin Auth persistence initialized."
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Unable to initialize Admin Auth persistence:",
-            error
-        );
-
-
-        throw error;
-
-    }
+    console.log(
+        "Jeeva Nadi Admin: session persistence initialized."
+    );
 
 }
 
 
 /* =========================================================
    AUTHORIZED ADMIN EMAILS
+   ---------------------------------------------------------
+   IMPORTANT:
+   This is only a client-side authorization check.
+   Firestore Rules must enforce the same restriction.
 ========================================================= */
-
-/*
- * ONLY these two accounts are administrators.
- *
- * Normal Store customers must NOT be added here.
- */
 
 const ADMIN_EMAILS =
     new Set([
@@ -241,20 +218,17 @@ const ADMIN_EMAILS =
 
 const state = {
 
-    orders:
-        [],
+    orders: [],
 
-    currentAction:
-        null,
+    currentAction: null,
 
-    loginInProgress:
-        false,
+    loginInProgress: false,
 
-    loadingOrders:
-        false,
+    loadingOrders: false,
 
-    actionInProgress:
-        false
+    actionInProgress: false,
+
+    authObserverStarted: false
 
 };
 
@@ -354,6 +328,10 @@ const DOM = {
 initializeAdmin();
 
 
+/* =========================================================
+   INITIALIZE ADMIN APPLICATION
+========================================================= */
+
 async function initializeAdmin() {
 
     console.log(
@@ -364,13 +342,18 @@ async function initializeAdmin() {
     setupEventListeners();
 
 
+    /*
+     * Show authentication loading state initially.
+     */
+
+    showAuthenticationLoading();
+
+
     try {
 
         /*
-         * IMPORTANT:
-         *
-         * Configure Admin Auth before observing
-         * or starting Google authentication.
+         * Persistence MUST be configured before
+         * authentication state is observed.
          */
 
         await initializeAdminPersistence();
@@ -411,6 +394,9 @@ async function initializeAdmin() {
 
 function setupEventListeners() {
 
+    /*
+     * Google Login
+     */
 
     DOM.loginButton?.addEventListener(
         "click",
@@ -418,17 +404,35 @@ function setupEventListeners() {
     );
 
 
+    /*
+     * Logout
+     */
+
     DOM.logoutButton?.addEventListener(
         "click",
         handleLogout
     );
 
 
+    /*
+     * Refresh Orders
+     */
+
     DOM.refreshButton?.addEventListener(
         "click",
-        () => loadOrders(true)
+        () => {
+
+            loadOrders(
+                true
+            );
+
+        }
     );
 
+
+    /*
+     * Order Filter
+     */
 
     DOM.filter?.addEventListener(
         "change",
@@ -436,11 +440,19 @@ function setupEventListeners() {
     );
 
 
+    /*
+     * Modal Cancel
+     */
+
     DOM.cancelButton?.addEventListener(
         "click",
         closeActionModal
     );
 
+
+    /*
+     * Modal Backdrop
+     */
 
     DOM.modalBackdrop?.addEventListener(
         "click",
@@ -448,17 +460,29 @@ function setupEventListeners() {
     );
 
 
+    /*
+     * Modal Confirm
+     */
+
     DOM.confirmButton?.addEventListener(
         "click",
         confirmOrderAction
     );
 
 
+    /*
+     * Order Action Buttons
+     */
+
     DOM.ordersList?.addEventListener(
         "click",
         handleOrderActionClick
     );
 
+
+    /*
+     * Escape key
+     */
 
     document.addEventListener(
         "keydown",
@@ -484,97 +508,101 @@ function setupEventListeners() {
 
 function observeAuthentication() {
 
+    if (
+        state.authObserverStarted
+    ) {
+
+        return;
+
+    }
+
+
+    state.authObserverStarted =
+        true;
+
+
     onAuthStateChanged(
         adminAuth,
-        async user => {
-
-            console.log(
-                "Admin Authentication state:",
-                user
-                    ? user.email
-                    : "Signed out"
-            );
-
-
-            try {
-
-                /*
-                 * No ADMIN user.
-                 */
-
-                if (!user) {
-
-                    state.orders =
-                        [];
-
-                    renderOrders();
-
-                    updateStatistics();
-
-                    showLoginView();
-
-                    return;
-
-                }
-
-
-                const email =
-                    normalizeEmail(
-                        user.email
-                    );
-
-
-                /*
-                 * Check Admin whitelist.
-                 */
-
-                if (
-                    !isAuthorizedAdmin(
-                        email
-                    )
-                ) {
-
-                    await rejectUnauthorizedUser(
-                        user
-                    );
-
-                    return;
-
-                }
-
-
-                /*
-                 * Authorized administrator.
-                 */
-
-                showDashboard(
-                    user
-                );
-
-
-                await loadOrders();
-
-
-            } catch (error) {
-
-                console.error(
-                    "Admin authentication state error:",
-                    error
-                );
-
-
-                showLoginView();
-
-
-                showLoginMessage(
-                    "Unable to initialize the Admin panel. Please refresh and try again.",
-                    "error"
-                );
-
-            }
-
-        }
+        handleAuthenticationState
     );
+
+}
+
+
+/* =========================================================
+   AUTHENTICATION STATE HANDLER
+========================================================= */
+
+async function handleAuthenticationState(
+    user
+) {
+
+    console.log(
+        "Admin Authentication state:",
+        user?.email || "Signed out"
+    );
+
+
+    /*
+     * No Admin user.
+     */
+
+    if (
+        !user
+    ) {
+
+        state.orders =
+            [];
+
+        state.currentAction =
+            null;
+
+        updateStatistics();
+
+        renderOrders();
+
+        showLoginView();
+
+        return;
+
+    }
+
+
+    const email =
+        normalizeEmail(
+            user.email
+        );
+
+
+    /*
+     * Client-side authorization check.
+     */
+
+    if (
+        !isAuthorizedAdmin(
+            email
+        )
+    ) {
+
+        await rejectUnauthorizedUser(
+            user
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Authorized administrator.
+     */
+
+    showDashboard(
+        user
+    );
+
+
+    await loadOrders();
 
 }
 
@@ -583,7 +611,9 @@ function observeAuthentication() {
    NORMALIZE EMAIL
 ========================================================= */
 
-function normalizeEmail(email) {
+function normalizeEmail(
+    email
+) {
 
     return String(
         email || ""
@@ -598,13 +628,56 @@ function normalizeEmail(email) {
    CHECK ADMIN AUTHORIZATION
 ========================================================= */
 
-function isAuthorizedAdmin(email) {
+function isAuthorizedAdmin(
+    email
+) {
 
     return ADMIN_EMAILS.has(
         normalizeEmail(
             email
         )
     );
+
+}
+
+
+/* =========================================================
+   GET CURRENT ADMIN
+========================================================= */
+
+function getCurrentAuthorizedAdmin() {
+
+    const user =
+        adminAuth.currentUser;
+
+
+    if (
+        !user
+    ) {
+
+        return null;
+
+    }
+
+
+    const email =
+        normalizeEmail(
+            user.email
+        );
+
+
+    if (
+        !isAuthorizedAdmin(
+            email
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    return user;
 
 }
 
@@ -624,7 +697,7 @@ async function rejectUnauthorizedUser(
 
 
     console.warn(
-        "Unauthorized admin account:",
+        "Unauthorized Admin account:",
         email
     );
 
@@ -632,10 +705,9 @@ async function rejectUnauthorizedUser(
     /*
      * IMPORTANT:
      *
-     * This is adminAuth.signOut().
+     * This signs out ONLY the named Admin Auth.
      *
-     * It DOES NOT sign out the Store's default
-     * Firebase Auth instance.
+     * Customer Auth remains untouched.
      */
 
     try {
@@ -653,6 +725,13 @@ async function rejectUnauthorizedUser(
 
     }
 
+
+    state.orders =
+        [];
+
+    updateStatistics();
+
+    renderOrders();
 
     showLoginView();
 
@@ -698,7 +777,8 @@ async function handleAdminLogin() {
     try {
 
         /*
-         * Make absolutely sure Admin persistence is ready.
+         * Make absolutely sure Admin persistence
+         * is initialized.
          */
 
         await initializeAdminPersistence();
@@ -708,12 +788,12 @@ async function handleAdminLogin() {
             new GoogleAuthProvider();
 
 
-        provider.setCustomParameters({
+        /*
+         * Always ask which Google account should
+         * be used.
+         */
 
-            /*
-             * Always allow the administrator to choose
-             * which Google account to use.
-             */
+        provider.setCustomParameters({
 
             prompt:
                 "select_account"
@@ -742,7 +822,9 @@ async function handleAdminLogin() {
             result?.user;
 
 
-        if (!user) {
+        if (
+            !user
+        ) {
 
             throw new Error(
                 "Google authentication did not return an Admin user."
@@ -758,7 +840,7 @@ async function handleAdminLogin() {
 
 
         console.log(
-            "Admin Google login successful:",
+            "Google Admin login successful:",
             email
         );
 
@@ -780,11 +862,7 @@ async function handleAdminLogin() {
 
 
             /*
-             * IMPORTANT:
-             *
-             * Only adminAuth is signed out.
-             *
-             * Customer account remains untouched.
+             * Sign out ONLY the Admin Auth instance.
              */
 
             await signOut(
@@ -810,16 +888,16 @@ async function handleAdminLogin() {
 
 
         /*
-         * Authorized admin.
+         * Authorized.
          *
-         * onAuthStateChanged() handles the dashboard.
+         * onAuthStateChanged() will display the
+         * dashboard and load orders.
          */
 
         console.log(
-            "Authorized Admin:",
+            "Authorized administrator:",
             email
         );
-
 
     } catch (error) {
 
@@ -849,7 +927,7 @@ async function handleAdminLogin() {
 
 
 /* =========================================================
-   LOGIN BUTTON STATE
+   LOGIN BUTTON LOADING
 ========================================================= */
 
 function setLoginLoading(
@@ -866,10 +944,14 @@ function setLoginLoading(
 
 
     DOM.loginButton.disabled =
-        loading;
+        Boolean(
+            loading
+        );
 
 
-    if (loading) {
+    if (
+        loading
+    ) {
 
         DOM.loginButton.innerHTML = `
 
@@ -918,7 +1000,6 @@ function handleLoginError(
 
     switch (code) {
 
-
         case "auth/popup-closed-by-user":
 
             message =
@@ -946,7 +1027,7 @@ function handleLoginError(
         case "auth/unauthorized-domain":
 
             message =
-                "This website is not authorized in Firebase Authentication. Add this domain under Firebase Authentication → Settings → Authorized domains.";
+                "This website is not authorized in Firebase Authentication. Add the website domain under Firebase Authentication → Settings → Authorized domains.";
 
             break;
 
@@ -970,7 +1051,23 @@ function handleLoginError(
         case "auth/invalid-credential":
 
             message =
-                "Google authentication credentials were invalid. Refresh the page and try again.";
+                "Google authentication credentials were invalid. Please refresh the page and try again.";
+
+            break;
+
+
+        case "auth/internal-error":
+
+            message =
+                "Firebase encountered an internal authentication error. Please try again.";
+
+            break;
+
+
+        case "auth/too-many-requests":
+
+            message =
+                "Too many login attempts were made. Please wait a moment and try again.";
 
             break;
 
@@ -994,6 +1091,29 @@ function handleLoginError(
     showLoginMessage(
         message,
         "error"
+    );
+
+}
+
+
+/* =========================================================
+   AUTHENTICATION LOADING VIEW
+========================================================= */
+
+function showAuthenticationLoading() {
+
+    DOM.authLoading?.classList.remove(
+        "hidden"
+    );
+
+
+    DOM.loginView?.classList.add(
+        "hidden"
+    );
+
+
+    DOM.dashboard?.classList.add(
+        "hidden"
     );
 
 }
@@ -1028,7 +1148,7 @@ function showLoginView() {
 
 
 /* =========================================================
-   ADMIN DASHBOARD VIEW
+   DASHBOARD VIEW
 ========================================================= */
 
 function showDashboard(
@@ -1083,6 +1203,12 @@ function showDashboard(
             DOM.adminPhoto.src =
                 user.photoURL;
 
+        } else {
+
+            DOM.adminPhoto.removeAttribute(
+                "src"
+            );
+
         }
 
 
@@ -1114,7 +1240,9 @@ function showLoginMessage(
 
 
     DOM.loginMessage.textContent =
-        message;
+        String(
+            message || ""
+        );
 
 
     DOM.loginMessage.className =
@@ -1122,6 +1250,10 @@ function showLoginMessage(
 
 }
 
+
+/* =========================================================
+   CLEAR LOGIN MESSAGE
+========================================================= */
 
 function clearLoginMessage() {
 
@@ -1162,33 +1294,15 @@ async function loadOrders(
 
 
     const user =
-        adminAuth.currentUser;
+        getCurrentAuthorizedAdmin();
 
 
     if (
         !user
     ) {
 
-        return;
-
-    }
-
-
-    const email =
-        normalizeEmail(
-            user.email
-        );
-
-
-    if (
-        !isAuthorizedAdmin(
-            email
-        )
-    ) {
-
         console.warn(
-            "Order loading blocked because current Admin is unauthorized:",
-            email
+            "Order loading blocked: no authorized Admin."
         );
 
         return;
@@ -1206,6 +1320,10 @@ async function loadOrders(
 
 
     try {
+
+        /*
+         * Orders are sorted newest first.
+         */
 
         const ordersQuery =
             query(
@@ -1230,28 +1348,24 @@ async function loadOrders(
 
 
         /*
-         * Make sure Admin has not changed while
-         * the Firestore request was running.
+         * Verify that the Admin session has not
+         * changed while Firestore was loading.
          */
 
         const currentAdmin =
-            adminAuth.currentUser;
+            getCurrentAuthorizedAdmin();
 
 
         if (
             !currentAdmin
         ) {
 
-            return;
+            state.orders =
+                [];
 
-        }
+            updateStatistics();
 
-
-        if (
-            !isAuthorizedAdmin(
-                currentAdmin.email
-            )
-        ) {
+            renderOrders();
 
             return;
 
@@ -1273,7 +1387,6 @@ async function loadOrders(
 
         updateStatistics();
 
-
         renderOrders();
 
 
@@ -1282,11 +1395,10 @@ async function loadOrders(
         ) {
 
             showToast(
-                "Orders refreshed."
+                "Orders refreshed successfully."
             );
 
         }
-
 
     } catch (error) {
 
@@ -1302,7 +1414,6 @@ async function loadOrders(
 
         updateStatistics();
 
-
         renderOrders();
 
 
@@ -1311,7 +1422,6 @@ async function loadOrders(
                 error
             )
         );
-
 
     } finally {
 
@@ -1336,17 +1446,24 @@ function setOrdersLoading(
     loading
 ) {
 
-    DOM.ordersLoading?.classList.toggle(
-        "hidden",
-        !loading
-    );
+    if (
+        DOM.ordersLoading
+    ) {
+
+        DOM.ordersLoading.classList.toggle(
+            "hidden",
+            !loading
+        );
+
+    }
 
 
     if (
-        loading
+        loading &&
+        DOM.ordersEmpty
     ) {
 
-        DOM.ordersEmpty?.classList.add(
+        DOM.ordersEmpty.classList.add(
             "hidden"
         );
 
@@ -1374,7 +1491,9 @@ function getFilteredOrders() {
         selected === "all"
     ) {
 
-        return state.orders;
+        return [
+            ...state.orders
+        ];
 
     }
 
@@ -1382,11 +1501,16 @@ function getFilteredOrders() {
     return state.orders.filter(
         order => {
 
+            const status =
+                normalizeStatus(
+                    getOrderStatus(
+                        order
+                    )
+                );
+
+
             return (
-                getOrderStatus(
-                    order
-                )
-                    .toLowerCase() ===
+                status ===
                 selected
             );
 
@@ -1404,18 +1528,39 @@ function getOrderStatus(
     order
 ) {
 
+    /*
+     * Main order status is authoritative.
+     */
+
     return String(
 
-        order?.verification?.status ||
+        order?.status ??
 
-        order?.status ||
+        order?.verification?.status ??
 
-        order?.payment?.paymentStatus ||
+        order?.payment?.paymentStatus ??
 
         "Pending"
 
     )
         .trim();
+
+}
+
+
+/* =========================================================
+   NORMALIZE STATUS
+========================================================= */
+
+function normalizeStatus(
+    status
+) {
+
+    return String(
+        status || "pending"
+    )
+        .trim()
+        .toLowerCase();
 
 }
 
@@ -1429,32 +1574,30 @@ function getStatusPillClass(
 ) {
 
     const normalized =
-        String(
-            status || ""
-        )
-            .trim()
-            .toLowerCase();
+        normalizeStatus(
+            status
+        );
 
 
-    if (
-        normalized === "approved"
+    switch (
+        normalized
     ) {
 
-        return "status-pill-approved";
+        case "approved":
+
+            return "status-pill-approved";
+
+
+        case "rejected":
+
+            return "status-pill-rejected";
+
+
+        default:
+
+            return "status-pill-pending";
 
     }
-
-
-    if (
-        normalized === "rejected"
-    ) {
-
-        return "status-pill-rejected";
-
-    }
-
-
-    return "status-pill-pending";
 
 }
 
@@ -1548,56 +1691,67 @@ function createOrderCard(
         );
 
 
+    const normalizedStatus =
+        normalizeStatus(
+            status
+        );
+
+
     const customer =
-        order.customer ||
-        {};
+        isPlainObject(
+            order?.customer
+        )
+            ? order.customer
+            : {};
 
 
     const payment =
-        order.payment ||
-        {};
+        isPlainObject(
+            order?.payment
+        )
+            ? order.payment
+            : {};
 
 
     const pricing =
-        order.pricing ||
-        {};
+        isPlainObject(
+            order?.pricing
+        )
+            ? order.pricing
+            : {};
 
 
     const items =
         Array.isArray(
-            order.items
+            order?.items
         )
             ? order.items
             : [];
 
 
-    const normalizedStatus =
-        status
-            .toLowerCase();
+    const shippingAddress =
+        isPlainObject(
+            order?.shippingAddress
+        )
+            ? order.shippingAddress
+            : null;
 
 
     const statusClass =
-
-        normalizedStatus ===
-        "approved"
-
-            ? "status-approved"
-
-            : normalizedStatus ===
-              "rejected"
-
-                ? "status-rejected"
-
-                : "status-pending";
+        getMainStatusClass(
+            normalizedStatus
+        );
 
 
     const paymentStatus =
         payment.paymentStatus ||
-        status;
+        status ||
+        "Pending";
 
 
     const verificationStatus =
         order?.verification?.status ||
+        status ||
         "Pending";
 
 
@@ -1611,6 +1765,11 @@ function createOrderCard(
         getStatusPillClass(
             verificationStatus
         );
+
+
+    const canReview =
+        normalizedStatus ===
+        "pending";
 
 
     card.innerHTML = `
@@ -1660,6 +1819,8 @@ function createOrderCard(
 
         <div class="order-grid">
 
+
+            <!-- CUSTOMER -->
 
             <div class="order-info-box">
 
@@ -1712,18 +1873,23 @@ function createOrderCard(
             </div>
 
 
+            <!-- SHIPPING -->
+
             <div class="order-info-box">
 
                 <h4>
                     Shipping
                 </h4>
 
+
                 ${renderShipping(
-                    order.shippingAddress
+                    shippingAddress
                 )}
 
             </div>
 
+
+            <!-- PAYMENT -->
 
             <div class="order-info-box">
 
@@ -1779,8 +1945,11 @@ function createOrderCard(
 
             </div>
 
+
         </div>
 
+
+        <!-- PURCHASED ITEMS -->
 
         <div class="order-items">
 
@@ -1788,12 +1957,15 @@ function createOrderCard(
                 Purchased Books
             </h4>
 
+
             ${renderItems(
                 items
             )}
 
         </div>
 
+
+        <!-- PAYMENT VERIFICATION -->
 
         <div class="payment-verification">
 
@@ -1837,12 +2009,12 @@ function createOrderCard(
 
             </div>
 
+
         </div>
 
 
         ${
-            normalizedStatus ===
-            "pending"
+            canReview
 
                 ? `
 
@@ -1880,6 +2052,7 @@ function createOrderCard(
 
                         </button>
 
+
                     </div>
 
                 `
@@ -1897,6 +2070,39 @@ function createOrderCard(
 
 
 /* =========================================================
+   MAIN STATUS CLASS
+========================================================= */
+
+function getMainStatusClass(
+    status
+) {
+
+    switch (
+        normalizeStatus(
+            status
+        )
+    ) {
+
+        case "approved":
+
+            return "status-approved";
+
+
+        case "rejected":
+
+            return "status-rejected";
+
+
+        default:
+
+            return "status-pending";
+
+    }
+
+}
+
+
+/* =========================================================
    SHIPPING
 ========================================================= */
 
@@ -1908,9 +2114,39 @@ function renderShipping(
         !address
     ) {
 
-        return "<p>—</p>";
+        return `
+            <p>—</p>
+        `;
 
     }
+
+
+    const addressLine =
+        address.address ||
+        address.line1 ||
+        "—";
+
+
+    const city =
+        address.city ||
+        "";
+
+
+    const state =
+        address.state ||
+        "";
+
+
+    const pincode =
+        address.pincode ||
+        address.postalCode ||
+        "";
+
+
+    const cityState =
+        [city, state]
+            .filter(Boolean)
+            .join(", ");
 
 
     return `
@@ -1918,47 +2154,54 @@ function renderShipping(
         <p>
 
             ${escapeHTML(
-                address.address ||
-                "—"
+                addressLine
             )}
 
         </p>
 
 
-        <p>
+        ${
+            cityState
 
-            ${escapeHTML(
-                address.city ||
-                ""
-            )}
+                ? `
 
-            ${
-                address.city &&
-                address.state
-                    ? ", "
-                    : ""
-            }
+                    <p>
 
-            ${escapeHTML(
-                address.state ||
-                ""
-            )}
+                        ${escapeHTML(
+                            cityState
+                        )}
 
-        </p>
+                    </p>
+
+                `
+
+                : ""
+
+        }
 
 
-        <p>
+        ${
+            pincode
 
-            <strong>
+                ? `
 
-                ${escapeHTML(
-                    address.pincode ||
-                    ""
-                )}
+                    <p>
 
-            </strong>
+                        <strong>
 
-        </p>
+                            ${escapeHTML(
+                                pincode
+                            )}
+
+                        </strong>
+
+                    </p>
+
+                `
+
+                : ""
+
+        }
 
     `;
 
@@ -1974,7 +2217,8 @@ function renderItems(
 ) {
 
     if (
-        !items.length
+        !Array.isArray(items) ||
+        items.length === 0
     ) {
 
         return `
@@ -1992,8 +2236,17 @@ function renderItems(
         .map(
             item => {
 
+                const safeItem =
+                    isPlainObject(
+                        item
+                    )
+                        ? item
+                        : {};
+
+
                 const image =
-                    item.image ||
+                    safeItem.image ||
+                    safeItem.imageUrl ||
                     "./images/account.png";
 
 
@@ -2001,26 +2254,64 @@ function renderItems(
                     Math.max(
                         1,
                         Number(
-                            item.quantity ||
+                            safeItem.quantity ??
                             1
                         )
                     );
 
 
-                const price =
-                    Number(
+                const lineTotal =
+                    safeItem.lineTotal;
 
-                        item.lineTotal ??
 
-                        (
-                            Number(
-                                item.price ||
-                                0
-                            ) *
-                            quantity
-                        )
+                let price;
 
-                    );
+
+                if (
+                    lineTotal !==
+                    undefined &&
+                    lineTotal !==
+                    null
+                ) {
+
+                    price =
+                        Number(
+                            lineTotal
+                        );
+
+                } else {
+
+                    price =
+                        Number(
+                            safeItem.price ||
+                            0
+                        ) *
+                        quantity;
+
+                }
+
+
+                if (
+                    !Number.isFinite(
+                        price
+                    )
+                ) {
+
+                    price =
+                        0;
+
+                }
+
+
+                const itemName =
+                    safeItem.name ||
+                    safeItem.title ||
+                    "Book";
+
+
+                const variant =
+                    safeItem.variant ||
+                    "";
 
 
                 return `
@@ -2034,26 +2325,29 @@ function renderItems(
                                 image
                             )}"
                             alt=""
+                            loading="lazy"
                             onerror="this.onerror=null;this.src='./images/account.png';"
                         >
 
 
-                        <div class="order-item-details">
+                        <div
+                            class="order-item-details"
+                        >
 
 
-                            <div class="order-item-name">
+                            <div
+                                class="order-item-name"
+                            >
 
                                 ${escapeHTML(
-                                    item.name ||
-                                    item.title ||
-                                    "Book"
+                                    itemName
                                 )}
 
                             </div>
 
 
                             ${
-                                item.variant
+                                variant
 
                                     ? `
 
@@ -2062,7 +2356,7 @@ function renderItems(
                                         >
 
                                             ${escapeHTML(
-                                                item.variant
+                                                variant
                                             )}
 
                                         </div>
@@ -2110,15 +2404,28 @@ function renderItems(
 
 
 /* =========================================================
-   ORDER ACTION BUTTON
+   ORDER ACTION CLICK
 ========================================================= */
 
 function handleOrderActionClick(
     event
 ) {
 
+    if (
+        state.actionInProgress
+    ) {
+
+        return;
+
+    }
+
+
+    const target =
+        event.target;
+
+
     const button =
-        event.target.closest(
+        target.closest(
             "[data-action]"
         );
 
@@ -2133,15 +2440,32 @@ function handleOrderActionClick(
 
 
     const action =
-        button.dataset.action;
+        String(
+            button.dataset.action ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
 
 
     const orderId =
-        button.dataset.orderId;
+        String(
+            button.dataset.orderId ||
+            ""
+        )
+            .trim();
 
 
     if (
-        !orderId ||
+        !orderId
+    ) {
+
+        return;
+
+    }
+
+
+    if (
         ![
             "approve",
             "reject"
@@ -2181,7 +2505,58 @@ function openActionModal(
     ) {
 
         console.error(
-            "Action modal elements are missing from the HTML."
+            "Admin action modal elements are missing."
+        );
+
+        return;
+
+    }
+
+
+    const order =
+        state.orders.find(
+            item =>
+                String(
+                    item.id
+                ) ===
+                String(
+                    orderId
+                )
+        );
+
+
+    if (
+        !order
+    ) {
+
+        showToast(
+            "The selected order could not be found."
+        );
+
+        return;
+
+    }
+
+
+    const currentStatus =
+        normalizeStatus(
+            getOrderStatus(
+                order
+            )
+        );
+
+
+    /*
+     * Only Pending orders can be reviewed.
+     */
+
+    if (
+        currentStatus !==
+        "pending"
+    ) {
+
+        showToast(
+            "This order has already been reviewed."
         );
 
         return;
@@ -2273,6 +2648,20 @@ function openActionModal(
 
 function closeActionModal() {
 
+    /*
+     * Do not allow closing while Firebase update
+     * is actually processing.
+     */
+
+    if (
+        state.actionInProgress
+    ) {
+
+        return;
+
+    }
+
+
     DOM.modal?.classList.add(
         "hidden"
     );
@@ -2287,16 +2676,15 @@ function closeActionModal() {
         null;
 
 
-    state.actionInProgress =
-        false;
-
-
     if (
         DOM.confirmButton
     ) {
 
         DOM.confirmButton.disabled =
             false;
+
+        DOM.confirmButton.textContent =
+            "Confirm";
 
     }
 
@@ -2357,7 +2745,27 @@ async function confirmOrderAction() {
         );
 
 
-        closeActionModal();
+        /*
+         * Close the modal only after the update
+         * succeeds.
+         */
+
+        state.actionInProgress =
+            false;
+
+
+        DOM.modal?.classList.add(
+            "hidden"
+        );
+
+
+        document.body.classList.remove(
+            "modal-open"
+        );
+
+
+        state.currentAction =
+            null;
 
 
         showToast(
@@ -2372,8 +2780,11 @@ async function confirmOrderAction() {
         );
 
 
-        await loadOrders();
+        /*
+         * Refresh order data from Firestore.
+         */
 
+        await loadOrders();
 
     } catch (error) {
 
@@ -2410,8 +2821,6 @@ async function confirmOrderAction() {
         }
 
 
-    } finally {
-
         state.actionInProgress =
             false;
 
@@ -2430,41 +2839,23 @@ async function updateOrderStatus(
 ) {
 
     /*
-     * IMPORTANT:
-     *
-     * Check the ADMIN auth instance,
-     * NOT the Store auth instance.
+     * SECURITY CHECK
+     * ------------------------------------------------------
+     * Always verify the Admin Auth instance immediately
+     * before modifying Firestore.
      */
 
     const user =
-        adminAuth.currentUser;
+        getCurrentAuthorizedAdmin();
 
 
     if (
         !user
     ) {
 
-        throw new Error(
+        throw createFirebaseError(
+            "unauthenticated",
             "Administrator is not signed in."
-        );
-
-    }
-
-
-    const email =
-        normalizeEmail(
-            user.email
-        );
-
-
-    if (
-        !isAuthorizedAdmin(
-            email
-        )
-    ) {
-
-        throw new Error(
-            "Unauthorized administrator."
         );
 
     }
@@ -2497,6 +2888,58 @@ async function updateOrderStatus(
     }
 
 
+    /*
+     * Make sure the order still exists in our
+     * current local state.
+     */
+
+    const existingOrder =
+        state.orders.find(
+            order =>
+                String(
+                    order.id
+                ) ===
+                String(
+                    orderId
+                )
+        );
+
+
+    if (
+        !existingOrder
+    ) {
+
+        throw new Error(
+            "The selected order is no longer available."
+        );
+
+    }
+
+
+    /*
+     * Prevent double-processing.
+     */
+
+    const existingStatus =
+        normalizeStatus(
+            getOrderStatus(
+                existingOrder
+            )
+        );
+
+
+    if (
+        existingStatus !==
+        "pending"
+    ) {
+
+        throw new Error(
+            "This order has already been reviewed."
+        );
+
+    }
+
+
     const newStatus =
         action ===
         "approve"
@@ -2513,6 +2956,10 @@ async function updateOrderStatus(
             orderId
         );
 
+
+    /*
+     * Update all relevant status fields together.
+     */
 
     await updateDoc(
         orderRef,
@@ -2531,7 +2978,9 @@ async function updateOrderStatus(
                 serverTimestamp(),
 
             "verification.reviewedBy":
-                email,
+                normalizeEmail(
+                    user.email
+                ),
 
             updatedAt:
                 serverTimestamp()
@@ -2541,10 +2990,14 @@ async function updateOrderStatus(
 
 
     console.log(
-        "Order updated:",
-        orderId,
-        newStatus,
-        email
+        "Order updated successfully:",
+        {
+            orderId,
+            status: newStatus,
+            reviewedBy: normalizeEmail(
+                user.email
+            )
+        }
     );
 
 }
@@ -2570,10 +3023,11 @@ function updateStatistics() {
         order => {
 
             const status =
-                getOrderStatus(
-                    order
-                )
-                    .toLowerCase();
+                normalizeStatus(
+                    getOrderStatus(
+                        order
+                    )
+                );
 
 
             if (
@@ -2636,14 +3090,22 @@ function updateStatistics() {
 
 async function handleLogout() {
 
+    if (
+        state.loginInProgress ||
+        state.actionInProgress
+    ) {
+
+        return;
+
+    }
+
+
     try {
 
         /*
-         * IMPORTANT:
-         *
          * Only Admin Auth is signed out.
          *
-         * The Store account.js Auth session is untouched.
+         * Customer Auth is completely untouched.
          */
 
         await signOut(
@@ -2654,15 +3116,13 @@ async function handleLogout() {
         state.orders =
             [];
 
-
         state.currentAction =
             null;
 
 
-        renderOrders();
-
-
         updateStatistics();
+
+        renderOrders();
 
 
         showLoginView();
@@ -2674,9 +3134,8 @@ async function handleLogout() {
 
 
         console.log(
-            "Admin signed out. Store customer session was not modified."
+            "Admin signed out. Customer authentication was not modified."
         );
-
 
     } catch (error) {
 
@@ -2687,7 +3146,7 @@ async function handleLogout() {
 
 
         showToast(
-            "Unable to sign out Admin."
+            "Unable to sign out Admin. Please try again."
         );
 
     }
@@ -2713,7 +3172,9 @@ function showToast(
 
 
     DOM.toast.textContent =
-        message;
+        String(
+            message || ""
+        );
 
 
     DOM.toast.classList.add(
@@ -2760,7 +3221,7 @@ function setText(
 
         element.textContent =
             String(
-                value
+                value ?? ""
             );
 
     }
@@ -2769,7 +3230,7 @@ function setText(
 
 
 /* =========================================================
-   CURRENCY
+   CURRENCY FORMAT
 ========================================================= */
 
 function formatCurrency(
@@ -2778,8 +3239,7 @@ function formatCurrency(
 
     const number =
         Number(
-            value ||
-            0
+            value
         );
 
 
@@ -2797,6 +3257,9 @@ function formatCurrency(
     return number.toLocaleString(
         "en-IN",
         {
+
+            minimumFractionDigits:
+                0,
 
             maximumFractionDigits:
                 2
@@ -2816,7 +3279,10 @@ function formatDate(
 ) {
 
     if (
-        !timestamp
+        timestamp ===
+        null ||
+        timestamp ===
+        undefined
     ) {
 
         return "Date unavailable";
@@ -2844,7 +3310,7 @@ function formatDate(
 
 
     /*
-     * Firestore serialized timestamp
+     * Serialized Firestore Timestamp
      */
 
     else if (
@@ -2852,12 +3318,41 @@ function formatDate(
         "undefined"
     ) {
 
-        date =
-            new Date(
-                Number(
-                    timestamp.seconds
-                ) * 1000
+        const seconds =
+            Number(
+                timestamp.seconds
             );
+
+
+        const nanoseconds =
+            Number(
+                timestamp.nanoseconds ||
+                0
+            );
+
+
+        if (
+            Number.isFinite(
+                seconds
+            )
+        ) {
+
+            date =
+                new Date(
+
+                    (
+                        seconds *
+                        1000
+                    ) +
+
+                    (
+                        nanoseconds /
+                        1000000
+                    )
+
+                );
+
+        }
 
     }
 
@@ -2877,7 +3372,7 @@ function formatDate(
 
 
     /*
-     * String / number
+     * String / Number
      */
 
     else if (
@@ -2934,6 +3429,23 @@ function formatDate(
 
 
 /* =========================================================
+   CHECK PLAIN OBJECT
+========================================================= */
+
+function isPlainObject(
+    value
+) {
+
+    return (
+        value !== null &&
+        typeof value === "object" &&
+        !Array.isArray(value)
+    );
+
+}
+
+
+/* =========================================================
    HTML ESCAPE
 ========================================================= */
 
@@ -2942,8 +3454,7 @@ function escapeHTML(
 ) {
 
     return String(
-        value ??
-        ""
+        value ?? ""
     )
 
         .replaceAll(
@@ -2974,6 +3485,10 @@ function escapeHTML(
 }
 
 
+/* =========================================================
+   ATTRIBUTE ESCAPE
+========================================================= */
+
 function escapeAttribute(
     value
 ) {
@@ -2981,6 +3496,30 @@ function escapeAttribute(
     return escapeHTML(
         value
     );
+
+}
+
+
+/* =========================================================
+   FIREBASE ERROR CREATOR
+========================================================= */
+
+function createFirebaseError(
+    code,
+    message
+) {
+
+    const error =
+        new Error(
+            message
+        );
+
+
+    error.code =
+        `auth/${code}`;
+
+
+    return error;
 
 }
 
@@ -3000,78 +3539,86 @@ function getFirestoreErrorMessage(
         );
 
 
-    if (
-        code ===
-        "permission-denied"
+    switch (
+        code
     ) {
 
-        return (
-            "Firebase denied this Admin operation. " +
-            "Check that the published Firestore rules authorize the Admin account."
-        );
+        case "permission-denied":
+
+        case "firestore/permission-denied":
+
+            return (
+                "Firebase denied this Admin operation. " +
+                "Check your Firestore Security Rules and make sure this Admin account is authorized."
+            );
+
+
+        case "failed-precondition":
+
+        case "firestore/failed-precondition":
+
+            return (
+                "Firestore requires an index for this query. " +
+                "Open the Firebase console and create the required index."
+            );
+
+
+        case "not-found":
+
+        case "firestore/not-found":
+
+            return (
+                "The order could not be found. It may have been deleted."
+            );
+
+
+        case "unavailable":
+
+        case "firestore/unavailable":
+
+            return (
+                "Firebase is temporarily unavailable. Please try again."
+            );
+
+
+        case "unauthenticated":
+
+        case "auth/unauthenticated":
+
+            return (
+                "Your Admin session has expired. Please sign in again."
+            );
+
+
+        case "deadline-exceeded":
+
+            return (
+                "Firebase took too long to respond. Please try again."
+            );
+
+
+        case "resource-exhausted":
+
+            return (
+                "Firebase temporarily rejected the request because a resource limit was reached."
+            );
+
+
+        default:
+
+            if (
+                error?.message
+            ) {
+
+                return error.message;
+
+            }
+
+
+            return (
+                "Unable to complete the Firebase operation."
+            );
 
     }
-
-
-    if (
-        code ===
-        "failed-precondition"
-    ) {
-
-        return (
-            "Firestore requires an index for this query."
-        );
-
-    }
-
-
-    if (
-        code ===
-        "not-found"
-    ) {
-
-        return (
-            "The order could not be found. It may have been deleted."
-        );
-
-    }
-
-
-    if (
-        code ===
-        "unavailable"
-    ) {
-
-        return (
-            "Firebase is temporarily unavailable. Please try again."
-        );
-
-    }
-
-
-    if (
-        code ===
-        "unauthenticated"
-    ) {
-
-        return (
-            "Your Admin session has expired. Please sign in again."
-        );
-
-    }
-
-
-    if (
-        error?.message
-    ) {
-
-        return error.message;
-
-    }
-
-
-    return (
-        "Unable to complete the Firebase operation."
-    );
 
 }
