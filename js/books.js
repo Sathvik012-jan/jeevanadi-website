@@ -5,60 +5,37 @@
    FILE:
    js/books.js
 
+   RESPONSIBILITIES
+   ------------------------------------------------------------
+   • Product filtering
+   • Product searching
+   • Product sorting
+   • Product image galleries
+   • Bible-cover variants
+   • Bible-cover pricing
+   • Promise-card variants
+   • Cart integration
+   • Cart counter
+   • Toast notifications
+
    BIBLE COVER HIERARCHY
    ------------------------------------------------------------
 
        LANGUAGE
            ↓
-       COVER SIZE
+       SIZE
            ↓
-       COVER DESIGN
+       DESIGN
            ↓
        PRICE
 
    IMPORTANT
    ------------------------------------------------------------
-
-   The DESIGN selector must NEVER contain the price.
-
-   Correct:
-       Floral Fabric
-
-   Price:
-       ₹100
-
-   Incorrect:
-       Floral Fabric — ₹100
-
-   BIBLE COVER INVENTORY
-   ------------------------------------------------------------
-
-   ENGLISH
-   Regular
-      • Light Blue Fabric          ₹200
-      • Floral Fabric              ₹100
-      • Abstract Patterned         ₹200
-      • Colorful Embroidered       ₹250
-
-   TELUGU
-   Regular
-      • Dark Brown Leather         ₹150
-      • Maroon Patterned           ₹250
-      • Paisley Patterned          ₹500
-      • Black Leather Pouch        ₹150
-      • Red-Yellow Patterned       ₹500
-
-   Small
-      • Black Leather              ₹100
+   DESIGN SELECTOR NEVER SHOWS PRICE.
 
 ============================================================ */
 
 "use strict";
-
-
-/* ============================================================
-   CART MODULE
-============================================================ */
 
 import "./cart.js";
 
@@ -149,65 +126,118 @@ const BIBLE_COVERS = Object.freeze([
     ======================================================== */
 
     Object.freeze({
-        id: "english-light-blue",
-        language: "English",
-        size: "Regular",
-        design: "Light Blue Fabric",
-        name: "Light Blue Fabric English Bible",
-        price: 200,
-        image: "images/bc 3 english blue color.jpeg",
-        imageFallbacks: [
-            "images/bc 3 english blue color.jpeg"
-        ],
+
+        id:
+            "english-light-blue",
+
+        language:
+            "English",
+
+        size:
+            "Regular",
+
+        design:
+            "Light Blue Fabric",
+
+        name:
+            "Light Blue Fabric English Bible",
+
+        price:
+            200,
+
+        image:
+            "images/bc 3 english blue color.jpeg",
+
         description:
             "Light blue fabric English Bible cover with a clean and elegant appearance."
+
     }),
 
+
     Object.freeze({
-        id: "english-floral",
-        language: "English",
-        size: "Regular",
-        design: "Floral Fabric",
-        name: "Floral Fabric English Bible",
-        price: 100,
-        image: "images/bc 8 english.jpeg",
-        imageFallbacks: [
-            "images/bc 8 english.jpeg"
-        ],
+
+        id:
+            "english-floral",
+
+        language:
+            "English",
+
+        size:
+            "Regular",
+
+        design:
+            "Floral Fabric",
+
+        name:
+            "Floral Fabric English Bible",
+
+        price:
+            100,
+
+        image:
+            "images/bc 8 english.jpeg",
+
         description:
             "Floral fabric English Bible cover with beautiful decorative patterns."
+
     }),
 
+
     Object.freeze({
-        id: "english-abstract",
-        language: "English",
-        size: "Regular",
-        design: "Abstract Patterned",
-        name: "Abstract Patterned English Bible",
-        price: 200,
-        image: "images/english bc 4 design.jpeg",
-        imageFallbacks: [
-            "images/english bc 4 design.jpeg",
-            "images/english bc 4 design .jpeg"
-        ],
+
+        id:
+            "english-abstract",
+
+        language:
+            "English",
+
+        size:
+            "Regular",
+
+        design:
+            "Abstract Patterned",
+
+        name:
+            "Abstract Patterned English Bible",
+
+        price:
+            200,
+
+        image:
+            "images/english bc 4 design .jpeg",
+
         description:
             "Artistic abstract patterned English Bible cover with a colorful contemporary design."
+
     }),
 
+
     Object.freeze({
-        id: "english-embroidered",
-        language: "English",
-        size: "Regular",
-        design: "Colorful Embroidered",
-        name: "Colorful Embroidered English Bible",
-        price: 250,
-        image: "images/english bc 7 design.jpeg",
-        imageFallbacks: [
-            "images/english bc 7 design.jpeg",
-            "images/english bc 7 design .jpeg"
-        ],
+
+        id:
+            "english-embroidered",
+
+        language:
+            "English",
+
+        size:
+            "Regular",
+
+        design:
+            "Colorful Embroidered",
+
+        name:
+            "Colorful Embroidered English Bible",
+
+        price:
+            250,
+
+        image:
+            "images/english bc 7 design .jpeg",
+
         description:
             "Colorful embroidered English Bible cover featuring decorative fabric work."
+
     }),
 
 
@@ -216,101 +246,180 @@ const BIBLE_COVERS = Object.freeze([
     ======================================================== */
 
     Object.freeze({
-        id: "telugu-dark-brown",
-        language: "Telugu",
-        size: "Regular",
-        design: "Dark Brown Leather",
-        name: "Dark Brown Leather Telugu Bible",
-        price: 150,
-        image: "images/bc 2.jpeg",
-        imageFallbacks: [
-            "images/bc 2.jpeg"
-        ],
+
+        id:
+            "telugu-dark-brown",
+
+        language:
+            "Telugu",
+
+        size:
+            "Regular",
+
+        design:
+            "Dark Brown Leather",
+
+        name:
+            "Dark Brown Leather Telugu Bible",
+
+        price:
+            150,
+
+        image:
+            "images/bc 2.jpeg",
+
         description:
             "Dark brown leather Bible cover designed for regular-size Telugu Bibles with a classic and durable finish."
+
     }),
 
+
     Object.freeze({
-        id: "telugu-maroon",
-        language: "Telugu",
-        size: "Regular",
-        design: "Maroon Patterned",
-        name: "Maroon Patterned Telugu Bible",
-        price: 250,
-        image: "images/bc 5 telugu design.jpeg",
-        imageFallbacks: [
-            "images/bc 5 telugu design.jpeg"
-        ],
+
+        id:
+            "telugu-maroon",
+
+        language:
+            "Telugu",
+
+        size:
+            "Regular",
+
+        design:
+            "Maroon Patterned",
+
+        name:
+            "Maroon Patterned Telugu Bible",
+
+        price:
+            250,
+
+        image:
+            "images/bc 5 telugu design.jpeg",
+
         description:
             "Beautiful maroon patterned Telugu Bible cover with decorative fabric detailing."
+
     }),
 
+
     Object.freeze({
-        id: "telugu-paisley",
-        language: "Telugu",
-        size: "Regular",
-        design: "Paisley Patterned",
-        name: "Paisley Patterned Telugu Bible",
-        price: 500,
-        image: "images/bc 6 telugu.jpeg",
-        imageFallbacks: [
-            "images/bc 6 telugu.jpeg"
-        ],
+
+        id:
+            "telugu-paisley",
+
+        language:
+            "Telugu",
+
+        size:
+            "Regular",
+
+        design:
+            "Paisley Patterned",
+
+        name:
+            "Paisley Patterned Telugu Bible",
+
+        price:
+            500,
+
+        image:
+            "images/bc 6 telugu.jpeg",
+
         description:
             "Decorative paisley-patterned Telugu Bible cover with a distinctive traditional design."
+
     }),
 
+
     Object.freeze({
-        id: "telugu-black-pouch",
-        language: "Telugu",
-        size: "Regular",
-        design: "Black Leather Pouch",
-        name: "Black Leather Telugu Bible Pouch",
-        price: 150,
-        image: "images/bc 10 telugu.jpeg",
-        imageFallbacks: [
-            "images/bc 10 telugu.jpeg"
-        ],
+
+        id:
+            "telugu-black-pouch",
+
+        language:
+            "Telugu",
+
+        size:
+            "Regular",
+
+        design:
+            "Black Leather Pouch",
+
+        name:
+            "Black Leather Telugu Bible Pouch",
+
+        price:
+            150,
+
+        image:
+            "images/bc 10 telugu.jpeg",
+
         description:
             "Black leather-style Telugu Bible pouch designed to provide practical protection for your Bible."
+
     }),
 
+
     Object.freeze({
-        id: "telugu-red-yellow",
-        language: "Telugu",
-        size: "Regular",
-        design: "Red-Yellow Patterned",
-        name: "Red-Yellow Patterned Telugu Bible",
-        price: 500,
-        image: "images/telugu bc 9.jpeg",
-        imageFallbacks: [
-            "images/telugu bc 9.jpeg"
-        ],
+
+        id:
+            "telugu-red-yellow",
+
+        language:
+            "Telugu",
+
+        size:
+            "Regular",
+
+        design:
+            "Red-Yellow Patterned",
+
+        name:
+            "Red-Yellow Patterned Telugu Bible",
+
+        price:
+            500,
+
+        image:
+            "images/telugu bc 9.jpeg",
+
         description:
             "Decorative red and yellow patterned Telugu Bible cover with a traditional fabric design."
+
     }),
 
 
     /* ========================================================
        TELUGU — SMALL
-       --------------------------------------------------------
-       THIS IS THE ONLY SMALL COVER.
     ======================================================== */
 
     Object.freeze({
-        id: "telugu-black-small",
-        language: "Telugu",
-        size: "Small",
-        design: "Black Leather",
-        name: "Black Leather Telugu Bible",
-        price: 100,
-        image: "images/bc 1 small.jpeg",
-        imageFallbacks: [
+
+        id:
+            "telugu-black-small",
+
+        language:
+            "Telugu",
+
+        size:
+            "Small",
+
+        design:
+            "Black Leather",
+
+        name:
+            "Black Leather Telugu Bible",
+
+        price:
+            100,
+
+        image:
             "images/bc 1 small.jpeg",
-            "images/bc 1.jpeg"
-        ],
+
         description:
             "Small black leather Telugu Bible cover with a simple and elegant finish."
+
     })
 
 ]);
@@ -356,7 +465,8 @@ function normalize(value) {
 
 function getNumber(value, fallback = 0) {
 
-    const number = Number(value);
+    const number =
+        Number(value);
 
     return Number.isFinite(number)
         ? number
@@ -380,6 +490,12 @@ function getProductGrid() {
 
 /* ============================================================
    PRODUCT CARDS
+   ------------------------------------------------------------
+   IMPORTANT:
+   ALWAYS USE .jn-books-product-card FIRST.
+
+   Do NOT depend on data-product-card because
+   not every product currently has that attribute.
 ============================================================ */
 
 function getProductCards() {
@@ -391,37 +507,43 @@ function getProductCards() {
         return [];
     }
 
-    let cards =
+
+    const cards =
         $$(
-            "[data-product-card]",
+            ".jn-books-product-card",
             grid
         );
 
-    if (!cards.length) {
-
-        cards =
-            $$(
-                ".jn-books-product-card",
-                grid
-            );
-
-    }
-
-    if (!cards.length) {
-
-        cards =
-            Array.from(
-                grid.children
-            ).filter(
-                element =>
-                    element.dataset.product ||
-                    element.dataset.category ||
-                    element.dataset.name
-            );
-
-    }
 
     return cards;
+
+}
+
+
+/* ============================================================
+   ORIGINAL PRODUCT ORDER
+============================================================ */
+
+function storeOriginalProductOrder() {
+
+    const cards =
+        getProductCards();
+
+
+    cards.forEach(
+        (card, index) => {
+
+            if (
+                !card.dataset.originalOrder
+            ) {
+
+                card.dataset.originalOrder =
+                    String(index);
+
+            }
+
+        }
+    );
 
 }
 
@@ -446,20 +568,119 @@ function getCardName(card) {
         return "";
     }
 
+
     return clean(
 
         card.dataset.name ||
 
         $(
-            "[data-product-name], " +
-            ".product-name, " +
-            ".jn-books-product-name, " +
             ".jn-books-product-title",
             card
         )?.textContent ||
 
         ""
 
+    );
+
+}
+
+
+/* ============================================================
+   SORTING
+============================================================ */
+
+function applySorting() {
+
+    const grid =
+        getProductGrid();
+
+
+    if (!grid) {
+        return;
+    }
+
+
+    const cards =
+        getProductCards();
+
+
+    if (!cards.length) {
+        return;
+    }
+
+
+    storeOriginalProductOrder();
+
+
+    const sorted =
+        [...cards];
+
+
+    switch (state.sort) {
+
+        case "low":
+
+            sorted.sort(
+                (a, b) =>
+                    getCardPrice(a) -
+                    getCardPrice(b)
+            );
+
+            break;
+
+
+        case "high":
+
+            sorted.sort(
+                (a, b) =>
+                    getCardPrice(b) -
+                    getCardPrice(a)
+            );
+
+            break;
+
+
+        case "name":
+
+            sorted.sort(
+                (a, b) =>
+                    getCardName(a).localeCompare(
+                        getCardName(b),
+                        undefined,
+                        {
+                            sensitivity: "base"
+                        }
+                    )
+            );
+
+            break;
+
+
+        case "featured":
+
+        default:
+
+            sorted.sort(
+                (a, b) =>
+                    getNumber(
+                        a.dataset.originalOrder
+                    ) -
+                    getNumber(
+                        b.dataset.originalOrder
+                    )
+            );
+
+            break;
+
+    }
+
+
+    sorted.forEach(
+        card => {
+
+            grid.appendChild(card);
+
+        }
     );
 
 }
@@ -474,8 +695,10 @@ function setupSearch() {
     const input =
         $(STORE.selectors.search);
 
+
     const button =
         $(STORE.selectors.searchButton);
+
 
     if (!input) {
         return;
@@ -485,7 +708,10 @@ function setupSearch() {
     function performSearch() {
 
         state.search =
-            normalize(input.value);
+            normalize(
+                input.value
+            );
+
 
         refreshProducts();
 
@@ -502,9 +728,15 @@ function setupSearch() {
         "keydown",
         event => {
 
-            if (event.key !== "Enter") {
+            if (
+                event.key !==
+                "Enter"
+            ) {
+
                 return;
+
             }
+
 
             event.preventDefault();
 
@@ -531,6 +763,7 @@ function setupCategories() {
     const buttons =
         $$(STORE.selectors.categories);
 
+
     buttons.forEach(
         button => {
 
@@ -552,15 +785,18 @@ function setupCategories() {
                             const active =
                                 item === button;
 
+
                             item.classList.toggle(
                                 STORE.classes.active,
                                 active
                             );
 
+
                             item.classList.toggle(
                                 "active",
                                 active
                             );
+
 
                             item.setAttribute(
                                 "aria-selected",
@@ -583,13 +819,14 @@ function setupCategories() {
 
 
 /* ============================================================
-   SORTING
+   SORT SELECT
 ============================================================ */
 
 function setupSorting() {
 
     const select =
         $(STORE.selectors.sort);
+
 
     if (!select) {
         return;
@@ -604,6 +841,7 @@ function setupSorting() {
                 select.value ||
                 "featured";
 
+
             applySorting();
 
             refreshProducts();
@@ -613,24 +851,7 @@ function setupSorting() {
 
 }
 
-function storeOriginalProductOrder() {
 
-    const cards = getProductCards();
-
-    cards.forEach(
-        (card, index) => {
-
-            if (!card.dataset.originalOrder) {
-
-                card.dataset.originalOrder =
-                    index;
-
-            }
-
-        }
-    );
-
-}
 /* ============================================================
    REFRESH PRODUCTS
 ============================================================ */
@@ -640,7 +861,9 @@ function refreshProducts() {
     const cards =
         getProductCards();
 
-    let visible = 0;
+
+    let visible =
+        0;
 
 
     cards.forEach(
@@ -660,12 +883,18 @@ function refreshProducts() {
 
             const searchable =
                 normalize(
+
                     [
                         card.dataset.search,
+
+                        card.dataset.name,
+
                         card.textContent
+
                     ]
                         .filter(Boolean)
                         .join(" ")
+
                 );
 
 
@@ -677,7 +906,9 @@ function refreshProducts() {
             const searchMatch =
                 !state.search ||
                 name.includes(state.search) ||
-                searchable.includes(state.search);
+                searchable.includes(
+                    state.search
+                );
 
 
             const shouldShow =
@@ -728,6 +959,7 @@ function updateResultText(
     const result =
         $(STORE.selectors.result);
 
+
     if (!result) {
         return;
     }
@@ -747,7 +979,10 @@ function updateResultText(
     }
 
 
-    if (state.category === "all") {
+    if (
+        state.category ===
+        "all"
+    ) {
 
         result.textContent =
             `Showing all ${total} products`;
@@ -771,14 +1006,18 @@ function updateResultText(
    EMPTY STATE
 ============================================================ */
 
-function updateEmptyState(visible) {
+function updateEmptyState(
+    visible
+) {
 
     const empty =
         $(STORE.selectors.empty);
 
+
     if (!empty) {
         return;
     }
+
 
     empty.hidden =
         visible !== 0;
@@ -790,47 +1029,39 @@ function updateEmptyState(visible) {
    IMAGE FALLBACK
 ============================================================ */
 
-function setupImageFallback(
+function setImageSource(
     image,
     sources
 ) {
 
-    if (
-        !image ||
-        !Array.isArray(sources)
-    ) {
+    if (!image) {
         return;
     }
 
 
-    const validSources =
-        sources
-            .map(clean)
-            .filter(Boolean);
+    const list =
+        Array.isArray(sources)
+            ? sources
+                .map(clean)
+                .filter(Boolean)
+            : [];
 
 
-    if (!validSources.length) {
+    if (!list.length) {
         return;
     }
 
 
-    let currentIndex = 0;
+    let index =
+        0;
 
 
-    image.onerror = () => {
-
-        currentIndex++;
-
+    function loadNext() {
 
         if (
-            currentIndex >=
-            validSources.length
+            index >=
+            list.length
         ) {
-
-            console.warn(
-                "Jeeva Nadi Books: All image paths failed:",
-                validSources
-            );
 
             return;
 
@@ -838,15 +1069,34 @@ function setupImageFallback(
 
 
         image.src =
-            validSources[currentIndex];
+            list[index];
+
+    }
+
+
+    image.onerror = () => {
+
+        index++;
+
+        loadNext();
 
     };
+
+
+    loadNext();
 
 }
 
 
 /* ============================================================
-   PRODUCT IMAGE GALLERIES
+   PRODUCT IMAGE GALLERY
+   ------------------------------------------------------------
+   Works for:
+
+   • Songs Book
+   • Telugu Bible
+   • Any future product gallery
+
 ============================================================ */
 
 function setupProductGalleries() {
@@ -860,7 +1110,6 @@ function setupProductGalleries() {
 
             const image =
                 $(
-                    "[data-gallery-image], " +
                     ".jn-books-product-image",
                     card
                 );
@@ -872,20 +1121,22 @@ function setupProductGalleries() {
 
 
             const raw =
-                image.dataset.galleryImages ||
-                image.dataset.images;
+                image.dataset.images ||
+                image.dataset.galleryImages;
 
 
             if (!raw) {
 
-                hideGalleryControls(card);
+                hideGalleryControls(
+                    card
+                );
 
                 return;
 
             }
 
 
-            let images = [];
+            let images;
 
 
             try {
@@ -897,12 +1148,16 @@ function setupProductGalleries() {
 
             catch (error) {
 
-                console.warn(
-                    "Invalid gallery data:",
-                    error
+                console.error(
+                    "Jeeva Nadi Books: Invalid gallery JSON.",
+                    error,
+                    card
                 );
 
-                hideGalleryControls(card);
+
+                hideGalleryControls(
+                    card
+                );
 
                 return;
 
@@ -914,7 +1169,9 @@ function setupProductGalleries() {
                 images.length <= 1
             ) {
 
-                hideGalleryControls(card);
+                hideGalleryControls(
+                    card
+                );
 
                 return;
 
@@ -923,7 +1180,6 @@ function setupProductGalleries() {
 
             const previous =
                 $(
-                    "[data-gallery-prev], " +
                     ".jn-books-gallery-button.left",
                     card
                 );
@@ -931,7 +1187,6 @@ function setupProductGalleries() {
 
             const next =
                 $(
-                    "[data-gallery-next], " +
                     ".jn-books-gallery-button.right",
                     card
                 );
@@ -939,24 +1194,43 @@ function setupProductGalleries() {
 
             const dots =
                 $(
-                    "[data-gallery-dots], " +
                     ".jn-books-image-dots",
                     card
                 );
 
 
-            let index = 0;
+            let index =
+                getNumber(
+                    image.dataset.index,
+                    0
+                );
+
+
+            if (
+                index < 0 ||
+                index >= images.length
+            ) {
+
+                index = 0;
+
+            }
 
 
             function render() {
 
                 const source =
-                    clean(images[index]);
+                    clean(
+                        images[index]
+                    );
 
 
                 if (!source) {
                     return;
                 }
+
+
+                image.dataset.index =
+                    String(index);
 
 
                 image.src =
@@ -972,7 +1246,9 @@ function setupProductGalleries() {
             }
 
 
-            function move(direction) {
+            function move(
+                direction
+            ) {
 
                 index =
                     (
@@ -981,6 +1257,7 @@ function setupProductGalleries() {
                         images.length
                     ) %
                     images.length;
+
 
                 render();
 
@@ -1027,21 +1304,20 @@ function setupProductGalleries() {
    HIDE GALLERY CONTROLS
 ============================================================ */
 
-function hideGalleryControls(card) {
+function hideGalleryControls(
+    card
+) {
 
     $$(
-        "[data-gallery-prev], " +
-        "[data-gallery-next], " +
-        "[data-gallery-dots], " +
-        ".jn-books-gallery-button.left, " +
-        ".jn-books-gallery-button.right, " +
+        ".jn-books-gallery-button, " +
         ".jn-books-image-dots",
         card
     )
     .forEach(
         element => {
 
-            element.hidden = true;
+            element.hidden =
+                true;
 
         }
     );
@@ -1074,7 +1350,9 @@ function renderDots(
     ) {
 
         const dot =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
 
         dot.className =
@@ -1087,7 +1365,9 @@ function renderDots(
         );
 
 
-        container.appendChild(dot);
+        container.appendChild(
+            dot
+        );
 
     }
 
@@ -1095,12 +1375,12 @@ function renderDots(
 
 
 /* ============================================================
-   BIBLE COVER DATABASE
-   ------------------------------------------------------------
-   DATABASE HELPERS
+   BIBLE COVER DATABASE HELPERS
 ============================================================ */
 
-function getCoversByLanguage(language) {
+function getCoversByLanguage(
+    language
+) {
 
     const target =
         normalize(language);
@@ -1108,8 +1388,9 @@ function getCoversByLanguage(language) {
 
     return BIBLE_COVERS.filter(
         cover =>
-            normalize(cover.language) ===
-            target
+            normalize(
+                cover.language
+            ) === target
     );
 
 }
@@ -1123,31 +1404,37 @@ function getCoversByLanguageAndSize(
     const targetLanguage =
         normalize(language);
 
+
     const targetSize =
         normalize(size);
 
 
     return BIBLE_COVERS.filter(
         cover =>
-            normalize(cover.language) ===
-                targetLanguage &&
+            normalize(
+                cover.language
+            ) === targetLanguage &&
 
-            normalize(cover.size) ===
-                targetSize
+            normalize(
+                cover.size
+            ) === targetSize
     );
 
 }
 
 
-function getAvailableSizes(language) {
+function getAvailableSizes(
+    language
+) {
 
     return [
         ...new Set(
-            getCoversByLanguage(language)
-                .map(
-                    cover =>
-                        cover.size
-                )
+            getCoversByLanguage(
+                language
+            ).map(
+                cover =>
+                    cover.size
+            )
         )
     ];
 
@@ -1155,7 +1442,7 @@ function getAvailableSizes(language) {
 
 
 /* ============================================================
-   SIZE SELECTOR
+   REBUILD SIZE SELECTOR
 ============================================================ */
 
 function rebuildSizeSelector(
@@ -1170,7 +1457,9 @@ function rebuildSizeSelector(
 
 
     const sizes =
-        getAvailableSizes(language);
+        getAvailableSizes(
+            language
+        );
 
 
     select.replaceChildren();
@@ -1180,7 +1469,9 @@ function rebuildSizeSelector(
         size => {
 
             const option =
-                document.createElement("option");
+                document.createElement(
+                    "option"
+                );
 
 
             option.value =
@@ -1191,7 +1482,9 @@ function rebuildSizeSelector(
                 size;
 
 
-            select.appendChild(option);
+            select.appendChild(
+                option
+            );
 
         }
     );
@@ -1199,7 +1492,8 @@ function rebuildSizeSelector(
 
     if (!sizes.length) {
 
-        select.value = "";
+        select.value =
+            "";
 
         return "";
 
@@ -1227,7 +1521,10 @@ function rebuildSizeSelector(
 
 
     if (!selected) {
-        selected = sizes[0];
+
+        selected =
+            sizes[0];
+
     }
 
 
@@ -1241,10 +1538,9 @@ function rebuildSizeSelector(
 
 
 /* ============================================================
-   DESIGN SELECTOR
+   REBUILD DESIGN SELECTOR
    ------------------------------------------------------------
-   IMPORTANT:
-   PRICE IS NEVER DISPLAYED HERE.
+   PRICE IS NEVER SHOWN IN OPTION TEXT.
 ============================================================ */
 
 function rebuildCoverDesignSelector(
@@ -1273,7 +1569,9 @@ function rebuildCoverDesignSelector(
         cover => {
 
             const option =
-                document.createElement("option");
+                document.createElement(
+                    "option"
+                );
 
 
             option.value =
@@ -1281,37 +1579,29 @@ function rebuildCoverDesignSelector(
 
 
             /*
-             * ONLY THE DESIGN NAME IS VISIBLE.
+             * IMPORTANT:
+             * DESIGN ONLY.
              *
-             * No price.
+             * NO PRICE.
              */
+
             option.textContent =
                 cover.design;
 
 
-            /*
-             * Internal data.
-             * Price remains available to JS
-             * but is NOT displayed.
-             */
-
             option.dataset.coverId =
                 cover.id;
 
-            option.dataset.language =
-                cover.language;
-
-            option.dataset.size =
-                cover.size;
-
-            option.dataset.design =
-                cover.design;
 
             option.dataset.price =
-                String(cover.price);
+                String(
+                    cover.price
+                );
 
 
-            select.appendChild(option);
+            select.appendChild(
+                option
+            );
 
         }
     );
@@ -1319,7 +1609,8 @@ function rebuildCoverDesignSelector(
 
     if (!covers.length) {
 
-        select.value = "";
+        select.value =
+            "";
 
         return [];
 
@@ -1359,21 +1650,46 @@ function updateCoverTitle(
     }
 
 
-    $$(
-        "[data-cover-title], " +
-        ".jn-books-cover-title, " +
-        "[data-cover-name], " +
-        ".jn-books-cover-name",
-        card
-    )
-    .forEach(
-        element => {
+    const title =
+        $(
+            "#selected-cover-name, " +
+            "[data-cover-title], " +
+            ".jn-books-cover-title",
+            card
+        );
 
-            element.textContent =
-                selected.name;
 
-        }
-    );
+    if (title) {
+
+        title.textContent =
+            selected.name;
+
+    }
+
+}
+
+
+/* ============================================================
+   COVER DESCRIPTION
+============================================================ */
+
+function updateCoverDescription(
+    element,
+    selected
+) {
+
+    if (
+        !element ||
+        !selected
+    ) {
+
+        return;
+
+    }
+
+
+    element.textContent =
+        selected.description;
 
 }
 
@@ -1392,54 +1708,55 @@ function updateCoverMeta(
     }
 
 
-    $$(
-        "[data-selected-cover-language]",
-        card
-    )
-    .forEach(
-        element => {
-
-            element.textContent =
-                selected.language;
-
-        }
-    );
+    const language =
+        $(
+            "#selected-cover-language",
+            card
+        );
 
 
-    $$(
-        "[data-selected-cover-design]",
-        card
-    )
-    .forEach(
-        element => {
-
-            element.textContent =
-                selected.design;
-
-        }
-    );
+    const size =
+        $(
+            "#selected-cover-size",
+            card
+        );
 
 
-    $$(
-        "[data-selected-cover-size]",
-        card
-    )
-    .forEach(
-        element => {
+    const design =
+        $(
+            "#selected-cover-design",
+            card
+        );
 
-            element.textContent =
-                selected.size;
 
-        }
-    );
+    if (language) {
+
+        language.textContent =
+            selected.language;
+
+    }
+
+
+    if (size) {
+
+        size.textContent =
+            selected.size;
+
+    }
+
+
+    if (design) {
+
+        design.textContent =
+            selected.design;
+
+    }
 
 }
 
 
 /* ============================================================
    COVER PRICE
-   ------------------------------------------------------------
-   PRICE IS COMPLETELY SEPARATE FROM DESIGN SELECTOR.
 ============================================================ */
 
 function updateCoverPrice(
@@ -1447,16 +1764,24 @@ function updateCoverPrice(
     selected
 ) {
 
-    if (!element || !selected) {
+    if (
+        !element ||
+        !selected
+    ) {
+
         return;
+
     }
 
 
-    element.replaceChildren();
+    element.innerHTML =
+        "";
 
 
     const amount =
-        document.createElement("span");
+        document.createElement(
+            "strong"
+        );
 
 
     amount.className =
@@ -1467,22 +1792,28 @@ function updateCoverPrice(
         `₹${selected.price}`;
 
 
-    element.appendChild(amount);
+    element.appendChild(
+        amount
+    );
 
 
-    const size =
-        document.createElement("small");
+    const suffix =
+        document.createElement(
+            "small"
+        );
 
 
-    size.className =
+    suffix.className =
         "cover-price-size";
 
 
-    size.textContent =
-        selected.size;
+    suffix.textContent =
+        ` / ${selected.size} cover`;
 
 
-    element.appendChild(size);
+    element.appendChild(
+        suffix
+    );
 
 }
 
@@ -1495,8 +1826,7 @@ function setupBibleCovers() {
 
     const card =
         $(
-            '[data-product-card][data-category="covers"], ' +
-            '.jn-books-product-card[data-category="covers"]'
+            ".jn-books-bible-covers-card"
         );
 
 
@@ -1513,8 +1843,6 @@ function setupBibleCovers() {
 
     const language =
         $(
-            "[data-cover-language], " +
-            ".jn-books-cover-language, " +
             "#cover-language",
             card
         );
@@ -1522,8 +1850,6 @@ function setupBibleCovers() {
 
     const size =
         $(
-            "[data-cover-size], " +
-            ".jn-books-cover-size, " +
             "#cover-size",
             card
         );
@@ -1531,8 +1857,6 @@ function setupBibleCovers() {
 
     const design =
         $(
-            "[data-cover-design], " +
-            ".jn-books-cover-design, " +
             "#cover-design",
             card
         );
@@ -1540,7 +1864,6 @@ function setupBibleCovers() {
 
     const image =
         $(
-            "[data-cover-image], " +
             "#selected-cover-image",
             card
         );
@@ -1548,7 +1871,6 @@ function setupBibleCovers() {
 
     const description =
         $(
-            "[data-cover-description], " +
             "#cover-design-description",
             card
         );
@@ -1556,7 +1878,6 @@ function setupBibleCovers() {
 
     const price =
         $(
-            "[data-cover-price], " +
             "#cover-selected-price",
             card
         );
@@ -1564,7 +1885,6 @@ function setupBibleCovers() {
 
     const previous =
         $(
-            "[data-cover-prev], " +
             "#cover-gallery-prev",
             card
         );
@@ -1572,7 +1892,6 @@ function setupBibleCovers() {
 
     const next =
         $(
-            "[data-cover-next], " +
             "#cover-gallery-next",
             card
         );
@@ -1580,7 +1899,6 @@ function setupBibleCovers() {
 
     const dots =
         $(
-            "[data-cover-dots], " +
             "#cover-image-dots",
             card
         );
@@ -1588,9 +1906,7 @@ function setupBibleCovers() {
 
     const addButton =
         $(
-            "[data-add-cover], " +
-            "#add-cover-to-cart, " +
-            ".jn-books-add-cart",
+            "#add-cover-to-cart",
             card
         );
 
@@ -1604,8 +1920,8 @@ function setupBibleCovers() {
         !addButton
     ) {
 
-        console.warn(
-            "Jeeva Nadi Books: Bible cover controls are incomplete."
+        console.error(
+            "Jeeva Nadi Books: Bible cover HTML is incomplete."
         );
 
         return;
@@ -1629,54 +1945,73 @@ function setupBibleCovers() {
                 cover =>
                     cover.id ===
                     design.value
-            ) || null
+            ) ||
+            null
         );
 
     }
 
 
     /* ========================================================
-       UPDATE CART DATA
+       UPDATE CART BUTTON
     ======================================================== */
 
     function updateCoverCartData(
         selected
     ) {
 
+        if (!selected) {
+            return;
+        }
+
+
         addButton.dataset.product =
             "Bible Cover";
+
 
         addButton.dataset.title =
             selected.name;
 
+
         addButton.dataset.price =
-            String(selected.price);
+            String(
+                selected.price
+            );
+
 
         addButton.dataset.variant =
             [
-                selected.name,
                 selected.language,
                 selected.size,
                 selected.design
-            ].join(" | ");
+            ].join(
+                " — "
+            );
+
 
         addButton.dataset.category =
             "covers";
 
+
         addButton.dataset.image =
             selected.image;
+
 
         addButton.dataset.coverName =
             selected.name;
 
+
         addButton.dataset.coverLanguage =
             selected.language;
+
 
         addButton.dataset.coverDesign =
             selected.design;
 
+
         addButton.dataset.coverSize =
             selected.size;
+
 
         addButton.dataset.coverId =
             selected.id;
@@ -1685,7 +2020,7 @@ function setupBibleCovers() {
 
 
     /* ========================================================
-       RENDER SELECTED COVER
+       RENDER COVER
     ======================================================== */
 
     function renderSelectedCover() {
@@ -1700,27 +2035,24 @@ function setupBibleCovers() {
 
 
         currentIndex =
-            Math.max(
-                0,
-                covers.findIndex(
-                    cover =>
-                        cover.id ===
-                        selected.id
-                )
+            covers.findIndex(
+                cover =>
+                    cover.id ===
+                    selected.id
             );
 
 
-        /* ----------------------------------------------------
-           IMAGE
-        ---------------------------------------------------- */
+        if (currentIndex < 0) {
 
-        image.removeAttribute(
-            "data-error-logged"
+            currentIndex = 0;
+
+        }
+
+
+        setImageSource(
+            image,
+            [selected.image]
         );
-
-
-        image.src =
-            selected.image;
 
 
         image.alt =
@@ -1728,47 +2060,17 @@ function setupBibleCovers() {
             `${selected.size} ${selected.language} Bible cover`;
 
 
-        setupImageFallback(
-            image,
-            selected.imageFallbacks
-        );
-
-
-        /* ----------------------------------------------------
-           DESCRIPTION
-        ---------------------------------------------------- */
-
-        if (description) {
-
-            description.textContent =
-                selected.description;
-
-        }
-
-
-        /* ----------------------------------------------------
-           PRICE
-        ---------------------------------------------------- */
-
-        updateCoverPrice(
-            price,
-            selected
-        );
-
-
-        /* ----------------------------------------------------
-           TITLE
-        ---------------------------------------------------- */
-
         updateCoverTitle(
             card,
             selected
         );
 
 
-        /* ----------------------------------------------------
-           META
-        ---------------------------------------------------- */
+        updateCoverDescription(
+            description,
+            selected
+        );
+
 
         updateCoverMeta(
             card,
@@ -1776,18 +2078,16 @@ function setupBibleCovers() {
         );
 
 
-        /* ----------------------------------------------------
-           CART
-        ---------------------------------------------------- */
+        updateCoverPrice(
+            price,
+            selected
+        );
+
 
         updateCoverCartData(
             selected
         );
 
-
-        /* ----------------------------------------------------
-           DOTS
-        ---------------------------------------------------- */
 
         renderDots(
             dots,
@@ -1799,8 +2099,6 @@ function setupBibleCovers() {
 
 
     /* ========================================================
-       REBUILD COVER SYSTEM
-       --------------------------------------------------------
        LANGUAGE → SIZE → DESIGN
     ======================================================== */
 
@@ -1810,7 +2108,9 @@ function setupBibleCovers() {
     ) {
 
         const selectedLanguage =
-            clean(language.value);
+            clean(
+                language.value
+            );
 
 
         if (!selectedLanguage) {
@@ -1826,10 +2126,6 @@ function setupBibleCovers() {
         }
 
 
-        /*
-         * LANGUAGE → SIZE
-         */
-
         const selectedSize =
             rebuildSizeSelector(
                 size,
@@ -1837,10 +2133,6 @@ function setupBibleCovers() {
                 preferredSize
             );
 
-
-        /*
-         * LANGUAGE + SIZE → DESIGN
-         */
 
         covers =
             rebuildCoverDesignSelector(
@@ -1854,10 +2146,6 @@ function setupBibleCovers() {
         currentIndex = 0;
 
 
-        /*
-         * Render first valid cover.
-         */
-
         renderSelectedCover();
 
     }
@@ -1870,11 +2158,6 @@ function setupBibleCovers() {
     language.addEventListener(
         "change",
         () => {
-
-            /*
-             * Whenever language changes,
-             * start from Regular.
-             */
 
             rebuildCoverSystem(
                 "Regular"
@@ -1892,18 +2175,11 @@ function setupBibleCovers() {
         "change",
         () => {
 
-            const selectedLanguage =
-                clean(language.value);
-
-            const selectedSize =
-                clean(size.value);
-
-
             covers =
                 rebuildCoverDesignSelector(
                     design,
-                    selectedLanguage,
-                    selectedSize
+                    language.value,
+                    size.value
                 );
 
 
@@ -1931,7 +2207,7 @@ function setupBibleCovers() {
 
 
     /* ========================================================
-       PREVIOUS
+       PREVIOUS COVER
     ======================================================== */
 
     previous?.addEventListener(
@@ -1958,7 +2234,9 @@ function setupBibleCovers() {
 
 
             design.value =
-                covers[currentIndex].id;
+                covers[
+                    currentIndex
+                ].id;
 
 
             renderSelectedCover();
@@ -1968,7 +2246,7 @@ function setupBibleCovers() {
 
 
     /* ========================================================
-       NEXT
+       NEXT COVER
     ======================================================== */
 
     next?.addEventListener(
@@ -1994,7 +2272,9 @@ function setupBibleCovers() {
 
 
             design.value =
-                covers[currentIndex].id;
+                covers[
+                    currentIndex
+                ].id;
 
 
             renderSelectedCover();
@@ -2004,38 +2284,13 @@ function setupBibleCovers() {
 
 
     /* ========================================================
-       DEFAULT LANGUAGE
+       DEFAULT
+       ENGLISH → REGULAR → LIGHT BLUE FABRIC
     ======================================================== */
 
-    const englishOption =
-        Array.from(
-            language.options || []
-        ).find(
-            option =>
-                normalize(option.value) ===
-                    "english" ||
+    language.value =
+        "English";
 
-                normalize(option.textContent) ===
-                    "english"
-        );
-
-
-    if (englishOption) {
-
-        language.value =
-            englishOption.value;
-
-    }
-
-
-    /* ========================================================
-       INITIAL COVER
-       --------------------------------------------------------
-       English
-       Regular
-       Light Blue Fabric
-       ₹200
-    ======================================================== */
 
     rebuildCoverSystem(
         "Regular",
@@ -2053,7 +2308,6 @@ function setupPromiseCards() {
 
     const cards =
         $$(
-            '[data-product-card][data-category="promises"], ' +
             '.jn-books-product-card[data-category="promises"]'
         );
 
@@ -2063,30 +2317,32 @@ function setupPromiseCards() {
 
             const select =
                 $(
-                    "[data-promise-quantity], " +
-                    ".jn-books-promise-select",
+                    "[data-promise-quantity]",
                     card
                 );
 
 
             const price =
                 $(
-                    "[data-promise-price], " +
-                    ".jn-books-promise-price",
+                    "[data-promise-price]",
                     card
                 );
 
 
             const button =
                 $(
-                    "[data-add-product], " +
-                    ".jn-books-add-cart",
+                    "[data-add-product], .jn-books-add-cart",
                     card
                 );
 
 
-            if (!select || !button) {
+            if (
+                !select ||
+                !button
+            ) {
+
                 return;
+
             }
 
 
@@ -2122,28 +2378,32 @@ function setupPromiseCards() {
 
 
                 button.dataset.price =
-                    String(selectedPrice);
+                    String(
+                        selectedPrice
+                    );
 
 
                 button.dataset.variant =
-                    `${quantity} Cards — ₹${selectedPrice}`;
+                    `${quantity} Cards`;
 
 
                 button.dataset.category =
                     "promises";
 
 
-                if (!button.dataset.image) {
+                if (
+                    !button.dataset.image
+                ) {
 
-                    const image =
+                    const img =
                         $("img", card);
 
 
-                    if (image) {
+                    if (img) {
 
                         button.dataset.image =
-                            image.currentSrc ||
-                            image.src ||
+                            img.currentSrc ||
+                            img.src ||
                             "";
 
                     }
@@ -2176,7 +2436,7 @@ function setupPromiseCards() {
 
 
 /* ============================================================
-   CART BUTTON SYSTEM
+   CART BUTTONS
 ============================================================ */
 
 function setupCartButtons() {
@@ -2206,7 +2466,9 @@ function setupCartButtons() {
             }
 
 
-            addToCart(button);
+            addToCart(
+                button
+            );
 
         }
     );
@@ -2218,7 +2480,9 @@ function setupCartButtons() {
    ADD TO CART
 ============================================================ */
 
-function addToCart(button) {
+function addToCart(
+    button
+) {
 
     const cart =
         window.JeevaNadiCart;
@@ -2235,16 +2499,14 @@ function addToCart(button) {
     }
 
 
-    /* --------------------------------------------------------
-       AUTHENTICATION READY
-    -------------------------------------------------------- */
-
     if (
         typeof cart.isAuthenticationReady ===
         "function"
     ) {
 
-        if (!cart.isAuthenticationReady()) {
+        if (
+            !cart.isAuthenticationReady()
+        ) {
 
             notify(
                 "Please wait while your account is loading."
@@ -2257,16 +2519,14 @@ function addToCart(button) {
     }
 
 
-    /* --------------------------------------------------------
-       AUTHENTICATION
-    -------------------------------------------------------- */
-
     if (
         typeof cart.isAuthenticated ===
         "function"
     ) {
 
-        if (!cart.isAuthenticated()) {
+        if (
+            !cart.isAuthenticated()
+        ) {
 
             notify(
                 "Please sign in before adding products."
@@ -2278,7 +2538,8 @@ function addToCart(button) {
                     "jeevaNadiCartAuthRequired",
                     {
                         detail: {
-                            reason: "signed-out"
+                            reason:
+                                "signed-out"
                         }
                     }
                 )
@@ -2291,10 +2552,6 @@ function addToCart(button) {
 
     }
 
-
-    /* --------------------------------------------------------
-       PRODUCT DATA
-    -------------------------------------------------------- */
 
     const product =
         clean(
@@ -2351,19 +2608,11 @@ function addToCart(button) {
     }
 
 
-    /* --------------------------------------------------------
-       UNIQUE CART KEY
-    -------------------------------------------------------- */
-
     const key =
         variant
             ? `${product}::${variant}`
             : `${product}::default`;
 
-
-    /* --------------------------------------------------------
-       DISPLAY NAME
-    -------------------------------------------------------- */
 
     const itemName =
         category === "covers" &&
@@ -2372,27 +2621,27 @@ function addToCart(button) {
             : product;
 
 
-    /* --------------------------------------------------------
-       CART ITEM
-    -------------------------------------------------------- */
-
     const item = {
 
         key,
 
-        id: key,
+        id:
+            key,
 
         product,
 
-        title: itemName,
+        title:
+            itemName,
 
-        name: itemName,
+        name:
+            itemName,
 
         variant,
 
         price,
 
-        quantity: 1,
+        quantity:
+            1,
 
         image,
 
@@ -2417,13 +2666,6 @@ function addToCart(button) {
     };
 
 
-    /* --------------------------------------------------------
-       ADD
-    -------------------------------------------------------- */
-
-    let success = false;
-
-
     try {
 
         if (
@@ -2438,10 +2680,28 @@ function addToCart(button) {
         }
 
 
-        success =
+        const success =
             Boolean(
                 cart.add(item)
             );
+
+
+        if (!success) {
+            return;
+        }
+
+
+        notify(
+            `${itemName} added to cart.`
+        );
+
+
+        animateButton(
+            button
+        );
+
+
+        refreshCartCount();
 
     }
 
@@ -2457,64 +2717,7 @@ function addToCart(button) {
             "Unable to add this product to your cart."
         );
 
-
-        return;
-
     }
-
-
-    if (!success) {
-        return;
-    }
-
-
-    /* --------------------------------------------------------
-       SUCCESS
-    -------------------------------------------------------- */
-
-    notify(
-        `${itemName} — ` +
-        `${selectedVariantText(item)} ` +
-        `added to cart.`
-    );
-
-
-    animateButton(
-        button
-    );
-
-
-    refreshCartCount();
-
-}
-
-
-/* ============================================================
-   SELECTED VARIANT TEXT
-============================================================ */
-
-function selectedVariantText(item) {
-
-    if (
-        item.category !== "covers"
-    ) {
-
-        return (
-            item.variant ||
-            "Product"
-        );
-
-    }
-
-
-    return [
-        item.language,
-        item.size,
-        item.design,
-        `₹${item.price}`
-    ]
-        .filter(Boolean)
-        .join(" • ");
 
 }
 
@@ -2663,14 +2866,17 @@ function refreshCartCount() {
    BUTTON ANIMATION
 ============================================================ */
 
-function animateButton(button) {
+function animateButton(
+    button
+) {
 
     if (!button) {
         return;
     }
 
 
-    button.disabled = true;
+    button.disabled =
+        true;
 
 
     button.classList.add(
@@ -2685,7 +2891,8 @@ function animateButton(button) {
     window.setTimeout(
         () => {
 
-            button.disabled = false;
+            button.disabled =
+                false;
 
 
             button.classList.remove(
@@ -2693,13 +2900,8 @@ function animateButton(button) {
             );
 
 
-            /*
-             * Always restore the
-             * Add to Cart label.
-             */
-
-            button.textContent =
-                "🛒 Add to Cart";
+            button.innerHTML =
+                "<span>+</span> Add to Cart";
 
         },
         1400
@@ -2712,7 +2914,9 @@ function animateButton(button) {
    TOAST
 ============================================================ */
 
-function notify(message) {
+function notify(
+    message
+) {
 
     const toast =
         $(STORE.selectors.toast);
@@ -2735,11 +2939,7 @@ function notify(message) {
 
 
     toast.classList.add(
-        STORE.classes.active
-    );
-
-
-    toast.classList.add(
+        STORE.classes.active,
         "show"
     );
 
@@ -2758,11 +2958,7 @@ function notify(message) {
             () => {
 
                 toast.classList.remove(
-                    STORE.classes.active
-                );
-
-
-                toast.classList.remove(
+                    STORE.classes.active,
                     "show"
                 );
 
@@ -2774,7 +2970,7 @@ function notify(message) {
 
 
 /* ============================================================
-   RESTORE STORE STATE
+   RESTORE STATE
 ============================================================ */
 
 function restoreState() {
@@ -2782,8 +2978,10 @@ function restoreState() {
     state.category =
         "all";
 
+
     state.search =
         "";
+
 
     state.sort =
         "featured";
@@ -2794,7 +2992,10 @@ function restoreState() {
 
 
     if (search) {
-        search.value = "";
+
+        search.value =
+            "";
+
     }
 
 
@@ -2808,12 +3009,14 @@ function restoreState() {
             const category =
                 normalize(
                     button.dataset.storeCategory ||
-                    button.dataset.category
+                    button.dataset.category ||
+                    "all"
                 );
 
 
             const active =
-                category === "all";
+                category ===
+                "all";
 
 
             button.classList.toggle(
@@ -2842,7 +3045,10 @@ function restoreState() {
 
 
     if (sort) {
-        sort.value = "featured";
+
+        sort.value =
+            "featured";
+
     }
 
 }
@@ -2863,7 +3069,8 @@ function setupImageErrorMonitoring() {
 
 
             if (
-                !(image instanceof HTMLImageElement)
+                !(image instanceof
+                  HTMLImageElement)
             ) {
 
                 return;
@@ -2873,7 +3080,9 @@ function setupImageErrorMonitoring() {
 
             const source =
                 clean(
-                    image.getAttribute("src")
+                    image.getAttribute(
+                        "src"
+                    )
                 );
 
 
@@ -2883,10 +3092,16 @@ function setupImageErrorMonitoring() {
 
 
             if (
-                source.startsWith("data:") ||
-                source.startsWith("blob:")
+                source.startsWith(
+                    "data:"
+                ) ||
+                source.startsWith(
+                    "blob:"
+                )
             ) {
+
                 return;
+
             }
 
 
@@ -2894,7 +3109,9 @@ function setupImageErrorMonitoring() {
                 image.dataset.errorLogged ===
                 "true"
             ) {
+
                 return;
+
             }
 
 
@@ -2920,12 +3137,20 @@ function setupImageErrorMonitoring() {
 
 function bootBooksStore() {
 
-    if (state.initialized) {
+    if (
+        state.initialized
+    ) {
+
         return;
+
     }
 
 
-    if (!getProductGrid()) {
+    const grid =
+        getProductGrid();
+
+
+    if (!grid) {
 
         console.error(
             "Jeeva Nadi Books: Product grid not found."
@@ -2938,6 +3163,14 @@ function bootBooksStore() {
 
     state.initialized =
         true;
+
+
+    /*
+     * Capture the ORIGINAL HTML order
+     * before sorting.
+     */
+
+    storeOriginalProductOrder();
 
 
     setupSearch();
@@ -2955,6 +3188,8 @@ function bootBooksStore() {
     setupCartButtons();
 
     setupCartEvents();
+
+    setupImageErrorMonitoring();
 
     restoreState();
 
@@ -2982,7 +3217,10 @@ window.JeevaNadiBooksStore = {
 
     refreshCartCount,
 
+    applySorting,
+
     notify,
+
 
     getState() {
 
@@ -3038,14 +3276,7 @@ window.JeevaNadiBooksStore = {
 
 
 /* ============================================================
-   GLOBAL IMAGE MONITOR
-============================================================ */
-
-setupImageErrorMonitoring();
-
-
-/* ============================================================
-   START STORE
+   START
 ============================================================ */
 
 if (
