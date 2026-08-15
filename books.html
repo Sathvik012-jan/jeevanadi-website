@@ -3,6 +3,10 @@
 
 <head>
 
+    <!-- =====================================================
+         BASIC DOCUMENT INFORMATION
+    ====================================================== -->
+
     <meta charset="UTF-8">
 
     <meta
@@ -20,7 +24,14 @@
         content="Jeeva Nadi Books — Christian books, Bibles, worship resources, Bible covers, calendars, promise cards and Christian gifts."
     >
 
-    <title>Jeeva Nadi Books | Christian Books & Worship Resources</title>
+    <title>
+        Jeeva Nadi Books | Christian Books & Worship Resources
+    </title>
+
+
+    <!-- =====================================================
+         FAVICON
+    ====================================================== -->
 
     <link
         rel="icon"
@@ -28,11 +39,15 @@
         href="images/books logo.jpg"
     >
 
+
     <!-- =====================================================
          GOOGLE FONTS
     ====================================================== -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
     <link
         rel="preconnect"
@@ -45,8 +60,9 @@
         rel="stylesheet"
     >
 
+
     <!-- =====================================================
-         STORE CSS
+         BOOK STORE STYLESHEET
     ====================================================== -->
 
     <link
@@ -66,8 +82,8 @@
 
 <div
     class="jn-books-page-glow"
-    aria-hidden="true">
-</div>
+    aria-hidden="true"
+></div>
 
 
 
@@ -79,13 +95,19 @@
 
     <div class="jn-books-header-inner">
 
+
+        <!-- BRAND -->
+
         <a
             href="index.html"
             class="jn-books-brand"
             aria-label="Jeeva Nadi Books home"
         >
 
-            <span class="jn-books-brand-mark">
+            <span
+                class="jn-books-brand-mark"
+                aria-hidden="true"
+            >
                 JN
             </span>
 
@@ -96,13 +118,16 @@
                 </strong>
 
                 <small>
-                    BOOKS & RESOURCES
+                    BOOKS &amp; RESOURCES
                 </small>
 
             </span>
 
         </a>
 
+
+
+        <!-- HEADER NAVIGATION -->
 
         <nav
             class="jn-books-header-actions"
@@ -114,7 +139,7 @@
                 class="jn-books-header-link"
             >
                 <span aria-hidden="true">←</span>
-                Home
+                <span>Home</span>
             </a>
 
 
@@ -123,7 +148,7 @@
                 class="jn-books-header-link"
             >
                 <span aria-hidden="true">♙</span>
-                Account
+                <span>Account</span>
             </a>
 
         </nav>
@@ -144,14 +169,15 @@
 
         <span
             class="jn-books-announcement-symbol"
-            aria-hidden="true">
+            aria-hidden="true"
+        >
             ✦
         </span>
 
         <span>
             Every resource is prepared to serve
             <strong>
-                faith, worship & ministry.
+                faith, worship &amp; ministry.
             </strong>
         </span>
 
@@ -162,7 +188,7 @@
 
 
 <!-- =========================================================
-     MAIN
+     MAIN CONTENT
 ========================================================= -->
 
 <main>
@@ -172,11 +198,20 @@
      HERO
 ========================================================= -->
 
-<section class="jn-books-hero">
+<section
+    class="jn-books-hero"
+    aria-labelledby="books-hero-title"
+>
 
-    <div class="jn-books-hero-orbit orbit-one"></div>
+    <div
+        class="jn-books-hero-orbit orbit-one"
+        aria-hidden="true"
+    ></div>
 
-    <div class="jn-books-hero-orbit orbit-two"></div>
+    <div
+        class="jn-books-hero-orbit orbit-two"
+        aria-hidden="true"
+    ></div>
 
 
     <div class="jn-books-shell jn-books-hero-inner">
@@ -191,33 +226,36 @@
             </p>
 
 
-            <h1 class="jn-books-hero-title">
-
+            <h1
+                id="books-hero-title"
+                class="jn-books-hero-title"
+            >
                 Resources for
 
                 <span>
-                    Faith & Worship
+                    Faith &amp; Worship
                 </span>
-
             </h1>
 
 
             <p class="jn-books-hero-description">
-
                 Explore carefully selected Bibles,
                 worship songbooks, Bible covers,
                 calendars, promise cards and
                 Christian gifts for your home,
                 church and ministry.
-
             </p>
 
 
             <div class="jn-books-hero-points">
 
+
                 <div class="jn-books-hero-point">
 
-                    <span class="jn-books-point-icon">
+                    <span
+                        class="jn-books-point-icon"
+                        aria-hidden="true"
+                    >
                         ✦
                     </span>
 
@@ -230,7 +268,10 @@
 
                 <div class="jn-books-hero-point">
 
-                    <span class="jn-books-point-icon">
+                    <span
+                        class="jn-books-point-icon"
+                        aria-hidden="true"
+                    >
                         ✦
                     </span>
 
@@ -243,7 +284,10 @@
 
                 <div class="jn-books-hero-point">
 
-                    <span class="jn-books-point-icon">
+                    <span
+                        class="jn-books-point-icon"
+                        aria-hidden="true"
+                    >
                         ✦
                     </span>
 
@@ -253,19 +297,23 @@
 
                 </div>
 
+
             </div>
 
         </div>
 
 
 
-        <!-- SEARCH -->
+        <!-- HERO SEARCH -->
 
         <div class="jn-books-hero-search-card">
 
             <div class="jn-books-search-heading">
 
-                <span class="jn-books-search-icon">
+                <span
+                    class="jn-books-search-icon"
+                    aria-hidden="true"
+                >
                     ⌕
                 </span>
 
@@ -300,6 +348,7 @@
                     placeholder="Search books, Bibles, covers..."
                     autocomplete="off"
                     spellcheck="false"
+                    enterkeyhint="search"
                 >
 
 
@@ -318,10 +367,8 @@
 
 
             <p class="jn-books-search-hint">
-
                 Try “Bible”, “Songs”, “Calendar”
                 or “Promise Cards”
-
             </p>
 
         </div>
@@ -336,7 +383,10 @@
      STORE
 ========================================================= -->
 
-<section class="jn-books-store">
+<section
+    class="jn-books-store"
+    aria-labelledby="collection-title"
+>
 
 <div class="jn-books-shell">
 
@@ -353,22 +403,23 @@
             The Collection
         </p>
 
-        <h2>
+        <h2 id="collection-title">
+
             Browse our
+
             <span>
                 resources
             </span>
+
         </h2>
 
     </div>
 
 
     <p class="jn-books-section-description">
-
         Choose a category to discover
         resources prepared for personal
         devotion, family worship and church use.
-
     </p>
 
 </div>
@@ -393,9 +444,10 @@
         data-category="all"
         role="tab"
         aria-selected="true"
+        aria-controls="product-grid"
     >
-        <span>✦</span>
-        All
+        <span aria-hidden="true">✦</span>
+        <span>All</span>
     </button>
 
 
@@ -405,9 +457,10 @@
         data-category="songs"
         role="tab"
         aria-selected="false"
+        aria-controls="product-grid"
     >
-        <span>♫</span>
-        Songs
+        <span aria-hidden="true">♫</span>
+        <span>Songs</span>
     </button>
 
 
@@ -417,9 +470,10 @@
         data-category="bibles"
         role="tab"
         aria-selected="false"
+        aria-controls="product-grid"
     >
-        <span>▤</span>
-        Bibles
+        <span aria-hidden="true">▤</span>
+        <span>Bibles</span>
     </button>
 
 
@@ -429,9 +483,10 @@
         data-category="covers"
         role="tab"
         aria-selected="false"
+        aria-controls="product-grid"
     >
-        <span>◈</span>
-        Bible Covers
+        <span aria-hidden="true">◈</span>
+        <span>Bible Covers</span>
     </button>
 
 
@@ -441,9 +496,10 @@
         data-category="calendars"
         role="tab"
         aria-selected="false"
+        aria-controls="product-grid"
     >
-        <span>□</span>
-        Calendars
+        <span aria-hidden="true">□</span>
+        <span>Calendars</span>
     </button>
 
 
@@ -453,9 +509,10 @@
         data-category="promises"
         role="tab"
         aria-selected="false"
+        aria-controls="product-grid"
     >
-        <span>◇</span>
-        Promise Cards
+        <span aria-hidden="true">◇</span>
+        <span>Promise Cards</span>
     </button>
 
 
@@ -465,9 +522,10 @@
         data-category="gifts"
         role="tab"
         aria-selected="false"
+        aria-controls="product-grid"
     >
-        <span>✧</span>
-        Gifts
+        <span aria-hidden="true">✧</span>
+        <span>Gifts</span>
     </button>
 
 </div>
@@ -484,8 +542,8 @@
 
         <span
             class="jn-books-result-dot"
-            aria-hidden="true">
-        </span>
+            aria-hidden="true"
+        ></span>
 
         <span
             id="result-count"
@@ -551,11 +609,13 @@
 
 
 <!-- =========================================================
-     01 — SONGS BOOK
+     01 — JEEVA NADI SONGS BOOK
 ========================================================= -->
 
 <article
     class="jn-books-product-card jn-books-featured-product"
+    data-product-card
+    data-product-id="songs-book"
     data-category="songs"
     data-name="Jeeva Nadi Songs Book"
     data-price="200"
@@ -576,7 +636,7 @@
         <button
             type="button"
             class="jn-books-gallery-button left"
-            aria-label="Previous image"
+            aria-label="Previous image of Jeeva Nadi Songs Book"
         >
             ‹
         </button>
@@ -599,7 +659,7 @@
         <button
             type="button"
             class="jn-books-gallery-button right"
-            aria-label="Next image"
+            aria-label="Next image of Jeeva Nadi Songs Book"
         >
             ›
         </button>
@@ -607,8 +667,8 @@
 
         <div
             class="jn-books-image-dots"
-            aria-hidden="true">
-        </div>
+            aria-hidden="true"
+        ></div>
 
     </div>
 
@@ -626,25 +686,18 @@
 
 
         <p class="jn-books-product-description">
-
             A carefully arranged collection
             of traditional Christian hymns
             and worship songs for personal,
             family and congregational use.
-
         </p>
 
 
         <div class="jn-books-product-bottom">
 
             <div class="jn-books-product-price">
-
                 ₹200
-
-                <small>
-                    / book
-                </small>
-
+                <small>/ book</small>
             </div>
 
 
@@ -657,13 +710,8 @@
                 data-category="songs"
                 data-image="images/Songs Book 1.jpg"
             >
-
-                <span>
-                    +
-                </span>
-
+                <span aria-hidden="true">+</span>
                 Add to Cart
-
             </button>
 
         </div>
@@ -675,11 +723,13 @@
 
 
 <!-- =========================================================
-     02 — TELUGU BIBLE
+     02 — TELUGU BIBLE BSI
 ========================================================= -->
 
 <article
     class="jn-books-product-card"
+    data-product-card
+    data-product-id="telugu-bible-bsi"
     data-category="bibles"
     data-name="Telugu Bible — BSI"
     data-price="300"
@@ -700,7 +750,7 @@
         <button
             type="button"
             class="jn-books-gallery-button left"
-            aria-label="Previous image"
+            aria-label="Previous image of Telugu Bible BSI"
         >
             ‹
         </button>
@@ -723,7 +773,7 @@
         <button
             type="button"
             class="jn-books-gallery-button right"
-            aria-label="Next image"
+            aria-label="Next image of Telugu Bible BSI"
         >
             ›
         </button>
@@ -731,8 +781,8 @@
 
         <div
             class="jn-books-image-dots"
-            aria-hidden="true">
-        </div>
+            aria-hidden="true"
+        ></div>
 
     </div>
 
@@ -750,24 +800,17 @@
 
 
         <p class="jn-books-product-description">
-
             Telugu Holy Bible edition for
             personal reading, family worship
             and church use.
-
         </p>
 
 
         <div class="jn-books-product-bottom">
 
             <div class="jn-books-product-price">
-
                 ₹300
-
-                <small>
-                    / Bible
-                </small>
-
+                <small>/ Bible</small>
             </div>
 
 
@@ -780,13 +823,8 @@
                 data-category="bibles"
                 data-image="images/Telugu Bible BSI 1.png"
             >
-
-                <span>
-                    +
-                </span>
-
+                <span aria-hidden="true">+</span>
                 Add to Cart
-
             </button>
 
         </div>
@@ -803,9 +841,12 @@
 
 <article
     class="jn-books-product-card jn-books-coming-soon-card"
+    data-product-card
+    data-product-id="english-bible"
     data-category="bibles"
     data-name="English Bible"
     data-price="0"
+    data-coming-soon="true"
     data-search="english bible holy bible scripture coming soon"
 >
 
@@ -820,9 +861,15 @@
         </span>
 
 
-        <div class="jn-books-placeholder">
+        <div
+            class="jn-books-placeholder"
+            aria-label="English Bible coming soon"
+        >
 
-            <span class="jn-books-placeholder-icon">
+            <span
+                class="jn-books-placeholder-icon"
+                aria-hidden="true"
+            >
                 ▤
             </span>
 
@@ -831,7 +878,7 @@
             </strong>
 
             <small>
-                Image & availability coming soon
+                Image &amp; availability coming soon
             </small>
 
         </div>
@@ -852,11 +899,9 @@
 
 
         <p class="jn-books-product-description">
-
             English Bible edition for
             personal reading and worship.
             Pricing will be announced soon.
-
         </p>
 
 
@@ -871,6 +916,7 @@
                 type="button"
                 class="jn-books-add-cart"
                 disabled
+                aria-disabled="true"
             >
                 Coming Soon
             </button>
@@ -882,40 +928,23 @@
 </article>
 
 
+
 <!-- =========================================================
      04 — BIBLE COVERS
-     
-     TWO COVER TYPES:
-     1. Floral Fabric
-     2. Leather
-
-     SIZES:
-     Regular = 9 designs
-     Small   = 1 design
 ========================================================= -->
 
 <article
     class="jn-books-product-card jn-books-bible-covers-card"
     data-product-card
+    data-product-id="bible-covers"
     data-category="covers"
     data-name="Bible Covers"
     data-price="100"
-    data-search="
-        bible cover
-        bible covers
-        floral fabric bible cover
-        leather bible cover
-        english bible cover
-        telugu bible cover
-        regular bible cover
-        small bible cover
-    "
+    data-search="bible cover bible covers floral fabric bible cover leather bible cover english bible cover telugu bible cover regular bible cover small bible cover"
 >
 
 
-    <!-- =====================================================
-         COVER IMAGE
-    ====================================================== -->
+    <!-- COVER MEDIA -->
 
     <div class="jn-books-product-media">
 
@@ -934,7 +963,7 @@
                 id="selected-cover-image"
                 class="jn-books-product-image jn-books-cover-main-image"
                 src="images/bc 8 english.jpeg"
-                alt="Floral Fabric English Bible Cover"
+                alt="Selected Bible cover"
                 loading="lazy"
             >
 
@@ -943,7 +972,7 @@
                 type="button"
                 id="cover-gallery-prev"
                 class="jn-books-gallery-button left"
-                aria-label="Previous Bible cover"
+                aria-label="Previous Bible cover image"
             >
                 ‹
             </button>
@@ -953,7 +982,7 @@
                 type="button"
                 id="cover-gallery-next"
                 class="jn-books-gallery-button right"
-                aria-label="Next Bible cover"
+                aria-label="Next Bible cover image"
             >
                 ›
             </button>
@@ -964,16 +993,14 @@
         <div
             id="cover-image-dots"
             class="jn-books-image-dots"
-            aria-hidden="true">
-        </div>
+            aria-hidden="true"
+        ></div>
 
     </div>
 
 
 
-    <!-- =====================================================
-         COVER INFORMATION
-    ====================================================== -->
+    <!-- COVER INFORMATION -->
 
     <div class="jn-books-product-info">
 
@@ -987,7 +1014,7 @@
             id="selected-cover-name"
             class="jn-books-product-title"
         >
-            Floral Fabric & Leather Bible Covers
+            Floral Fabric &amp; Leather Bible Covers
         </h3>
 
 
@@ -1002,9 +1029,7 @@
 
 
 
-        <!-- =================================================
-             LANGUAGE
-        ================================================== -->
+        <!-- COVER LANGUAGE -->
 
         <div class="jn-books-variant-row">
 
@@ -1033,13 +1058,7 @@
 
 
 
-        <!-- =================================================
-             SIZE
-             
-             ONLY TWO:
-             Regular
-             Small
-        ================================================== -->
+        <!-- COVER SIZE -->
 
         <div class="jn-books-variant-row">
 
@@ -1068,9 +1087,7 @@
 
 
 
-        <!-- =================================================
-             COVER DESIGN
-        ================================================== -->
+        <!-- COVER DESIGN -->
 
         <div class="jn-books-variant-row">
 
@@ -1085,11 +1102,11 @@
                 data-cover-design
             >
 
-                <!-- =========================================
-                     REGULAR — 9 DESIGNS
-                ========================================== -->
+
+                <!-- REGULAR COVERS -->
 
                 <optgroup label="Regular Covers">
+
 
                     <option
                         value="Floral Fabric"
@@ -1192,9 +1209,8 @@
                 </optgroup>
 
 
-                <!-- =========================================
-                     SMALL — 1 DESIGN
-                ========================================== -->
+
+                <!-- SMALL COVERS -->
 
                 <optgroup label="Small Covers">
 
@@ -1216,14 +1232,10 @@
 
 
 
-        <!-- =================================================
-             SELECTED PRODUCT DETAILS
-        ================================================== -->
+        <!-- SELECTED COVER INFORMATION -->
 
         <div class="jn-books-cover-selected-info">
 
-
-            <!-- BIBLE -->
 
             <div class="jn-books-cover-selected-row">
 
@@ -1238,8 +1250,6 @@
             </div>
 
 
-            <!-- LANGUAGE -->
-
             <div class="jn-books-cover-selected-row">
 
                 <span>
@@ -1253,8 +1263,6 @@
             </div>
 
 
-            <!-- SIZE -->
-
             <div class="jn-books-cover-selected-row">
 
                 <span>
@@ -1267,8 +1275,6 @@
 
             </div>
 
-
-            <!-- DESIGN -->
 
             <div class="jn-books-cover-selected-row">
 
@@ -1286,9 +1292,7 @@
 
 
 
-        <!-- =================================================
-             SELECTED PRICE
-        ================================================== -->
+        <!-- SELECTED COVER PRICE -->
 
         <div
             id="cover-selected-price"
@@ -1306,9 +1310,7 @@
 
 
 
-        <!-- =================================================
-             ADD SELECTED COVER
-        ================================================== -->
+        <!-- ADD COVER -->
 
         <button
             type="button"
@@ -1322,7 +1324,7 @@
             data-image="images/bc 8 english.jpeg"
         >
 
-            <span>
+            <span aria-hidden="true">
                 +
             </span>
 
@@ -1342,6 +1344,8 @@
 
 <article
     class="jn-books-product-card"
+    data-product-card
+    data-product-id="calendar-15x20"
     data-category="calendars"
     data-name="Jeeva Nadi Calendar 15 x 20"
     data-price="50"
@@ -1359,9 +1363,15 @@
         </span>
 
 
-        <div class="jn-books-placeholder">
+        <div
+            class="jn-books-placeholder"
+            aria-label="15 by 20 calendar image coming soon"
+        >
 
-            <span class="jn-books-placeholder-icon">
+            <span
+                class="jn-books-placeholder-icon"
+                aria-hidden="true"
+            >
                 □
             </span>
 
@@ -1391,10 +1401,8 @@
 
 
         <p class="jn-books-product-description">
-
             Jeeva Nadi calendar in the
             15 × 20 inch format.
-
         </p>
 
 
@@ -1420,7 +1428,7 @@
                 data-category="calendars"
             >
 
-                <span>
+                <span aria-hidden="true">
                     +
                 </span>
 
@@ -1442,6 +1450,8 @@
 
 <article
     class="jn-books-product-card"
+    data-product-card
+    data-product-id="calendar-18x23"
     data-category="calendars"
     data-name="Jeeva Nadi Calendar 18 x 23"
     data-price="70"
@@ -1459,9 +1469,15 @@
         </span>
 
 
-        <div class="jn-books-placeholder">
+        <div
+            class="jn-books-placeholder"
+            aria-label="18 by 23 calendar image coming soon"
+        >
 
-            <span class="jn-books-placeholder-icon">
+            <span
+                class="jn-books-placeholder-icon"
+                aria-hidden="true"
+            >
                 □
             </span>
 
@@ -1491,10 +1507,8 @@
 
 
         <p class="jn-books-product-description">
-
             Jeeva Nadi calendar in the
             larger 18 × 23 inch format.
-
         </p>
 
 
@@ -1520,7 +1534,7 @@
                 data-category="calendars"
             >
 
-                <span>
+                <span aria-hidden="true">
                     +
                 </span>
 
@@ -1542,6 +1556,8 @@
 
 <article
     class="jn-books-product-card"
+    data-product-card
+    data-product-id="promise-cards"
     data-category="promises"
     data-name="Promise Cards"
     data-price="100"
@@ -1559,9 +1575,15 @@
         </span>
 
 
-        <div class="jn-books-placeholder">
+        <div
+            class="jn-books-placeholder"
+            aria-label="Promise Cards"
+        >
 
-            <span class="jn-books-placeholder-icon">
+            <span
+                class="jn-books-placeholder-icon"
+                aria-hidden="true"
+            >
                 ◇
             </span>
 
@@ -1591,12 +1613,12 @@
 
 
         <p class="jn-books-product-description">
-
             Choose the number of promise
             cards you would like to receive.
-
         </p>
 
+
+        <!-- PACK SIZE -->
 
         <div class="jn-books-variant-row">
 
@@ -1610,31 +1632,52 @@
                 class="jn-books-promise-select"
             >
 
-                <option value="100" data-price="100">
+                <option
+                    value="100"
+                    data-price="100"
+                >
                     100 Cards — ₹100
                 </option>
 
-                <option value="200" data-price="200">
+                <option
+                    value="200"
+                    data-price="200"
+                >
                     200 Cards — ₹200
                 </option>
 
-                <option value="300" data-price="300">
+                <option
+                    value="300"
+                    data-price="300"
+                >
                     300 Cards — ₹300
                 </option>
 
-                <option value="400" data-price="400">
+                <option
+                    value="400"
+                    data-price="400"
+                >
                     400 Cards — ₹400
                 </option>
 
-                <option value="500" data-price="500">
+                <option
+                    value="500"
+                    data-price="500"
+                >
                     500 Cards — ₹500
                 </option>
 
-                <option value="600" data-price="600">
+                <option
+                    value="600"
+                    data-price="600"
+                >
                     600 Cards — ₹600
                 </option>
 
-                <option value="700" data-price="700">
+                <option
+                    value="700"
+                    data-price="700"
+                >
                     700 Cards — ₹700
                 </option>
 
@@ -1642,6 +1685,8 @@
 
         </div>
 
+
+        <!-- SELECTED PACK PRICE -->
 
         <div
             class="jn-books-product-price jn-books-promise-price"
@@ -1656,6 +1701,8 @@
         </div>
 
 
+        <!-- ADD PROMISE PACK -->
+
         <button
             type="button"
             class="jn-books-add-cart"
@@ -1665,7 +1712,7 @@
             data-category="promises"
         >
 
-            <span>
+            <span aria-hidden="true">
                 +
             </span>
 
@@ -1685,9 +1732,12 @@
 
 <article
     class="jn-books-product-card jn-books-coming-soon-card"
+    data-product-card
+    data-product-id="christian-photo-frames"
     data-category="gifts"
     data-name="Christian Photo Frames"
     data-price="0"
+    data-coming-soon="true"
     data-search="photo frames christian gifts frame coming soon"
 >
 
@@ -1702,9 +1752,15 @@
         </span>
 
 
-        <div class="jn-books-placeholder">
+        <div
+            class="jn-books-placeholder"
+            aria-label="Christian photo frames coming soon"
+        >
 
-            <span class="jn-books-placeholder-icon">
+            <span
+                class="jn-books-placeholder-icon"
+                aria-hidden="true"
+            >
                 ▣
             </span>
 
@@ -1734,10 +1790,8 @@
 
 
         <p class="jn-books-product-description">
-
             Meaningful Christian photo frames
             for homes, families and gifts.
-
         </p>
 
 
@@ -1752,6 +1806,7 @@
                 type="button"
                 class="jn-books-add-cart"
                 disabled
+                aria-disabled="true"
             >
                 Coming Soon
             </button>
@@ -1770,9 +1825,12 @@
 
 <article
     class="jn-books-product-card jn-books-coming-soon-card"
+    data-product-card
+    data-product-id="christian-key-chains"
     data-category="gifts"
     data-name="Christian Key Chains"
     data-price="0"
+    data-coming-soon="true"
     data-search="key chains christian gifts keychain coming soon"
 >
 
@@ -1787,9 +1845,15 @@
         </span>
 
 
-        <div class="jn-books-placeholder">
+        <div
+            class="jn-books-placeholder"
+            aria-label="Christian key chains coming soon"
+        >
 
-            <span class="jn-books-placeholder-icon">
+            <span
+                class="jn-books-placeholder-icon"
+                aria-hidden="true"
+            >
                 ◉
             </span>
 
@@ -1819,11 +1883,9 @@
 
 
         <p class="jn-books-product-description">
-
             Small Christian gifts suitable
             for personal use and ministry
             gifting.
-
         </p>
 
 
@@ -1838,6 +1900,7 @@
                 type="button"
                 class="jn-books-add-cart"
                 disabled
+                aria-disabled="true"
             >
                 Coming Soon
             </button>
@@ -1863,7 +1926,10 @@
     hidden
 >
 
-    <div class="jn-books-empty-symbol">
+    <div
+        class="jn-books-empty-symbol"
+        aria-hidden="true"
+    >
         ⌕
     </div>
 
@@ -1888,7 +1954,10 @@
      FEATURED STORY
 ========================================================= -->
 
-<section class="jn-books-story-panel">
+<section
+    class="jn-books-story-panel"
+    aria-labelledby="featured-resource-title"
+>
 
     <div class="jn-books-story-content">
 
@@ -1897,23 +1966,24 @@
         </p>
 
 
-        <h2>
+        <h2 id="featured-resource-title">
+
             More Than a
+
             <span>
                 Songbook.
             </span>
+
         </h2>
 
 
         <p class="jn-books-story-text">
-
             The Jeeva Nadi Songs Book brings
             together a carefully arranged
             collection of Christian hymns and
             worship songs designed to encourage
             singing, devotion and congregational
             worship.
-
         </p>
 
     </div>
@@ -1937,7 +2007,7 @@
 
         <div class="jn-books-story-stat">
 
-            <strong>
+            <strong aria-hidden="true">
                 ♫
             </strong>
 
@@ -1950,7 +2020,7 @@
 
         <div class="jn-books-story-stat">
 
-            <strong>
+            <strong aria-hidden="true">
                 ✦
             </strong>
 
@@ -1970,12 +2040,18 @@
      INFORMATION
 ========================================================= -->
 
-<section class="jn-books-information-grid">
+<section
+    class="jn-books-information-grid"
+    aria-label="Store information"
+>
 
 
     <article class="jn-books-information-card">
 
-        <div class="jn-books-information-icon">
+        <div
+            class="jn-books-information-icon"
+            aria-hidden="true"
+        >
             ₹
         </div>
 
@@ -1993,11 +2069,9 @@
 
 
             <p>
-
                 Orders can currently be paid
                 using the available UPI / QR
                 payment method during checkout.
-
             </p>
 
         </div>
@@ -2008,7 +2082,10 @@
 
     <article class="jn-books-information-card">
 
-        <div class="jn-books-information-icon">
+        <div
+            class="jn-books-information-icon"
+            aria-hidden="true"
+        >
             ✓
         </div>
 
@@ -2026,11 +2103,9 @@
 
 
             <p>
-
                 Contact the church office if you
                 need assistance with products,
                 ordering or ministry resources.
-
             </p>
 
         </div>
@@ -2045,7 +2120,10 @@
      CONTACT
 ========================================================= -->
 
-<section class="jn-books-contact-section">
+<section
+    class="jn-books-contact-section"
+    aria-labelledby="contact-title"
+>
 
 
     <div class="jn-books-contact-heading">
@@ -2055,9 +2133,10 @@
         </p>
 
 
-        <h2>
+        <h2 id="contact-title">
 
             We're here to
+
             <span>
                 help.
             </span>
@@ -2071,12 +2150,18 @@
     <div class="jn-books-contact-grid">
 
 
+        <!-- PHONE -->
+
         <a
             href="tel:+919347348805"
             class="jn-books-contact-card"
+            aria-label="Call Jeeva Nadi Church Office"
         >
 
-            <span class="jn-books-contact-icon">
+            <span
+                class="jn-books-contact-icon"
+                aria-hidden="true"
+            >
                 ☎
             </span>
 
@@ -2101,12 +2186,18 @@
 
 
 
+        <!-- EMAIL -->
+
         <a
             href="mailto:nadijeeva4@gmail.com"
             class="jn-books-contact-card"
+            aria-label="Email Jeeva Nadi Ministry"
         >
 
-            <span class="jn-books-contact-icon">
+            <span
+                class="jn-books-contact-icon"
+                aria-hidden="true"
+            >
                 @
             </span>
 
@@ -2122,7 +2213,7 @@
                 </strong>
 
                 <em>
-                    Prayer & ministry enquiries
+                    Prayer &amp; ministry enquiries
                 </em>
 
             </span>
@@ -2152,7 +2243,10 @@
     aria-label="Open shopping cart"
 >
 
-    <span class="jn-books-cart-icon">
+    <span
+        class="jn-books-cart-icon"
+        aria-hidden="true"
+    >
         🛒
     </span>
 
@@ -2183,8 +2277,7 @@
     class="jn-books-toast"
     role="status"
     aria-live="polite"
->
-</div>
+></div>
 
 
 
@@ -2194,8 +2287,8 @@
 
 <script
     type="module"
-    src="js/books.js">
-</script>
+    src="js/books.js"
+></script>
 
 
 </body>
