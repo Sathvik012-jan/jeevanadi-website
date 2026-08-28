@@ -1,764 +1,1823 @@
+/* ============================================================
+   JEEVA NADI MINISTRIES
+   EVENTS PAGE — COMMUNITY CRICKET LEAGUE
+   ============================================================ */
 
-/* =========================================================
-   JEEVA NADI — COMMUNITY CRICKET LEAGUE
-   Premium Navy + Gold Event Theme
-========================================================= */
 
-:root {
-    --navy-950: #050b16;
-    --navy-900: #081221;
-    --navy-850: #0b1728;
-    --navy-800: #0f1d31;
-    --navy-700: #15263d;
+/* ============================================================
+   ROOT
+   ============================================================ */
 
-    --gold: #d4af5a;
-    --gold-light: #e8cc7a;
-    --gold-dark: #a88432;
+.jn-events-page {
 
-    --white: #ffffff;
-    --text: #e9edf4;
-    --muted: #9daabd;
+    --event-navy: #06101d;
+    --event-navy-2: #091827;
+    --event-navy-3: #0d2033;
 
-    --border: rgba(212, 175, 90, 0.22);
-    --gold-glow: rgba(212, 175, 90, 0.12);
+    --event-gold: #c9a34e;
+    --event-gold-light: #e4ca7a;
 
-    --radius: 18px;
-    --container: 1180px;
+    --event-white: #ffffff;
+    --event-text: #dce3eb;
+    --event-muted: #91a0b2;
+
+    --event-line: rgba(201, 163, 78, 0.24);
+    --event-white-line: rgba(255, 255, 255, 0.09);
+
+    --event-radius: 2px;
+
+    background: var(--event-navy);
+    color: var(--event-text);
+
+    overflow-x: hidden;
 }
 
 
-/* =========================================================
-   RESET
-========================================================= */
+/* ============================================================
+   BASIC RESET
+   ============================================================ */
 
-* {
-    margin: 0;
-    padding: 0;
+.jn-events-page *,
+.jn-events-page *::before,
+.jn-events-page *::after {
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "Inter", sans-serif;
-    background: var(--navy-950);
-    color: var(--text);
-    line-height: 1.7;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-a {
+.jn-events-page a {
     color: inherit;
     text-decoration: none;
 }
 
-button,
-a {
-    -webkit-tap-highlight-color: transparent;
+.jn-events-page img {
+    max-width: 100%;
+    display: block;
 }
 
 
-/* =========================================================
+/* ============================================================
    CONTAINER
-========================================================= */
+   ============================================================ */
 
-.cricket-container {
-    width: min(1180px, calc(100% - 40px));
-    margin-inline: auto;
+.events-container {
+
+    width: min(1180px, calc(100% - 48px));
+
+    margin: 0 auto;
 }
 
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* ============================================================
+   EVENT HEADER
+   ============================================================ */
 
-.cricket-header {
+.events-header {
+
     position: relative;
-    z-index: 10;
+    z-index: 50;
 
-    background: rgba(5, 11, 22, 0.96);
-    border-bottom: 1px solid var(--border);
+    background:
+        rgba(4, 10, 18, 0.96);
+
+    border-bottom: 1px solid var(--event-line);
+
+    backdrop-filter: blur(12px);
 }
 
-.cricket-header-inner {
+.events-header-inner {
+
     min-height: 78px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 25px;
 }
 
-.cricket-logo {
-    display: flex;
+
+/* ------------------------------------------------------------
+   BRAND
+------------------------------------------------------------ */
+
+.events-brand {
+
+    display: inline-flex;
     align-items: center;
-    gap: 12px;
+
+    gap: 13px;
 }
 
-.cricket-logo-mark {
+.events-brand-mark {
+
     width: 42px;
     height: 42px;
 
     display: grid;
     place-items: center;
 
-    border: 1px solid var(--gold);
+    border: 1px solid var(--event-gold);
+
     border-radius: 50%;
 
-    color: var(--gold-light);
-    font-size: 13px;
-    font-weight: 800;
+    color: var(--event-gold-light);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
     letter-spacing: 1px;
 }
 
-.cricket-logo-text {
+.events-brand-copy {
+
     display: flex;
     flex-direction: column;
 }
 
-.cricket-logo-text strong {
-    color: var(--white);
-    font-size: 14px;
+.events-brand-copy strong {
+
+    color: var(--event-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 13px;
+
     letter-spacing: 2px;
 }
 
-.cricket-logo-text small {
-    color: var(--gold);
-    font-size: 8px;
-    letter-spacing: 1.8px;
-}
+.events-brand-copy small {
 
-.cricket-back-link {
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 500;
+    margin-top: 3px;
 
-    transition:
-        color 0.25s ease,
-        transform 0.25s ease;
-}
+    color: var(--event-gold);
 
-.cricket-back-link:hover {
-    color: var(--gold-light);
-    transform: translateX(-3px);
+    font-size: 7px;
+
+    letter-spacing: 2px;
 }
 
 
-/* =========================================================
-   HERO
-========================================================= */
+/* ------------------------------------------------------------
+   BACK BUTTON
+------------------------------------------------------------ */
 
-.cricket-hero {
-    min-height: 600px;
+.events-back {
 
-    position: relative;
-
-    display: flex;
-    align-items: center;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(5, 11, 22, 0.96) 0%,
-            rgba(5, 11, 22, 0.80) 45%,
-            rgba(5, 11, 22, 0.42) 100%
-        ),
-        url("../images/community-cricket.jpg")
-        center / cover no-repeat;
-
-    border-bottom: 1px solid var(--border);
-}
-
-.cricket-hero-overlay {
-    position: absolute;
-    inset: 0;
-
-    background:
-        radial-gradient(
-            circle at 75% 50%,
-            rgba(212, 175, 90, 0.12),
-            transparent 35%
-        );
-}
-
-.cricket-hero-content {
-    position: relative;
-    z-index: 2;
-
-    padding-block: 90px;
-}
-
-.cricket-event-badge {
     display: inline-flex;
     align-items: center;
 
-    padding: 7px 14px;
-
-    border: 1px solid var(--gold);
-    border-radius: 999px;
-
-    color: var(--gold-light);
-    background: rgba(212, 175, 90, 0.08);
-
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.cricket-hero h1 {
-    max-width: 760px;
-
-    margin-top: 24px;
-
-    font-family: "Playfair Display", serif;
-
-    color: var(--white);
-    font-size: clamp(48px, 7vw, 88px);
-    line-height: 1.02;
-    letter-spacing: -2px;
-}
-
-.cricket-hero h1 span {
-    display: block;
-    color: var(--gold-light);
-}
-
-.cricket-hero-text {
-    max-width: 650px;
-
-    margin-top: 28px;
-
-    color: #d0d7e2;
-    font-size: 17px;
-    line-height: 1.8;
-}
-
-.cricket-coming-soon {
-    width: fit-content;
-
-    display: flex;
-    align-items: center;
     gap: 10px;
 
-    margin-top: 32px;
-    padding: 10px 18px;
-
-    background: rgba(8, 18, 33, 0.88);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-
-    color: var(--gold-light);
-
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.coming-soon-dot {
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-    background: var(--gold);
-
-    box-shadow: 0 0 14px rgba(212, 175, 90, 0.65);
-}
-
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.cricket-intro {
-    padding: 110px 0;
-
-    background: var(--navy-900);
-}
-
-.cricket-intro-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 0.8fr;
-    gap: 70px;
-
-    align-items: center;
-}
-
-.cricket-section-label {
-    display: inline-block;
-
-    color: var(--gold);
+    color: var(--event-muted);
 
     font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2.5px;
-}
-
-.cricket-intro h2,
-.cricket-section-heading h2,
-.cricket-details-heading h2,
-.cricket-cta h2 {
-    margin-top: 14px;
-
-    font-family: "Playfair Display", serif;
-
-    color: var(--white);
-    font-size: clamp(34px, 4vw, 52px);
-    line-height: 1.15;
-}
-
-.cricket-intro h2 span,
-.cricket-section-heading h2 span,
-.cricket-cta h2 span {
-    color: var(--gold-light);
-}
-
-.cricket-intro-content p {
-    max-width: 690px;
-
-    margin-top: 22px;
-
-    color: var(--muted);
-    font-size: 16px;
-}
-
-.cricket-highlight-card {
-    padding: 42px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(21, 38, 61, 0.95),
-            rgba(11, 23, 40, 0.95)
-        );
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
-}
-
-.cricket-ball-icon {
-    width: 64px;
-    height: 64px;
-
-    display: grid;
-    place-items: center;
-
-    margin-bottom: 25px;
-
-    border-radius: 16px;
-
-    background: var(--gold-glow);
-    border: 1px solid var(--border);
-
-    font-size: 28px;
-}
-
-.cricket-highlight-card h3 {
-    color: var(--white);
-    font-size: 22px;
-}
-
-.cricket-highlight-card p {
-    margin-top: 12px;
-
-    color: var(--muted);
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   VALUES
-========================================================= */
-
-.cricket-values {
-    padding: 110px 0;
-
-    background: var(--navy-950);
-}
-
-.cricket-section-heading {
-    max-width: 720px;
-    margin-bottom: 55px;
-}
-
-.cricket-values-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-}
-
-.cricket-value-card {
-    padding: 30px 25px;
-
-    background: var(--navy-850);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: var(--radius);
+    font-weight: 600;
 
     transition:
-        transform 0.25s ease,
-        border-color 0.25s ease;
+        color 0.3s ease,
+        transform 0.3s ease;
 }
 
-.cricket-value-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--border);
-}
+.events-back span {
 
-.value-icon {
-    width: 48px;
-    height: 48px;
+    color: var(--event-gold);
 
-    display: grid;
-    place-items: center;
-
-    margin-bottom: 20px;
-
-    background: var(--gold-glow);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-
-    font-size: 21px;
-}
-
-.cricket-value-card h3 {
-    color: var(--white);
     font-size: 18px;
+
+    transition: transform 0.3s ease;
 }
 
-.cricket-value-card p {
-    margin-top: 10px;
+.events-back:hover {
 
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.7;
+    color: var(--event-white);
+
+    transform: translateX(-3px);
+}
+
+.events-back:hover span {
+
+    transform: translateX(-4px);
 }
 
 
-/* =========================================================
-   DETAILS
-========================================================= */
+/* ============================================================
+   HERO
+   ============================================================ */
 
-.cricket-details {
-    padding: 110px 0;
+.events-hero {
 
-    background: var(--navy-900);
-}
+    position: relative;
 
-.cricket-details-card {
-    padding: 55px;
+    min-height: 760px;
 
-    background: var(--navy-850);
-
-    border: 1px solid var(--border);
-    border-radius: 24px;
-
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
-}
-
-.cricket-details-heading {
-    max-width: 700px;
-}
-
-.cricket-details-heading p {
-    margin-top: 18px;
-
-    color: var(--muted);
-}
-
-.cricket-details-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-
-    margin-top: 45px;
-}
-
-.cricket-detail {
     display: flex;
     align-items: center;
-    gap: 14px;
 
-    padding: 20px;
+    overflow: hidden;
 
-    background: var(--navy-900);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 15px;
-}
-
-.detail-icon {
-    font-size: 22px;
-}
-
-.cricket-detail div {
-    display: flex;
-    flex-direction: column;
-}
-
-.cricket-detail small {
-    color: var(--muted);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.cricket-detail strong {
-    margin-top: 2px;
-
-    color: var(--gold-light);
-    font-size: 14px;
-}
-
-.cricket-notice {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-
-    margin-top: 30px;
-    padding: 20px;
-
-    background: var(--gold-glow);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-}
-
-.cricket-notice > span {
-    color: var(--gold);
-    font-size: 18px;
-}
-
-.cricket-notice p {
-    color: #c8cfda;
-    font-size: 13px;
+    background: var(--event-navy);
 }
 
 
-/* =========================================================
-   CTA
-========================================================= */
+/* ------------------------------------------------------------
+   HERO IMAGE
+------------------------------------------------------------ */
 
-.cricket-cta {
-    padding: 110px 0;
+.events-hero-image {
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        url("images/cricket.png");
+
+    background-size: cover;
+
+    background-position: center center;
+
+    transform: scale(1.03);
+}
+
+
+/* ------------------------------------------------------------
+   CINEMATIC OVERLAY
+------------------------------------------------------------ */
+
+.events-hero::before {
+
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(4, 10, 18, 0.98) 0%,
+            rgba(4, 10, 18, 0.91) 28%,
+            rgba(4, 10, 18, 0.55) 60%,
+            rgba(4, 10, 18, 0.72) 100%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(4, 10, 18, 0.15),
+            rgba(4, 10, 18, 0.95) 100%
+        );
+}
+
+
+/* ------------------------------------------------------------
+   GOLD ATMOSPHERE
+------------------------------------------------------------ */
+
+.events-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    right: -300px;
+    top: 40px;
+
+    border-radius: 50%;
 
     background:
         radial-gradient(
+            circle,
+            rgba(201, 163, 78, 0.18),
+            transparent 68%
+        );
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* ------------------------------------------------------------
+   HERO CONTENT
+------------------------------------------------------------ */
+
+.events-hero-inner {
+
+    position: relative;
+
+    z-index: 3;
+
+    min-height: 760px;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.events-hero-copy {
+
+    width: min(760px, 100%);
+
+    padding: 100px 0;
+}
+
+
+/* ------------------------------------------------------------
+   EYEBROW
+------------------------------------------------------------ */
+
+.events-eyebrow {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: var(--event-gold-light);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+.events-eyebrow::before {
+
+    content: "";
+
+    width: 34px;
+    height: 1px;
+
+    background: var(--event-gold);
+}
+
+
+/* ------------------------------------------------------------
+   HERO TITLE
+------------------------------------------------------------ */
+
+.events-hero h1 {
+
+    margin: 24px 0 0;
+
+    color: var(--event-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(48px, 7vw, 88px);
+
+    font-weight: 600;
+
+    line-height: 1.04;
+
+    letter-spacing: -1px;
+}
+
+.events-hero h1 em {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: var(--event-gold-light);
+
+    font-style: normal;
+
+    font-size: 0.72em;
+
+    letter-spacing: 1px;
+}
+
+
+/* ------------------------------------------------------------
+   HERO DESCRIPTION
+------------------------------------------------------------ */
+
+.events-hero-description {
+
+    max-width: 600px;
+
+    margin: 30px 0 0;
+
+    color: #c0cad6;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+}
+
+
+/* ------------------------------------------------------------
+   STATUS
+------------------------------------------------------------ */
+
+.events-status {
+
+    width: fit-content;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-top: 32px;
+
+    padding: 12px 19px;
+
+    border: 1px solid var(--event-line);
+
+    border-radius: 100px;
+
+    background:
+        rgba(6, 16, 29, 0.76);
+
+    color: var(--event-gold-light);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    backdrop-filter: blur(10px);
+}
+
+.events-status-pulse {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--event-gold);
+
+    box-shadow:
+        0 0 0 5px rgba(201, 163, 78, 0.08),
+        0 0 18px rgba(201, 163, 78, 0.6);
+}
+
+
+/* ------------------------------------------------------------
+   HERO SCROLL
+------------------------------------------------------------ */
+
+.events-hero-scroll {
+
+    position: absolute;
+
+    right: 0;
+    bottom: 38px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+.events-hero-scroll i {
+
+    width: 45px;
+    height: 1px;
+
+    display: block;
+
+    background: var(--event-gold);
+}
+
+
+/* ============================================================
+   INTRODUCTION
+   ============================================================ */
+
+.events-intro {
+
+    position: relative;
+
+    padding: 125px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--event-navy),
+            var(--event-navy-2)
+        );
+}
+
+
+/* ------------------------------------------------------------
+   INTRO GRID
+------------------------------------------------------------ */
+
+.events-intro-grid {
+
+    display: grid;
+
+    grid-template-columns: 70px 1fr 260px;
+
+    gap: 45px;
+
+    align-items: center;
+}
+
+
+/* ------------------------------------------------------------
+   SECTION NUMBER
+------------------------------------------------------------ */
+
+.events-intro-number,
+.events-heading-number {
+
+    color: var(--event-gold);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+
+/* ------------------------------------------------------------
+   KICKER
+------------------------------------------------------------ */
+
+.events-kicker {
+
+    display: inline-block;
+
+    color: var(--event-gold);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2.5px;
+}
+
+
+/* ------------------------------------------------------------
+   INTRO HEADING
+------------------------------------------------------------ */
+
+.events-intro-content h2 {
+
+    margin: 15px 0 0;
+
+    color: var(--event-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(35px, 4.5vw, 57px);
+
+    font-weight: 600;
+
+    line-height: 1.15;
+}
+
+.events-intro-content h2 span {
+
+    display: block;
+
+    color: var(--event-gold-light);
+}
+
+
+/* ------------------------------------------------------------
+   INTRO TEXT
+------------------------------------------------------------ */
+
+.events-intro-content p {
+
+    max-width: 680px;
+
+    margin: 22px 0 0;
+
+    color: var(--event-muted);
+
+    font-size: 13px;
+
+    line-height: 1.95;
+}
+
+
+/* ------------------------------------------------------------
+   FEATURE BOX
+------------------------------------------------------------ */
+
+.events-intro-feature {
+
+    min-height: 240px;
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--event-line);
+
+    background:
+
+        radial-gradient(
             circle at center,
-            rgba(212, 175, 90, 0.08),
-            transparent 50%
+            rgba(201, 163, 78, 0.10),
+            transparent 65%
         ),
-        var(--navy-950);
+
+        var(--event-navy-3);
 
     text-align: center;
 }
 
-.cricket-cta-content {
-    max-width: 720px;
-    margin-inline: auto;
+.events-intro-feature::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border: 1px solid rgba(201, 163, 78, 0.07);
+
+    pointer-events: none;
 }
 
-.cricket-cta p {
-    max-width: 600px;
 
-    margin: 20px auto 0;
+/* ------------------------------------------------------------
+   FEATURE RING
+------------------------------------------------------------ */
 
-    color: var(--muted);
+.events-feature-ring {
+
+    width: 82px;
+    height: 82px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 22px;
+
+    border: 1px solid var(--event-gold);
+
+    border-radius: 50%;
+
+    outline: 1px solid rgba(201, 163, 78, 0.18);
+
+    outline-offset: 8px;
+
+    color: var(--event-gold-light);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 17px;
 }
 
-.cricket-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.events-intro-feature strong {
 
-    margin-top: 30px;
-    padding: 13px 24px;
+    color: var(--event-white);
 
-    background: var(--gold);
-    color: var(--navy-950);
+    font-family: "Cinzel", serif;
 
-    border-radius: 10px;
+    font-size: 14px;
+}
 
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
+.events-intro-feature small {
+
+    margin-top: 7px;
+
+    color: var(--event-muted);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* ============================================================
+   VALUES
+   ============================================================ */
+
+.events-values {
+
+    padding: 125px 0;
+
+    background: var(--event-navy-2);
+}
+
+
+/* ------------------------------------------------------------
+   SECTION HEADING
+------------------------------------------------------------ */
+
+.events-section-heading {
+
+    display: grid;
+
+    grid-template-columns: 70px 1fr;
+
+    gap: 45px;
+
+    margin-bottom: 55px;
+}
+
+.events-section-heading h2 {
+
+    margin: 14px 0 0;
+
+    color: var(--event-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(34px, 4.2vw, 53px);
+
+    font-weight: 600;
+
+    line-height: 1.16;
+}
+
+.events-section-heading h2 span {
+
+    color: var(--event-gold-light);
+}
+
+
+/* ------------------------------------------------------------
+   VALUE GRID
+------------------------------------------------------------ */
+
+.events-values-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.25fr
+        1fr
+        1fr;
+
+    gap: 14px;
+}
+
+
+/* ------------------------------------------------------------
+   VALUE CARD
+------------------------------------------------------------ */
+
+.events-value {
+
+    min-height: 315px;
+
+    position: relative;
+
+    padding: 29px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--event-white-line);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.025),
+            transparent 60%
+        ),
+
+        var(--event-navy-3);
 
     transition:
-        background 0.25s ease,
-        transform 0.25s ease;
+        transform 0.35s ease,
+        border-color 0.35s ease;
 }
 
-.cricket-button:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
+.events-value:hover {
+
+    transform: translateY(-7px);
+
+    border-color: var(--event-line);
 }
 
 
-/* =========================================================
-   FOOTER
-========================================================= */
+/* Decorative number */
 
-.cricket-footer {
-    padding: 35px 0;
+.events-value::after {
 
-    background: #030812;
+    content: attr(data-number);
 
-    border-top: 1px solid var(--border);
+    position: absolute;
+
+    right: 20px;
+    bottom: -15px;
+
+    color: rgba(201, 163, 78, 0.035);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 100px;
+
+    line-height: 1;
+
+    pointer-events: none;
 }
 
-.cricket-footer-inner {
+
+/* ------------------------------------------------------------
+   CARD TOP
+------------------------------------------------------------ */
+
+.events-value-top {
+
     display: flex;
-    align-items: center;
+
     justify-content: space-between;
-    gap: 25px;
+    align-items: center;
+
+    color: var(--event-muted);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
 }
 
-.cricket-footer-inner div {
-    display: flex;
-    flex-direction: column;
-}
+.events-value-icon {
 
-.cricket-footer-inner strong {
-    color: var(--white);
-    font-size: 12px;
-    letter-spacing: 1.5px;
-}
+    color: var(--event-gold);
 
-.cricket-footer-inner span {
-    color: var(--gold);
-    font-size: 10px;
-    letter-spacing: 1.5px;
-}
+    font-family: "Cinzel", serif;
 
-.cricket-footer-inner p {
-    color: #69778c;
     font-size: 11px;
 }
 
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+/* ------------------------------------------------------------
+   SYMBOL
+------------------------------------------------------------ */
 
-@media (max-width: 900px) {
+.events-value-symbol {
 
-    .cricket-intro-grid {
-        grid-template-columns: 1fr;
-        gap: 45px;
+    margin-top: 54px;
+
+    color: rgba(201, 163, 78, 0.34);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 45px;
+}
+
+
+/* ------------------------------------------------------------
+   CARD TITLE
+------------------------------------------------------------ */
+
+.events-value h3 {
+
+    margin: 15px 0 0;
+
+    color: var(--event-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 26px;
+
+    font-weight: 600;
+}
+
+
+/* ------------------------------------------------------------
+   CARD TEXT
+------------------------------------------------------------ */
+
+.events-value p {
+
+    max-width: 430px;
+
+    margin: 12px 0 0;
+
+    color: var(--event-muted);
+
+    font-size: 12px;
+
+    line-height: 1.85;
+}
+
+
+/* ------------------------------------------------------------
+   ACCENT CARD
+------------------------------------------------------------ */
+
+.events-value-accent {
+
+    grid-column: span 3;
+
+    min-height: 230px;
+
+    background:
+
+        linear-gradient(
+            100deg,
+            rgba(201, 163, 78, 0.13),
+            transparent 55%
+        ),
+
+        var(--event-navy-3);
+
+    border-color: var(--event-line);
+}
+
+.events-value-accent .events-value-symbol {
+
+    color: rgba(201, 163, 78, 0.45);
+}
+
+
+/* ============================================================
+   EVENT INFORMATION
+   ============================================================ */
+
+.events-information {
+
+    padding: 125px 0;
+
+    background: var(--event-navy);
+}
+
+
+/* ------------------------------------------------------------
+   INFORMATION PANEL
+------------------------------------------------------------ */
+
+.events-information-card {
+
+    position: relative;
+
+    padding: 62px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--event-line);
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(201, 163, 78, 0.13),
+            transparent 35%
+        ),
+
+        var(--event-navy-3);
+}
+
+
+/* Large decorative circle */
+
+.events-information-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 430px;
+    height: 430px;
+
+    right: -230px;
+    top: -230px;
+
+    border: 1px solid rgba(201, 163, 78, 0.10);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* ------------------------------------------------------------
+   INFORMATION TOP
+------------------------------------------------------------ */
+
+.events-info-top {
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 30px;
+}
+
+.events-info-top h2 {
+
+    max-width: 720px;
+
+    margin: 15px 0 0;
+
+    color: var(--event-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(32px, 4.2vw, 52px);
+
+    font-weight: 600;
+
+    line-height: 1.16;
+}
+
+.events-info-top h2 span {
+
+    color: var(--event-gold-light);
+}
+
+
+/* ------------------------------------------------------------
+   PREPARING LABEL
+------------------------------------------------------------ */
+
+.events-coming-mark {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding-top: 7px;
+
+    color: var(--event-gold);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.events-coming-mark span {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--event-gold);
+}
+
+
+/* ------------------------------------------------------------
+   DESCRIPTION
+------------------------------------------------------------ */
+
+.events-info-description {
+
+    position: relative;
+    z-index: 2;
+
+    max-width: 720px;
+
+    margin-top: 22px;
+
+    color: var(--event-muted);
+
+    font-size: 13px;
+
+    line-height: 1.9;
+}
+
+
+/* ------------------------------------------------------------
+   INFORMATION GRID
+------------------------------------------------------------ */
+
+.events-info-grid {
+
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 1px;
+
+    margin-top: 50px;
+
+    border: 1px solid var(--event-line);
+
+    background: var(--event-line);
+}
+
+
+/* ------------------------------------------------------------
+   INFORMATION ITEM
+------------------------------------------------------------ */
+
+.events-info-item {
+
+    min-height: 155px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 24px;
+
+    background: var(--event-navy);
+}
+
+.events-info-icon {
+
+    color: rgba(201, 163, 78, 0.55);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 10px;
+}
+
+.events-info-item small {
+
+    margin-top: auto;
+
+    color: var(--event-muted);
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.events-info-item strong {
+
+    margin-top: 6px;
+
+    color: var(--event-gold-light);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   ANNOUNCEMENT STRIP
+   ============================================================ */
+
+.events-announcement {
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    margin-top: 25px;
+
+    padding: 22px;
+
+    border-left: 2px solid var(--event-gold);
+
+    background:
+        rgba(201, 163, 78, 0.055);
+}
+
+.events-announcement-mark {
+
+    color: var(--event-gold);
+
+    font-size: 18px;
+}
+
+.events-announcement strong {
+
+    color: var(--event-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 12px;
+}
+
+.events-announcement p {
+
+    margin: 5px 0 0;
+
+    color: var(--event-muted);
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* ============================================================
+   FINAL HERO
+   ============================================================ */
+
+.events-final {
+
+    position: relative;
+
+    min-height: 570px;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    text-align: center;
+}
+
+
+/* ------------------------------------------------------------
+   FINAL IMAGE
+------------------------------------------------------------ */
+
+.events-final-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        url("images/cricket.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    opacity: 0.46;
+
+    transform: scale(1.03);
+}
+
+
+/* ------------------------------------------------------------
+   FINAL OVERLAY
+------------------------------------------------------------ */
+
+.events-final-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(4, 10, 18, 0.97),
+            rgba(4, 10, 18, 0.65),
+            rgba(4, 10, 18, 0.96)
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(4, 10, 18, 0.4),
+            rgba(4, 10, 18, 0.95)
+        );
+}
+
+
+/* ------------------------------------------------------------
+   FINAL CONTENT
+------------------------------------------------------------ */
+
+.events-final-content {
+
+    position: relative;
+
+    z-index: 3;
+}
+
+.events-final h2 {
+
+    max-width: 900px;
+
+    margin: 18px auto 0;
+
+    color: var(--event-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: clamp(39px, 6vw, 73px);
+
+    font-weight: 600;
+
+    line-height: 1.12;
+}
+
+.events-final h2 span {
+
+    display: block;
+
+    color: var(--event-gold-light);
+}
+
+.events-final p {
+
+    max-width: 570px;
+
+    margin: 23px auto 0;
+
+    color: #c3ccd7;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+}
+
+
+/* ------------------------------------------------------------
+   RETURN BUTTON
+------------------------------------------------------------ */
+
+.events-return-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    margin-top: 32px;
+
+    padding: 14px 24px;
+
+    background: var(--event-gold);
+
+    color: var(--event-navy) !important;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.events-return-button:hover {
+
+    transform: translateY(-4px);
+
+    background: var(--event-gold-light);
+}
+
+.events-return-button span {
+
+    font-size: 16px;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.events-footer {
+
+    padding: 34px 0;
+
+    background: #030810;
+
+    border-top: 1px solid var(--event-line);
+}
+
+.events-footer-inner {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.events-footer-brand {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.events-footer-brand strong {
+
+    color: var(--event-white);
+
+    font-family: "Cinzel", serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1.7px;
+}
+
+.events-footer-brand span {
+
+    margin-top: 3px;
+
+    color: var(--event-gold);
+
+    font-size: 6px;
+
+    letter-spacing: 1.5px;
+}
+
+.events-footer p {
+
+    margin: 0;
+
+    color: #647184;
+
+    font-size: 9px;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 950px) {
+
+    .events-intro-grid {
+
+        grid-template-columns: 50px 1fr;
+
+        gap: 30px;
     }
 
-    .cricket-values-grid {
+    .events-intro-feature {
+
+        grid-column: 2;
+
+        max-width: 330px;
+    }
+
+
+    .events-values-grid {
+
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .cricket-details-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .events-value-large {
+
+        grid-column: span 2;
     }
 
-    .cricket-hero {
-        min-height: 540px;
+    .events-value-accent {
+
+        grid-column: span 2;
+    }
+
+
+    .events-info-grid {
+
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 
-@media (max-width: 600px) {
+/* ============================================================
+   MOBILE
+   ============================================================ */
 
-    .cricket-container {
-        width: min(100% - 28px, 1180px);
+@media (max-width: 650px) {
+
+    .events-container {
+
+        width: calc(100% - 30px);
     }
 
-    .cricket-header-inner {
+
+    /* Header */
+
+    .events-header-inner {
+
         min-height: 68px;
     }
 
-    .cricket-logo-mark {
+    .events-brand-mark {
+
         width: 36px;
         height: 36px;
+
+        font-size: 10px;
     }
 
-    .cricket-logo-text strong {
-        font-size: 12px;
+    .events-brand-copy strong {
+
+        font-size: 10px;
     }
 
-    .cricket-logo-text small {
-        font-size: 7px;
+    .events-brand-copy small {
+
+        font-size: 5px;
     }
 
-    .cricket-back-link {
-        font-size: 12px;
+    .events-back {
+
+        font-size: 9px;
     }
 
-    .cricket-hero {
-        min-height: 570px;
+
+    /* Hero */
+
+    .events-hero {
+
+        min-height: 670px;
+    }
+
+    .events-hero-inner {
+
+        min-height: 670px;
+    }
+
+    .events-hero-image {
+
+        background-position: 62% center;
+    }
+
+    .events-hero::before {
 
         background:
+
             linear-gradient(
                 180deg,
-                rgba(5, 11, 22, 0.78),
-                rgba(5, 11, 22, 0.97)
-            ),
-            url("../images/community-cricket.jpg")
-            center / cover no-repeat;
+                rgba(4, 10, 18, 0.52),
+                rgba(4, 10, 18, 0.94) 72%,
+                rgba(4, 10, 18, 1)
+            );
     }
 
-    .cricket-hero-content {
-        padding-block: 70px;
-    }
+    .events-hero-copy {
 
-    .cricket-hero h1 {
-        font-size: 48px;
-        letter-spacing: -1px;
-    }
-
-    .cricket-hero-text {
-        font-size: 15px;
-    }
-
-    .cricket-intro,
-    .cricket-values,
-    .cricket-details,
-    .cricket-cta {
         padding: 75px 0;
     }
 
-    .cricket-values-grid {
+    .events-eyebrow {
+
+        font-size: 7px;
+
+        letter-spacing: 2px;
+    }
+
+    .events-eyebrow::before {
+
+        width: 24px;
+    }
+
+    .events-hero h1 {
+
+        margin-top: 20px;
+
+        font-size: 45px;
+
+        letter-spacing: -0.5px;
+    }
+
+    .events-hero h1 em {
+
+        margin-top: 7px;
+
+        font-size: 0.73em;
+    }
+
+    .events-hero-description {
+
+        margin-top: 22px;
+
+        font-size: 12px;
+
+        line-height: 1.8;
+    }
+
+    .events-status {
+
+        margin-top: 26px;
+
+        padding: 10px 16px;
+
+        font-size: 8px;
+    }
+
+    .events-hero-scroll {
+
+        display: none;
+    }
+
+
+    /* Intro */
+
+    .events-intro {
+
+        padding: 82px 0;
+    }
+
+    .events-intro-grid {
+
         grid-template-columns: 1fr;
+
+        gap: 20px;
     }
 
-    .cricket-details-card {
-        padding: 30px 22px;
+    .events-intro-feature {
+
+        grid-column: auto;
+
+        max-width: none;
+
+        margin-top: 15px;
     }
 
-    .cricket-details-grid {
+    .events-intro-content h2 {
+
+        font-size: 35px;
+    }
+
+
+    /* Values */
+
+    .events-values {
+
+        padding: 82px 0;
+    }
+
+    .events-section-heading {
+
         grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        margin-bottom: 38px;
     }
 
-    .cricket-footer-inner {
+    .events-section-heading h2 {
+
+        font-size: 35px;
+    }
+
+    .events-values-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .events-value-large,
+    .events-value-accent {
+
+        grid-column: auto;
+    }
+
+    .events-value {
+
+        min-height: 275px;
+
+        padding: 25px;
+    }
+
+    .events-value-accent {
+
+        min-height: 275px;
+    }
+
+
+    /* Information */
+
+    .events-information {
+
+        padding: 82px 0;
+    }
+
+    .events-information-card {
+
+        padding: 31px 22px;
+    }
+
+    .events-info-top {
+
         flex-direction: column;
+
+        gap: 18px;
+    }
+
+    .events-info-top h2 {
+
+        font-size: 33px;
+    }
+
+    .events-info-grid {
+
+        grid-template-columns: 1fr;
+
+        margin-top: 35px;
+    }
+
+    .events-info-item {
+
+        min-height: 125px;
+    }
+
+
+    /* Announcement */
+
+    .events-announcement {
+
+        padding: 18px;
+    }
+
+
+    /* Final */
+
+    .events-final {
+
+        min-height: 520px;
+    }
+
+    .events-final h2 {
+
+        font-size: 39px;
+    }
+
+    .events-final p {
+
+        font-size: 12px;
+    }
+
+
+    /* Footer */
+
+    .events-footer-inner {
+
+        flex-direction: column;
+
         align-items: flex-start;
     }
 }
 
 
-/* =========================================================
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    .events-hero h1 {
+
+        font-size: 39px;
+    }
+
+    .events-intro-content h2,
+    .events-section-heading h2 {
+
+        font-size: 31px;
+    }
+
+    .events-final h2 {
+
+        font-size: 34px;
+    }
+}
+
+
+/* ============================================================
    ACCESSIBILITY
-========================================================= */
+   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
 
-    html {
-        scroll-behavior: auto;
-    }
+    .jn-events-page *,
+    .jn-events-page *::before,
+    .jn-events-page *::after {
 
-    *,
-    *::before,
-    *::after {
+        scroll-behavior: auto !important;
+
         transition: none !important;
     }
 }
-```
