@@ -1,75 +1,86 @@
 /* ============================================================
    JEEVA NADI BOOKS
-   CART-STYLE DARK NAVY THEME
+   PREMIUM DARK BOOKSTORE — VISUAL REDESIGN
    ------------------------------------------------------------
-   IMPORTANT:
-   • HTML unchanged
-   • books.js unchanged
-   • Product layout unchanged
-   • Product functionality unchanged
-   • Only visual language changed
+   HTML      : UNCHANGED
+   books.js  : UNCHANGED
+   FUNCTION  : UNCHANGED
+   LAYOUT    : UNCHANGED
+
+   DESIGN DIRECTION
+   ------------------------------------------------------------
+   • Deep midnight/navy atmosphere
+   • Antique gold editorial accents
+   • Premium Christian bookstore aesthetic
+   • Stronger depth and lighting
+   • Less generic card styling
+   • More cinematic hero
+   • Book-focused visual hierarchy
+   • Responsive without changing structure
 ============================================================ */
 
 
 /* ============================================================
-   DESIGN TOKENS
+   01 — DESIGN TOKENS
 ============================================================ */
 
 :root {
 
-    --jn-navy-950: #020b1d;
-    --jn-navy-900: #061735;
-    --jn-navy-850: #081d42;
-    --jn-navy-800: #0a2450;
-    --jn-navy-700: #12366d;
+    --jn-navy-950: #010711;
+    --jn-navy-925: #020a18;
+    --jn-navy-900: #041126;
+    --jn-navy-875: #061735;
+    --jn-navy-850: #081d40;
+    --jn-navy-800: #0b254d;
+    --jn-navy-750: #10305f;
+    --jn-navy-700: #163b72;
 
-    --jn-gold: #d4af37;
-    --jn-gold-light: #e7c85b;
-    --jn-gold-soft: rgba(212,175,55,0.12);
+    --jn-gold-deep: #9b7620;
+    --jn-gold: #c9a227;
+    --jn-gold-light: #f0d36a;
+    --jn-gold-pale: #f7e8a6;
 
     --jn-white: #ffffff;
-    --jn-off-white: #f5f7fb;
+    --jn-off-white: #f5f6f8;
 
-    /* DARK SURFACES */
-    --jn-surface: #071936;
-    --jn-surface-soft: #0a2044;
-    --jn-surface-raised: #0c254d;
+    --jn-text: #f6f7fa;
+    --jn-text-soft: #b8c2d2;
+    --jn-text-muted: #77859a;
+    --jn-text-dim: #536177;
 
-    /* LIGHT TEXT */
-    --jn-text: #f5f7fb;
-    --jn-text-soft: #aebbd0;
-    --jn-text-muted: #73839c;
+    --jn-surface: rgba(8, 29, 64, 0.78);
+    --jn-surface-solid: #071a37;
+    --jn-surface-raised: #0b244b;
 
-    /* DARK BORDERS */
-    --jn-border: rgba(255,255,255,0.09);
-    --jn-border-dark: rgba(255,255,255,0.12);
+    --jn-border: rgba(255,255,255,0.075);
+    --jn-border-bright: rgba(255,255,255,0.13);
+    --jn-border-gold: rgba(201,162,39,0.28);
 
-    --jn-success: #45c98b;
+    --jn-success: #4fd394;
 
     --jn-radius-sm: 10px;
-    --jn-radius-md: 16px;
-    --jn-radius-lg: 24px;
-    --jn-radius-xl: 32px;
+    --jn-radius-md: 15px;
+    --jn-radius-lg: 22px;
+    --jn-radius-xl: 30px;
 
     --jn-shadow-sm:
-        0 8px 25px rgba(0,0,0,0.18);
+        0 8px 25px rgba(0,0,0,0.20);
 
     --jn-shadow-md:
-        0 18px 45px rgba(0,0,0,0.28);
+        0 18px 45px rgba(0,0,0,0.30);
 
     --jn-shadow-lg:
-        0 28px 80px rgba(0,0,0,0.38);
+        0 30px 90px rgba(0,0,0,0.42);
 
     --jn-transition:
-        180ms ease;
+        220ms cubic-bezier(.2,.8,.2,1);
 
-    --jn-container:
-        1240px;
+    --jn-container: 1240px;
 }
 
 
 /* ============================================================
-   RESET
+   02 — RESET
 ============================================================ */
 
 *,
@@ -85,21 +96,7 @@ html {
 body {
 
     margin: 0;
-
     min-height: 100vh;
-
-    background:
-        radial-gradient(
-            circle at 85% 5%,
-            rgba(212,175,55,0.055),
-            transparent 25%
-        ),
-        linear-gradient(
-            180deg,
-            #020b1d 0%,
-            #04132d 45%,
-            #020b1d 100%
-        );
 
     color: var(--jn-text);
 
@@ -111,6 +108,27 @@ body {
 
     line-height: 1.6;
 
+    background:
+
+        radial-gradient(
+            ellipse 700px 500px at 85% -10%,
+            rgba(201,162,39,0.085),
+            transparent 65%
+        ),
+
+        radial-gradient(
+            ellipse 800px 500px at -10% 35%,
+            rgba(26,76,145,0.13),
+            transparent 65%
+        ),
+
+        linear-gradient(
+            180deg,
+            #010711 0%,
+            #041126 42%,
+            #020b1d 100%
+        );
+
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -121,14 +139,14 @@ select {
     font: inherit;
 }
 
+button {
+    cursor: pointer;
+}
+
 button,
 a,
 select {
     -webkit-tap-highlight-color: transparent;
-}
-
-button {
-    cursor: pointer;
 }
 
 img {
@@ -143,90 +161,119 @@ a {
 
 
 /* ============================================================
-   AMBIENT BACKGROUND
+   03 — GLOBAL AMBIENT LIGHT
 ============================================================ */
 
 .jn-books-page-glow {
 
     position: fixed;
 
-    width: 650px;
-    height: 650px;
+    width: 720px;
+    height: 720px;
 
-    top: -330px;
-    right: -260px;
+    top: -360px;
+    right: -300px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(212,175,55,0.10),
-            rgba(212,175,55,0) 68%
+            rgba(240,211,106,0.12) 0%,
+            rgba(201,162,39,0.055) 30%,
+            transparent 70%
         );
 
     pointer-events: none;
 
     z-index: 0;
+
+    filter: blur(2px);
 }
 
 
 /* ============================================================
-   COMMON SHELL
+   04 — COMMON SHELL
 ============================================================ */
 
 .jn-books-shell {
 
-    width: min(
-        calc(100% - 40px),
-        var(--jn-container)
-    );
+    width:
+        min(
+            calc(100% - 40px),
+            var(--jn-container)
+        );
 
     margin-inline: auto;
 }
 
 
 /* ============================================================
-   HEADER
+   05 — HEADER
 ============================================================ */
 
 .jn-books-header {
 
     position: sticky;
-
     top: 0;
-
     z-index: 1000;
 
     background:
-        rgba(2,11,29,0.94);
+        linear-gradient(
+            180deg,
+            rgba(1,7,17,0.96),
+            rgba(2,10,24,0.90)
+        );
 
     border-bottom:
-        1px solid rgba(212,175,55,0.12);
+        1px solid rgba(240,211,106,0.12);
 
-    backdrop-filter:
-        blur(20px);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
 
-    -webkit-backdrop-filter:
-        blur(20px);
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.20);
 }
 
+.jn-books-header::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -1px;
+
+    width: 120px;
+    height: 1px;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--jn-gold-light),
+            transparent
+        );
+
+    opacity: 0.65;
+}
 
 .jn-books-header-inner {
 
-    width: min(
-        calc(100% - 40px),
-        var(--jn-container)
-    );
+    width:
+        min(
+            calc(100% - 40px),
+            var(--jn-container)
+        );
 
     min-height: 78px;
 
     margin-inline: auto;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 30px;
@@ -234,20 +281,23 @@ a {
 
 
 /* ============================================================
-   BRAND
+   06 — BRAND
 ============================================================ */
 
 .jn-books-brand {
+
     display: inline-flex;
     align-items: center;
-    gap: 13px;
-    color: #ffffff;
+
+    gap: 14px;
+
+    color: #fff;
 }
 
 .jn-books-brand-mark {
 
-    width: 44px;
-    height: 44px;
+    width: 45px;
+    height: 45px;
 
     display: grid;
     place-items: center;
@@ -256,64 +306,81 @@ a {
 
     color: var(--jn-gold-light);
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel",
+        Georgia,
+        serif;
 
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 800;
+
     letter-spacing: 1px;
 
     background:
+
         linear-gradient(
             145deg,
-            #102b58,
-            #07162f
+            #173c73,
+            #06152e
         );
 
     border:
-        1px solid rgba(231,200,91,0.38);
+        1px solid rgba(240,211,106,0.38);
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 8px 25px rgba(0,0,0,0.25);
+
+        inset 0 1px 0 rgba(255,255,255,0.10),
+
+        0 0 0 5px rgba(201,162,39,0.025),
+
+        0 10px 30px rgba(0,0,0,0.35);
 }
 
 .jn-books-brand-copy {
+
     display: flex;
     flex-direction: column;
-    line-height: 1.1;
+
+    line-height: 1.05;
 }
 
 .jn-books-brand-copy strong {
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel",
+        Georgia,
+        serif;
 
     font-size: 18px;
     font-weight: 700;
-    letter-spacing: 0.5px;
+
+    letter-spacing: 0.6px;
 }
 
 .jn-books-brand-copy small {
 
-    margin-top: 5px;
+    margin-top: 6px;
 
     color:
-        rgba(255,255,255,0.50);
+        rgba(255,255,255,0.45);
 
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
 }
 
 
 /* ============================================================
-   HEADER NAV
+   07 — NAVIGATION
 ============================================================ */
 
 .jn-books-header-actions {
 
     display: flex;
     align-items: center;
-    gap: 8px;
+
+    gap: 5px;
 }
 
 .jn-books-header-link {
@@ -324,15 +391,17 @@ a {
 
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+
     gap: 8px;
 
     border-radius: 10px;
 
     color:
-        rgba(255,255,255,0.72);
+        rgba(255,255,255,0.65);
 
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 650;
 
     transition:
         background var(--jn-transition),
@@ -342,10 +411,10 @@ a {
 
 .jn-books-header-link:hover {
 
-    color: #ffffff;
+    color: #fff;
 
     background:
-        rgba(255,255,255,0.07);
+        rgba(255,255,255,0.055);
 
     transform:
         translateY(-1px);
@@ -353,35 +422,34 @@ a {
 
 
 /* ============================================================
-   ANNOUNCEMENT
+   08 — ANNOUNCEMENT BAR
 ============================================================ */
 
 .jn-books-announcement {
 
+    position: relative;
+
     background:
+
         linear-gradient(
             90deg,
-            #071936,
-            #0a2247,
-            #071936
+            #041126,
+            #0a2146 50%,
+            #041126
         );
 
     border-bottom:
-        1px solid rgba(212,175,55,0.16);
+        1px solid rgba(201,162,39,0.12);
 
     color:
-        #d7deea;
+        #c8d0dd;
 
-    font-size: 13px;
-}
-
-.jn-books-announcement strong {
-    color: var(--jn-gold-light);
+    font-size: 12px;
 }
 
 .jn-books-announcement-inner {
 
-    min-height: 42px;
+    min-height: 40px;
 
     display: flex;
     align-items: center;
@@ -392,40 +460,75 @@ a {
     text-align: center;
 }
 
+.jn-books-announcement strong {
+
+    color:
+        var(--jn-gold-light);
+
+    font-weight: 800;
+}
+
 .jn-books-announcement-symbol {
-    color: var(--jn-gold);
-    font-size: 15px;
+
+    color:
+        var(--jn-gold);
+
+    font-size: 14px;
 }
 
 
 /* ============================================================
-   HERO
+   09 — HERO
 ============================================================ */
 
 .jn-books-hero {
 
     position: relative;
+
     overflow: hidden;
 
-    color: #ffffff;
+    color: #fff;
 
     background:
+
         radial-gradient(
-            circle at 85% 20%,
-            rgba(212,175,55,0.13),
-            transparent 28%
+            ellipse 600px 450px at 90% 20%,
+            rgba(201,162,39,0.13),
+            transparent 70%
         ),
+
         radial-gradient(
-            circle at 10% 90%,
-            rgba(31,91,177,0.20),
-            transparent 30%
+            ellipse 650px 500px at 0% 100%,
+            rgba(25,77,145,0.22),
+            transparent 70%
         ),
+
         linear-gradient(
             135deg,
-            #020b1d 0%,
-            #071a3b 55%,
-            #092554 100%
+            #010711 0%,
+            #061735 48%,
+            #0a2855 100%
         );
+}
+
+.jn-books-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            115deg,
+            transparent 0%,
+            rgba(255,255,255,0.018) 45%,
+            transparent 75%
+        );
+
+    pointer-events: none;
 }
 
 .jn-books-hero::after {
@@ -434,7 +537,9 @@ a {
 
     position: absolute;
 
-    inset: auto 0 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
     height: 1px;
 
@@ -442,26 +547,26 @@ a {
         linear-gradient(
             90deg,
             transparent,
-            rgba(212,175,55,0.7),
+            rgba(240,211,106,0.65),
             transparent
         );
 }
 
 .jn-books-hero-inner {
 
-    min-height: 520px;
+    min-height: 560px;
 
-    padding: 85px 0;
+    padding: 90px 0;
 
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.15fr)
-        minmax(380px, 0.85fr);
+        minmax(0,1.15fr)
+        minmax(360px,0.85fr);
 
     align-items: center;
 
-    gap: 80px;
+    gap: 85px;
 
     position: relative;
 
@@ -470,7 +575,7 @@ a {
 
 
 /* ============================================================
-   HERO ORBITS
+   10 — HERO ORBITS
 ============================================================ */
 
 .jn-books-hero-orbit {
@@ -478,7 +583,7 @@ a {
     position: absolute;
 
     border:
-        1px solid rgba(231,200,91,0.09);
+        1px solid rgba(240,211,106,0.075);
 
     border-radius: 50%;
 
@@ -487,46 +592,46 @@ a {
 
 .orbit-one {
 
-    width: 500px;
-    height: 500px;
+    width: 560px;
+    height: 560px;
 
-    right: -250px;
-    top: -180px;
+    right: -300px;
+    top: -190px;
 }
 
 .orbit-two {
 
-    width: 340px;
-    height: 340px;
+    width: 370px;
+    height: 370px;
 
-    right: -100px;
-    bottom: -230px;
+    right: -120px;
+    bottom: -245px;
 }
 
 
 /* ============================================================
-   HERO CONTENT
+   11 — HERO TYPOGRAPHY
 ============================================================ */
 
 .jn-books-kicker,
 .jn-books-section-label {
 
-    margin: 0 0 10px;
+    margin: 0 0 12px;
 
     color:
         var(--jn-gold-light);
 
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 10px;
+    font-weight: 850;
 
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
 
     text-transform: uppercase;
 }
 
 .jn-books-hero-title {
 
-    max-width: 720px;
+    max-width: 760px;
 
     margin: 0;
 
@@ -536,103 +641,149 @@ a {
         serif;
 
     font-size:
-        clamp(42px, 5vw, 68px);
+        clamp(44px, 5.5vw, 72px);
 
-    line-height: 1.08;
+    line-height: 1.04;
 
     font-weight: 600;
 
-    letter-spacing: -1px;
+    letter-spacing: -1.4px;
 }
 
 .jn-books-hero-title span {
+
     display: block;
-    color: var(--jn-gold-light);
+
+    color:
+        var(--jn-gold-light);
+
+    text-shadow:
+        0 5px 30px rgba(201,162,39,0.12);
 }
 
 .jn-books-hero-description {
 
     max-width: 650px;
 
-    margin: 24px 0 0;
+    margin: 25px 0 0;
 
     color:
-        rgba(255,255,255,0.66);
+        rgba(255,255,255,0.64);
 
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 15px;
+
+    line-height: 1.9;
 }
 
 
 /* ============================================================
-   HERO POINTS
+   12 — HERO POINTS
 ============================================================ */
 
 .jn-books-hero-points {
 
-    margin-top: 30px;
+    margin-top: 31px;
 
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+
+    gap: 9px;
 }
 
 .jn-books-hero-point {
 
-    min-height: 38px;
+    min-height: 37px;
 
     padding: 0 13px;
 
     display: inline-flex;
     align-items: center;
+
     gap: 8px;
 
     border:
-        1px solid rgba(255,255,255,0.10);
+        1px solid rgba(255,255,255,0.09);
 
     border-radius: 999px;
 
     background:
-        rgba(255,255,255,0.045);
+        rgba(255,255,255,0.035);
 
     color:
-        rgba(255,255,255,0.74);
+        rgba(255,255,255,0.70);
 
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 650;
+
+    backdrop-filter:
+        blur(10px);
 }
 
 .jn-books-point-icon {
-    color: var(--jn-gold-light);
-    font-size: 10px;
+
+    color:
+        var(--jn-gold-light);
+
+    font-size: 9px;
 }
 
 
 /* ============================================================
-   SEARCH CARD
+   13 — HERO SEARCH CARD
 ============================================================ */
 
 .jn-books-hero-search-card {
 
-    padding: 30px;
+    position: relative;
+
+    padding: 31px;
 
     border:
-        1px solid rgba(212,175,55,0.18);
+        1px solid rgba(240,211,106,0.19);
 
     border-radius:
         var(--jn-radius-lg);
 
     background:
-        rgba(7,25,54,0.72);
+
+        linear-gradient(
+            145deg,
+            rgba(11,37,77,0.88),
+            rgba(3,15,34,0.92)
+        );
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,0.30);
+
+        0 35px 90px rgba(0,0,0,0.40),
+
+        inset 0 1px 0 rgba(255,255,255,0.06);
 
     backdrop-filter:
-        blur(18px);
+        blur(20px);
 
     -webkit-backdrop-filter:
-        blur(18px);
+        blur(20px);
+}
+
+.jn-books-hero-search-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 30px;
+    right: 30px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(240,211,106,0.45),
+            transparent
+        );
 }
 
 .jn-books-search-heading {
@@ -647,77 +798,89 @@ a {
 
 .jn-books-search-icon {
 
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
 
     display: grid;
     place-items: center;
 
-    border-radius: 12px;
+    border-radius: 13px;
 
     color:
         var(--jn-gold-light);
 
     background:
-        rgba(212,175,55,0.10);
+        linear-gradient(
+            145deg,
+            rgba(240,211,106,0.14),
+            rgba(201,162,39,0.035)
+        );
 
     border:
-        1px solid rgba(231,200,91,0.18);
+        1px solid rgba(240,211,106,0.18);
 
-    font-size: 22px;
+    font-size: 21px;
 }
 
 .jn-books-search-heading div {
+
     display: flex;
     flex-direction: column;
 }
 
 .jn-books-search-heading strong {
-    font-size: 16px;
-    color: #ffffff;
+
+    color: #fff;
+
+    font-size: 15px;
 }
 
 .jn-books-search-heading small {
 
-    margin-top: 2px;
+    margin-top: 3px;
 
     color:
-        rgba(255,255,255,0.46);
+        rgba(255,255,255,0.43);
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
 
 /* ============================================================
-   SEARCH INPUT
+   14 — SEARCH INPUT
 ============================================================ */
 
 .jn-books-search {
+
     position: relative;
+
     display: flex;
 }
 
 .jn-books-search input {
 
     width: 100%;
-    height: 56px;
+    height: 57px;
 
     padding:
-        0 60px 0 18px;
+        0 61px 0 18px;
 
     border:
-        1px solid rgba(255,255,255,0.11);
+        1px solid rgba(255,255,255,0.10);
 
-    border-radius: 14px;
+    border-radius: 13px;
 
     outline: none;
 
     background:
-        rgba(2,11,29,0.65);
+        rgba(1,7,17,0.68);
 
-    color: #ffffff;
+    color: #fff;
 
-    font-size: 14px;
+    font-size: 13px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.025);
 
     transition:
         border-color var(--jn-transition),
@@ -726,21 +889,22 @@ a {
 }
 
 .jn-books-search input::placeholder {
+
     color:
-        rgba(255,255,255,0.35);
+        rgba(255,255,255,0.32);
 }
 
 .jn-books-search input:focus {
 
     border-color:
-        rgba(231,200,91,0.65);
+        rgba(240,211,106,0.65);
 
     background:
-        rgba(2,11,29,0.82);
+        rgba(1,7,17,0.88);
 
     box-shadow:
-        0 0 0 4px
-        rgba(212,175,55,0.09);
+        0 0 0 4px rgba(201,162,39,0.075),
+        inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
 .jn-books-search-button {
@@ -750,24 +914,28 @@ a {
     top: 6px;
     right: 6px;
 
-    width: 44px;
-    height: 44px;
+    width: 45px;
+    height: 45px;
 
     border: 0;
 
     border-radius: 11px;
 
     color:
-        #171204;
+        #191303;
 
     background:
         linear-gradient(
             135deg,
-            var(--jn-gold-light),
+            var(--jn-gold-pale),
+            var(--jn-gold-light) 45%,
             var(--jn-gold)
         );
 
-    font-size: 20px;
+    font-size: 19px;
+
+    box-shadow:
+        0 8px 25px rgba(201,162,39,0.16);
 
     transition:
         transform var(--jn-transition),
@@ -777,25 +945,25 @@ a {
 .jn-books-search-button:hover {
 
     transform:
-        translateY(-1px);
+        translateY(-2px);
 
     box-shadow:
-        0 8px 20px rgba(212,175,55,0.25);
+        0 12px 30px rgba(201,162,39,0.27);
 }
 
 .jn-books-search-hint {
 
-    margin: 13px 2px 0;
+    margin: 12px 2px 0;
 
     color:
-        rgba(255,255,255,0.38);
+        rgba(255,255,255,0.34);
 
-    font-size: 11px;
+    font-size: 10px;
 }
 
 
 /* ============================================================
-   STORE — DARK CART BACKGROUND
+   15 — STORE
 ============================================================ */
 
 .jn-books-store {
@@ -803,30 +971,33 @@ a {
     position: relative;
 
     padding:
-        80px 0 100px;
+        88px 0 110px;
 
     background:
+
         radial-gradient(
-            circle at 8% 10%,
-            rgba(25,67,125,0.14),
-            transparent 25%
+            ellipse 650px 450px at 8% 8%,
+            rgba(22,62,116,0.16),
+            transparent 70%
         ),
+
         radial-gradient(
-            circle at 92% 70%,
-            rgba(212,175,55,0.045),
-            transparent 25%
+            ellipse 600px 500px at 95% 65%,
+            rgba(201,162,39,0.035),
+            transparent 70%
         ),
+
         linear-gradient(
             180deg,
             #020b1d 0%,
-            #061735 45%,
+            #04142d 45%,
             #020b1d 100%
         );
 }
 
 
 /* ============================================================
-   SECTION HEADING
+   16 — SECTION HEADING
 ============================================================ */
 
 .jn-books-section-heading {
@@ -834,14 +1005,14 @@ a {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr)
-        minmax(280px, 420px);
+        minmax(0,1fr)
+        minmax(280px,420px);
 
     align-items: end;
 
     gap: 40px;
 
-    margin-bottom: 34px;
+    margin-bottom: 35px;
 }
 
 .jn-books-section-heading h2,
@@ -850,8 +1021,7 @@ a {
 
     margin: 0;
 
-    color:
-        #ffffff;
+    color: #fff;
 
     font-family:
         "Cinzel",
@@ -859,19 +1029,21 @@ a {
         serif;
 
     font-size:
-        clamp(30px, 4vw, 46px);
+        clamp(30px,4vw,47px);
 
-    line-height: 1.15;
+    line-height: 1.12;
 
     font-weight: 600;
 
-    letter-spacing: -0.6px;
+    letter-spacing: -0.8px;
 }
 
 .jn-books-section-heading h2 span,
 .jn-books-story-panel h2 span,
 .jn-books-contact-heading h2 span {
-    color: var(--jn-gold-light);
+
+    color:
+        var(--jn-gold-light);
 }
 
 .jn-books-section-description {
@@ -881,41 +1053,41 @@ a {
     color:
         var(--jn-text-soft);
 
-    font-size: 14px;
+    font-size: 13px;
 
-    line-height: 1.75;
+    line-height: 1.8;
 }
 
 
 /* ============================================================
-   CATEGORY NAVIGATION
+   17 — CATEGORY NAV
 ============================================================ */
 
 .jn-books-category-wrapper {
 
     display: flex;
 
-    gap: 9px;
+    gap: 7px;
 
-    padding: 7px;
+    padding: 6px;
 
     overflow-x: auto;
 
     scrollbar-width: thin;
 
     border:
-        1px solid rgba(255,255,255,0.09);
+        1px solid rgba(255,255,255,0.075);
 
-    border-radius: 16px;
+    border-radius: 14px;
 
     background:
-        rgba(7,25,54,0.78);
+        rgba(5,19,42,0.78);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.18);
+        0 15px 35px rgba(0,0,0,0.20);
 
     backdrop-filter:
-        blur(12px);
+        blur(15px);
 }
 
 .jn-books-category-tab {
@@ -923,32 +1095,28 @@ a {
     flex:
         0 0 auto;
 
-    min-height: 45px;
+    min-height: 44px;
 
     padding:
         0 17px;
 
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
 
     gap: 8px;
 
     border: 0;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
-    background:
-        transparent;
+    background: transparent;
 
     color:
-        #9eacc2;
+        #8998ae;
 
-    font-size: 13px;
-
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 750;
 
     white-space: nowrap;
 
@@ -960,87 +1128,97 @@ a {
 }
 
 .jn-books-category-tab span {
-    color: var(--jn-gold);
-    font-size: 14px;
+
+    color:
+        var(--jn-gold);
+
+    font-size: 13px;
 }
 
 .jn-books-category-tab:hover {
 
-    color: #ffffff;
+    color: #fff;
 
     background:
-        rgba(255,255,255,0.06);
+        rgba(255,255,255,0.055);
+
+    transform:
+        translateY(-1px);
 }
 
 .jn-books-category-tab.active {
 
-    color: #171204;
+    color:
+        #161103;
 
     background:
         linear-gradient(
             135deg,
+            var(--jn-gold-pale),
             var(--jn-gold-light),
             var(--jn-gold)
         );
 
     box-shadow:
-        0 7px 22px rgba(212,175,55,0.18);
+        0 8px 25px rgba(201,162,39,0.18);
 }
 
 .jn-books-category-tab.active span {
-    color: #171204;
+
+    color:
+        #161103;
 }
 
 
 /* ============================================================
-   TOOLBAR
+   18 — TOOLBAR
 ============================================================ */
 
 .jn-books-toolbar {
 
     margin:
-        28px 0 20px;
+        27px 0 21px;
 
     padding:
-        14px 16px;
+        12px 15px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 20px;
 
     border:
-        1px solid rgba(255,255,255,0.09);
+        1px solid rgba(255,255,255,0.075);
 
-    border-radius: 14px;
+    border-radius: 13px;
 
     background:
-        rgba(7,25,54,0.78);
+        rgba(5,20,43,0.75);
 
     box-shadow:
-        0 8px 25px rgba(0,0,0,0.18);
+        0 10px 30px rgba(0,0,0,0.18);
 
     backdrop-filter:
-        blur(12px);
+        blur(14px);
 }
 
 .jn-books-toolbar-left,
 .jn-books-toolbar-right {
+
     display: flex;
     align-items: center;
 }
 
 .jn-books-toolbar-left {
+
     gap: 9px;
 }
 
 .jn-books-result-dot {
 
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
 
     border-radius: 50%;
 
@@ -1048,15 +1226,17 @@ a {
         var(--jn-gold);
 
     box-shadow:
-        0 0 0 4px rgba(212,175,55,0.10);
+        0 0 0 4px rgba(201,162,39,0.09),
+        0 0 14px rgba(201,162,39,0.30);
 }
 
 .jn-books-result-count {
-    color:
-        #aebbd0;
 
-    font-size: 12px;
-    font-weight: 600;
+    color:
+        #aab6c8;
+
+    font-size: 11px;
+    font-weight: 650;
 }
 
 .jn-books-sort-wrap {
@@ -1064,49 +1244,59 @@ a {
     display: flex;
     align-items: center;
 
-    gap: 9px;
+    gap: 8px;
 
     color:
-        #7f90aa;
+        #728198;
 
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 650;
 }
 
 .jn-books-sort {
 
     min-width: 170px;
+
     height: 38px;
 
     padding:
         0 12px;
 
     border:
-        1px solid rgba(255,255,255,0.10);
+        1px solid rgba(255,255,255,0.095);
 
     border-radius: 9px;
 
     outline: none;
 
     background:
-        #081d3d;
+        #071a37;
 
     color:
-        #ffffff;
+        #fff;
 
     cursor: pointer;
 
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 650;
+
+    transition:
+        border-color var(--jn-transition),
+        box-shadow var(--jn-transition);
 }
 
 .jn-books-sort:focus {
-    border-color: var(--jn-gold);
+
+    border-color:
+        rgba(240,211,106,0.55);
+
+    box-shadow:
+        0 0 0 3px rgba(201,162,39,0.08);
 }
 
 
 /* ============================================================
-   PRODUCT GRID
+   19 — PRODUCT GRID
 ============================================================ */
 
 .jn-books-product-grid {
@@ -1114,16 +1304,16 @@ a {
     display: grid;
 
     grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        repeat(3,minmax(0,1fr));
 
-    gap: 22px;
+    gap: 23px;
 
     align-items: stretch;
 }
 
 
 /* ============================================================
-   PRODUCT CARD
+   20 — PRODUCT CARD
 ============================================================ */
 
 .jn-books-product-card {
@@ -1138,105 +1328,177 @@ a {
     overflow: hidden;
 
     border:
-        1px solid rgba(255,255,255,0.09);
+        1px solid rgba(255,255,255,0.075);
 
     border-radius:
         var(--jn-radius-lg);
 
     background:
+
         linear-gradient(
             180deg,
-            #0a2145 0%,
-            #071a37 100%
+            #0b254d 0%,
+            #071a37 55%,
+            #06152d 100%
         );
 
     box-shadow:
-        0 12px 35px rgba(0,0,0,0.22);
+        0 13px 38px rgba(0,0,0,0.25);
 
     transition:
-        transform 220ms ease,
-        box-shadow 220ms ease,
-        border-color 220ms ease;
+        transform 260ms cubic-bezier(.2,.8,.2,1),
+        box-shadow 260ms ease,
+        border-color 260ms ease;
+}
+
+.jn-books-product-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 18%;
+    right: 18%;
+    bottom: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(201,162,39,0.28),
+            transparent
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity var(--jn-transition);
 }
 
 .jn-books-product-card:hover {
 
     transform:
-        translateY(-6px);
+        translateY(-8px);
 
     border-color:
-        rgba(212,175,55,0.32);
+        rgba(240,211,106,0.27);
 
     box-shadow:
-        0 22px 50px rgba(0,0,0,0.34);
+        0 25px 60px rgba(0,0,0,0.38);
+}
+
+.jn-books-product-card:hover::after {
+
+    opacity: 1;
 }
 
 .jn-books-featured-product {
 
     border-color:
-        rgba(212,175,55,0.30);
+        rgba(201,162,39,0.32);
 
     box-shadow:
-        0 12px 40px rgba(212,175,55,0.07);
+        0 18px 50px rgba(201,162,39,0.065);
 }
 
 
 /* ============================================================
-   PRODUCT MEDIA
-   ------------------------------------------------------------
-   IMPORTANT:
-   Product images remain unchanged.
-   Only their surrounding background changes.
+   21 — PRODUCT MEDIA
 ============================================================ */
 
 .jn-books-product-media {
 
     position: relative;
 
-    min-height: 320px;
+    min-height: 330px;
 
     overflow: hidden;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     background:
+
         radial-gradient(
-            circle at 50% 35%,
-            #17365f 0%,
-            #0b2449 48%,
-            #071a37 100%
+            ellipse at 50% 35%,
+            #214572 0%,
+            #12315b 34%,
+            #0a2347 65%,
+            #06152e 100%
         );
 
     border-bottom:
-        1px solid rgba(255,255,255,0.08);
+        1px solid rgba(255,255,255,0.065);
+}
+
+.jn-books-product-media::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    top: 35px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.075),
+            transparent 67%
+        );
+
+    pointer-events: none;
 }
 
 .jn-books-product-image {
 
+    position: relative;
+    z-index: 2;
+
     width: 100%;
-    height: 320px;
+    height: 330px;
 
     object-fit: contain;
 
-    padding: 28px;
+    padding: 27px;
+
+    filter:
+        drop-shadow(
+            0 22px 22px rgba(0,0,0,0.30)
+        );
 
     transition:
-        transform 400ms ease;
+        transform 500ms cubic-bezier(.2,.8,.2,1),
+        filter 500ms ease;
 }
 
 .jn-books-product-card:hover
 .jn-books-product-image {
 
     transform:
-        scale(1.035);
+        scale(1.045)
+        translateY(-3px);
+
+    filter:
+        drop-shadow(
+            0 28px 30px rgba(0,0,0,0.42)
+        );
 }
 
 
 /* ============================================================
-   BADGES
+   22 — BADGE
 ============================================================ */
 
 .jn-books-product-badge {
@@ -1246,9 +1508,9 @@ a {
     top: 14px;
     left: 14px;
 
-    z-index: 4;
+    z-index: 5;
 
-    min-height: 28px;
+    min-height: 27px;
 
     padding:
         0 10px;
@@ -1259,47 +1521,47 @@ a {
     border-radius: 999px;
 
     color:
-        #1c1605;
+        #181303;
 
     background:
         linear-gradient(
             135deg,
+            var(--jn-gold-pale),
             var(--jn-gold-light),
             var(--jn-gold)
         );
 
     border:
-        1px solid rgba(231,200,91,0.35);
+        1px solid rgba(240,211,106,0.38);
 
-    font-size: 9px;
-    font-weight: 800;
+    font-size: 8px;
+    font-weight: 900;
 
-    letter-spacing: 0.7px;
+    letter-spacing: 0.8px;
 
     text-transform: uppercase;
 
     box-shadow:
-        0 5px 15px rgba(212,175,55,0.12);
+        0 7px 20px rgba(201,162,39,0.16);
 }
 
 .jn-books-product-number {
 
     position: absolute;
 
-    top: 15px;
-    right: 16px;
+    top: 16px;
+    right: 17px;
 
-    z-index: 4;
+    z-index: 5;
 
     color:
-        rgba(255,255,255,0.30);
+        rgba(255,255,255,0.27);
 
     font-family:
         "Cinzel",
         serif;
 
-    font-size: 11px;
-
+    font-size: 10px;
     font-weight: 700;
 
     letter-spacing: 1px;
@@ -1307,7 +1569,7 @@ a {
 
 
 /* ============================================================
-   GALLERY BUTTONS
+   23 — GALLERY CONTROLS
 ============================================================ */
 
 .jn-books-gallery-button {
@@ -1316,10 +1578,10 @@ a {
 
     top: 50%;
 
-    z-index: 5;
+    z-index: 6;
 
-    width: 38px;
-    height: 38px;
+    width: 39px;
+    height: 39px;
 
     display: grid;
     place-items: center;
@@ -1333,15 +1595,16 @@ a {
     border-radius: 50%;
 
     background:
-        rgba(3,11,28,0.72);
+        rgba(1,7,17,0.68);
 
     color:
-        #ffffff;
+        #fff;
 
     box-shadow:
-        0 6px 18px rgba(0,0,0,0.25);
+        0 8px 20px rgba(0,0,0,0.28);
 
-    font-size: 23px;
+    font-size: 22px;
+
     line-height: 1;
 
     opacity: 0;
@@ -1349,19 +1612,23 @@ a {
     transition:
         opacity var(--jn-transition),
         transform var(--jn-transition),
-        background var(--jn-transition);
+        background var(--jn-transition),
+        color var(--jn-transition);
 }
 
 .jn-books-gallery-button.left {
+
     left: 12px;
 }
 
 .jn-books-gallery-button.right {
+
     right: 12px;
 }
 
 .jn-books-product-card:hover
 .jn-books-gallery-button {
+
     opacity: 1;
 }
 
@@ -1371,15 +1638,18 @@ a {
         var(--jn-gold);
 
     color:
-        #171204;
+        #161103;
 
     border-color:
         var(--jn-gold);
+
+    transform:
+        translateY(-50%) scale(1.05);
 }
 
 
 /* ============================================================
-   IMAGE DOTS
+   24 — IMAGE DOTS
 ============================================================ */
 
 .jn-books-image-dots {
@@ -1389,13 +1659,12 @@ a {
     left: 50%;
     bottom: 12px;
 
-    z-index: 5;
+    z-index: 6;
 
     transform:
         translateX(-50%);
 
     display: flex;
-
     align-items: center;
 
     gap: 5px;
@@ -1410,21 +1679,28 @@ a {
 
     background:
         rgba(255,255,255,0.25);
+
+    transition:
+        width var(--jn-transition),
+        background var(--jn-transition);
 }
 
 .jn-books-image-dots span.active {
 
-    width: 17px;
+    width: 18px;
 
     border-radius: 999px;
 
     background:
-        var(--jn-gold);
+        var(--jn-gold-light);
+
+    box-shadow:
+        0 0 10px rgba(201,162,39,0.30);
 }
 
 
 /* ============================================================
-   PLACEHOLDER
+   25 — PLACEHOLDER
 ============================================================ */
 
 .jn-books-placeholder {
@@ -1432,12 +1708,11 @@ a {
     width: 100%;
     height: 100%;
 
-    min-height: 320px;
+    min-height: 330px;
 
     padding: 40px;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
@@ -1446,41 +1721,44 @@ a {
     text-align: center;
 
     background:
-        linear-gradient(
-            145deg,
-            #0b254b,
-            #071a36
+
+        radial-gradient(
+            circle at center,
+            #12325d,
+            #071a37 70%
         );
 }
 
 .jn-books-placeholder-icon {
 
-    width: 70px;
-    height: 70px;
+    width: 72px;
+    height: 72px;
 
     margin-bottom: 17px;
 
     display: grid;
     place-items: center;
 
-    border-radius: 20px;
+    border-radius: 21px;
 
     color:
         var(--jn-gold-light);
 
     background:
-        rgba(212,175,55,0.09);
+        rgba(201,162,39,0.08);
 
     border:
-        1px solid rgba(212,175,55,0.20);
+        1px solid rgba(201,162,39,0.18);
 
-    font-size: 30px;
+    font-size: 29px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.20);
 }
 
 .jn-books-placeholder strong {
 
-    color:
-        #ffffff;
+    color: #fff;
 
     font-family:
         "Cinzel",
@@ -1494,23 +1772,22 @@ a {
     margin-top: 6px;
 
     color:
-        #7f90aa;
+        #7d8da4;
 
-    font-size: 11px;
+    font-size: 10px;
 }
 
 
 /* ============================================================
-   PRODUCT INFORMATION
+   26 — PRODUCT INFORMATION
 ============================================================ */
 
 .jn-books-product-info {
 
     padding:
-        23px 22px 22px;
+        24px 22px 22px;
 
     display: flex;
-
     flex-direction: column;
 
     flex: 1;
@@ -1518,16 +1795,16 @@ a {
 
 .jn-books-product-category {
 
-    margin: 0 0 6px;
+    margin:
+        0 0 7px;
 
     color:
         var(--jn-gold-light);
 
-    font-size: 9px;
+    font-size: 8px;
+    font-weight: 900;
 
-    font-weight: 800;
-
-    letter-spacing: 1.4px;
+    letter-spacing: 1.6px;
 
     text-transform: uppercase;
 }
@@ -1536,8 +1813,7 @@ a {
 
     margin: 0;
 
-    color:
-        #ffffff;
+    color: #fff;
 
     font-family:
         "Cinzel",
@@ -1546,7 +1822,7 @@ a {
 
     font-size: 20px;
 
-    line-height: 1.25;
+    line-height: 1.27;
 
     font-weight: 600;
 }
@@ -1557,16 +1833,16 @@ a {
         11px 0 20px;
 
     color:
-        #9eacc2;
+        #9eabc0;
 
-    font-size: 12.5px;
+    font-size: 12px;
 
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 
 /* ============================================================
-   PRODUCT BOTTOM
+   27 — PRODUCT BOTTOM
 ============================================================ */
 
 .jn-books-product-bottom {
@@ -1576,7 +1852,6 @@ a {
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
     gap: 15px;
@@ -1584,12 +1859,10 @@ a {
 
 .jn-books-product-price {
 
-    color:
-        #ffffff;
+    color: #fff;
 
     font-size: 21px;
-
-    font-weight: 800;
+    font-weight: 850;
 
     white-space: nowrap;
 }
@@ -1597,18 +1870,15 @@ a {
 .jn-books-product-price small {
 
     color:
-        #72839d;
+        #6f8098;
 
-    font-size: 9px;
-
+    font-size: 8px;
     font-weight: 600;
 }
 
 
 /* ============================================================
-   ADD TO CART
-   ------------------------------------------------------------
-   GOLD HIGHLIGHT — CART STYLE
+   28 — ADD TO CART
 ============================================================ */
 
 .jn-books-add-cart {
@@ -1619,14 +1889,13 @@ a {
         0 15px;
 
     display: inline-flex;
-
     align-items: center;
     justify-content: center;
 
     gap: 7px;
 
     border:
-        1px solid rgba(231,200,91,0.38);
+        1px solid rgba(240,211,106,0.40);
 
     border-radius: 11px;
 
@@ -1636,16 +1905,16 @@ a {
     background:
         linear-gradient(
             135deg,
-            var(--jn-gold-light),
+            var(--jn-gold-pale),
+            var(--jn-gold-light) 50%,
             var(--jn-gold)
         );
 
     box-shadow:
-        0 7px 20px rgba(212,175,55,0.13);
+        0 8px 22px rgba(201,162,39,0.14);
 
-    font-size: 11px;
-
-    font-weight: 800;
+    font-size: 10px;
+    font-weight: 900;
 
     white-space: nowrap;
 
@@ -1656,8 +1925,12 @@ a {
 }
 
 .jn-books-add-cart span {
-    color: #171204;
+
+    color:
+        #171204;
+
     font-size: 17px;
+
     line-height: 1;
 }
 
@@ -1667,10 +1940,16 @@ a {
         translateY(-2px);
 
     filter:
-        brightness(1.06);
+        brightness(1.07);
 
     box-shadow:
-        0 12px 28px rgba(212,175,55,0.23);
+        0 13px 30px rgba(201,162,39,0.25);
+}
+
+.jn-books-add-cart:active {
+
+    transform:
+        translateY(0);
 }
 
 .jn-books-add-cart:disabled {
@@ -1678,13 +1957,13 @@ a {
     cursor: not-allowed;
 
     color:
-        #78869c;
+        #718096;
 
     background:
-        #142644;
+        #152642;
 
     border-color:
-        rgba(255,255,255,0.07);
+        rgba(255,255,255,0.06);
 
     box-shadow: none;
 
@@ -1692,12 +1971,13 @@ a {
 }
 
 .jn-books-add-cart:disabled span {
+
     display: none;
 }
 
 
 /* ============================================================
-   VARIANTS
+   29 — VARIANTS
 ============================================================ */
 
 .jn-books-variant-row {
@@ -1706,7 +1986,6 @@ a {
     margin-bottom: 12px;
 
     display: flex;
-
     flex-direction: column;
 
     gap: 6px;
@@ -1715,56 +1994,59 @@ a {
 .jn-books-variant-row label {
 
     color:
-        #dbe2ed;
+        #d9e0eb;
 
-    font-size: 10px;
+    font-size: 9px;
+    font-weight: 850;
 
-    font-weight: 800;
-
-    letter-spacing: 0.4px;
+    letter-spacing: 0.5px;
 }
 
 .jn-books-variant-row select {
 
     width: 100%;
-
     height: 42px;
 
     padding:
         0 12px;
 
     border:
-        1px solid rgba(255,255,255,0.11);
+        1px solid rgba(255,255,255,0.095);
 
     border-radius: 9px;
 
     outline: none;
 
     background:
-        #0a2144;
+        #091f40;
 
     color:
-        #ffffff;
+        #fff;
 
-    font-size: 12px;
-
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 650;
 
     cursor: pointer;
 
     transition:
         border-color var(--jn-transition),
-        box-shadow var(--jn-transition);
+        box-shadow var(--jn-transition),
+        background var(--jn-transition);
+}
+
+.jn-books-variant-row select:hover {
+
+    background:
+        #0c274e;
 }
 
 .jn-books-variant-row select:focus {
 
     border-color:
-        var(--jn-gold);
+        rgba(240,211,106,0.58);
 
     box-shadow:
-        0 0 0 3px
-        rgba(212,175,55,0.10);
+        0 0 0 3px rgba(201,162,39,0.09);
 }
 
 .jn-books-cover-design-description {
@@ -1782,18 +2064,19 @@ a {
         0 8px 8px 0;
 
     background:
-        rgba(212,175,55,0.07);
+        rgba(201,162,39,0.065);
 
     color:
-        #aebbd0;
+        #aeb9ca;
 
-    font-size: 10px;
+    font-size: 9.5px;
 
-    line-height: 1.55;
+    line-height: 1.6;
 }
 
 .jn-books-cover-display-price,
 .jn-books-promise-price {
+
     margin:
         5px 0 15px;
 }
@@ -1807,23 +2090,8 @@ a {
 }
 
 
-
-
 /* ============================================================
-   BIBLE COVER SELECTED DETAILS
-   ------------------------------------------------------------
-   Displays selected Bible cover information as:
-
-   Bible:       Floral Fabric English Bible
-   Language:    English
-   Size:        Regular
-   Design:      Floral Fabric
-
-   IMPORTANT:
-   • Does NOT change image filenames
-   • Does NOT change product functionality
-   • Does NOT change books.js
-   • Works with Leather + Floral Fabric covers
+   30 — SELECTED BIBLE DETAILS
 ============================================================ */
 
 .jn-books-cover-selected-info {
@@ -1831,32 +2099,52 @@ a {
     width: 100%;
 
     margin-top: 20px;
-    padding: 16px 18px;
+
+    padding:
+        15px 17px;
 
     display: flex;
     flex-direction: column;
 
     border:
-        1px solid rgba(212,175,55,0.16);
+        1px solid rgba(201,162,39,0.16);
 
-    border-radius:
-        14px;
+    border-radius: 13px;
 
     background:
+
         linear-gradient(
             145deg,
-            rgba(10,33,68,0.96),
-            rgba(7,25,54,0.96)
+            rgba(12,38,77,0.96),
+            rgba(5,20,43,0.96)
         );
 
     box-shadow:
-        0 8px 24px rgba(0,0,0,0.16);
+        0 10px 28px rgba(0,0,0,0.18);
+
+    position: relative;
 }
 
+.jn-books-cover-selected-info::before {
 
-/* ============================================================
-   EACH DETAIL ROW
-============================================================ */
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 22px;
+    right: 22px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(240,211,106,0.30),
+            transparent
+        );
+}
 
 .jn-books-cover-selected-row {
 
@@ -1866,96 +2154,54 @@ a {
 
     grid-template-columns:
         110px
-        minmax(0, 1fr);
+        minmax(0,1fr);
 
     align-items: center;
 
     column-gap: 15px;
 
-    padding: 10px 0;
+    padding: 9px 0;
 
     border-bottom:
-        1px solid rgba(255,255,255,0.08);
+        1px solid rgba(255,255,255,0.065);
 }
-
-
-/* ============================================================
-   REMOVE BORDER FROM LAST ROW
-============================================================ */
 
 .jn-books-cover-selected-row:last-child {
 
-    border-bottom:
-        none;
+    border-bottom: none;
 }
-
-
-/* ============================================================
-   DETAIL LABEL
-   Example:
-   Bible:
-   Language:
-   Size:
-   Design:
-============================================================ */
 
 .jn-books-cover-selected-row span {
 
     margin: 0;
 
     color:
-        #aebbd0;
+        #9ba9bd;
 
-    font-size:
-        13px;
+    font-size: 12px;
+    font-weight: 700;
 
-    font-weight:
-        700;
+    line-height: 1.4;
 
-    line-height:
-        1.4;
-
-    white-space:
-        nowrap;
+    white-space: nowrap;
 }
-
-
-/* ============================================================
-   DETAIL VALUE
-   Example:
-   Floral Fabric English Bible
-   English
-   Regular
-   Floral Fabric
-============================================================ */
 
 .jn-books-cover-selected-row strong {
 
     margin: 0;
 
     color:
-        #ffffff;
+        #fff;
 
-    font-size:
-        14px;
+    font-size: 13px;
+    font-weight: 700;
 
-    font-weight:
-        700;
+    line-height: 1.45;
 
-    line-height:
-        1.45;
+    text-align: left;
 
-    text-align:
-        left;
-
-    overflow-wrap:
-        anywhere;
+    overflow-wrap: anywhere;
 }
-
-
-/* ============================================================
-   GOLD ACCENT FOR THE SELECTED VALUE
-============================================================ */
 
 .jn-books-cover-selected-row:first-child strong {
 
@@ -1965,114 +2211,22 @@ a {
 
 
 /* ============================================================
-   MOBILE — 600px
-============================================================ */
-
-@media (max-width: 600px) {
-
-    .jn-books-cover-selected-info {
-
-        margin-top:
-            18px;
-
-        padding:
-            14px 15px;
-
-        border-radius:
-            13px;
-    }
-
-
-    .jn-books-cover-selected-row {
-
-        grid-template-columns:
-            85px
-            minmax(0, 1fr);
-
-        column-gap:
-            10px;
-
-        padding:
-            9px 0;
-    }
-
-
-    .jn-books-cover-selected-row span {
-
-        font-size:
-            12px;
-    }
-
-
-    .jn-books-cover-selected-row strong {
-
-        font-size:
-            13px;
-
-        line-height:
-            1.4;
-    }
-}
-
-
-/* ============================================================
-   VERY SMALL SCREENS — 400px
-============================================================ */
-
-@media (max-width: 400px) {
-
-    .jn-books-cover-selected-info {
-
-        padding:
-            13px 14px;
-    }
-
-
-    .jn-books-cover-selected-row {
-
-        grid-template-columns:
-            75px
-            minmax(0, 1fr);
-
-        column-gap:
-            9px;
-    }
-
-
-    .jn-books-cover-selected-row span {
-
-        font-size:
-            11px;
-    }
-
-
-    .jn-books-cover-selected-row strong {
-
-        font-size:
-            12px;
-    }
-}
-
-
-
-
-/* ============================================================
-   STORY PANEL
+   31 — STORY PANEL
 ============================================================ */
 
 .jn-books-story-panel {
 
-    margin-top: 70px;
+    margin-top: 75px;
 
-    padding: 50px;
+    padding: 52px;
 
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr)
-        minmax(300px, 420px);
+        minmax(0,1fr)
+        minmax(300px,420px);
 
-    gap: 50px;
+    gap: 55px;
 
     align-items: center;
 
@@ -2083,22 +2237,30 @@ a {
     border-radius:
         var(--jn-radius-xl);
 
-    color: #ffffff;
+    color: #fff;
 
     background:
+
         radial-gradient(
-            circle at 90% 10%,
-            rgba(212,175,55,0.18),
-            transparent 35%
+            ellipse 400px 300px at 88% 5%,
+            rgba(240,211,106,0.13),
+            transparent 70%
         ),
+
+        radial-gradient(
+            ellipse 500px 400px at 0% 100%,
+            rgba(31,91,177,0.18),
+            transparent 70%
+        ),
+
         linear-gradient(
             135deg,
-            #020b1d,
-            #0b2b5c
+            #010711,
+            #0a2854
         );
 
     border:
-        1px solid rgba(212,175,55,0.15);
+        1px solid rgba(201,162,39,0.17);
 
     box-shadow:
         var(--jn-shadow-lg);
@@ -2110,21 +2272,19 @@ a {
 
     position: absolute;
 
-    width: 260px;
-    height: 260px;
+    width: 310px;
+    height: 310px;
 
-    right: -110px;
-    bottom: -140px;
+    right: -130px;
+    bottom: -160px;
 
     border:
-        1px solid rgba(231,200,91,0.12);
+        1px solid rgba(240,211,106,0.10);
 
     border-radius: 50%;
 }
 
 .jn-books-story-panel h2 {
-
-    color: #ffffff;
 
     margin-bottom: 18px;
 }
@@ -2138,14 +2298,14 @@ a {
     color:
         rgba(255,255,255,0.62);
 
-    font-size: 14px;
+    font-size: 13px;
 
-    line-height: 1.85;
+    line-height: 1.9;
 }
 
 
 /* ============================================================
-   STORY STATS
+   32 — STORY STATS
 ============================================================ */
 
 .jn-books-story-stat-grid {
@@ -2153,19 +2313,19 @@ a {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3,1fr);
 
-    gap: 12px;
+    gap: 11px;
 }
 
 .jn-books-story-stat {
 
     min-height: 140px;
 
-    padding: 20px 12px;
+    padding:
+        20px 11px;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
@@ -2174,12 +2334,15 @@ a {
     text-align: center;
 
     border:
-        1px solid rgba(255,255,255,0.10);
+        1px solid rgba(255,255,255,0.085);
 
-    border-radius: 17px;
+    border-radius: 15px;
 
     background:
-        rgba(255,255,255,0.045);
+        rgba(255,255,255,0.035);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.025);
 }
 
 .jn-books-story-stat strong {
@@ -2194,6 +2357,9 @@ a {
     font-size: 27px;
 
     line-height: 1;
+
+    text-shadow:
+        0 5px 20px rgba(201,162,39,0.12);
 }
 
 .jn-books-story-stat span {
@@ -2201,11 +2367,10 @@ a {
     margin-top: 9px;
 
     color:
-        rgba(255,255,255,0.48);
+        rgba(255,255,255,0.46);
 
-    font-size: 10px;
-
-    font-weight: 700;
+    font-size: 9px;
+    font-weight: 800;
 
     letter-spacing: 1px;
 
@@ -2214,17 +2379,17 @@ a {
 
 
 /* ============================================================
-   INFORMATION GRID
+   33 — INFORMATION CARDS
 ============================================================ */
 
 .jn-books-information-grid {
 
-    margin-top: 24px;
+    margin-top: 25px;
 
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2,1fr);
 
     gap: 18px;
 }
@@ -2238,16 +2403,38 @@ a {
     gap: 17px;
 
     border:
-        1px solid rgba(255,255,255,0.09);
+        1px solid rgba(255,255,255,0.075);
 
     border-radius:
         var(--jn-radius-md);
 
     background:
-        #081d3d;
+
+        linear-gradient(
+            145deg,
+            #092044,
+            #06152f
+        );
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.18);
+        0 12px 32px rgba(0,0,0,0.20);
+
+    transition:
+        transform var(--jn-transition),
+        border-color var(--jn-transition),
+        box-shadow var(--jn-transition);
+}
+
+.jn-books-information-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(201,162,39,0.22);
+
+    box-shadow:
+        0 18px 42px rgba(0,0,0,0.27);
 }
 
 .jn-books-information-icon {
@@ -2259,7 +2446,6 @@ a {
     height: 45px;
 
     display: grid;
-
     place-items: center;
 
     border-radius: 13px;
@@ -2268,26 +2454,26 @@ a {
         var(--jn-gold-light);
 
     background:
-        rgba(212,175,55,0.10);
+        rgba(201,162,39,0.075);
 
     border:
-        1px solid rgba(212,175,55,0.15);
+        1px solid rgba(201,162,39,0.15);
 
     font-weight: 800;
 }
 
 .jn-books-information-label {
 
-    margin: 0 0 4px;
+    margin:
+        0 0 4px;
 
     color:
         var(--jn-gold-light);
 
-    font-size: 9px;
+    font-size: 8px;
+    font-weight: 900;
 
-    font-weight: 800;
-
-    letter-spacing: 1.3px;
+    letter-spacing: 1.4px;
 
     text-transform: uppercase;
 }
@@ -2296,8 +2482,7 @@ a {
 
     margin: 0;
 
-    color:
-        #ffffff;
+    color: #fff;
 
     font-family:
         "Cinzel",
@@ -2312,23 +2497,25 @@ a {
         7px 0 0;
 
     color:
-        #9eacc2;
+        #98a7bc;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 
 /* ============================================================
-   CONTACT
+   34 — CONTACT
 ============================================================ */
 
 .jn-books-contact-section {
-    padding-top: 75px;
+
+    padding-top: 80px;
 }
 
 .jn-books-contact-heading {
+
     margin-bottom: 25px;
 }
 
@@ -2337,7 +2524,7 @@ a {
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2,1fr);
 
     gap: 18px;
 }
@@ -2352,13 +2539,17 @@ a {
     gap: 15px;
 
     border:
-        1px solid rgba(255,255,255,0.09);
+        1px solid rgba(255,255,255,0.075);
 
     border-radius:
         var(--jn-radius-md);
 
     background:
-        #081d3d;
+        linear-gradient(
+            145deg,
+            #092044,
+            #06152f
+        );
 
     box-shadow:
         0 10px 30px rgba(0,0,0,0.18);
@@ -2375,10 +2566,10 @@ a {
         translateY(-3px);
 
     border-color:
-        rgba(212,175,55,0.32);
+        rgba(201,162,39,0.25);
 
     box-shadow:
-        0 18px 40px rgba(0,0,0,0.28);
+        0 18px 42px rgba(0,0,0,0.28);
 }
 
 .jn-books-contact-icon {
@@ -2398,10 +2589,10 @@ a {
         var(--jn-gold-light);
 
     background:
-        rgba(212,175,55,0.10);
+        rgba(201,162,39,0.075);
 
     border:
-        1px solid rgba(212,175,55,0.15);
+        1px solid rgba(201,162,39,0.15);
 
     font-size: 18px;
 }
@@ -2417,13 +2608,12 @@ a {
 .jn-books-contact-copy small {
 
     color:
-        #71829c;
+        #71819a;
 
-    font-size: 9px;
+    font-size: 8px;
+    font-weight: 850;
 
-    font-weight: 800;
-
-    letter-spacing: 1px;
+    letter-spacing: 1.1px;
 
     text-transform: uppercase;
 }
@@ -2432,10 +2622,9 @@ a {
 
     margin-top: 2px;
 
-    color:
-        #ffffff;
+    color: #fff;
 
-    font-size: 14px;
+    font-size: 13px;
 
     overflow-wrap: anywhere;
 }
@@ -2445,16 +2634,16 @@ a {
     margin-top: 3px;
 
     color:
-        #8d9db3;
+        #8493a9;
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-style: normal;
 }
 
 
 /* ============================================================
-   EMPTY STATE
+   35 — EMPTY STATE
 ============================================================ */
 
 .jn-books-empty-state {
@@ -2463,24 +2652,29 @@ a {
         30px 0;
 
     padding:
-        70px 30px;
+        75px 30px;
 
     text-align: center;
 
     border:
-        1px dashed rgba(255,255,255,0.15);
+        1px dashed rgba(255,255,255,0.13);
 
     border-radius:
         var(--jn-radius-lg);
 
     background:
-        #071a37;
+
+        radial-gradient(
+            circle at center,
+            rgba(18,48,91,0.50),
+            #06152e
+        );
 }
 
 .jn-books-empty-symbol {
 
-    width: 65px;
-    height: 65px;
+    width: 66px;
+    height: 66px;
 
     margin:
         0 auto 17px;
@@ -2494,23 +2688,26 @@ a {
         var(--jn-gold-light);
 
     background:
-        rgba(212,175,55,0.10);
+        rgba(201,162,39,0.08);
 
-    font-size: 25px;
+    border:
+        1px solid rgba(201,162,39,0.15);
+
+    font-size: 24px;
 }
 
 .jn-books-empty-label {
 
-    margin: 0 0 4px;
+    margin:
+        0 0 4px;
 
     color:
         var(--jn-gold-light);
 
-    font-size: 10px;
+    font-size: 9px;
+    font-weight: 900;
 
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
+    letter-spacing: 1.6px;
 
     text-transform: uppercase;
 }
@@ -2519,8 +2716,7 @@ a {
 
     margin: 0;
 
-    color:
-        #ffffff;
+    color: #fff;
 
     font-family:
         "Cinzel",
@@ -2537,14 +2733,14 @@ a {
         9px auto 0;
 
     color:
-        #8f9fb6;
+        #8797ae;
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
 
 /* ============================================================
-   FLOATING CART
+   36 — FLOATING CART
 ============================================================ */
 
 .jn-books-cart-float {
@@ -2556,8 +2752,8 @@ a {
 
     z-index: 900;
 
-    min-width: 67px;
-    height: 67px;
+    min-width: 68px;
+    height: 68px;
 
     padding:
         8px 13px;
@@ -2569,7 +2765,7 @@ a {
     gap: 8px;
 
     border:
-        1px solid rgba(231,200,91,0.42);
+        1px solid rgba(240,211,106,0.48);
 
     border-radius: 20px;
 
@@ -2577,14 +2773,19 @@ a {
         #171204;
 
     background:
+
         linear-gradient(
             145deg,
-            var(--jn-gold-light),
+            var(--jn-gold-pale),
+            var(--jn-gold-light) 45%,
             var(--jn-gold)
         );
 
     box-shadow:
-        0 15px 35px rgba(0,0,0,0.32);
+
+        0 17px 40px rgba(0,0,0,0.38),
+
+        0 0 0 6px rgba(201,162,39,0.035);
 
     transition:
         transform var(--jn-transition),
@@ -2594,19 +2795,24 @@ a {
 .jn-books-cart-float:hover {
 
     transform:
-        translateY(-4px);
+        translateY(-5px);
 
     box-shadow:
-        0 20px 45px rgba(212,175,55,0.24);
+
+        0 22px 48px rgba(0,0,0,0.40),
+
+        0 0 0 8px rgba(201,162,39,0.045);
 }
 
 .jn-books-cart-icon {
+
     font-size: 20px;
 }
 
 .jn-books-cart-label {
-    font-size: 12px;
-    font-weight: 800;
+
+    font-size: 11px;
+    font-weight: 900;
 }
 
 .jn-books-cart-count {
@@ -2614,7 +2820,8 @@ a {
     min-width: 21px;
     height: 21px;
 
-    padding: 0 5px;
+    padding:
+        0 5px;
 
     display: grid;
     place-items: center;
@@ -2625,15 +2832,18 @@ a {
         #171204;
 
     background:
-        #ffffff;
+        #fff;
 
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 900;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.15);
 }
 
 
 /* ============================================================
-   TOAST
+   37 — TOAST
 ============================================================ */
 
 .jn-books-toast {
@@ -2646,37 +2856,36 @@ a {
     z-index: 2000;
 
     max-width:
-        min(420px, calc(100% - 40px));
+        min(420px,calc(100% - 40px));
 
     padding:
         13px 18px;
 
     transform:
-        translate(-50%, 25px);
+        translate(-50%,25px);
 
     opacity: 0;
 
     pointer-events: none;
 
     border:
-        1px solid rgba(212,175,55,0.20);
+        1px solid rgba(201,162,39,0.22);
 
     border-radius: 12px;
 
-    color:
-        #ffffff;
+    color: #fff;
 
     background:
-        rgba(3,11,28,0.96);
+        rgba(2,9,22,0.96);
 
     box-shadow:
-        0 15px 40px rgba(0,0,0,0.30);
+        0 18px 45px rgba(0,0,0,0.35);
 
     backdrop-filter:
-        blur(12px);
+        blur(15px);
 
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 650;
 
     transition:
         opacity 220ms ease,
@@ -2688,21 +2897,35 @@ a {
     opacity: 1;
 
     transform:
-        translate(-50%, 0);
+        translate(-50%,0);
 }
 
 
 /* ============================================================
-   HIDDEN PRODUCT STATE
+   38 — HIDDEN PRODUCT
 ============================================================ */
 
 .jn-books-product-card[hidden] {
+
     display: none !important;
 }
 
 
 /* ============================================================
-   RESPONSIVE — 1100px
+   39 — ACCESSIBILITY
+============================================================ */
+
+:focus-visible {
+
+    outline:
+        3px solid rgba(240,211,106,0.55);
+
+    outline-offset: 3px;
+}
+
+
+/* ============================================================
+   40 — RESPONSIVE — 1100px
 ============================================================ */
 
 @media (max-width: 1100px) {
@@ -2710,27 +2933,28 @@ a {
     .jn-books-hero-inner {
 
         grid-template-columns:
-            minmax(0, 1fr)
-            minmax(330px, 0.8fr);
+            minmax(0,1fr)
+            minmax(330px,0.82fr);
 
-        gap: 45px;
+        gap: 50px;
     }
 
     .jn-books-product-grid {
 
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2,minmax(0,1fr));
     }
 }
 
 
 /* ============================================================
-   RESPONSIVE — 800px
+   41 — RESPONSIVE — 800px
 ============================================================ */
 
 @media (max-width: 800px) {
 
     .jn-books-header-inner {
+
         min-height: 70px;
     }
 
@@ -2743,6 +2967,7 @@ a {
     }
 
     .jn-books-brand-copy small {
+
         display: none;
     }
 
@@ -2751,18 +2976,18 @@ a {
         min-height: auto;
 
         padding:
-            65px 0;
+            67px 0;
 
         grid-template-columns:
             1fr;
 
-        gap: 40px;
+        gap: 42px;
     }
 
     .jn-books-hero-title {
 
         font-size:
-            clamp(38px, 9vw, 56px);
+            clamp(38px,9vw,57px);
     }
 
     .jn-books-section-heading {
@@ -2778,9 +3003,9 @@ a {
         grid-template-columns:
             1fr;
 
-        padding: 35px;
+        padding: 38px;
 
-        gap: 35px;
+        gap: 37px;
     }
 
     .jn-books-information-grid,
@@ -2793,7 +3018,7 @@ a {
 
 
 /* ============================================================
-   RESPONSIVE — 600px
+   42 — RESPONSIVE — 600px
 ============================================================ */
 
 @media (max-width: 600px) {
@@ -2806,22 +3031,25 @@ a {
     }
 
     .jn-books-announcement {
-        font-size: 11px;
+
+        font-size: 10px;
     }
 
     .jn-books-announcement-inner {
 
-        min-height: 40px;
+        min-height: 39px;
 
         padding:
             7px 0;
     }
 
     .jn-books-header-actions {
+
         gap: 2px;
     }
 
     .jn-books-header-link span {
+
         display: none;
     }
 
@@ -2829,19 +3057,29 @@ a {
 
         width: 39px;
         height: 39px;
+
+        border-radius: 11px;
     }
 
     .jn-books-brand-copy strong {
+
         font-size: 15px;
     }
 
     .jn-books-hero-inner {
+
         padding:
-            50px 0;
+            52px 0;
+    }
+
+    .jn-books-hero-description {
+
+        font-size: 13px;
     }
 
     .jn-books-hero-search-card {
-        padding: 22px;
+
+        padding: 23px;
     }
 
     .jn-books-hero-points {
@@ -2854,21 +3092,22 @@ a {
     .jn-books-store {
 
         padding:
-            55px 0 80px;
+            58px 0 85px;
     }
 
     .jn-books-category-wrapper {
-        border-radius: 13px;
+
+        border-radius: 12px;
     }
 
     .jn-books-category-tab {
 
-        min-height: 41px;
+        min-height: 40px;
 
         padding:
             0 13px;
 
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .jn-books-toolbar {
@@ -2881,10 +3120,12 @@ a {
     .jn-books-toolbar-right,
     .jn-books-sort-wrap,
     .jn-books-sort {
+
         width: 100%;
     }
 
     .jn-books-sort {
+
         flex: 1;
     }
 
@@ -2893,24 +3134,28 @@ a {
         grid-template-columns:
             1fr;
 
-        gap: 18px;
+        gap: 19px;
     }
 
     .jn-books-product-media,
     .jn-books-placeholder {
+
         min-height: 300px;
     }
 
     .jn-books-product-image {
+
         height: 300px;
     }
 
     .jn-books-product-info {
+
         padding:
-            20px 18px;
+            21px 18px;
     }
 
     .jn-books-product-title {
+
         font-size: 19px;
     }
 
@@ -2922,39 +3167,44 @@ a {
     }
 
     .jn-books-add-cart {
+
         width: 100%;
     }
 
     .jn-books-story-panel {
 
         padding:
-            28px 22px;
+            30px 22px;
 
         border-radius:
             24px;
     }
 
     .jn-books-story-stat-grid {
+
         gap: 8px;
     }
 
     .jn-books-story-stat {
 
-        min-height: 110px;
+        min-height: 108px;
 
         padding:
-            15px 8px;
+            15px 7px;
     }
 
     .jn-books-story-stat strong {
+
         font-size: 22px;
     }
 
     .jn-books-information-card {
+
         padding: 20px;
     }
 
     .jn-books-contact-card {
+
         padding: 18px;
     }
 
@@ -2963,56 +3213,118 @@ a {
         right: 16px;
         bottom: 16px;
 
-        height: 58px;
-
-        min-width: 58px;
+        height: 59px;
+        min-width: 59px;
 
         border-radius: 17px;
     }
 
     .jn-books-cart-label {
+
         display: none;
     }
 }
 
 
 /* ============================================================
-   RESPONSIVE — 400px
+   43 — SELECTED BIBLE DETAILS — MOBILE
 ============================================================ */
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
 
-    .jn-books-hero-title {
-        font-size: 35px;
+    .jn-books-cover-selected-info {
+
+        margin-top: 18px;
+
+        padding:
+            14px 15px;
+
+        border-radius: 12px;
     }
 
-    .jn-books-product-media,
-    .jn-books-placeholder {
-        min-height: 270px;
+    .jn-books-cover-selected-row {
+
+        grid-template-columns:
+            85px
+            minmax(0,1fr);
+
+        column-gap: 10px;
+
+        padding:
+            9px 0;
     }
 
-    .jn-books-product-image {
-        height: 270px;
+    .jn-books-cover-selected-row span {
+
+        font-size: 11px;
     }
 
-    .jn-books-story-stat span {
-        font-size: 8px;
+    .jn-books-cover-selected-row strong {
+
+        font-size: 12px;
+
+        line-height: 1.4;
     }
 }
 
 
 /* ============================================================
-   ACCESSIBILITY
+   44 — VERY SMALL SCREENS
 ============================================================ */
 
-:focus-visible {
+@media (max-width: 400px) {
 
-    outline:
-        3px solid rgba(212,175,55,0.55);
+    .jn-books-hero-title {
 
-    outline-offset: 3px;
+        font-size: 35px;
+    }
+
+    .jn-books-product-media,
+    .jn-books-placeholder {
+
+        min-height: 270px;
+    }
+
+    .jn-books-product-image {
+
+        height: 270px;
+    }
+
+    .jn-books-story-stat span {
+
+        font-size: 8px;
+    }
+
+    .jn-books-cover-selected-info {
+
+        padding:
+            13px 14px;
+    }
+
+    .jn-books-cover-selected-row {
+
+        grid-template-columns:
+            75px
+            minmax(0,1fr);
+
+        column-gap: 9px;
+    }
+
+    .jn-books-cover-selected-row span {
+
+        font-size: 10px;
+    }
+
+    .jn-books-cover-selected-row strong {
+
+        font-size: 11px;
+    }
 }
 
+
+/* ============================================================
+   45 — REDUCED MOTION
+============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
 
