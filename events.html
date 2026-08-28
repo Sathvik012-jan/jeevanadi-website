@@ -1,48 +1,120 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Community Cricket League | Jeeva Nadi Ministries</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- =====================================================
+         SEO
+    ====================================================== -->
+
+    <title>
+        Community Cricket League | Jeeva Nadi Ministries
+    </title>
 
     <meta
         name="description"
-        content="Join the Jeeva Nadi Community Cricket League for fellowship, teamwork, healthy competition, friendship and unity."
+        content="Community Cricket League by Jeeva Nadi Ministries — bringing people together through fellowship, teamwork, healthy competition, friendship and unity."
     >
 
-    <link rel="stylesheet" href="events.css">
+    <meta
+        name="theme-color"
+        content="#06101d"
+    >
 
-    <!-- Optional Google Font -->
+
+    <!-- =====================================================
+         FONTS
+    ====================================================== -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
+
+
+    <!-- =====================================================
+         EVENT PAGE STYLESHEET
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="events.css"
+    >
+
 </head>
 
-<body>
 
-    <!-- =========================
+<body class="jn-events-page">
+
+
+    <!-- =====================================================
          HEADER
-    ========================== -->
-    <header class="cricket-header">
+    ====================================================== -->
 
-        <div class="cricket-container cricket-header-inner">
+    <header class="events-header">
 
-            <a href="index.html" class="cricket-logo">
-                <span class="cricket-logo-mark">JN</span>
+        <div class="events-container events-header-inner">
 
-                <span class="cricket-logo-text">
-                    <strong>JEEVA NADI</strong>
-                    <small>THE RIVER OF LIFE</small>
+
+            <!-- BRAND -->
+
+            <a
+                href="index.html"
+                class="events-brand"
+                aria-label="Jeeva Nadi Ministries Home"
+            >
+
+                <span
+                    class="events-brand-mark"
+                    aria-hidden="true"
+                >
+                    JN
                 </span>
+
+
+                <span class="events-brand-copy">
+
+                    <strong>
+                        JEEVA NADI
+                    </strong>
+
+                    <small>
+                        THE RIVER OF LIFE
+                    </small>
+
+                </span>
+
             </a>
 
-            <a href="index.html" class="cricket-back-link">
-                ← Back to Home
+
+            <!-- BACK TO HOME -->
+
+            <a
+                href="index.html"
+                class="events-back"
+            >
+
+                <span aria-hidden="true">
+                    ←
+                </span>
+
+                Back to Home
+
             </a>
 
         </div>
@@ -50,35 +122,99 @@
     </header>
 
 
+
     <main>
 
-        <!-- =========================
+
+        <!-- =====================================================
              HERO
-        ========================== -->
-        <section class="cricket-hero">
+        ====================================================== -->
 
-            <div class="cricket-hero-overlay"></div>
+        <section
+            class="events-hero"
+            aria-labelledby="event-title"
+        >
 
-            <div class="cricket-container cricket-hero-content">
+            <!-- Cricket background -->
 
-                <span class="cricket-event-badge">
-                    UPCOMING EVENT
-                </span>
+            <div
+                class="events-hero-image"
+                aria-hidden="true"
+            ></div>
 
-                <h1>
-                    Community
-                    <span>Cricket League</span>
-                </h1>
 
-                <p class="cricket-hero-text">
-                    Join us for fellowship, teamwork, healthy competition,
-                    friendship, and unity as our community comes together
-                    through the joy of cricket.
-                </p>
+            <div
+                class="events-container events-hero-inner"
+            >
 
-                <div class="cricket-coming-soon">
-                    <span class="coming-soon-dot"></span>
-                    Coming Soon
+                <div class="events-hero-copy">
+
+
+                    <!-- EVENT CATEGORY -->
+
+                    <div class="events-eyebrow">
+
+                        UPCOMING EVENT
+
+                    </div>
+
+
+                    <!-- MAIN TITLE -->
+
+                    <h1 id="event-title">
+
+                        Community
+
+                        <em>
+                            Cricket League
+                        </em>
+
+                    </h1>
+
+
+                    <!-- INTRO -->
+
+                    <p class="events-hero-description">
+
+                        A celebration of fellowship, friendship
+                        and healthy competition — bringing our
+                        community together through the joy of cricket.
+
+                    </p>
+
+
+                    <!-- STATUS -->
+
+                    <div
+                        class="events-status"
+                        aria-label="Event status: Coming Soon"
+                    >
+
+                        <span
+                            class="events-status-pulse"
+                            aria-hidden="true"
+                        ></span>
+
+                        Coming Soon
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCROLL INDICATOR -->
+
+                <div
+                    class="events-hero-scroll"
+                    aria-hidden="true"
+                >
+
+                    <span>
+                        DISCOVER THE EVENT
+                    </span>
+
+                    <i></i>
+
                 </div>
 
             </div>
@@ -86,244 +222,510 @@
         </section>
 
 
-        <!-- =========================
+
+        <!-- =====================================================
              INTRODUCTION
-        ========================== -->
-        <section class="cricket-intro">
+        ====================================================== -->
 
-            <div class="cricket-container cricket-intro-grid">
+        <section class="events-intro">
 
-                <div class="cricket-intro-content">
+            <div class="events-container events-intro-grid">
 
-                    <span class="cricket-section-label">
+
+                <!-- SECTION NUMBER -->
+
+                <div
+                    class="events-intro-number"
+                    aria-hidden="true"
+                >
+                    01
+                </div>
+
+
+                <!-- CONTENT -->
+
+                <div class="events-intro-content">
+
+                    <span class="events-kicker">
                         MORE THAN A GAME
                     </span>
 
+
                     <h2>
+
                         Play Together.
-                        <span>Grow Together.</span>
-                    </h2>
 
-                    <p>
-                        The Community Cricket League is an opportunity for
-                        people from our community to come together, build
-                        friendships, encourage one another and enjoy the
-                        spirit of healthy competition.
-                    </p>
-
-                    <p>
-                        Whether you're an experienced player or simply love
-                        the game, there will be a place for you to participate,
-                        connect and have fun.
-                    </p>
-
-                </div>
-
-
-                <div class="cricket-highlight-card">
-
-                    <div class="cricket-ball-icon">
-                        🏏
-                    </div>
-
-                    <h3>
-                        Fellowship Through Sport
-                    </h3>
-
-                    <p>
-                        Building stronger relationships through teamwork,
-                        sportsmanship and community.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             EVENT VALUES
-        ========================== -->
-        <section class="cricket-values">
-
-            <div class="cricket-container">
-
-                <div class="cricket-section-heading">
-
-                    <span class="cricket-section-label">
-                        WHAT IT'S ABOUT
-                    </span>
-
-                    <h2>
-                        A League Built Around
-                        <span>Community</span>
-                    </h2>
-
-                </div>
-
-
-                <div class="cricket-values-grid">
-
-                    <article class="cricket-value-card">
-
-                        <div class="value-icon">
-                            🤝
-                        </div>
-
-                        <h3>Fellowship</h3>
-
-                        <p>
-                            Connect with friends, families and members
-                            of the wider community.
-                        </p>
-
-                    </article>
-
-
-                    <article class="cricket-value-card">
-
-                        <div class="value-icon">
-                            🏏
-                        </div>
-
-                        <h3>Teamwork</h3>
-
-                        <p>
-                            Work together, support one another and
-                            celebrate every team member.
-                        </p>
-
-                    </article>
-
-
-                    <article class="cricket-value-card">
-
-                        <div class="value-icon">
-                            🏆
-                        </div>
-
-                        <h3>Healthy Competition</h3>
-
-                        <p>
-                            Enjoy competitive cricket while keeping
-                            sportsmanship and friendship at the heart
-                            of the game.
-                        </p>
-
-                    </article>
-
-
-                    <article class="cricket-value-card">
-
-                        <div class="value-icon">
-                            ❤️
-                        </div>
-
-                        <h3>Unity</h3>
-
-                        <p>
-                            Come together as one community and grow
-                            stronger through shared experiences.
-                        </p>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             EVENT DETAILS
-        ========================== -->
-        <section class="cricket-details">
-
-            <div class="cricket-container">
-
-                <div class="cricket-details-card">
-
-                    <div class="cricket-details-heading">
-
-                        <span class="cricket-section-label">
-                            EVENT INFORMATION
+                        <span>
+                            Grow Together.
                         </span>
 
+                    </h2>
+
+
+                    <p>
+
+                        The Community Cricket League is being
+                        created as a space where people can come
+                        together, enjoy the game they love and
+                        build meaningful friendships along the way.
+
+                    </p>
+
+
+                    <p>
+
+                        Whether you are an experienced player or
+                        simply love cricket, this is about creating
+                        an atmosphere of fellowship, teamwork,
+                        encouragement and shared joy.
+
+                    </p>
+
+                </div>
+
+
+                <!-- HIGHLIGHT -->
+
+                <div class="events-intro-feature">
+
+                    <div
+                        class="events-feature-ring"
+                        aria-hidden="true"
+                    >
+                        JN
+                    </div>
+
+
+                    <strong>
+                        One Community
+                    </strong>
+
+
+                    <small>
+                        Many teams · One spirit
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             VALUES / SPIRIT
+        ====================================================== -->
+
+        <section class="events-values">
+
+            <div class="events-container">
+
+
+                <!-- SECTION HEADING -->
+
+                <div class="events-section-heading">
+
+                    <div
+                        class="events-heading-number"
+                        aria-hidden="true"
+                    >
+                        02
+                    </div>
+
+
+                    <div>
+
+                        <span class="events-kicker">
+                            THE SPIRIT OF THE LEAGUE
+                        </span>
+
+
                         <h2>
-                            Details Coming Soon
+
+                            Built Around
+
+                            <span>
+                                Community.
+                            </span>
+
                         </h2>
 
+                    </div>
+
+                </div>
+
+
+
+                <!-- VALUE CARDS -->
+
+                <div class="events-values-grid">
+
+
+                    <!-- FELLOWSHIP -->
+
+                    <article
+                        class="events-value events-value-large"
+                        data-number="01"
+                    >
+
+                        <div class="events-value-top">
+
+                            <span class="events-value-icon">
+                                01
+                            </span>
+
+                            <span>
+                                FELLOWSHIP
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="events-value-symbol"
+                            aria-hidden="true"
+                        >
+                            +
+                        </div>
+
+
+                        <h3>
+                            Connect.
+                        </h3>
+
+
                         <p>
-                            We are currently preparing the league.
-                            More information will be announced soon.
+
+                            Meet people, strengthen friendships
+                            and enjoy meaningful time together
+                            beyond the boundaries of the cricket field.
+
                         </p>
+
+                    </article>
+
+
+
+                    <!-- TEAMWORK -->
+
+                    <article
+                        class="events-value"
+                        data-number="02"
+                    >
+
+                        <div class="events-value-top">
+
+                            <span class="events-value-icon">
+                                02
+                            </span>
+
+                            <span>
+                                TEAMWORK
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="events-value-symbol"
+                            aria-hidden="true"
+                        >
+                            ↗
+                        </div>
+
+
+                        <h3>
+                            Together.
+                        </h3>
+
+
+                        <p>
+
+                            Every player contributes.
+                            Every teammate matters.
+                            Every effort helps build the team.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <!-- COMPETITION -->
+
+                    <article
+                        class="events-value"
+                        data-number="03"
+                    >
+
+                        <div class="events-value-top">
+
+                            <span class="events-value-icon">
+                                03
+                            </span>
+
+                            <span>
+                                COMPETITION
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="events-value-symbol"
+                            aria-hidden="true"
+                        >
+                            ★
+                        </div>
+
+
+                        <h3>
+                            Compete Well.
+                        </h3>
+
+
+                        <p>
+
+                            Enjoy the excitement of competitive
+                            cricket while keeping sportsmanship
+                            and respect at the heart of the game.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <!-- UNITY -->
+
+                    <article
+                        class="events-value events-value-accent"
+                        data-number="04"
+                    >
+
+                        <div class="events-value-top">
+
+                            <span class="events-value-icon">
+                                04
+                            </span>
+
+                            <span>
+                                UNITY
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="events-value-symbol"
+                            aria-hidden="true"
+                        >
+                            ∞
+                        </div>
+
+
+                        <h3>
+                            One Community.
+                        </h3>
+
+
+                        <p>
+
+                            Different teams.
+                            Different stories.
+                            One shared spirit of friendship,
+                            fellowship and unity.
+
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             EVENT INFORMATION
+        ====================================================== -->
+
+        <section class="events-information">
+
+            <div class="events-container">
+
+
+                <div class="events-information-card">
+
+
+                    <!-- INFORMATION HEADER -->
+
+                    <div class="events-info-top">
+
+                        <div>
+
+                            <span class="events-kicker">
+                                03 · EVENT INFORMATION
+                            </span>
+
+
+                            <h2>
+
+                                The Details Are
+
+                                <span>
+                                    Coming Soon.
+                                </span>
+
+                            </h2>
+
+                        </div>
+
+
+                        <div class="events-coming-mark">
+
+                            <span
+                                aria-hidden="true"
+                            ></span>
+
+                            PREPARING
+
+                        </div>
 
                     </div>
 
 
-                    <div class="cricket-details-grid">
 
-                        <div class="cricket-detail">
+                    <!-- DESCRIPTION -->
 
-                            <span class="detail-icon">📅</span>
+                    <p class="events-info-description">
 
-                            <div>
-                                <small>Date</small>
-                                <strong>Coming Soon</strong>
-                            </div>
+                        We are currently preparing the league
+                        and will announce the complete details
+                        soon. Keep connected with Jeeva Nadi
+                        Ministries for registration, schedules,
+                        venue information and further announcements.
+
+                    </p>
+
+
+
+                    <!-- EVENT DETAILS -->
+
+                    <div class="events-info-grid">
+
+
+                        <!-- DATE -->
+
+                        <div class="events-info-item">
+
+                            <span class="events-info-icon">
+                                01
+                            </span>
+
+                            <small>
+                                DATE
+                            </small>
+
+                            <strong>
+                                Coming Soon
+                            </strong>
 
                         </div>
 
 
-                        <div class="cricket-detail">
+                        <!-- VENUE -->
 
-                            <span class="detail-icon">📍</span>
+                        <div class="events-info-item">
 
-                            <div>
-                                <small>Venue</small>
-                                <strong>Coming Soon</strong>
-                            </div>
+                            <span class="events-info-icon">
+                                02
+                            </span>
 
-                        </div>
+                            <small>
+                                VENUE
+                            </small>
 
-
-                        <div class="cricket-detail">
-
-                            <span class="detail-icon">👥</span>
-
-                            <div>
-                                <small>Teams</small>
-                                <strong>Coming Soon</strong>
-                            </div>
+                            <strong>
+                                Coming Soon
+                            </strong>
 
                         </div>
 
 
-                        <div class="cricket-detail">
+                        <!-- TEAMS -->
 
-                            <span class="detail-icon">📝</span>
+                        <div class="events-info-item">
 
-                            <div>
-                                <small>Registration</small>
-                                <strong>Opening Soon</strong>
-                            </div>
+                            <span class="events-info-icon">
+                                03
+                            </span>
+
+                            <small>
+                                TEAMS
+                            </small>
+
+                            <strong>
+                                Coming Soon
+                            </strong>
+
+                        </div>
+
+
+                        <!-- REGISTRATION -->
+
+                        <div class="events-info-item">
+
+                            <span class="events-info-icon">
+                                04
+                            </span>
+
+                            <small>
+                                REGISTRATION
+                            </small>
+
+                            <strong>
+                                Opening Soon
+                            </strong>
 
                         </div>
 
                     </div>
 
 
-                    <div class="cricket-notice">
 
-                        <span>✦</span>
+                    <!-- ANNOUNCEMENT -->
 
-                        <p>
-                            Registration details, match schedules,
-                            venue information and team formation details
-                            will be announced soon.
-                        </p>
+                    <div class="events-announcement">
+
+                        <span
+                            class="events-announcement-mark"
+                            aria-hidden="true"
+                        >
+                            ✦
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                Stay tuned for the announcement.
+                            </strong>
+
+
+                            <p>
+
+                                Registration details, match
+                                schedules, venue information and
+                                team formation details will be
+                                announced soon.
+
+                            </p>
+
+                        </div>
 
                     </div>
 
@@ -334,35 +736,69 @@
         </section>
 
 
-        <!-- =========================
-             CLOSING CTA
-        ========================== -->
-        <section class="cricket-cta">
 
-            <div class="cricket-container">
+        <!-- =====================================================
+             CLOSING SECTION
+        ====================================================== -->
 
-                <div class="cricket-cta-content">
+        <section class="events-final">
 
-                    <span class="cricket-section-label">
-                        STAY CONNECTED
+
+            <!-- Background image -->
+
+            <div
+                class="events-final-image"
+                aria-hidden="true"
+            ></div>
+
+
+            <div
+                class="events-final-overlay"
+                aria-hidden="true"
+            ></div>
+
+
+
+            <div class="events-container events-final-content">
+
+
+                <span class="events-kicker">
+                    04 · SOMETHING TO LOOK FORWARD TO
+                </span>
+
+
+                <h2>
+
+                    The Field Is Waiting.
+
+                    <span>
+                        Are You Ready?
                     </span>
 
-                    <h2>
-                        Get Ready to
-                        <span>Play Together</span>
-                    </h2>
+                </h2>
 
-                    <p>
-                        Keep an eye on our upcoming announcements.
-                        We look forward to welcoming you to the
-                        Community Cricket League.
-                    </p>
 
-                    <a href="index.html" class="cricket-button">
-                        ← Return to Jeeva Nadi
-                    </a>
+                <p>
 
-                </div>
+                    Come for the cricket.
+                    Stay for the fellowship.
+                    Grow together as one community.
+
+                </p>
+
+
+                <a
+                    href="index.html"
+                    class="events-return-button"
+                >
+
+                    <span aria-hidden="true">
+                        ←
+                    </span>
+
+                    Return to Jeeva Nadi
+
+                </a>
 
             </div>
 
@@ -371,22 +807,38 @@
     </main>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          FOOTER
-    ========================== -->
-    <footer class="cricket-footer">
+    ====================================================== -->
 
-        <div class="cricket-container">
+    <footer class="events-footer">
 
-            <div class="cricket-footer-inner">
+        <div class="events-container">
 
-                <div>
-                    <strong>JEEVA NADI MINISTRIES</strong>
-                    <span>The River of Life</span>
+            <div class="events-footer-inner">
+
+
+                <!-- FOOTER BRAND -->
+
+                <div class="events-footer-brand">
+
+                    <strong>
+                        JEEVA NADI MINISTRIES
+                    </strong>
+
+                    <span>
+                        THE RIVER OF LIFE
+                    </span>
+
                 </div>
 
+
+                <!-- COPYRIGHT -->
+
                 <p>
-                    © 2026 Jeeva Nadi Ministries. All rights reserved.
+                    © 2026 Jeeva Nadi Ministries.
+                    All rights reserved.
                 </p>
 
             </div>
@@ -395,6 +847,8 @@
 
     </footer>
 
+
 </body>
+
 </html>
-```
+
