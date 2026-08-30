@@ -1,220 +1,388 @@
 /* ============================================================
    JEEVA NADI MINISTRIES
-   EVENTS PAGE — COMMUNITY CRICKET LEAGUE
-   ============================================================ */
+   REFORMATION DAY — PREMIUM EVENT PAGE
+
+   VISUAL DIRECTION
+   ------------------------------------------------------------
+   • Midnight church atmosphere
+   • Antique gold
+   • Historical editorial design
+   • Cinematic image movement
+   • Fade + reveal transitions
+   • Elegant typography
+   • Atmospheric depth
+   • Responsive
+   • No JavaScript required
+============================================================ */
 
 
 /* ============================================================
-   ROOT
-   ============================================================ */
+   DESIGN TOKENS
+============================================================ */
 
-.jn-events-page {
+:root {
 
-    --event-navy: #06101d;
-    --event-navy-2: #091827;
-    --event-navy-3: #0d2033;
+    --r-navy: #040a12;
+    --r-navy-2: #07111d;
+    --r-navy-3: #0b1b2b;
 
-    --event-gold: #c9a34e;
-    --event-gold-light: #e4ca7a;
+    --r-gold: #c8a45d;
+    --r-gold-light: #e6cf94;
 
-    --event-white: #ffffff;
-    --event-text: #dce3eb;
-    --event-muted: #91a0b2;
+    --r-white: #f4f0e7;
+    --r-muted: #9aa7b3;
 
-    --event-line: rgba(201, 163, 78, 0.24);
-    --event-white-line: rgba(255, 255, 255, 0.09);
+    --r-border: rgba(255,255,255,0.09);
 
-    --event-radius: 2px;
+    --r-ease: cubic-bezier(.22,.61,.36,1);
 
-    background: var(--event-navy);
-    color: var(--event-text);
+}
+
+
+/* ============================================================
+   RESET
+============================================================ */
+
+.reformation-page,
+.reformation-page *,
+.reformation-page *::before,
+.reformation-page *::after {
+
+    box-sizing: border-box;
+
+}
+
+
+.reformation-page {
+
+    margin: 0;
+
+    min-height: 100vh;
 
     overflow-x: hidden;
-}
 
-
-/* ============================================================
-   BASIC RESET
-   ============================================================ */
-
-.jn-events-page *,
-.jn-events-page *::before,
-.jn-events-page *::after {
-    box-sizing: border-box;
-}
-
-.jn-events-page a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.jn-events-page img {
-    max-width: 100%;
-    display: block;
-}
-
-
-/* ============================================================
-   CONTAINER
-   ============================================================ */
-
-.events-container {
-
-    width: min(1180px, calc(100% - 48px));
-
-    margin: 0 auto;
-}
-
-
-/* ============================================================
-   EVENT HEADER
-   ============================================================ */
-
-.events-header {
-
-    position: relative;
-    z-index: 50;
+    color: var(--r-white);
 
     background:
-        rgba(4, 10, 18, 0.96);
 
-    border-bottom: 1px solid var(--event-line);
+        radial-gradient(
+            circle at 75% 15%,
+            rgba(200,164,93,0.055),
+            transparent 28%
+        ),
 
-    backdrop-filter: blur(12px);
+        radial-gradient(
+            circle at 15% 70%,
+            rgba(30,75,105,0.08),
+            transparent 30%
+        ),
+
+        var(--r-navy);
+
+    font-family: "Inter", sans-serif;
+
 }
 
-.events-header-inner {
 
-    min-height: 78px;
+.reformation-page img {
+
+    display: block;
+
+    max-width: 100%;
+
+}
+
+
+/* ============================================================
+   GLOBAL FADE SYSTEM
+============================================================ */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes revealLine {
+
+    from {
+
+        transform: scaleX(0);
+
+        transform-origin: left;
+
+    }
+
+    to {
+
+        transform: scaleX(1);
+
+        transform-origin: left;
+
+    }
+
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.reformation-header {
+
+    position: absolute;
+
+    inset: 0 0 auto;
+
+    z-index: 100;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            rgba(2,7,13,.92),
+            rgba(2,7,13,.30),
+            transparent
+        );
+
+    animation: fadeIn 1.5s ease both;
+
+}
+
+
+.reformation-nav {
+
+    width: min(1300px,100%);
+
+    margin: auto;
+
+    padding: 24px 40px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
 }
 
 
-/* ------------------------------------------------------------
-   BRAND
------------------------------------------------------------- */
+.reformation-brand {
 
-.events-brand {
+    display: flex;
 
-    display: inline-flex;
     align-items: center;
 
-    gap: 13px;
+    gap: 12px;
+
+    color: white;
+
+    text-decoration: none;
+
+    transition:
+        transform .45s var(--r-ease);
+
 }
 
-.events-brand-mark {
 
-    width: 42px;
-    height: 42px;
+.reformation-brand:hover {
+
+    transform: translateX(4px);
+
+}
+
+
+.brand-cross {
+
+    width: 40px;
+    height: 40px;
 
     display: grid;
+
     place-items: center;
 
-    border: 1px solid var(--event-gold);
+    border: 1px solid var(--r-gold);
 
-    border-radius: 50%;
+    color: var(--r-gold);
 
-    color: var(--event-gold-light);
+    font-size: 18px;
 
-    font-family: "Cinzel", serif;
+    transition:
+        background .4s ease,
+        color .4s ease,
+        box-shadow .4s ease;
 
-    font-size: 12px;
-    font-weight: 700;
-
-    letter-spacing: 1px;
 }
 
-.events-brand-copy {
+
+.reformation-brand:hover .brand-cross {
+
+    background: var(--r-gold);
+
+    color: var(--r-navy);
+
+    box-shadow:
+        0 0 30px rgba(200,164,93,.18);
+
+}
+
+
+.brand-text {
 
     display: flex;
+
     flex-direction: column;
+
 }
 
-.events-brand-copy strong {
 
-    color: var(--event-white);
+.brand-text strong {
 
-    font-family: "Cinzel", serif;
+    font-size: 14px;
 
-    font-size: 13px;
+    letter-spacing: 3px;
 
-    letter-spacing: 2px;
 }
 
-.events-brand-copy small {
+
+.brand-text small {
 
     margin-top: 3px;
 
-    color: var(--event-gold);
+    color: var(--r-gold);
 
     font-size: 7px;
 
     letter-spacing: 2px;
+
 }
 
 
-/* ------------------------------------------------------------
-   BACK BUTTON
------------------------------------------------------------- */
+.reformation-menu {
 
-.events-back {
+    display: flex;
 
-    display: inline-flex;
-    align-items: center;
+    gap: 30px;
 
-    gap: 10px;
+}
 
-    color: var(--event-muted);
 
-    font-size: 11px;
+.reformation-menu a {
+
+    position: relative;
+
+    color: rgba(255,255,255,.60);
+
+    text-decoration: none;
+
+    font-size: 10px;
+
     font-weight: 600;
 
+    letter-spacing: 1px;
+
     transition:
-        color 0.3s ease,
-        transform 0.3s ease;
+        color .3s ease;
+
 }
 
-.events-back span {
 
-    color: var(--event-gold);
+.reformation-menu a::after {
 
-    font-size: 18px;
+    content: "";
 
-    transition: transform 0.3s ease;
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 100%;
+    height: 1px;
+
+    background: var(--r-gold);
+
+    transform: scaleX(0);
+
+    transform-origin: right;
+
+    transition:
+        transform .4s var(--r-ease);
+
 }
 
-.events-back:hover {
 
-    color: var(--event-white);
+.reformation-menu a:hover,
+.reformation-menu a.active {
 
-    transform: translateX(-3px);
+    color: var(--r-gold-light);
+
 }
 
-.events-back:hover span {
 
-    transform: translateX(-4px);
+.reformation-menu a:hover::after,
+.reformation-menu a.active::after {
+
+    transform: scaleX(1);
+
+    transform-origin: left;
+
 }
 
 
 /* ============================================================
    HERO
-   ============================================================ */
+============================================================ */
 
-.events-hero {
+.reformation-hero {
+
+    min-height: 900px;
 
     position: relative;
 
-    min-height: 760px;
-
-    display: flex;
-    align-items: center;
-
     overflow: hidden;
 
-    background: var(--event-navy);
+    display: flex;
+
+    align-items: center;
+
+    isolation: isolate;
+
+    background: var(--r-navy);
+
 }
 
 
@@ -222,403 +390,308 @@
    HERO IMAGE
 ------------------------------------------------------------ */
 
-.events-hero-image {
+.hero-bg {
 
     position: absolute;
-    inset: 0;
 
-    background-image:
-        url("images/cricket.png");
+    inset: -7%;
 
-    background-size: cover;
+    z-index: -4;
 
-    background-position: center center;
+    background:
 
-    transform: scale(1.03);
+        url("images/events/reformation-day-1.jpg")
+        center / cover no-repeat;
+
+    opacity: .38;
+
+    filter:
+        saturate(.75)
+        contrast(1.05);
+
+    animation:
+        heroKenBurns 20s
+        cubic-bezier(.45,0,.55,1)
+        infinite alternate;
+
+}
+
+
+@keyframes heroKenBurns {
+
+    from {
+
+        transform:
+            scale(1)
+            translate3d(0,0,0);
+
+    }
+
+    to {
+
+        transform:
+            scale(1.10)
+            translate3d(-1%, -1%, 0);
+
+    }
+
 }
 
 
 /* ------------------------------------------------------------
-   CINEMATIC OVERLAY
+   HERO DARK CINEMATIC MASK
 ------------------------------------------------------------ */
 
-.events-hero::before {
+.reformation-hero::before {
 
     content: "";
 
     position: absolute;
+
     inset: 0;
 
-    z-index: 1;
+    z-index: -3;
 
     background:
 
         linear-gradient(
             90deg,
-            rgba(4, 10, 18, 0.98) 0%,
-            rgba(4, 10, 18, 0.91) 28%,
-            rgba(4, 10, 18, 0.55) 60%,
-            rgba(4, 10, 18, 0.72) 100%
-        ),
+            rgba(2,8,14,.98) 0%,
+            rgba(2,8,14,.90) 36%,
+            rgba(2,8,14,.56) 68%,
+            rgba(2,8,14,.82) 100%
+        );
+
+}
+
+
+.reformation-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -2;
+
+    background:
 
         linear-gradient(
-            180deg,
-            rgba(4, 10, 18, 0.15),
-            rgba(4, 10, 18, 0.95) 100%
-        );
-}
-
-
-/* ------------------------------------------------------------
-   GOLD ATMOSPHERE
------------------------------------------------------------- */
-
-.events-hero::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 650px;
-    height: 650px;
-
-    right: -300px;
-    top: 40px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(201, 163, 78, 0.18),
-            transparent 68%
+            to bottom,
+            rgba(0,0,0,.65),
+            transparent 25%,
+            transparent 70%,
+            rgba(2,8,14,.95)
         );
 
-    z-index: 1;
-
-    pointer-events: none;
-}
-
-
-/* ------------------------------------------------------------
-   HERO CONTENT
------------------------------------------------------------- */
-
-.events-hero-inner {
-
-    position: relative;
-
-    z-index: 3;
-
-    min-height: 760px;
-
-    display: flex;
-
-    align-items: center;
-}
-
-.events-hero-copy {
-
-    width: min(760px, 100%);
-
-    padding: 100px 0;
-}
-
-
-/* ------------------------------------------------------------
-   EYEBROW
------------------------------------------------------------- */
-
-.events-eyebrow {
-
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    color: var(--event-gold-light);
-
-    font-size: 9px;
-    font-weight: 700;
-
-    letter-spacing: 3px;
-}
-
-.events-eyebrow::before {
-
-    content: "";
-
-    width: 34px;
-    height: 1px;
-
-    background: var(--event-gold);
-}
-
-
-/* ------------------------------------------------------------
-   HERO TITLE
------------------------------------------------------------- */
-
-.events-hero h1 {
-
-    margin: 24px 0 0;
-
-    color: var(--event-white);
-
-    font-family: "Cinzel", serif;
-
-    font-size: clamp(48px, 7vw, 88px);
-
-    font-weight: 600;
-
-    line-height: 1.04;
-
-    letter-spacing: -1px;
-}
-
-.events-hero h1 em {
-
-    display: block;
-
-    margin-top: 8px;
-
-    color: var(--event-gold-light);
-
-    font-style: normal;
-
-    font-size: 0.72em;
-
-    letter-spacing: 1px;
-}
-
-
-/* ------------------------------------------------------------
-   HERO DESCRIPTION
------------------------------------------------------------- */
-
-.events-hero-description {
-
-    max-width: 600px;
-
-    margin: 30px 0 0;
-
-    color: #c0cad6;
-
-    font-size: 15px;
-
-    line-height: 1.9;
-}
-
-
-/* ------------------------------------------------------------
-   STATUS
------------------------------------------------------------- */
-
-.events-status {
-
-    width: fit-content;
-
-    display: inline-flex;
-    align-items: center;
-
-    gap: 11px;
-
-    margin-top: 32px;
-
-    padding: 12px 19px;
-
-    border: 1px solid var(--event-line);
-
-    border-radius: 100px;
-
-    background:
-        rgba(6, 16, 29, 0.76);
-
-    color: var(--event-gold-light);
-
-    font-size: 9px;
-    font-weight: 700;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-
-    backdrop-filter: blur(10px);
-}
-
-.events-status-pulse {
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: var(--event-gold);
-
-    box-shadow:
-        0 0 0 5px rgba(201, 163, 78, 0.08),
-        0 0 18px rgba(201, 163, 78, 0.6);
-}
-
-
-/* ------------------------------------------------------------
-   HERO SCROLL
------------------------------------------------------------- */
-
-.events-hero-scroll {
-
-    position: absolute;
-
-    right: 0;
-    bottom: 38px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 13px;
-
-    color: rgba(255, 255, 255, 0.42);
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-}
-
-.events-hero-scroll i {
-
-    width: 45px;
-    height: 1px;
-
-    display: block;
-
-    background: var(--event-gold);
 }
 
 
 /* ============================================================
-   INTRODUCTION
-   ============================================================ */
+   ATMOSPHERIC LIGHT
+============================================================ */
 
-.events-intro {
+.hero-light {
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    border-radius: 50%;
+
+    filter: blur(110px);
+
+    opacity: .10;
+
+    pointer-events: none;
+
+}
+
+
+.hero-light-one {
+
+    top: 8%;
+
+    right: 5%;
+
+    background: var(--r-gold);
+
+    animation:
+        atmosphericFloat 11s
+        ease-in-out
+        infinite alternate;
+
+}
+
+
+.hero-light-two {
+
+    bottom: -20%;
+
+    left: 10%;
+
+    background: #285879;
+
+    animation:
+        atmosphericFloat 15s
+        ease-in-out
+        infinite alternate-reverse;
+
+}
+
+
+@keyframes atmosphericFloat {
+
+    from {
+
+        transform:
+            translate3d(0,0,0)
+            scale(.90);
+
+    }
+
+    to {
+
+        transform:
+            translate3d(60px,-35px,0)
+            scale(1.16);
+
+    }
+
+}
+
+
+/* ============================================================
+   HERO GRID
+============================================================ */
+
+.hero-grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: .55;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 110px 110px;
+
+    mask-image:
+
+        linear-gradient(
+            to right,
+            black,
+            transparent 75%
+        );
+
+    animation:
+        gridFade 4s ease both;
+
+}
+
+
+@keyframes gridFade {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: .55;
+
+    }
+
+}
+
+
+/* ============================================================
+   HERO CONTENT
+============================================================ */
+
+.hero-content {
+
+    width: min(1200px,100%);
+
+    margin: auto;
+
+    padding: 190px 40px 130px;
 
     position: relative;
 
-    padding: 125px 0;
+    z-index: 5;
 
-    background:
-        linear-gradient(
-            180deg,
-            var(--event-navy),
-            var(--event-navy-2)
-        );
 }
 
 
-/* ------------------------------------------------------------
-   INTRO GRID
------------------------------------------------------------- */
+.hero-overline {
 
-.events-intro-grid {
-
-    display: grid;
-
-    grid-template-columns: 70px 1fr 260px;
-
-    gap: 45px;
+    display: flex;
 
     align-items: center;
-}
 
+    gap: 12px;
 
-/* ------------------------------------------------------------
-   SECTION NUMBER
------------------------------------------------------------- */
-
-.events-intro-number,
-.events-heading-number {
-
-    color: var(--event-gold);
-
-    font-family: "Cinzel", serif;
-
-    font-size: 12px;
-
-    letter-spacing: 2px;
-}
-
-
-/* ------------------------------------------------------------
-   KICKER
------------------------------------------------------------- */
-
-.events-kicker {
-
-    display: inline-block;
-
-    color: var(--event-gold);
+    color: var(--r-gold);
 
     font-size: 9px;
 
     font-weight: 700;
 
-    letter-spacing: 2.5px;
+    letter-spacing: 4px;
+
+    animation:
+        fadeUp 1s .2s var(--r-ease) both;
+
 }
 
 
-/* ------------------------------------------------------------
-   INTRO HEADING
------------------------------------------------------------- */
+.hero-overline span {
 
-.events-intro-content h2 {
+    width: 35px;
 
-    margin: 15px 0 0;
+    height: 1px;
 
-    color: var(--event-white);
+    background: var(--r-gold);
 
-    font-family: "Cinzel", serif;
+    transform-origin: left;
 
-    font-size: clamp(35px, 4.5vw, 57px);
+    animation:
+        revealLine 1s .5s var(--r-ease) both;
 
-    font-weight: 600;
-
-    line-height: 1.15;
-}
-
-.events-intro-content h2 span {
-
-    display: block;
-
-    color: var(--event-gold-light);
 }
 
 
-/* ------------------------------------------------------------
-   INTRO TEXT
------------------------------------------------------------- */
+/* ============================================================
+   DATE
+============================================================ */
 
-.events-intro-content p {
+.hero-date-display {
 
-    max-width: 680px;
+    position: absolute;
 
-    margin: 22px 0 0;
+    right: 120px;
 
-    color: var(--event-muted);
+    top: 220px;
 
-    font-size: 13px;
-
-    line-height: 1.95;
-}
-
-
-/* ------------------------------------------------------------
-   FEATURE BOX
------------------------------------------------------------- */
-
-.events-intro-feature {
-
-    min-height: 240px;
-
-    position: relative;
+    width: 190px;
+    height: 235px;
 
     display: flex;
 
@@ -628,1196 +701,2133 @@
 
     justify-content: center;
 
-    padding: 25px;
+    border-left: 1px solid rgba(200,164,93,.45);
 
-    overflow: hidden;
+    border-right: 1px solid rgba(200,164,93,.45);
 
-    border: 1px solid var(--event-line);
+    animation:
+        fadeIn 1.5s .7s ease both;
 
-    background:
-
-        radial-gradient(
-            circle at center,
-            rgba(201, 163, 78, 0.10),
-            transparent 65%
-        ),
-
-        var(--event-navy-3);
-
-    text-align: center;
 }
 
-.events-intro-feature::before {
+
+.hero-date-display::before,
+.hero-date-display::after {
 
     content: "";
 
     position: absolute;
 
-    inset: 12px;
+    width: 8px;
+    height: 8px;
 
-    border: 1px solid rgba(201, 163, 78, 0.07);
+    border: 1px solid var(--r-gold);
 
-    pointer-events: none;
 }
 
 
-/* ------------------------------------------------------------
-   FEATURE RING
------------------------------------------------------------- */
+.hero-date-display::before {
 
-.events-feature-ring {
+    top: -4px;
+    left: -4px;
 
-    width: 82px;
-    height: 82px;
+}
+
+
+.hero-date-display::after {
+
+    bottom: -4px;
+    right: -4px;
+
+}
+
+
+.hero-date-display span {
+
+    color: var(--r-gold);
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+}
+
+
+.hero-date-display strong {
+
+    margin: 10px 0;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 125px;
+
+    line-height: .7;
+
+    font-weight: 500;
+
+}
+
+
+.hero-date-display small {
+
+    color: #8a949e;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+}
+
+
+/* ============================================================
+   HERO TITLE
+============================================================ */
+
+.hero-title {
+
+    margin-top: 55px;
+
+    animation:
+        fadeUp 1.2s .35s var(--r-ease) both;
+
+}
+
+
+.hero-title > span {
+
+    color: rgba(255,255,255,.42);
+
+    font-size: 11px;
+
+    letter-spacing: 8px;
+
+}
+
+
+.hero-title h1 {
+
+    max-width: 800px;
+
+    margin: 15px 0 25px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(72px,9vw,135px);
+
+    line-height: .76;
+
+    letter-spacing: -5px;
+
+    font-weight: 500;
+
+}
+
+
+.hero-title h1 em {
+
+    color: var(--r-gold);
+
+    font-weight: 500;
+
+    font-style: normal;
+
+}
+
+
+/* ============================================================
+   HERO DESCRIPTION
+============================================================ */
+
+.hero-description {
+
+    max-width: 500px;
+
+    color: #aab4be;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    animation:
+        fadeUp 1s .75s var(--r-ease) both;
+
+}
+
+
+/* ============================================================
+   DISCOVER
+============================================================ */
+
+.hero-discover {
+
+    margin-top: 40px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    color: var(--r-white);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    animation:
+        fadeUp 1s 1s var(--r-ease) both;
+
+}
+
+
+.discover-circle {
+
+    width: 38px;
+    height: 38px;
 
     display: grid;
 
     place-items: center;
 
-    margin-bottom: 22px;
+    border: 1px solid var(--r-gold);
 
-    border: 1px solid var(--event-gold);
+    color: var(--r-gold);
 
     border-radius: 50%;
 
-    outline: 1px solid rgba(201, 163, 78, 0.18);
+    transition:
+        background .4s ease,
+        color .4s ease,
+        transform .4s ease,
+        box-shadow .4s ease;
 
-    outline-offset: 8px;
-
-    color: var(--event-gold-light);
-
-    font-family: "Cinzel", serif;
-
-    font-size: 17px;
 }
 
-.events-intro-feature strong {
 
-    color: var(--event-white);
+.hero-discover:hover .discover-circle {
 
-    font-family: "Cinzel", serif;
+    background: var(--r-gold);
 
-    font-size: 14px;
-}
+    color: var(--r-navy);
 
-.events-intro-feature small {
+    transform: translateY(5px);
 
-    margin-top: 7px;
+    box-shadow:
+        0 8px 25px rgba(200,164,93,.18);
 
-    color: var(--event-muted);
-
-    font-size: 8px;
-
-    letter-spacing: 1.5px;
 }
 
 
 /* ============================================================
-   VALUES
-   ============================================================ */
+   HERO SIDE LABEL
+============================================================ */
 
-.events-values {
-
-    padding: 125px 0;
-
-    background: var(--event-navy-2);
-}
-
-
-/* ------------------------------------------------------------
-   SECTION HEADING
------------------------------------------------------------- */
-
-.events-section-heading {
-
-    display: grid;
-
-    grid-template-columns: 70px 1fr;
-
-    gap: 45px;
-
-    margin-bottom: 55px;
-}
-
-.events-section-heading h2 {
-
-    margin: 14px 0 0;
-
-    color: var(--event-white);
-
-    font-family: "Cinzel", serif;
-
-    font-size: clamp(34px, 4.2vw, 53px);
-
-    font-weight: 600;
-
-    line-height: 1.16;
-}
-
-.events-section-heading h2 span {
-
-    color: var(--event-gold-light);
-}
-
-
-/* ------------------------------------------------------------
-   VALUE GRID
------------------------------------------------------------- */
-
-.events-values-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        1.25fr
-        1fr
-        1fr;
-
-    gap: 14px;
-}
-
-
-/* ------------------------------------------------------------
-   VALUE CARD
------------------------------------------------------------- */
-
-.events-value {
-
-    min-height: 315px;
-
-    position: relative;
-
-    padding: 29px;
-
-    overflow: hidden;
-
-    border: 1px solid var(--event-white-line);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.025),
-            transparent 60%
-        ),
-
-        var(--event-navy-3);
-
-    transition:
-        transform 0.35s ease,
-        border-color 0.35s ease;
-}
-
-.events-value:hover {
-
-    transform: translateY(-7px);
-
-    border-color: var(--event-line);
-}
-
-
-/* Decorative number */
-
-.events-value::after {
-
-    content: attr(data-number);
+.hero-side-label {
 
     position: absolute;
 
-    right: 20px;
-    bottom: -15px;
+    right: 28px;
 
-    color: rgba(201, 163, 78, 0.035);
+    top: 50%;
 
-    font-family: "Cinzel", serif;
+    writing-mode: vertical-rl;
 
-    font-size: 100px;
+    color: rgba(255,255,255,.20);
 
-    line-height: 1;
+    font-size: 9px;
 
-    pointer-events: none;
+    letter-spacing: 5px;
+
+    animation:
+        fadeIn 2s 1s ease both;
+
 }
 
 
-/* ------------------------------------------------------------
-   CARD TOP
------------------------------------------------------------- */
+/* ============================================================
+   HERO BOTTOM
+============================================================ */
 
-.events-value-top {
+.hero-bottom {
+
+    position: absolute;
+
+    bottom: 28px;
+
+    left: 40px;
+    right: 40px;
 
     display: flex;
 
     justify-content: space-between;
-    align-items: center;
 
-    color: var(--event-muted);
+    color: rgba(255,255,255,.42);
 
     font-size: 8px;
 
-    font-weight: 700;
+    letter-spacing: 3px;
 
-    letter-spacing: 2px;
-}
+    z-index: 5;
 
-.events-value-icon {
+    animation:
+        fadeIn 1.5s 1.2s ease both;
 
-    color: var(--event-gold);
-
-    font-family: "Cinzel", serif;
-
-    font-size: 11px;
-}
-
-
-/* ------------------------------------------------------------
-   SYMBOL
------------------------------------------------------------- */
-
-.events-value-symbol {
-
-    margin-top: 54px;
-
-    color: rgba(201, 163, 78, 0.34);
-
-    font-family: "Cinzel", serif;
-
-    font-size: 45px;
-}
-
-
-/* ------------------------------------------------------------
-   CARD TITLE
------------------------------------------------------------- */
-
-.events-value h3 {
-
-    margin: 15px 0 0;
-
-    color: var(--event-white);
-
-    font-family: "Cinzel", serif;
-
-    font-size: 26px;
-
-    font-weight: 600;
-}
-
-
-/* ------------------------------------------------------------
-   CARD TEXT
------------------------------------------------------------- */
-
-.events-value p {
-
-    max-width: 430px;
-
-    margin: 12px 0 0;
-
-    color: var(--event-muted);
-
-    font-size: 12px;
-
-    line-height: 1.85;
-}
-
-
-/* ------------------------------------------------------------
-   ACCENT CARD
------------------------------------------------------------- */
-
-.events-value-accent {
-
-    grid-column: span 3;
-
-    min-height: 230px;
-
-    background:
-
-        linear-gradient(
-            100deg,
-            rgba(201, 163, 78, 0.13),
-            transparent 55%
-        ),
-
-        var(--event-navy-3);
-
-    border-color: var(--event-line);
-}
-
-.events-value-accent .events-value-symbol {
-
-    color: rgba(201, 163, 78, 0.45);
 }
 
 
 /* ============================================================
-   EVENT INFORMATION
-   ============================================================ */
+   INTRODUCTION
+============================================================ */
 
-.events-information {
+.reformation-intro {
 
-    padding: 125px 0;
+    max-width: 1100px;
 
-    background: var(--event-navy);
+    margin: auto;
+
+    padding: 150px 40px;
+
+    display: grid;
+
+    grid-template-columns: 100px 1fr;
+
+    gap: 60px;
+
 }
 
 
-/* ------------------------------------------------------------
-   INFORMATION PANEL
------------------------------------------------------------- */
+.intro-number {
 
-.events-information-card {
+    color: var(--r-gold);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 20px;
+
+    animation:
+        fadeUp 1s both;
+
+}
+
+
+.intro-content {
+
+    max-width: 850px;
+
+    animation:
+        fadeUp 1s .15s var(--r-ease) both;
+
+}
+
+
+.section-kicker {
+
+    color: var(--r-gold);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+}
+
+
+.intro-content h2 {
+
+    margin: 22px 0 30px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(50px,6vw,78px);
+
+    line-height: .9;
+
+    font-weight: 500;
+
+}
+
+
+.intro-content h2 em {
+
+    display: block;
+
+    color: var(--r-gold);
+
+    font-weight: 500;
+
+    font-style: normal;
+
+}
+
+
+.intro-content p {
+
+    max-width: 650px;
+
+    color: var(--r-muted);
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+}
+
+
+/* ============================================================
+   VISUAL STORY
+============================================================ */
+
+.visual-story {
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 80px 30px 150px;
+
+}
+
+
+.visual-heading {
+
+    margin-bottom: 55px;
+
+    animation:
+        fadeUp 1s both;
+
+}
+
+
+.visual-heading h2 {
+
+    margin-top: 15px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 62px;
+
+    line-height: .9;
+
+    font-weight: 500;
+
+}
+
+
+.visual-heading h2 em {
+
+    color: var(--r-gold);
+
+    font-weight: 500;
+
+    font-style: normal;
+
+}
+
+
+/* ============================================================
+   GALLERY
+============================================================ */
+
+.visual-gallery {
+
+    min-height: 720px;
 
     position: relative;
 
-    padding: 62px;
-
-    overflow: hidden;
-
-    border: 1px solid var(--event-line);
-
-    background:
-
-        radial-gradient(
-            circle at 100% 0%,
-            rgba(201, 163, 78, 0.13),
-            transparent 35%
-        ),
-
-        var(--event-navy-3);
 }
 
 
-/* Large decorative circle */
+.visual-card {
 
-.events-information-card::after {
+    position: absolute;
+
+    overflow: hidden;
+
+    background: var(--r-navy-2);
+
+    border: 1px solid var(--r-border);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.28);
+
+    animation:
+        galleryReveal 1.2s var(--r-ease) both;
+
+}
+
+
+@keyframes galleryReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(45px)
+            scale(.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+.visual-card-large {
+
+    left: 0;
+
+    top: 0;
+
+    width: 68%;
+
+    height: 620px;
+
+    animation-delay: .15s;
+
+}
+
+
+.visual-card-small {
+
+    right: 0;
+
+    bottom: 0;
+
+    width: 40%;
+
+    height: 390px;
+
+    border: 5px solid var(--r-navy);
+
+    animation-delay: .35s;
+
+}
+
+
+.visual-card img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 1.2s var(--r-ease),
+        filter 1s ease;
+
+}
+
+
+.visual-card:hover img {
+
+    transform: scale(1.075);
+
+    filter:
+        brightness(1.08)
+        saturate(1.05);
+
+}
+
+
+.visual-card::after {
 
     content: "";
 
     position: absolute;
 
-    width: 430px;
-    height: 430px;
+    inset: 0;
 
-    right: -230px;
-    top: -230px;
+    background:
 
-    border: 1px solid rgba(201, 163, 78, 0.10);
+        linear-gradient(
+            120deg,
+            transparent 45%,
+            rgba(255,255,255,.08) 50%,
+            transparent 55%
+        );
 
-    border-radius: 50%;
+    transform:
+        translateX(-120%);
+
+    transition:
+        transform 1s ease;
 
     pointer-events: none;
+
 }
 
 
-/* ------------------------------------------------------------
-   INFORMATION TOP
------------------------------------------------------------- */
+.visual-card:hover::after {
 
-.events-info-top {
+    transform:
+        translateX(120%);
+
+}
+
+
+.visual-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(3,10,17,.92),
+            transparent 58%
+        );
+
+    transition:
+        opacity .6s ease;
+
+}
+
+
+.visual-card:hover .visual-overlay {
+
+    opacity: .72;
+
+}
+
+
+.visual-card figcaption {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 25px;
+    right: 25px;
+
+    z-index: 3;
+
+    transition:
+        transform .5s var(--r-ease);
+
+}
+
+
+.visual-card:hover figcaption {
+
+    transform:
+        translateY(-5px);
+
+}
+
+
+.visual-year {
+
+    display: block;
+
+    color: var(--r-gold);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 48px;
+
+}
+
+
+.visual-caption {
+
+    color: rgba(255,255,255,.65);
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+}
+
+
+/* ============================================================
+   TIMELINE
+============================================================ */
+
+.timeline-section {
+
+    padding: 140px 30px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            var(--r-navy-2),
+            #050d17
+        );
+
+    border-top: 1px solid var(--r-border);
+
+    border-bottom: 1px solid var(--r-border);
+
+}
+
+
+.timeline-heading {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    animation:
+        fadeUp 1s both;
+
+}
+
+
+.timeline-heading h2 {
+
+    margin: 15px 0 10px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 65px;
+
+    line-height: .9;
+
+}
+
+
+.timeline-heading h2 em {
+
+    color: var(--r-gold);
+
+    font-weight: 500;
+
+    font-style: normal;
+
+}
+
+
+.timeline-heading p {
+
+    color: var(--r-muted);
+
+}
+
+
+/* ============================================================
+   TIMELINE LINE
+============================================================ */
+
+.timeline {
+
+    max-width: 1100px;
+
+    margin: 70px auto 0;
 
     position: relative;
+
+}
+
+
+.timeline-line {
+
+    position: absolute;
+
+    left: 30px;
+
+    top: 0;
+
+    bottom: 0;
+
+    width: 1px;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--r-gold),
+            transparent
+        );
+
+    animation:
+        timelineLine 2s ease both;
+
+}
+
+
+@keyframes timelineLine {
+
+    from {
+
+        transform:
+            scaleY(0);
+
+        transform-origin: top;
+
+    }
+
+    to {
+
+        transform:
+            scaleY(1);
+
+        transform-origin: top;
+
+    }
+
+}
+
+
+.timeline-item {
+
+    min-height: 180px;
+
+    display: grid;
+
+    grid-template-columns: 60px 1fr;
+
+    gap: 35px;
+
+    position: relative;
+
+    animation:
+        fadeUp 1s var(--r-ease) both;
+
+}
+
+
+.timeline-item:nth-child(2) {
+
+    animation-delay: .15s;
+
+}
+
+
+.timeline-item:nth-child(3) {
+
+    animation-delay: .3s;
+
+}
+
+
+.timeline-item:nth-child(4) {
+
+    animation-delay: .45s;
+
+}
+
+
+.timeline-marker {
+
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid rgba(200,164,93,.5);
+
+    border-radius: 50%;
+
+    background: var(--r-navy-2);
+
+    color: var(--r-gold);
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
     z-index: 2;
+
+    transition:
+        background .4s ease,
+        transform .4s ease,
+        box-shadow .4s ease;
+
+}
+
+
+.timeline-item:hover .timeline-marker {
+
+    background: var(--r-gold);
+
+    color: var(--r-navy);
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 30px rgba(200,164,93,.15);
+
+}
+
+
+.timeline-date {
+
+    color: var(--r-gold);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.timeline-item h3 {
+
+    margin: 10px 0;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 32px;
+
+}
+
+
+.timeline-item p {
+
+    max-width: 600px;
+
+    color: var(--r-muted);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+}
+
+
+/* ============================================================
+   SOLAS
+============================================================ */
+
+.solas-section {
+
+    padding: 130px 30px;
+
+}
+
+
+.solas-intro {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    animation:
+        fadeUp 1s both;
+
+}
+
+
+.solas-intro h2 {
+
+    margin-top: 15px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 60px;
+
+}
+
+
+.solas {
+
+    max-width: 1100px;
+
+    margin: 55px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(5,1fr);
+
+    border-top: 1px solid var(--r-border);
+
+    border-bottom: 1px solid var(--r-border);
+
+}
+
+
+.sola {
+
+    padding: 35px 18px;
+
+    text-align: center;
+
+    border-left: 1px solid var(--r-border);
+
+    transition:
+        background .5s ease,
+        transform .5s var(--r-ease);
+
+}
+
+
+.sola:last-child {
+
+    border-right: 1px solid var(--r-border);
+
+}
+
+
+.sola:hover {
+
+    background:
+        rgba(200,164,93,.045);
+
+    transform:
+        translateY(-6px);
+
+}
+
+
+.sola span {
+
+    display: block;
+
+    color: var(--r-gold);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.sola strong {
+
+    display: block;
+
+    margin: 17px 0 7px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 21px;
+
+}
+
+
+.sola small {
+
+    color: #75818d;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* ============================================================
+   VENUE
+============================================================ */
+
+.venue-section {
+
+    max-width: 1250px;
+
+    margin: 100px auto 150px;
+
+    padding: 0 30px;
+
+    display: grid;
+
+    grid-template-columns: 1.1fr .9fr;
+
+    align-items: center;
+
+}
+
+
+.venue-image {
+
+    height: 600px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 35px 80px rgba(0,0,0,.28);
+
+    animation:
+        fadeUp 1.1s var(--r-ease) both;
+
+}
+
+
+.venue-image img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 1.2s var(--r-ease),
+        filter 1s ease;
+
+}
+
+
+.venue-section:hover .venue-image img {
+
+    transform:
+        scale(1.055);
+
+    filter:
+        brightness(1.06);
+
+}
+
+
+.venue-image-fade {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(3,10,17,.88),
+            transparent 60%
+        );
+
+}
+
+
+.venue-image-text {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 30px;
+
+}
+
+
+.venue-image-text span {
+
+    display: block;
+
+    color: rgba(255,255,255,.55);
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.venue-image-text strong {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 65px;
+
+    color: var(--r-gold);
+
+}
+
+
+.venue-content {
+
+    padding: 60px;
+
+    animation:
+        fadeUp 1.1s .25s var(--r-ease) both;
+
+}
+
+
+.venue-content h2 {
+
+    margin: 20px 0 40px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 58px;
+
+    line-height: .9;
+
+}
+
+
+.venue-content h2 em {
+
+    color: var(--r-gold);
+
+    font-weight: 500;
+
+    font-style: normal;
+
+}
+
+
+.venue-details {
+
+    border-top: 1px solid var(--r-border);
+
+}
+
+
+.venue-detail {
+
+    padding: 18px 0;
 
     display: flex;
 
     justify-content: space-between;
-    align-items: flex-start;
 
-    gap: 30px;
-}
+    gap: 20px;
 
-.events-info-top h2 {
+    border-bottom: 1px solid var(--r-border);
 
-    max-width: 720px;
+    transition:
+        padding-left .35s ease;
 
-    margin: 15px 0 0;
-
-    color: var(--event-white);
-
-    font-family: "Cinzel", serif;
-
-    font-size: clamp(32px, 4.2vw, 52px);
-
-    font-weight: 600;
-
-    line-height: 1.16;
-}
-
-.events-info-top h2 span {
-
-    color: var(--event-gold-light);
 }
 
 
-/* ------------------------------------------------------------
-   PREPARING LABEL
------------------------------------------------------------- */
+.venue-detail:hover {
 
-.events-coming-mark {
+    padding-left: 8px;
+
+}
+
+
+.venue-detail span {
+
+    color: #687581;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.venue-detail strong {
+
+    color: #dce1e5;
+
+    font-size: 10px;
+
+    text-align: right;
+
+}
+
+
+.venue-note {
+
+    margin-top: 25px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 9px;
+    gap: 10px;
 
-    padding-top: 7px;
+    color: #7f8b96;
 
-    color: var(--event-gold);
+    font-size: 9px;
 
-    font-size: 8px;
-
-    font-weight: 700;
-
-    letter-spacing: 2px;
 }
 
-.events-coming-mark span {
+
+.pulse-dot {
 
     width: 7px;
     height: 7px;
 
     border-radius: 50%;
 
-    background: var(--event-gold);
+    background: var(--r-gold);
+
+    box-shadow:
+        0 0 0 5px rgba(200,164,93,.08);
+
+    animation:
+        pulse 2s infinite;
+
 }
 
 
-/* ------------------------------------------------------------
-   DESCRIPTION
------------------------------------------------------------- */
+@keyframes pulse {
 
-.events-info-description {
+    0%,
+    100% {
+
+        box-shadow:
+            0 0 0 5px rgba(200,164,93,.08);
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 0 11px rgba(200,164,93,.02);
+
+    }
+
+}
+
+
+/* ============================================================
+   FINAL INVITATION
+============================================================ */
+
+.final-invitation {
+
+    min-height: 800px;
 
     position: relative;
-    z-index: 2;
 
-    max-width: 720px;
+    overflow: hidden;
 
-    margin-top: 22px;
+    padding: 150px 30px;
 
-    color: var(--event-muted);
-
-    font-size: 13px;
-
-    line-height: 1.9;
-}
-
-
-/* ------------------------------------------------------------
-   INFORMATION GRID
------------------------------------------------------------- */
-
-.events-info-grid {
-
-    position: relative;
-    z-index: 2;
-
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 1px;
-
-    margin-top: 50px;
-
-    border: 1px solid var(--event-line);
-
-    background: var(--event-line);
-}
-
-
-/* ------------------------------------------------------------
-   INFORMATION ITEM
------------------------------------------------------------- */
-
-.events-info-item {
-
-    min-height: 155px;
+    text-align: center;
 
     display: flex;
 
     flex-direction: column;
 
-    padding: 24px;
+    align-items: center;
 
-    background: var(--event-navy);
+    justify-content: center;
+
+    isolation: isolate;
+
 }
 
-.events-info-icon {
 
-    color: rgba(201, 163, 78, 0.55);
+.final-background {
 
-    font-family: "Cinzel", serif;
+    position: absolute;
 
-    font-size: 10px;
+    inset: 0;
+
+    z-index: -3;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(200,164,93,.13),
+            transparent 45%
+        );
+
+    animation:
+        invitationGlow 7s
+        ease-in-out
+        infinite alternate;
+
 }
 
-.events-info-item small {
 
-    margin-top: auto;
+@keyframes invitationGlow {
 
-    color: var(--event-muted);
+    from {
 
-    font-size: 7px;
+        opacity: .65;
+
+        transform: scale(1);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1.08);
+
+    }
+
+}
+
+
+/* ============================================================
+   ROTATING RINGS
+============================================================ */
+
+.final-invitation::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border: 1px solid rgba(200,164,93,.08);
+
+    border-radius: 50%;
+
+    animation:
+        rotateRing 35s linear infinite;
+
+}
+
+
+.final-invitation::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 850px;
+    height: 850px;
+
+    border: 1px solid rgba(200,164,93,.035);
+
+    border-radius: 50%;
+
+    animation:
+        rotateRing 50s linear infinite reverse;
+
+}
+
+
+@keyframes rotateRing {
+
+    from {
+
+        transform:
+            rotate(0deg);
+
+    }
+
+    to {
+
+        transform:
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* ============================================================
+   INVITATION CONTENT
+============================================================ */
+
+.invitation-cross {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 55px;
+    height: 55px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid var(--r-gold);
+
+    color: var(--r-gold);
+
+    font-size: 22px;
+
+    animation:
+        fadeUp 1s both;
+
+}
+
+
+.final-invitation h2 {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin: 25px 0;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(70px,9vw,115px);
+
+    line-height: .75;
+
+    font-weight: 500;
+
+    animation:
+        fadeUp 1s .15s var(--r-ease) both;
+
+}
+
+
+.final-invitation h2 em {
+
+    color: var(--r-gold);
+
+    font-style: normal;
+
+}
+
+
+.final-invitation > p {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 530px;
+
+    color: var(--r-muted);
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    animation:
+        fadeUp 1s .3s var(--r-ease) both;
+
+}
+
+
+/* ============================================================
+   DATE
+============================================================ */
+
+.invitation-date {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    animation:
+        fadeUp 1s .45s var(--r-ease) both;
+
+}
+
+
+.invitation-date strong {
+
+    color: var(--r-gold);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 70px;
+
+    line-height: .8;
+
+}
+
+
+.invitation-date span {
+
+    color: #89949e;
+
+    text-align: left;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* ============================================================
+   LOCATION
+============================================================ */
+
+.invitation-location {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    color: var(--r-gold);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    animation:
+        fadeUp 1s .6s var(--r-ease) both;
+
+}
+
+
+.invitation-location i {
+
+    width: 35px;
+
+    height: 1px;
+
+    background: var(--r-gold);
+
+}
+
+
+/* ============================================================
+   EVERYONE INVITED
+============================================================ */
+
+.everyone-invited {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    color: var(--r-white);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 27px;
+
+    animation:
+        fadeUp 1s .75s var(--r-ease) both;
+
+}
+
+
+.everyone-invited span {
+
+    color: var(--r-gold);
+
+    font-size: 12px;
+
+}
+
+
+/* ============================================================
+   TIMING ANNOUNCEMENT
+============================================================ */
+
+.timing-announcement {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 18px;
+
+    padding: 10px 16px;
+
+    border: 1px solid rgba(200,164,93,.25);
+
+    color: var(--r-gold);
+
+    font-size: 8px;
 
     font-weight: 700;
 
     letter-spacing: 2px;
-}
-
-.events-info-item strong {
-
-    margin-top: 6px;
-
-    color: var(--event-gold-light);
-
-    font-family: "Cinzel", serif;
-
-    font-size: 13px;
-
-    font-weight: 600;
-}
-
-
-/* ============================================================
-   ANNOUNCEMENT STRIP
-   ============================================================ */
-
-.events-announcement {
-
-    position: relative;
-    z-index: 2;
-
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 16px;
-
-    margin-top: 25px;
-
-    padding: 22px;
-
-    border-left: 2px solid var(--event-gold);
 
     background:
-        rgba(201, 163, 78, 0.055);
-}
+        rgba(200,164,93,.025);
 
-.events-announcement-mark {
-
-    color: var(--event-gold);
-
-    font-size: 18px;
-}
-
-.events-announcement strong {
-
-    color: var(--event-white);
-
-    font-family: "Cinzel", serif;
-
-    font-size: 12px;
-}
-
-.events-announcement p {
-
-    margin: 5px 0 0;
-
-    color: var(--event-muted);
-
-    font-size: 11px;
-
-    line-height: 1.7;
-}
-
-
-/* ============================================================
-   FINAL HERO
-   ============================================================ */
-
-.events-final {
-
-    position: relative;
-
-    min-height: 570px;
-
-    display: flex;
-
-    align-items: center;
-
-    overflow: hidden;
-
-    text-align: center;
-}
-
-
-/* ------------------------------------------------------------
-   FINAL IMAGE
------------------------------------------------------------- */
-
-.events-final-image {
-
-    position: absolute;
-
-    inset: 0;
-
-    background-image:
-        url("images/cricket.png");
-
-    background-size: cover;
-
-    background-position: center;
-
-    opacity: 0.46;
-
-    transform: scale(1.03);
-}
-
-
-/* ------------------------------------------------------------
-   FINAL OVERLAY
------------------------------------------------------------- */
-
-.events-final-overlay {
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            rgba(4, 10, 18, 0.97),
-            rgba(4, 10, 18, 0.65),
-            rgba(4, 10, 18, 0.96)
-        ),
-
-        linear-gradient(
-            180deg,
-            rgba(4, 10, 18, 0.4),
-            rgba(4, 10, 18, 0.95)
-        );
-}
-
-
-/* ------------------------------------------------------------
-   FINAL CONTENT
------------------------------------------------------------- */
-
-.events-final-content {
-
-    position: relative;
-
-    z-index: 3;
-}
-
-.events-final h2 {
-
-    max-width: 900px;
-
-    margin: 18px auto 0;
-
-    color: var(--event-white);
-
-    font-family: "Cinzel", serif;
-
-    font-size: clamp(39px, 6vw, 73px);
-
-    font-weight: 600;
-
-    line-height: 1.12;
-}
-
-.events-final h2 span {
-
-    display: block;
-
-    color: var(--event-gold-light);
-}
-
-.events-final p {
-
-    max-width: 570px;
-
-    margin: 23px auto 0;
-
-    color: #c3ccd7;
-
-    font-size: 13px;
-
-    line-height: 1.9;
-}
-
-
-/* ------------------------------------------------------------
-   RETURN BUTTON
------------------------------------------------------------- */
-
-.events-return-button {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-    margin-top: 32px;
-
-    padding: 14px 24px;
-
-    background: var(--event-gold);
-
-    color: var(--event-navy) !important;
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.8px;
+    animation:
+        fadeUp 1s .9s var(--r-ease) both;
 
     transition:
-        transform 0.3s ease,
-        background 0.3s ease;
+        background .4s ease,
+        border-color .4s ease,
+        transform .4s ease;
+
 }
 
-.events-return-button:hover {
 
-    transform: translateY(-4px);
+.timing-announcement:hover {
 
-    background: var(--event-gold-light);
-}
+    background:
+        rgba(200,164,93,.08);
 
-.events-return-button span {
+    border-color:
+        rgba(200,164,93,.5);
 
-    font-size: 16px;
+    transform:
+        translateY(-3px);
+
 }
 
 
 /* ============================================================
    FOOTER
-   ============================================================ */
+============================================================ */
 
-.events-footer {
+.reformation-footer {
 
-    padding: 34px 0;
-
-    background: #030810;
-
-    border-top: 1px solid var(--event-line);
-}
-
-.events-footer-inner {
+    padding: 28px 40px;
 
     display: flex;
-
-    align-items: center;
 
     justify-content: space-between;
 
-    gap: 30px;
-}
+    border-top: 1px solid var(--r-border);
 
-.events-footer-brand {
-
-    display: flex;
-
-    flex-direction: column;
-}
-
-.events-footer-brand strong {
-
-    color: var(--event-white);
-
-    font-family: "Cinzel", serif;
-
-    font-size: 10px;
-
-    letter-spacing: 1.7px;
-}
-
-.events-footer-brand span {
-
-    margin-top: 3px;
-
-    color: var(--event-gold);
-
-    font-size: 6px;
-
-    letter-spacing: 1.5px;
-}
-
-.events-footer p {
-
-    margin: 0;
-
-    color: #647184;
+    color: #63707c;
 
     font-size: 9px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.reformation-footer span:last-child {
+
+    color: var(--r-gold);
+
 }
 
 
 /* ============================================================
    TABLET
-   ============================================================ */
+============================================================ */
 
 @media (max-width: 950px) {
 
-    .events-intro-grid {
+    .hero-date-display {
 
-        grid-template-columns: 50px 1fr;
+        right: 50px;
 
-        gap: 30px;
-    }
-
-    .events-intro-feature {
-
-        grid-column: 2;
-
-        max-width: 330px;
     }
 
 
-    .events-values-grid {
+    .visual-card-large {
 
-        grid-template-columns: repeat(2, 1fr);
-    }
+        width: 72%;
 
-    .events-value-large {
-
-        grid-column: span 2;
-    }
-
-    .events-value-accent {
-
-        grid-column: span 2;
     }
 
 
-    .events-info-grid {
+    .visual-card-small {
 
-        grid-template-columns: repeat(2, 1fr);
+        width: 45%;
+
     }
+
+
+    .venue-section {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .venue-content {
+
+        padding: 55px 20px;
+
+    }
+
+
+    .solas {
+
+        grid-template-columns: repeat(3,1fr);
+
+    }
+
+
+    .sola:nth-child(4),
+    .sola:nth-child(5) {
+
+        border-top: 1px solid var(--r-border);
+
+    }
+
 }
 
 
 /* ============================================================
    MOBILE
-   ============================================================ */
+============================================================ */
 
 @media (max-width: 650px) {
 
-    .events-container {
+    .reformation-nav {
 
-        width: calc(100% - 30px);
+        padding: 17px 20px;
+
     }
 
 
-    /* Header */
-
-    .events-header-inner {
-
-        min-height: 68px;
-    }
-
-    .events-brand-mark {
-
-        width: 36px;
-        height: 36px;
-
-        font-size: 10px;
-    }
-
-    .events-brand-copy strong {
-
-        font-size: 10px;
-    }
-
-    .events-brand-copy small {
-
-        font-size: 5px;
-    }
-
-    .events-back {
-
-        font-size: 9px;
-    }
-
-
-    /* Hero */
-
-    .events-hero {
-
-        min-height: 670px;
-    }
-
-    .events-hero-inner {
-
-        min-height: 670px;
-    }
-
-    .events-hero-image {
-
-        background-position: 62% center;
-    }
-
-    .events-hero::before {
-
-        background:
-
-            linear-gradient(
-                180deg,
-                rgba(4, 10, 18, 0.52),
-                rgba(4, 10, 18, 0.94) 72%,
-                rgba(4, 10, 18, 1)
-            );
-    }
-
-    .events-hero-copy {
-
-        padding: 75px 0;
-    }
-
-    .events-eyebrow {
-
-        font-size: 7px;
-
-        letter-spacing: 2px;
-    }
-
-    .events-eyebrow::before {
-
-        width: 24px;
-    }
-
-    .events-hero h1 {
-
-        margin-top: 20px;
-
-        font-size: 45px;
-
-        letter-spacing: -0.5px;
-    }
-
-    .events-hero h1 em {
-
-        margin-top: 7px;
-
-        font-size: 0.73em;
-    }
-
-    .events-hero-description {
-
-        margin-top: 22px;
-
-        font-size: 12px;
-
-        line-height: 1.8;
-    }
-
-    .events-status {
-
-        margin-top: 26px;
-
-        padding: 10px 16px;
-
-        font-size: 8px;
-    }
-
-    .events-hero-scroll {
+    .reformation-menu {
 
         display: none;
+
     }
 
 
-    /* Intro */
+    .reformation-hero {
 
-    .events-intro {
+        min-height: 850px;
 
-        padding: 82px 0;
     }
 
-    .events-intro-grid {
+
+    .hero-content {
+
+        padding: 145px 25px 100px;
+
+    }
+
+
+    .hero-title {
+
+        margin-top: 40px;
+
+    }
+
+
+    .hero-title h1 {
+
+        font-size: 70px;
+
+        letter-spacing: -3px;
+
+    }
+
+
+    .hero-date-display {
+
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        width: 140px;
+        height: 160px;
+
+        margin-top: 45px;
+
+    }
+
+
+    .hero-date-display strong {
+
+        font-size: 80px;
+
+    }
+
+
+    .hero-side-label {
+
+        display: none;
+
+    }
+
+
+    .hero-bottom {
+
+        left: 25px;
+        right: 25px;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+    }
+
+
+    .reformation-intro {
+
+        padding: 90px 25px;
 
         grid-template-columns: 1fr;
 
-        gap: 20px;
-    }
+        gap: 25px;
 
-    .events-intro-feature {
-
-        grid-column: auto;
-
-        max-width: none;
-
-        margin-top: 15px;
-    }
-
-    .events-intro-content h2 {
-
-        font-size: 35px;
     }
 
 
-    /* Values */
+    .visual-story {
 
-    .events-values {
+        padding: 60px 20px 100px;
 
-        padding: 82px 0;
-    }
-
-    .events-section-heading {
-
-        grid-template-columns: 1fr;
-
-        gap: 12px;
-
-        margin-bottom: 38px;
-    }
-
-    .events-section-heading h2 {
-
-        font-size: 35px;
-    }
-
-    .events-values-grid {
-
-        grid-template-columns: 1fr;
-
-        gap: 12px;
-    }
-
-    .events-value-large,
-    .events-value-accent {
-
-        grid-column: auto;
-    }
-
-    .events-value {
-
-        min-height: 275px;
-
-        padding: 25px;
-    }
-
-    .events-value-accent {
-
-        min-height: 275px;
     }
 
 
-    /* Information */
+    .visual-heading h2 {
 
-    .events-information {
+        font-size: 48px;
 
-        padding: 82px 0;
     }
 
-    .events-information-card {
 
-        padding: 31px 22px;
-    }
+    .visual-gallery {
 
-    .events-info-top {
+        min-height: auto;
+
+        display: flex;
 
         flex-direction: column;
 
         gap: 18px;
-    }
 
-    .events-info-top h2 {
-
-        font-size: 33px;
-    }
-
-    .events-info-grid {
-
-        grid-template-columns: 1fr;
-
-        margin-top: 35px;
-    }
-
-    .events-info-item {
-
-        min-height: 125px;
     }
 
 
-    /* Announcement */
+    .visual-card {
 
-    .events-announcement {
+        position: relative;
 
-        padding: 18px;
+        width: 100%;
+
     }
 
 
-    /* Final */
+    .visual-card-large {
 
-    .events-final {
+        height: 400px;
 
-        min-height: 520px;
-    }
-
-    .events-final h2 {
-
-        font-size: 39px;
-    }
-
-    .events-final p {
-
-        font-size: 12px;
     }
 
 
-    /* Footer */
+    .visual-card-small {
 
-    .events-footer-inner {
+        height: 300px;
+
+        border: 1px solid var(--r-border);
+
+    }
+
+
+    .timeline-section {
+
+        padding: 90px 25px;
+
+    }
+
+
+    .timeline-heading h2 {
+
+        font-size: 50px;
+
+    }
+
+
+    .timeline-item {
+
+        grid-template-columns: 50px 1fr;
+
+        gap: 20px;
+
+    }
+
+
+    .timeline-marker {
+
+        width: 50px;
+        height: 50px;
+
+    }
+
+
+    .solas-section {
+
+        padding: 90px 20px;
+
+    }
+
+
+    .solas-intro h2 {
+
+        font-size: 48px;
+
+    }
+
+
+    .solas {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+    .sola {
+
+        border-bottom: 1px solid var(--r-border);
+
+    }
+
+
+    .sola:nth-child(5) {
+
+        grid-column: 1 / -1;
+
+        border-right: 1px solid var(--r-border);
+
+    }
+
+
+    .venue-section {
+
+        margin: 70px auto 100px;
+
+        padding: 0 20px;
+
+    }
+
+
+    .venue-image {
+
+        height: 350px;
+
+    }
+
+
+    .venue-content {
+
+        padding: 45px 10px;
+
+    }
+
+
+    .venue-content h2 {
+
+        font-size: 47px;
+
+    }
+
+
+    .venue-detail {
 
         flex-direction: column;
 
-        align-items: flex-start;
-    }
-}
+        gap: 6px;
 
-
-/* ============================================================
-   VERY SMALL DEVICES
-   ============================================================ */
-
-@media (max-width: 380px) {
-
-    .events-hero h1 {
-
-        font-size: 39px;
     }
 
-    .events-intro-content h2,
-    .events-section-heading h2 {
 
-        font-size: 31px;
+    .venue-detail strong {
+
+        text-align: left;
+
     }
 
-    .events-final h2 {
 
-        font-size: 34px;
+    .final-invitation {
+
+        min-height: 700px;
+
+        padding: 100px 25px;
+
     }
+
+
+    .final-invitation h2 {
+
+        font-size: 72px;
+
+    }
+
+
+    .invitation-location {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+
+    .invitation-location i {
+
+        width: 40px;
+
+    }
+
+
+    .everyone-invited {
+
+        font-size: 24px;
+
+    }
+
+
+    .reformation-footer {
+
+        padding: 25px 20px;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+
+    .final-invitation::before {
+
+        width: 420px;
+        height: 420px;
+
+    }
+
+
+    .final-invitation::after {
+
+        width: 580px;
+        height: 580px;
+
+    }
+
 }
 
 
 /* ============================================================
    ACCESSIBILITY
-   ============================================================ */
+   ------------------------------------------------------------
+   Users who prefer reduced motion won't get the cinematic
+   animations.
+============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
 
-    .jn-events-page *,
-    .jn-events-page *::before,
-    .jn-events-page *::after {
+    .reformation-page *,
+    .reformation-page *::before,
+    .reformation-page *::after {
+
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
 
         scroll-behavior: auto !important;
 
-        transition: none !important;
     }
+
 }
