@@ -1,17 +1,17 @@
 /* ============================================================
    JEEVA NADI MINISTRIES
    REFORMATION DAY — PREMIUM EVENT PAGE
-
-   VISUAL DIRECTION
    ------------------------------------------------------------
-   • Midnight church atmosphere
-   • Antique gold
-   • Historical editorial design
-   • Cinematic image movement
-   • Fade + reveal transitions
-   • Elegant typography
-   • Atmospheric depth
-   • Responsive
+   VISUAL DIRECTION
+   • Jeeva Nadi brand typography
+   • Cinzel + Poppins
+   • Warm ivory / parchment background
+   • Deep Reformation burgundy
+   • Antique gold accents
+   • Editorial historical design
+   • Premium image framing
+   • Elegant hover effects
+   • Subtle paper / architectural texture
    • No JavaScript required
 ============================================================ */
 
@@ -22,19 +22,31 @@
 
 :root {
 
-    --r-navy: #040a12;
-    --r-navy-2: #07111d;
-    --r-navy-3: #0b1b2b;
+    --r-bg: #f7f4ec;
+    --r-bg-soft: #eee9dc;
+    --r-bg-deep: #e5dece;
 
-    --r-gold: #c8a45d;
-    --r-gold-light: #e6cf94;
+    --r-white: #fffdf8;
 
-    --r-white: #f4f0e7;
-    --r-muted: #9aa7b3;
+    --r-burgundy: #651d28;
+    --r-burgundy-dark: #42131b;
+    --r-burgundy-soft: #8a3945;
 
-    --r-border: rgba(255,255,255,0.09);
+    --r-gold: #b38a3e;
+    --r-gold-light: #d1b36b;
+    --r-gold-dark: #8b6727;
 
-    --r-ease: cubic-bezier(.22,.61,.36,1);
+    --r-ink: #29241f;
+    --r-text: #49433b;
+    --r-muted: #756e63;
+
+    --r-border: rgba(65, 48, 31, 0.15);
+    --r-border-gold: rgba(179, 138, 62, 0.42);
+
+    --r-shadow:
+        0 25px 70px rgba(61, 42, 25, 0.12);
+
+    --r-ease: cubic-bezier(.22, .61, .36, 1);
 
 }
 
@@ -44,7 +56,7 @@
 ============================================================ */
 
 .reformation-page,
-.reformation-page *,
+.reformation-page * ,
 .reformation-page *::before,
 .reformation-page *::after {
 
@@ -61,25 +73,11 @@
 
     overflow-x: hidden;
 
-    color: var(--r-white);
+    color: var(--r-ink);
 
-    background:
+    background: var(--r-bg);
 
-        radial-gradient(
-            circle at 75% 15%,
-            rgba(200,164,93,0.055),
-            transparent 28%
-        ),
-
-        radial-gradient(
-            circle at 15% 70%,
-            rgba(30,75,105,0.08),
-            transparent 30%
-        ),
-
-        var(--r-navy);
-
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
 
 }
 
@@ -93,8 +91,67 @@
 }
 
 
+.reformation-page a {
+
+    color: inherit;
+
+}
+
+
 /* ============================================================
-   GLOBAL FADE SYSTEM
+   SUBTLE PAPER ATMOSPHERE
+============================================================ */
+
+.reformation-page::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 999;
+
+    opacity: .18;
+
+    background-image:
+        radial-gradient(
+            rgba(80, 55, 30, .12) .7px,
+            transparent .7px
+        );
+
+    background-size: 7px 7px;
+
+    mix-blend-mode: multiply;
+
+}
+
+
+/* ============================================================
+   TYPOGRAPHY
+============================================================ */
+
+.reformation-page h1,
+.reformation-page h2,
+.reformation-page h3,
+.reformation-page strong {
+
+    font-family: "Cinzel", serif;
+
+}
+
+
+.reformation-page p {
+
+    font-family: "Poppins", sans-serif;
+
+}
+
+
+/* ============================================================
+   ANIMATIONS
 ============================================================ */
 
 @keyframes fadeUp {
@@ -103,8 +160,7 @@
 
         opacity: 0;
 
-        transform:
-            translateY(35px);
+        transform: translateY(28px);
 
     }
 
@@ -112,8 +168,7 @@
 
         opacity: 1;
 
-        transform:
-            translateY(0);
+        transform: translateY(0);
 
     }
 
@@ -137,13 +192,11 @@
 }
 
 
-@keyframes revealLine {
+@keyframes revealWidth {
 
     from {
 
         transform: scaleX(0);
-
-        transform-origin: left;
 
     }
 
@@ -151,7 +204,22 @@
 
         transform: scaleX(1);
 
-        transform-origin: left;
+    }
+
+}
+
+
+@keyframes slowFloat {
+
+    from {
+
+        transform: translateY(0);
+
+    }
+
+    to {
+
+        transform: translateY(-14px);
 
     }
 
@@ -166,7 +234,9 @@
 
     position: absolute;
 
-    inset: 0 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
 
     z-index: 100;
 
@@ -174,23 +244,24 @@
 
         linear-gradient(
             to bottom,
-            rgba(2,7,13,.92),
-            rgba(2,7,13,.30),
+            rgba(35, 14, 17, .82),
+            rgba(35, 14, 17, .38),
             transparent
         );
 
-    animation: fadeIn 1.5s ease both;
+    animation:
+        fadeIn 1s ease both;
 
 }
 
 
 .reformation-nav {
 
-    width: min(1300px,100%);
+    width: min(1320px, 100%);
 
     margin: auto;
 
-    padding: 24px 40px;
+    padding: 22px 42px;
 
     display: flex;
 
@@ -201,20 +272,24 @@
 }
 
 
+/* ============================================================
+   BRAND
+============================================================ */
+
 .reformation-brand {
 
     display: flex;
 
     align-items: center;
 
-    gap: 12px;
+    gap: 13px;
 
-    color: white;
+    color: #fff;
 
     text-decoration: none;
 
     transition:
-        transform .45s var(--r-ease);
+        transform .4s var(--r-ease);
 
 }
 
@@ -228,35 +303,35 @@
 
 .brand-cross {
 
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
 
     display: grid;
 
     place-items: center;
 
-    border: 1px solid var(--r-gold);
+    border: 1px solid var(--r-gold-light);
 
-    color: var(--r-gold);
+    color: var(--r-gold-light);
 
     font-size: 18px;
 
     transition:
-        background .4s ease,
-        color .4s ease,
-        box-shadow .4s ease;
+        background .35s ease,
+        color .35s ease,
+        box-shadow .35s ease;
 
 }
 
 
 .reformation-brand:hover .brand-cross {
 
-    background: var(--r-gold);
+    background: var(--r-gold-light);
 
-    color: var(--r-navy);
+    color: var(--r-burgundy-dark);
 
     box-shadow:
-        0 0 30px rgba(200,164,93,.18);
+        0 0 25px rgba(209, 179, 107, .22);
 
 }
 
@@ -283,7 +358,9 @@
 
     margin-top: 3px;
 
-    color: var(--r-gold);
+    color: var(--r-gold-light);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 7px;
 
@@ -292,9 +369,15 @@
 }
 
 
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
 .reformation-menu {
 
     display: flex;
+
+    align-items: center;
 
     gap: 30px;
 
@@ -305,7 +388,7 @@
 
     position: relative;
 
-    color: rgba(255,255,255,.60);
+    color: rgba(255,255,255,.76);
 
     text-decoration: none;
 
@@ -328,12 +411,12 @@
     position: absolute;
 
     left: 0;
-    bottom: -7px;
+    bottom: -8px;
 
     width: 100%;
-    height: 1px;
+    height: 2px;
 
-    background: var(--r-gold);
+    background: var(--r-gold-light);
 
     transform: scaleX(0);
 
@@ -348,7 +431,7 @@
 .reformation-menu a:hover,
 .reformation-menu a.active {
 
-    color: var(--r-gold-light);
+    color: #fff;
 
 }
 
@@ -369,7 +452,7 @@
 
 .reformation-hero {
 
-    min-height: 900px;
+    min-height: 850px;
 
     position: relative;
 
@@ -381,68 +464,95 @@
 
     isolation: isolate;
 
-    background: var(--r-navy);
+    background: var(--r-burgundy-dark);
 
 }
 
 
-/* ------------------------------------------------------------
+/* ============================================================
    HERO IMAGE
------------------------------------------------------------- */
+   IMPORTANT:
+   IMAGE PATH KEPT EXACTLY AS PROVIDED
+============================================================ */
 
 .hero-bg {
 
     position: absolute;
 
-    inset: -7%;
+    inset: -5%;
 
-    z-index: -4;
+    z-index: -5;
 
     background:
 
-        url("images/events/reformation-day-1.jpg")
+        url("images/reformation-day-1.jpg")
         center / cover no-repeat;
 
-    opacity: .38;
+    opacity: .72;
 
     filter:
-        saturate(.75)
-        contrast(1.05);
+        saturate(.82)
+        contrast(1.03);
 
     animation:
-        heroKenBurns 20s
-        cubic-bezier(.45,0,.55,1)
+        heroMovement 18s
+        ease-in-out
         infinite alternate;
 
 }
 
 
-@keyframes heroKenBurns {
+@keyframes heroMovement {
 
     from {
 
         transform:
-            scale(1)
-            translate3d(0,0,0);
+            scale(1);
 
     }
 
     to {
 
         transform:
-            scale(1.10)
-            translate3d(-1%, -1%, 0);
+            scale(1.07);
 
     }
 
 }
 
 
-/* ------------------------------------------------------------
-   HERO DARK CINEMATIC MASK
------------------------------------------------------------- */
+/* ============================================================
+   HERO WARM OVERLAY
+============================================================ */
 
 .reformation-hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: -4;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(55, 14, 21, .94) 0%,
+            rgba(65, 17, 24, .80) 36%,
+            rgba(65, 17, 24, .38) 68%,
+            rgba(55, 14, 21, .68) 100%
+        );
+
+}
+
+
+/* ============================================================
+   HERO LIGHT
+============================================================ */
+
+.reformation-hero::after {
 
     content: "";
 
@@ -454,169 +564,75 @@
 
     background:
 
+        radial-gradient(
+            circle at 72% 38%,
+            rgba(221, 190, 111, .22),
+            transparent 30%
+        ),
+
         linear-gradient(
-            90deg,
-            rgba(2,8,14,.98) 0%,
-            rgba(2,8,14,.90) 36%,
-            rgba(2,8,14,.56) 68%,
-            rgba(2,8,14,.82) 100%
+            to bottom,
+            rgba(25, 8, 11, .52),
+            transparent 30%,
+            transparent 75%,
+            rgba(25, 8, 11, .65)
         );
 
 }
 
 
-.reformation-hero::after {
+/* ============================================================
+   DECORATIVE FRAME
+============================================================ */
+
+.reformation-hero .hero-grid {
+
+    position: absolute;
+
+    inset: 28px;
+
+    border: 1px solid rgba(235, 210, 150, .22);
+
+    pointer-events: none;
+
+    z-index: -1;
+
+}
+
+
+.reformation-hero .hero-grid::before,
+.reformation-hero .hero-grid::after {
 
     content: "";
 
     position: absolute;
 
-    inset: 0;
+    width: 75px;
+    height: 75px;
 
-    z-index: -2;
-
-    background:
-
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.65),
-            transparent 25%,
-            transparent 70%,
-            rgba(2,8,14,.95)
-        );
+    border-color: rgba(224, 193, 121, .65);
 
 }
 
 
-/* ============================================================
-   ATMOSPHERIC LIGHT
-============================================================ */
+.reformation-hero .hero-grid::before {
 
-.hero-light {
+    top: -1px;
+    left: -1px;
 
-    position: absolute;
-
-    width: 520px;
-    height: 520px;
-
-    border-radius: 50%;
-
-    filter: blur(110px);
-
-    opacity: .10;
-
-    pointer-events: none;
+    border-top: 2px solid;
+    border-left: 2px solid;
 
 }
 
 
-.hero-light-one {
+.reformation-hero .hero-grid::after {
 
-    top: 8%;
+    right: -1px;
+    bottom: -1px;
 
-    right: 5%;
-
-    background: var(--r-gold);
-
-    animation:
-        atmosphericFloat 11s
-        ease-in-out
-        infinite alternate;
-
-}
-
-
-.hero-light-two {
-
-    bottom: -20%;
-
-    left: 10%;
-
-    background: #285879;
-
-    animation:
-        atmosphericFloat 15s
-        ease-in-out
-        infinite alternate-reverse;
-
-}
-
-
-@keyframes atmosphericFloat {
-
-    from {
-
-        transform:
-            translate3d(0,0,0)
-            scale(.90);
-
-    }
-
-    to {
-
-        transform:
-            translate3d(60px,-35px,0)
-            scale(1.16);
-
-    }
-
-}
-
-
-/* ============================================================
-   HERO GRID
-============================================================ */
-
-.hero-grid {
-
-    position: absolute;
-
-    inset: 0;
-
-    opacity: .55;
-
-    background-image:
-
-        linear-gradient(
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        );
-
-    background-size: 110px 110px;
-
-    mask-image:
-
-        linear-gradient(
-            to right,
-            black,
-            transparent 75%
-        );
-
-    animation:
-        gridFade 4s ease both;
-
-}
-
-
-@keyframes gridFade {
-
-    from {
-
-        opacity: 0;
-
-    }
-
-    to {
-
-        opacity: .55;
-
-    }
+    border-right: 2px solid;
+    border-bottom: 2px solid;
 
 }
 
@@ -627,11 +643,11 @@
 
 .hero-content {
 
-    width: min(1200px,100%);
+    width: min(1250px, 100%);
 
     margin: auto;
 
-    padding: 190px 40px 130px;
+    padding: 185px 55px 130px;
 
     position: relative;
 
@@ -640,15 +656,21 @@
 }
 
 
+/* ============================================================
+   OVERLINE
+============================================================ */
+
 .hero-overline {
 
     display: flex;
 
     align-items: center;
 
-    gap: 12px;
+    gap: 13px;
 
-    color: var(--r-gold);
+    color: var(--r-gold-light);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
 
@@ -657,41 +679,41 @@
     letter-spacing: 4px;
 
     animation:
-        fadeUp 1s .2s var(--r-ease) both;
+        fadeUp 1s .15s var(--r-ease) both;
 
 }
 
 
 .hero-overline span {
 
-    width: 35px;
+    width: 42px;
 
     height: 1px;
 
-    background: var(--r-gold);
+    background: var(--r-gold-light);
 
     transform-origin: left;
 
     animation:
-        revealLine 1s .5s var(--r-ease) both;
+        revealWidth 1s .5s var(--r-ease) both;
 
 }
 
 
 /* ============================================================
-   DATE
+   DATE DISPLAY
 ============================================================ */
 
 .hero-date-display {
 
     position: absolute;
 
-    right: 120px;
+    right: 100px;
 
-    top: 220px;
+    top: 235px;
 
-    width: 190px;
-    height: 235px;
+    width: 205px;
+    height: 255px;
 
     display: flex;
 
@@ -701,12 +723,12 @@
 
     justify-content: center;
 
-    border-left: 1px solid rgba(200,164,93,.45);
+    border-left: 1px solid rgba(221, 190, 111, .55);
 
-    border-right: 1px solid rgba(200,164,93,.45);
+    border-right: 1px solid rgba(221, 190, 111, .55);
 
     animation:
-        fadeIn 1.5s .7s ease both;
+        fadeIn 1.4s .55s ease both;
 
 }
 
@@ -718,35 +740,39 @@
 
     position: absolute;
 
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
 
-    border: 1px solid var(--r-gold);
+    border: 1px solid var(--r-gold-light);
 
 }
 
 
 .hero-date-display::before {
 
-    top: -4px;
-    left: -4px;
+    top: -5px;
+    left: -5px;
 
 }
 
 
 .hero-date-display::after {
 
-    bottom: -4px;
-    right: -4px;
+    right: -5px;
+    bottom: -5px;
 
 }
 
 
 .hero-date-display span {
 
-    color: var(--r-gold);
+    color: var(--r-gold-light);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
+
+    font-weight: 600;
 
     letter-spacing: 4px;
 
@@ -755,22 +781,24 @@
 
 .hero-date-display strong {
 
-    margin: 10px 0;
+    margin: 17px 0;
 
-    font-family: "Cormorant Garamond", serif;
+    color: #fffaf0;
 
-    font-size: 125px;
+    font-size: 120px;
 
-    line-height: .7;
+    line-height: .72;
 
-    font-weight: 500;
+    font-weight: 600;
 
 }
 
 
 .hero-date-display small {
 
-    color: #8a949e;
+    color: rgba(255,255,255,.66);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
 
@@ -785,21 +813,25 @@
 
 .hero-title {
 
-    margin-top: 55px;
+    margin-top: 58px;
 
     animation:
-        fadeUp 1.2s .35s var(--r-ease) both;
+        fadeUp 1.1s .3s var(--r-ease) both;
 
 }
 
 
 .hero-title > span {
 
-    color: rgba(255,255,255,.42);
+    color: rgba(255,255,255,.62);
 
-    font-size: 11px;
+    font-family: "Poppins", sans-serif;
 
-    letter-spacing: 8px;
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 7px;
 
 }
 
@@ -808,28 +840,28 @@
 
     max-width: 800px;
 
-    margin: 15px 0 25px;
+    margin: 17px 0 28px;
 
-    font-family: "Cormorant Garamond", serif;
+    color: #fffaf2;
 
-    font-size: clamp(72px,9vw,135px);
+    font-size: clamp(64px, 8.5vw, 125px);
 
-    line-height: .76;
+    line-height: .84;
 
-    letter-spacing: -5px;
+    letter-spacing: -3px;
 
-    font-weight: 500;
+    font-weight: 600;
 
 }
 
 
 .hero-title h1 em {
 
-    color: var(--r-gold);
-
-    font-weight: 500;
+    color: var(--r-gold-light);
 
     font-style: normal;
+
+    font-weight: 600;
 
 }
 
@@ -840,27 +872,29 @@
 
 .hero-description {
 
-    max-width: 500px;
+    max-width: 535px;
 
-    color: #aab4be;
+    margin: 0;
 
-    font-size: 15px;
+    color: rgba(255, 248, 236, .78);
 
-    line-height: 1.9;
+    font-size: 14px;
+
+    line-height: 1.95;
 
     animation:
-        fadeUp 1s .75s var(--r-ease) both;
+        fadeUp 1s .7s var(--r-ease) both;
 
 }
 
 
 /* ============================================================
-   DISCOVER
+   DISCOVER BUTTON
 ============================================================ */
 
 .hero-discover {
 
-    margin-top: 40px;
+    margin-top: 38px;
 
     display: inline-flex;
 
@@ -868,9 +902,11 @@
 
     gap: 14px;
 
-    color: var(--r-white);
+    color: #fff;
 
     text-decoration: none;
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
 
@@ -879,30 +915,32 @@
     letter-spacing: 2px;
 
     animation:
-        fadeUp 1s 1s var(--r-ease) both;
+        fadeUp 1s .9s var(--r-ease) both;
 
 }
 
 
 .discover-circle {
 
-    width: 38px;
-    height: 38px;
+    width: 43px;
+    height: 43px;
 
     display: grid;
 
     place-items: center;
 
-    border: 1px solid var(--r-gold);
-
-    color: var(--r-gold);
+    border: 1px solid var(--r-gold-light);
 
     border-radius: 50%;
+
+    color: var(--r-gold-light);
+
+    font-size: 17px;
 
     transition:
         background .4s ease,
         color .4s ease,
-        transform .4s ease,
+        transform .4s var(--r-ease),
         box-shadow .4s ease;
 
 }
@@ -910,14 +948,15 @@
 
 .hero-discover:hover .discover-circle {
 
-    background: var(--r-gold);
+    background: var(--r-gold-light);
 
-    color: var(--r-navy);
+    color: var(--r-burgundy-dark);
 
-    transform: translateY(5px);
+    transform:
+        translateY(5px);
 
     box-shadow:
-        0 8px 25px rgba(200,164,93,.18);
+        0 12px 30px rgba(0,0,0,.18);
 
 }
 
@@ -930,72 +969,76 @@
 
     position: absolute;
 
-    right: 28px;
+    right: 30px;
 
     top: 50%;
 
     writing-mode: vertical-rl;
 
-    color: rgba(255,255,255,.20);
+    color: rgba(255,255,255,.46);
 
-    font-size: 9px;
+    font-family: "Poppins", sans-serif;
+
+    font-size: 8px;
+
+    font-weight: 600;
 
     letter-spacing: 5px;
-
-    animation:
-        fadeIn 2s 1s ease both;
 
 }
 
 
 /* ============================================================
-   HERO BOTTOM
+   HERO BOTTOM INFORMATION BAR
 ============================================================ */
 
 .hero-bottom {
 
     position: absolute;
 
-    bottom: 28px;
+    bottom: 26px;
 
-    left: 40px;
-    right: 40px;
+    left: 55px;
+    right: 55px;
 
     display: flex;
 
     justify-content: space-between;
 
-    color: rgba(255,255,255,.42);
+    padding-top: 15px;
+
+    border-top: 1px solid rgba(255,255,255,.18);
+
+    color: rgba(255,255,255,.65);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 8px;
 
+    font-weight: 600;
+
     letter-spacing: 3px;
-
-    z-index: 5;
-
-    animation:
-        fadeIn 1.5s 1.2s ease both;
 
 }
 
 
 /* ============================================================
-   INTRODUCTION
+   INTRO
 ============================================================ */
 
 .reformation-intro {
 
-    max-width: 1100px;
+    max-width: 1180px;
 
     margin: auto;
 
-    padding: 150px 40px;
+    padding: 145px 40px;
 
     display: grid;
 
     grid-template-columns: 100px 1fr;
 
-    gap: 60px;
+    gap: 55px;
 
 }
 
@@ -1004,12 +1047,11 @@
 
     color: var(--r-gold);
 
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Cinzel", serif;
 
-    font-size: 20px;
+    font-size: 21px;
 
-    animation:
-        fadeUp 1s both;
+    padding-top: 7px;
 
 }
 
@@ -1018,15 +1060,20 @@
 
     max-width: 850px;
 
-    animation:
-        fadeUp 1s .15s var(--r-ease) both;
-
 }
 
 
 .section-kicker {
 
-    color: var(--r-gold);
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--r-burgundy);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
 
@@ -1037,17 +1084,30 @@
 }
 
 
+.section-kicker::before {
+
+    content: "";
+
+    width: 28px;
+
+    height: 1px;
+
+    background: var(--r-gold);
+
+}
+
+
 .intro-content h2 {
 
     margin: 22px 0 30px;
 
-    font-family: "Cormorant Garamond", serif;
+    color: var(--r-ink);
 
-    font-size: clamp(50px,6vw,78px);
+    font-size: clamp(48px, 6vw, 76px);
 
-    line-height: .9;
+    line-height: .95;
 
-    font-weight: 500;
+    font-weight: 600;
 
 }
 
@@ -1056,9 +1116,7 @@
 
     display: block;
 
-    color: var(--r-gold);
-
-    font-weight: 500;
+    color: var(--r-burgundy);
 
     font-style: normal;
 
@@ -1067,13 +1125,13 @@
 
 .intro-content p {
 
-    max-width: 650px;
+    max-width: 690px;
 
-    color: var(--r-muted);
+    color: var(--r-text);
 
     font-size: 14px;
 
-    line-height: 1.9;
+    line-height: 2;
 
 }
 
@@ -1084,11 +1142,11 @@
 
 .visual-story {
 
-    max-width: 1250px;
+    max-width: 1280px;
 
     margin: auto;
 
-    padding: 80px 30px 150px;
+    padding: 55px 30px 150px;
 
 }
 
@@ -1097,32 +1155,27 @@
 
     margin-bottom: 55px;
 
-    animation:
-        fadeUp 1s both;
-
 }
 
 
 .visual-heading h2 {
 
-    margin-top: 15px;
+    margin: 18px 0 0;
 
-    font-family: "Cormorant Garamond", serif;
+    color: var(--r-ink);
 
-    font-size: 62px;
+    font-size: clamp(48px, 5vw, 65px);
 
-    line-height: .9;
+    line-height: .95;
 
-    font-weight: 500;
+    font-weight: 600;
 
 }
 
 
 .visual-heading h2 em {
 
-    color: var(--r-gold);
-
-    font-weight: 500;
+    color: var(--r-burgundy);
 
     font-style: normal;
 
@@ -1148,55 +1201,28 @@
 
     overflow: hidden;
 
-    background: var(--r-navy-2);
+    background: var(--r-white);
 
     border: 1px solid var(--r-border);
 
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.28);
+    box-shadow: var(--r-shadow);
 
     animation:
-        galleryReveal 1.2s var(--r-ease) both;
-
-}
-
-
-@keyframes galleryReveal {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(45px)
-            scale(.97);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
+        fadeUp 1s var(--r-ease) both;
 
 }
 
 
 .visual-card-large {
 
-    left: 0;
-
     top: 0;
+    left: 0;
 
     width: 68%;
 
     height: 620px;
 
-    animation-delay: .15s;
+    animation-delay: .1s;
 
 }
 
@@ -1204,19 +1230,22 @@
 .visual-card-small {
 
     right: 0;
-
     bottom: 0;
 
-    width: 40%;
+    width: 39%;
 
     height: 390px;
 
-    border: 5px solid var(--r-navy);
+    border: 8px solid var(--r-bg);
 
-    animation-delay: .35s;
+    animation-delay: .3s;
 
 }
 
+
+/* ============================================================
+   IMAGE
+============================================================ */
 
 .visual-card img {
 
@@ -1226,22 +1255,61 @@
     object-fit: cover;
 
     transition:
-        transform 1.2s var(--r-ease),
-        filter 1s ease;
+        transform 1.1s var(--r-ease),
+        filter .8s ease;
 
 }
 
 
 .visual-card:hover img {
 
-    transform: scale(1.075);
+    transform: scale(1.065);
 
     filter:
-        brightness(1.08)
-        saturate(1.05);
+        saturate(1.08)
+        contrast(1.03);
 
 }
 
+
+/* ============================================================
+   GOLD IMAGE FRAME
+============================================================ */
+
+.visual-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 16px;
+
+    z-index: 2;
+
+    border: 1px solid rgba(255,255,255,.38);
+
+    pointer-events: none;
+
+    transition:
+        inset .6s var(--r-ease),
+        border-color .5s ease;
+
+}
+
+
+.visual-card:hover::before {
+
+    inset: 11px;
+
+    border-color:
+        rgba(231, 203, 135, .72);
+
+}
+
+
+/* ============================================================
+   IMAGE SHINE
+============================================================ */
 
 .visual-card::after {
 
@@ -1249,35 +1317,44 @@
 
     position: absolute;
 
-    inset: 0;
+    top: 0;
+    bottom: 0;
+
+    left: -120%;
+
+    width: 55%;
 
     background:
 
         linear-gradient(
-            120deg,
-            transparent 45%,
-            rgba(255,255,255,.08) 50%,
-            transparent 55%
+            90deg,
+            transparent,
+            rgba(255,255,255,.22),
+            transparent
         );
 
-    transform:
-        translateX(-120%);
+    transform: skewX(-18deg);
 
     transition:
-        transform 1s ease;
+        left 1s var(--r-ease);
 
     pointer-events: none;
+
+    z-index: 4;
 
 }
 
 
 .visual-card:hover::after {
 
-    transform:
-        translateX(120%);
+    left: 140%;
 
 }
 
+
+/* ============================================================
+   IMAGE OVERLAY
+============================================================ */
 
 .visual-overlay {
 
@@ -1289,36 +1366,40 @@
 
         linear-gradient(
             to top,
-            rgba(3,10,17,.92),
-            transparent 58%
+            rgba(50, 13, 20, .88),
+            rgba(50, 13, 20, .05) 65%
         );
 
     transition:
-        opacity .6s ease;
+        opacity .5s ease;
 
 }
 
 
 .visual-card:hover .visual-overlay {
 
-    opacity: .72;
+    opacity: .78;
 
 }
 
+
+/* ============================================================
+   CAPTION
+============================================================ */
 
 .visual-card figcaption {
 
     position: absolute;
 
-    bottom: 25px;
+    bottom: 30px;
 
-    left: 25px;
-    right: 25px;
+    left: 32px;
+    right: 32px;
 
-    z-index: 3;
+    z-index: 5;
 
     transition:
-        transform .5s var(--r-ease);
+        transform .45s var(--r-ease);
 
 }
 
@@ -1326,7 +1407,7 @@
 .visual-card:hover figcaption {
 
     transform:
-        translateY(-5px);
+        translateY(-7px);
 
 }
 
@@ -1335,9 +1416,11 @@
 
     display: block;
 
-    color: var(--r-gold);
+    margin-bottom: 4px;
 
-    font-family: "Cormorant Garamond", serif;
+    color: var(--r-gold-light);
+
+    font-family: "Cinzel", serif;
 
     font-size: 48px;
 
@@ -1346,9 +1429,13 @@
 
 .visual-caption {
 
-    color: rgba(255,255,255,.65);
+    color: rgba(255,255,255,.78);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 8px;
+
+    font-weight: 600;
 
     letter-spacing: 3px;
 
@@ -1356,20 +1443,16 @@
 
 
 /* ============================================================
-   TIMELINE
+   TIMELINE SECTION
 ============================================================ */
 
 .timeline-section {
 
+    position: relative;
+
     padding: 140px 30px;
 
-    background:
-
-        linear-gradient(
-            180deg,
-            var(--r-navy-2),
-            #050d17
-        );
+    background: var(--r-bg-soft);
 
     border-top: 1px solid var(--r-border);
 
@@ -1384,30 +1467,27 @@
 
     margin: auto;
 
-    animation:
-        fadeUp 1s both;
-
 }
 
 
 .timeline-heading h2 {
 
-    margin: 15px 0 10px;
+    margin: 18px 0 12px;
 
-    font-family: "Cormorant Garamond", serif;
+    color: var(--r-ink);
 
-    font-size: 65px;
+    font-size: clamp(50px, 6vw, 68px);
 
-    line-height: .9;
+    line-height: .95;
+
+    font-weight: 600;
 
 }
 
 
 .timeline-heading h2 em {
 
-    color: var(--r-gold);
-
-    font-weight: 500;
+    color: var(--r-burgundy);
 
     font-style: normal;
 
@@ -1418,11 +1498,13 @@
 
     color: var(--r-muted);
 
+    font-size: 13px;
+
 }
 
 
 /* ============================================================
-   TIMELINE LINE
+   TIMELINE
 ============================================================ */
 
 .timeline {
@@ -1442,9 +1524,9 @@
 
     left: 30px;
 
-    top: 0;
+    top: 5px;
 
-    bottom: 0;
+    bottom: 5px;
 
     width: 1px;
 
@@ -1456,32 +1538,6 @@
             var(--r-gold),
             transparent
         );
-
-    animation:
-        timelineLine 2s ease both;
-
-}
-
-
-@keyframes timelineLine {
-
-    from {
-
-        transform:
-            scaleY(0);
-
-        transform-origin: top;
-
-    }
-
-    to {
-
-        transform:
-            scaleY(1);
-
-        transform-origin: top;
-
-    }
 
 }
 
@@ -1498,30 +1554,6 @@
 
     position: relative;
 
-    animation:
-        fadeUp 1s var(--r-ease) both;
-
-}
-
-
-.timeline-item:nth-child(2) {
-
-    animation-delay: .15s;
-
-}
-
-
-.timeline-item:nth-child(3) {
-
-    animation-delay: .3s;
-
-}
-
-
-.timeline-item:nth-child(4) {
-
-    animation-delay: .45s;
-
 }
 
 
@@ -1534,15 +1566,19 @@
 
     place-items: center;
 
-    border: 1px solid rgba(200,164,93,.5);
+    border: 1px solid var(--r-gold);
 
     border-radius: 50%;
 
-    background: var(--r-navy-2);
+    background: var(--r-bg-soft);
 
-    color: var(--r-gold);
+    color: var(--r-burgundy);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
+
+    font-weight: 700;
 
     letter-spacing: 1px;
 
@@ -1550,7 +1586,8 @@
 
     transition:
         background .4s ease,
-        transform .4s ease,
+        color .4s ease,
+        transform .4s var(--r-ease),
         box-shadow .4s ease;
 
 }
@@ -1558,23 +1595,27 @@
 
 .timeline-item:hover .timeline-marker {
 
-    background: var(--r-gold);
+    background: var(--r-burgundy);
 
-    color: var(--r-navy);
+    color: #fff;
 
-    transform: scale(1.08);
+    transform: scale(1.1);
 
     box-shadow:
-        0 0 30px rgba(200,164,93,.15);
+        0 10px 30px rgba(101,29,40,.18);
 
 }
 
 
 .timeline-date {
 
-    color: var(--r-gold);
+    color: var(--r-gold-dark);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
+
+    font-weight: 700;
 
     letter-spacing: 3px;
 
@@ -1583,35 +1624,39 @@
 
 .timeline-item h3 {
 
-    margin: 10px 0;
+    margin: 9px 0;
 
-    font-family: "Cormorant Garamond", serif;
+    color: var(--r-ink);
 
-    font-size: 32px;
+    font-size: 31px;
+
+    font-weight: 600;
 
 }
 
 
 .timeline-item p {
 
-    max-width: 600px;
+    max-width: 630px;
 
-    color: var(--r-muted);
+    color: var(--r-text);
 
     font-size: 13px;
 
-    line-height: 1.8;
+    line-height: 1.9;
 
 }
 
 
 /* ============================================================
-   SOLAS
+   FIVE SOLAS
 ============================================================ */
 
 .solas-section {
 
-    padding: 130px 30px;
+    padding: 135px 30px;
+
+    background: var(--r-white);
 
 }
 
@@ -1622,19 +1667,18 @@
 
     margin: auto;
 
-    animation:
-        fadeUp 1s both;
-
 }
 
 
 .solas-intro h2 {
 
-    margin-top: 15px;
+    margin: 18px 0 0;
 
-    font-family: "Cormorant Garamond", serif;
+    color: var(--r-ink);
 
-    font-size: 60px;
+    font-size: clamp(48px, 5vw, 63px);
+
+    font-weight: 600;
 
 }
 
@@ -1647,7 +1691,7 @@
 
     display: grid;
 
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(5, 1fr);
 
     border-top: 1px solid var(--r-border);
 
@@ -1658,15 +1702,20 @@
 
 .sola {
 
-    padding: 35px 18px;
+    position: relative;
+
+    padding: 38px 17px;
 
     text-align: center;
 
     border-left: 1px solid var(--r-border);
 
+    background: transparent;
+
     transition:
-        background .5s ease,
-        transform .5s var(--r-ease);
+        background .45s ease,
+        transform .45s var(--r-ease),
+        box-shadow .45s ease;
 
 }
 
@@ -1680,11 +1729,15 @@
 
 .sola:hover {
 
-    background:
-        rgba(200,164,93,.045);
+    z-index: 2;
+
+    background: #f5efe2;
 
     transform:
-        translateY(-6px);
+        translateY(-8px);
+
+    box-shadow:
+        0 18px 35px rgba(70,48,28,.10);
 
 }
 
@@ -1695,7 +1748,11 @@
 
     color: var(--r-gold);
 
+    font-family: "Poppins", sans-serif;
+
     font-size: 8px;
+
+    font-weight: 700;
 
     letter-spacing: 2px;
 
@@ -1708,20 +1765,24 @@
 
     margin: 17px 0 7px;
 
-    font-family: "Cormorant Garamond", serif;
+    color: var(--r-burgundy);
 
-    font-size: 21px;
+    font-size: 19px;
+
+    font-weight: 600;
 
 }
 
 
 .sola small {
 
-    color: #75818d;
+    color: var(--r-muted);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 8px;
 
-    letter-spacing: 1px;
+    letter-spacing: .5px;
 
 }
 
@@ -1732,15 +1793,15 @@
 
 .venue-section {
 
-    max-width: 1250px;
+    max-width: 1280px;
 
-    margin: 100px auto 150px;
+    margin: 110px auto 150px;
 
     padding: 0 30px;
 
     display: grid;
 
-    grid-template-columns: 1.1fr .9fr;
+    grid-template-columns: 1.08fr .92fr;
 
     align-items: center;
 
@@ -1755,11 +1816,7 @@
 
     overflow: hidden;
 
-    box-shadow:
-        0 35px 80px rgba(0,0,0,.28);
-
-    animation:
-        fadeUp 1.1s var(--r-ease) both;
+    box-shadow: var(--r-shadow);
 
 }
 
@@ -1780,11 +1837,28 @@
 
 .venue-section:hover .venue-image img {
 
-    transform:
-        scale(1.055);
+    transform: scale(1.055);
 
     filter:
-        brightness(1.06);
+        saturate(1.06)
+        contrast(1.03);
+
+}
+
+
+.venue-image::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 17px;
+
+    border: 1px solid rgba(255,255,255,.45);
+
+    z-index: 3;
+
+    pointer-events: none;
 
 }
 
@@ -1799,8 +1873,8 @@
 
         linear-gradient(
             to top,
-            rgba(3,10,17,.88),
-            transparent 60%
+            rgba(52, 13, 20, .88),
+            transparent 65%
         );
 
 }
@@ -1810,9 +1884,11 @@
 
     position: absolute;
 
+    left: 32px;
+
     bottom: 30px;
 
-    left: 30px;
+    z-index: 4;
 
 }
 
@@ -1821,9 +1897,13 @@
 
     display: block;
 
-    color: rgba(255,255,255,.55);
+    color: rgba(255,255,255,.68);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 8px;
+
+    font-weight: 600;
 
     letter-spacing: 3px;
 
@@ -1832,21 +1912,26 @@
 
 .venue-image-text strong {
 
-    font-family: "Cormorant Garamond", serif;
+    display: block;
 
-    font-size: 65px;
+    margin-top: 4px;
 
-    color: var(--r-gold);
+    color: var(--r-gold-light);
+
+    font-size: 64px;
+
+    font-weight: 600;
 
 }
 
 
+/* ============================================================
+   VENUE CONTENT
+============================================================ */
+
 .venue-content {
 
-    padding: 60px;
-
-    animation:
-        fadeUp 1.1s .25s var(--r-ease) both;
+    padding: 55px;
 
 }
 
@@ -1855,20 +1940,20 @@
 
     margin: 20px 0 40px;
 
-    font-family: "Cormorant Garamond", serif;
+    color: var(--r-ink);
 
-    font-size: 58px;
+    font-size: clamp(45px, 5vw, 60px);
 
-    line-height: .9;
+    line-height: .95;
+
+    font-weight: 600;
 
 }
 
 
 .venue-content h2 em {
 
-    color: var(--r-gold);
-
-    font-weight: 500;
+    color: var(--r-burgundy);
 
     font-style: normal;
 
@@ -1884,7 +1969,7 @@
 
 .venue-detail {
 
-    padding: 18px 0;
+    padding: 19px 0;
 
     display: flex;
 
@@ -1895,23 +1980,28 @@
     border-bottom: 1px solid var(--r-border);
 
     transition:
-        padding-left .35s ease;
+        padding-left .35s ease,
+        background .35s ease;
 
 }
 
 
 .venue-detail:hover {
 
-    padding-left: 8px;
+    padding-left: 10px;
 
 }
 
 
 .venue-detail span {
 
-    color: #687581;
+    color: var(--r-muted);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 8px;
+
+    font-weight: 700;
 
     letter-spacing: 2px;
 
@@ -1920,9 +2010,13 @@
 
 .venue-detail strong {
 
-    color: #dce1e5;
+    color: var(--r-burgundy-dark);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 10px;
+
+    font-weight: 600;
 
     text-align: right;
 
@@ -1939,7 +2033,9 @@
 
     gap: 10px;
 
-    color: #7f8b96;
+    color: var(--r-muted);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
 
@@ -1951,12 +2047,14 @@
     width: 7px;
     height: 7px;
 
+    flex-shrink: 0;
+
     border-radius: 50%;
 
     background: var(--r-gold);
 
     box-shadow:
-        0 0 0 5px rgba(200,164,93,.08);
+        0 0 0 5px rgba(179,138,62,.10);
 
     animation:
         pulse 2s infinite;
@@ -1970,14 +2068,14 @@
     100% {
 
         box-shadow:
-            0 0 0 5px rgba(200,164,93,.08);
+            0 0 0 5px rgba(179,138,62,.10);
 
     }
 
     50% {
 
         box-shadow:
-            0 0 0 11px rgba(200,164,93,.02);
+            0 0 0 11px rgba(179,138,62,.02);
 
     }
 
@@ -1990,13 +2088,13 @@
 
 .final-invitation {
 
-    min-height: 800px;
+    min-height: 760px;
 
     position: relative;
 
     overflow: hidden;
 
-    padding: 150px 30px;
+    padding: 140px 30px;
 
     text-align: center;
 
@@ -2008,10 +2106,23 @@
 
     justify-content: center;
 
+    background:
+
+        linear-gradient(
+            135deg,
+            #4a141d,
+            #701f2b 55%,
+            #4a141d
+        );
+
     isolation: isolate;
 
 }
 
+
+/* ============================================================
+   FINAL BACKGROUND
+============================================================ */
 
 .final-background {
 
@@ -2019,47 +2130,27 @@
 
     inset: 0;
 
-    z-index: -3;
+    z-index: -2;
 
     background:
 
         radial-gradient(
             circle at center,
-            rgba(200,164,93,.13),
-            transparent 45%
+            rgba(216,179,92,.22),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(255,255,255,.06),
+            transparent 25%
         );
-
-    animation:
-        invitationGlow 7s
-        ease-in-out
-        infinite alternate;
-
-}
-
-
-@keyframes invitationGlow {
-
-    from {
-
-        opacity: .65;
-
-        transform: scale(1);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: scale(1.08);
-
-    }
 
 }
 
 
 /* ============================================================
-   ROTATING RINGS
+   DECORATIVE CIRCLES
 ============================================================ */
 
 .final-invitation::before {
@@ -2068,15 +2159,15 @@
 
     position: absolute;
 
-    width: 600px;
-    height: 600px;
+    width: 620px;
+    height: 620px;
 
-    border: 1px solid rgba(200,164,93,.08);
+    border: 1px solid rgba(230,207,148,.18);
 
     border-radius: 50%;
 
     animation:
-        rotateRing 35s linear infinite;
+        slowFloat 8s ease-in-out infinite alternate;
 
 }
 
@@ -2090,63 +2181,41 @@
     width: 850px;
     height: 850px;
 
-    border: 1px solid rgba(200,164,93,.035);
+    border: 1px solid rgba(230,207,148,.09);
 
     border-radius: 50%;
-
-    animation:
-        rotateRing 50s linear infinite reverse;
-
-}
-
-
-@keyframes rotateRing {
-
-    from {
-
-        transform:
-            rotate(0deg);
-
-    }
-
-    to {
-
-        transform:
-            rotate(360deg);
-
-    }
 
 }
 
 
 /* ============================================================
-   INVITATION CONTENT
+   CROSS
 ============================================================ */
 
 .invitation-cross {
 
-    position: relative;
-
-    z-index: 2;
-
-    width: 55px;
-    height: 55px;
+    width: 58px;
+    height: 58px;
 
     display: grid;
 
     place-items: center;
 
-    border: 1px solid var(--r-gold);
+    border: 1px solid var(--r-gold-light);
 
-    color: var(--r-gold);
+    color: var(--r-gold-light);
 
-    font-size: 22px;
+    font-size: 23px;
 
     animation:
         fadeUp 1s both;
 
 }
 
+
+/* ============================================================
+   FINAL TITLE
+============================================================ */
 
 .final-invitation h2 {
 
@@ -2156,13 +2225,13 @@
 
     margin: 25px 0;
 
-    font-family: "Cormorant Garamond", serif;
+    color: #fff9ed;
 
-    font-size: clamp(70px,9vw,115px);
+    font-size: clamp(62px, 8.5vw, 112px);
 
-    line-height: .75;
+    line-height: .78;
 
-    font-weight: 500;
+    font-weight: 600;
 
     animation:
         fadeUp 1s .15s var(--r-ease) both;
@@ -2172,12 +2241,16 @@
 
 .final-invitation h2 em {
 
-    color: var(--r-gold);
+    color: var(--r-gold-light);
 
     font-style: normal;
 
 }
 
+
+/* ============================================================
+   FINAL DESCRIPTION
+============================================================ */
 
 .final-invitation > p {
 
@@ -2185,13 +2258,13 @@
 
     z-index: 2;
 
-    max-width: 530px;
+    max-width: 550px;
 
-    color: var(--r-muted);
+    color: rgba(255,248,234,.78);
 
     font-size: 14px;
 
-    line-height: 1.9;
+    line-height: 1.95;
 
     animation:
         fadeUp 1s .3s var(--r-ease) both;
@@ -2209,13 +2282,13 @@
 
     z-index: 2;
 
-    margin-top: 35px;
+    margin-top: 34px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 15px;
+    gap: 16px;
 
     animation:
         fadeUp 1s .45s var(--r-ease) both;
@@ -2225,9 +2298,7 @@
 
 .invitation-date strong {
 
-    color: var(--r-gold);
-
-    font-family: "Cormorant Garamond", serif;
+    color: var(--r-gold-light);
 
     font-size: 70px;
 
@@ -2238,13 +2309,17 @@
 
 .invitation-date span {
 
-    color: #89949e;
+    color: rgba(255,255,255,.72);
 
-    text-align: left;
+    font-family: "Poppins", sans-serif;
 
     font-size: 8px;
 
+    font-weight: 600;
+
     letter-spacing: 2px;
+
+    text-align: left;
 
 }
 
@@ -2267,16 +2342,15 @@
 
     gap: 15px;
 
-    color: var(--r-gold);
+    color: var(--r-gold-light);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
 
     font-weight: 700;
 
     letter-spacing: 3px;
-
-    animation:
-        fadeUp 1s .6s var(--r-ease) both;
 
 }
 
@@ -2287,7 +2361,7 @@
 
     height: 1px;
 
-    background: var(--r-gold);
+    background: var(--r-gold-light);
 
 }
 
@@ -2302,7 +2376,7 @@
 
     z-index: 2;
 
-    margin-top: 45px;
+    margin-top: 42px;
 
     display: flex;
 
@@ -2310,29 +2384,26 @@
 
     gap: 14px;
 
-    color: var(--r-white);
+    color: #fff;
 
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Cinzel", serif;
 
-    font-size: 27px;
-
-    animation:
-        fadeUp 1s .75s var(--r-ease) both;
+    font-size: 25px;
 
 }
 
 
 .everyone-invited span {
 
-    color: var(--r-gold);
+    color: var(--r-gold-light);
 
-    font-size: 12px;
+    font-size: 11px;
 
 }
 
 
 /* ============================================================
-   TIMING ANNOUNCEMENT
+   TIMING BAR
 ============================================================ */
 
 .timing-announcement {
@@ -2343,11 +2414,15 @@
 
     margin-top: 18px;
 
-    padding: 10px 16px;
+    padding: 11px 20px;
 
-    border: 1px solid rgba(200,164,93,.25);
+    border: 1px solid rgba(230,207,148,.45);
 
-    color: var(--r-gold);
+    background: rgba(255,255,255,.045);
+
+    color: var(--r-gold-light);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 8px;
 
@@ -2355,16 +2430,10 @@
 
     letter-spacing: 2px;
 
-    background:
-        rgba(200,164,93,.025);
-
-    animation:
-        fadeUp 1s .9s var(--r-ease) both;
-
     transition:
-        background .4s ease,
-        border-color .4s ease,
-        transform .4s ease;
+        background .35s ease,
+        border-color .35s ease,
+        transform .35s var(--r-ease);
 
 }
 
@@ -2372,10 +2441,10 @@
 .timing-announcement:hover {
 
     background:
-        rgba(200,164,93,.08);
+        rgba(230,207,148,.12);
 
     border-color:
-        rgba(200,164,93,.5);
+        var(--r-gold-light);
 
     transform:
         translateY(-3px);
@@ -2389,15 +2458,19 @@
 
 .reformation-footer {
 
-    padding: 28px 40px;
+    padding: 28px 42px;
 
     display: flex;
 
     justify-content: space-between;
 
+    background: #eee8da;
+
     border-top: 1px solid var(--r-border);
 
-    color: #63707c;
+    color: var(--r-muted);
+
+    font-family: "Poppins", sans-serif;
 
     font-size: 9px;
 
@@ -2408,7 +2481,9 @@
 
 .reformation-footer span:last-child {
 
-    color: var(--r-gold);
+    color: var(--r-burgundy);
+
+    font-weight: 600;
 
 }
 
@@ -2418,6 +2493,22 @@
 ============================================================ */
 
 @media (max-width: 950px) {
+
+    .reformation-nav {
+
+        padding: 20px 28px;
+
+    }
+
+
+    .hero-content {
+
+        padding-left: 40px;
+
+        padding-right: 40px;
+
+    }
+
 
     .hero-date-display {
 
@@ -2444,19 +2535,25 @@
 
         grid-template-columns: 1fr;
 
+        gap: 0;
+
     }
 
 
     .venue-content {
 
-        padding: 55px 20px;
+        padding:
+            65px
+            30px
+            20px;
 
     }
 
 
     .solas {
 
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns:
+            repeat(3, 1fr);
 
     }
 
@@ -2464,7 +2561,8 @@
     .sola:nth-child(4),
     .sola:nth-child(5) {
 
-        border-top: 1px solid var(--r-border);
+        border-top:
+            1px solid var(--r-border);
 
     }
 
@@ -2476,6 +2574,19 @@
 ============================================================ */
 
 @media (max-width: 650px) {
+
+    .reformation-header {
+
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(35,14,17,.96),
+                rgba(35,14,17,.75),
+                transparent
+            );
+
+    }
+
 
     .reformation-nav {
 
@@ -2491,6 +2602,21 @@
     }
 
 
+    .brand-cross {
+
+        width: 37px;
+        height: 37px;
+
+    }
+
+
+    .brand-text strong {
+
+        font-size: 12px;
+
+    }
+
+
     .reformation-hero {
 
         min-height: 850px;
@@ -2498,25 +2624,43 @@
     }
 
 
+    .reformation-hero .hero-grid {
+
+        inset: 15px;
+
+    }
+
+
     .hero-content {
 
-        padding: 145px 25px 100px;
+        padding:
+            140px
+            25px
+            105px;
 
     }
 
 
     .hero-title {
 
-        margin-top: 40px;
+        margin-top: 38px;
 
     }
 
 
     .hero-title h1 {
 
-        font-size: 70px;
+        font-size: 65px;
 
-        letter-spacing: -3px;
+        letter-spacing:
+            -2px;
+
+    }
+
+
+    .hero-description {
+
+        font-size: 13px;
 
     }
 
@@ -2528,17 +2672,17 @@
         top: auto;
         right: auto;
 
-        width: 140px;
-        height: 160px;
+        width: 145px;
+        height: 165px;
 
-        margin-top: 45px;
+        margin-top: 42px;
 
     }
 
 
     .hero-date-display strong {
 
-        font-size: 80px;
+        font-size: 78px;
 
     }
 
@@ -2562,27 +2706,44 @@
     }
 
 
+    /* INTRO */
+
     .reformation-intro {
 
-        padding: 90px 25px;
+        padding:
+            90px
+            25px;
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
-        gap: 25px;
+        gap: 22px;
 
     }
 
 
+    .intro-content h2 {
+
+        font-size: 48px;
+
+    }
+
+
+    /* GALLERY */
+
     .visual-story {
 
-        padding: 60px 20px 100px;
+        padding:
+            55px
+            20px
+            100px;
 
     }
 
 
     .visual-heading h2 {
 
-        font-size: 48px;
+        font-size: 47px;
 
     }
 
@@ -2595,7 +2756,7 @@
 
         flex-direction: column;
 
-        gap: 18px;
+        gap: 20px;
 
     }
 
@@ -2611,7 +2772,7 @@
 
     .visual-card-large {
 
-        height: 400px;
+        height: 390px;
 
     }
 
@@ -2620,28 +2781,42 @@
 
         height: 300px;
 
-        border: 1px solid var(--r-border);
+        border:
+            1px solid var(--r-border);
 
     }
 
 
+    /* TIMELINE */
+
     .timeline-section {
 
-        padding: 90px 25px;
+        padding:
+            90px
+            25px;
 
     }
 
 
     .timeline-heading h2 {
 
-        font-size: 50px;
+        font-size: 48px;
+
+    }
+
+
+    .timeline {
+
+        margin-top: 55px;
 
     }
 
 
     .timeline-item {
 
-        grid-template-columns: 50px 1fr;
+        grid-template-columns:
+            50px
+            1fr;
 
         gap: 20px;
 
@@ -2656,48 +2831,68 @@
     }
 
 
+    .timeline-item h3 {
+
+        font-size: 27px;
+
+    }
+
+
+    /* SOLAS */
+
     .solas-section {
 
-        padding: 90px 20px;
+        padding:
+            90px
+            20px;
 
     }
 
 
     .solas-intro h2 {
 
-        font-size: 48px;
+        font-size: 47px;
 
     }
 
 
     .solas {
 
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
 
     }
 
 
     .sola {
 
-        border-bottom: 1px solid var(--r-border);
+        border-bottom:
+            1px solid var(--r-border);
 
     }
 
 
     .sola:nth-child(5) {
 
-        grid-column: 1 / -1;
+        grid-column:
+            1 / -1;
 
-        border-right: 1px solid var(--r-border);
+        border-right:
+            1px solid var(--r-border);
 
     }
 
 
+    /* VENUE */
+
     .venue-section {
 
-        margin: 70px auto 100px;
+        margin:
+            70px auto
+            100px;
 
-        padding: 0 20px;
+        padding:
+            0 20px;
 
     }
 
@@ -2711,14 +2906,17 @@
 
     .venue-content {
 
-        padding: 45px 10px;
+        padding:
+            45px
+            5px
+            0;
 
     }
 
 
     .venue-content h2 {
 
-        font-size: 47px;
+        font-size: 46px;
 
     }
 
@@ -2739,18 +2937,22 @@
     }
 
 
+    /* FINAL */
+
     .final-invitation {
 
         min-height: 700px;
 
-        padding: 100px 25px;
+        padding:
+            100px
+            25px;
 
     }
 
 
     .final-invitation h2 {
 
-        font-size: 72px;
+        font-size: 69px;
 
     }
 
@@ -2773,14 +2975,15 @@
 
     .everyone-invited {
 
-        font-size: 24px;
+        font-size: 22px;
 
     }
 
 
     .reformation-footer {
 
-        padding: 25px 20px;
+        padding:
+            25px 20px;
 
         flex-direction: column;
 
@@ -2808,10 +3011,57 @@
 
 
 /* ============================================================
+   VERY SMALL DEVICES
+============================================================ */
+
+@media (max-width: 380px) {
+
+    .hero-title h1 {
+
+        font-size: 57px;
+
+    }
+
+
+    .intro-content h2 {
+
+        font-size: 42px;
+
+    }
+
+
+    .visual-heading h2 {
+
+        font-size: 42px;
+
+    }
+
+
+    .timeline-heading h2 {
+
+        font-size: 42px;
+
+    }
+
+
+    .venue-content h2 {
+
+        font-size: 41px;
+
+    }
+
+
+    .final-invitation h2 {
+
+        font-size: 60px;
+
+    }
+
+}
+
+
+/* ============================================================
    ACCESSIBILITY
-   ------------------------------------------------------------
-   Users who prefer reduced motion won't get the cinematic
-   animations.
 ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
