@@ -1,2382 +1,1420 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
+    <!-- =====================================================
+         JEEVA NADI MINISTRIES
+         HOMEPAGE
+         Modern Ministry Design
+    ====================================================== -->
 
-<!-- =====================================================
-     DOCUMENT
-====================================================== -->
+    <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta name="description"
+        content="Welcome to Jeeva Nadi Ministries — The River of Life. Discover Biblical teaching, worship, prayer, Christian fellowship, sermons, ministry events and faith-building resources.">
 
-<meta
-    name="theme-color"
-    content="#07152d"
->
+    <meta name="theme-color" content="#071b36">
 
-<meta
-    name="color-scheme"
-    content="light"
->
+    <meta name="robots" content="index, follow">
 
-<meta
-    name="description"
-    content="Explore Jeeva Nadi Books — Christian books, Bibles, worship songbooks, Bible covers, calendars, promise cards and Christian gifts for personal devotion, family worship and ministry."
->
+    <link rel="canonical" href="https://www.jeevanadiministries.org/">
 
-<meta
-    name="keywords"
-    content="Jeeva Nadi Books, Christian books, Telugu Bible, English Bible, worship songs, Bible covers, Christian gifts, promise cards, Christian calendars"
->
-
-<meta
-    name="author"
-    content="Jeeva Nadi Ministries"
->
-
-<meta
-    name="robots"
-    content="index, follow"
->
-
-<link
-    rel="canonical"
-    href="https://www.jeevanadiministries.org/books.html"
->
-
-<title>
-    Jeeva Nadi Books | Christian Books &amp; Worship Resources
-</title>
+    <title>Jeeva Nadi Ministries | The River of Life</title>
 
 
-<!-- =====================================================
-     OPEN GRAPH
-====================================================== -->
+    <!-- FAVICON -->
 
-<meta
-    property="og:type"
-    content="website"
->
-
-<meta
-    property="og:title"
-    content="Jeeva Nadi Books | Christian Books &amp; Worship Resources"
->
-
-<meta
-    property="og:description"
-    content="Faith-centered books, Bibles, worship resources, Bible covers, calendars, promise cards and Christian gifts from Jeeva Nadi Ministries."
->
-
-<meta
-    property="og:url"
-    content="https://www.jeevanadiministries.org/books.html"
->
-
-<meta
-    property="og:site_name"
-    content="Jeeva Nadi Ministries"
->
+    <link rel="icon" type="image/png" href="images/Wb.png">
 
 
-<!-- =====================================================
-     FAVICON
-====================================================== -->
+    <!-- GOOGLE FONTS -->
 
-<link
-    rel="icon"
-    type="image/jpeg"
-    href="images/books logo.jpg"
->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link
-    rel="apple-touch-icon"
-    href="images/books logo.jpg"
->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
 
-<!-- =====================================================
-     PERFORMANCE
-====================================================== -->
+    <!-- STYLESHEET -->
 
-<link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
->
-
-<link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
->
+    <link rel="stylesheet" href="styles.css">
 
 
-<!-- =====================================================
-     TYPOGRAPHY
-====================================================== -->
+    <!-- HOMEPAGE DESIGN ENHANCEMENTS -->
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
->
+    <style>
+
+        :root {
+            --jn-navy: #071b36;
+            --jn-deep: #041326;
+            --jn-blue: #102d50;
+            --jn-gold: #c9a45c;
+            --jn-gold-light: #ead5a4;
+            --jn-cream: #fbf8f1;
+            --jn-white: #ffffff;
+            --jn-text: #26364a;
+            --jn-muted: #687587;
+            --jn-border: rgba(201, 164, 92, 0.25);
+            --jn-heading: "Cinzel", serif;
+            --jn-body: "Poppins", sans-serif;
+        }
 
 
-<!-- =====================================================
-     PAGE STYLES
-====================================================== -->
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
 
-<link
-    rel="stylesheet"
-    href="books.css"
->
 
+        body {
+            font-family: var(--jn-body);
+            color: var(--jn-text);
+        }
+
+
+        /* ================================================
+           HEADER AND NAVIGATION
+        ================================================ */
+
+        header {
+            background: rgba(4, 19, 38, 0.97);
+            border-bottom: 1px solid var(--jn-border);
+            backdrop-filter: blur(16px);
+        }
+
+
+        header .logo h2 {
+            font-family: var(--jn-heading);
+            color: var(--jn-gold-light);
+            letter-spacing: 1px;
+            font-size: clamp(15px, 1.5vw, 21px);
+        }
+
+
+        header nav ul {
+            gap: 5px;
+        }
+
+
+        header nav ul li a {
+            font-family: var(--jn-body);
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            padding: 10px 13px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+
+        header nav ul li a:hover,
+        header nav ul li a[aria-current="page"] {
+            color: var(--jn-gold-light);
+            background: rgba(201, 164, 92, 0.12);
+        }
+
+
+        /* ================================================
+           HERO SECTION
+        ================================================ */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(4, 15, 31, 0.94),
+                    rgba(4, 15, 31, 0.72),
+                    rgba(4, 15, 31, 0.40)
+                );
+            z-index: -1;
+        }
+
+
+        .hero-content {
+            max-width: 1050px;
+            padding: 80px 25px;
+        }
+
+
+        .hero-eyebrow {
+            display: inline-block;
+            color: var(--jn-gold-light);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+
+        .hero-content h1 {
+            font-family: var(--jn-heading);
+            font-size: clamp(34px, 5.5vw, 65px);
+            line-height: 1.2;
+            font-weight: 700;
+            color: var(--jn-white);
+            margin-bottom: 22px;
+        }
+
+
+        .hero-content h1 span {
+            display: block;
+            color: var(--jn-gold-light);
+        }
+
+
+        .hero-content > p {
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.95;
+            font-size: clamp(14px, 1.6vw, 17px);
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+
+        .hero-buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+
+        .hero-buttons .btn {
+            border-radius: 5px;
+            padding: 14px 24px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+
+        .hero-buttons .btn:hover {
+            transform: translateY(-3px);
+        }
+
+
+        .hero-buttons .btn-live {
+            border: 1px solid var(--jn-gold);
+        }
+
+
+        /* ================================================
+           WELCOME SECTION
+        ================================================ */
+
+        .welcome {
+            background: var(--jn-cream);
+            padding: 85px 24px;
+            text-align: center;
+        }
+
+
+        .welcome h2 {
+            font-family: var(--jn-heading);
+            color: var(--jn-navy);
+            font-size: clamp(25px, 3vw, 37px);
+            margin-bottom: 22px;
+        }
+
+
+        .welcome h2::after {
+            content: "";
+            display: block;
+            width: 65px;
+            height: 3px;
+            background: var(--jn-gold);
+            margin: 18px auto 0;
+        }
+
+
+        .welcome p {
+            max-width: 820px;
+            margin: 0 auto;
+            color: var(--jn-muted);
+            line-height: 2;
+            font-size: 15px;
+        }
+
+
+        /* ================================================
+           MEMORY VERSE
+        ================================================ */
+
+        .memory-verse {
+            position: relative;
+            overflow: visible;
+        }
+
+
+        .memory-verse-label {
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+
+        .memory-verse-container h2 {
+            font-family: var(--jn-heading);
+        }
+
+
+        .memory-verse-text {
+            line-height: 1.9;
+        }
+
+
+        .memory-verse-reference {
+            font-weight: 600;
+        }
+
+
+        .language-section h3 {
+            font-size: 14px;
+            letter-spacing: 0.3px;
+        }
+
+
+        .verse-language-btn {
+            cursor: pointer;
+            font-family: var(--jn-body);
+        }
+
+
+        .language-selector {
+            z-index: 50;
+        }
+
+
+        .language-list button {
+            font-family: var(--jn-body);
+            cursor: pointer;
+        }
+
+
+        /* ================================================
+           ABOUT SECTION
+        ================================================ */
+
+        .about {
+            background: var(--jn-cream);
+            padding-top: 85px;
+            padding-bottom: 85px;
+        }
+
+
+        .about-container {
+            gap: 55px;
+        }
+
+
+        .about-text h2 {
+            font-family: var(--jn-heading);
+            color: var(--jn-navy);
+            line-height: 1.4;
+        }
+
+
+        .about-text p {
+            line-height: 1.95;
+            color: var(--jn-muted);
+        }
+
+
+        .about-image img {
+            border-radius: 8px;
+        }
+
+
+        /* ================================================
+           PASTOR SECTION
+        ================================================ */
+
+        .pastor-section {
+            padding: 90px 25px;
+            background: var(--jn-white);
+        }
+
+
+        .pastor-section > h2 {
+            font-family: var(--jn-heading);
+            color: var(--jn-navy);
+            font-size: clamp(25px, 3vw, 36px);
+            margin-bottom: 50px;
+        }
+
+
+        .pastor-container {
+            max-width: 1100px;
+            margin: auto;
+            gap: 55px;
+        }
+
+
+        .pastor-image img {
+            border-radius: 8px;
+        }
+
+
+        .pastor-content h3 {
+            font-family: var(--jn-heading);
+            color: var(--jn-navy);
+            line-height: 1.5;
+        }
+
+
+        .pastor-content > p {
+            line-height: 1.9;
+        }
+
+
+        .pastor-content .verse {
+            color: #9b7738;
+            font-style: italic;
+        }
+
+
+        .pastor-features {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px;
+            margin: 25px 0;
+        }
+
+
+        .pastor-features > div {
+            padding: 13px;
+            border: 1px solid var(--jn-border);
+            border-radius: 5px;
+            background: var(--jn-cream);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+
+        .pastor-content .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        /* ================================================
+           MINISTRY SERVICES
+        ================================================ */
+
+        .ministry-services {
+            padding: 90px 25px;
+            background: var(--jn-cream);
+        }
+
+
+        .ministry-services-header {
+            max-width: 780px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+
+
+        .ministry-eyebrow {
+            color: #9b7738;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+
+        .ministry-services-header h2 {
+            font-family: var(--jn-heading);
+            color: var(--jn-navy);
+            font-size: clamp(25px, 3vw, 36px);
+            line-height: 1.4;
+            margin: 18px 0;
+        }
+
+
+        .ministry-services-header p {
+            color: var(--jn-muted);
+            line-height: 1.9;
+            font-size: 14px;
+        }
+
+
+        .ministry-services-container {
+            max-width: 1120px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+
+        .ministry-service-card {
+            position: relative;
+            padding: 35px 27px;
+            border: 1px solid var(--jn-border);
+            border-radius: 8px;
+            background: var(--jn-white);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+
+        .ministry-service-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(7, 27, 54, 0.09);
+        }
+
+
+        .ministry-service-icon {
+            width: 66px;
+            height: 66px;
+            margin: 0 auto 23px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(201, 164, 92, 0.14);
+            font-size: 28px;
+        }
+
+
+        .ministry-service-card h3 {
+            font-family: var(--jn-heading);
+            color: var(--jn-navy);
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+
+        .ministry-service-card p {
+            color: var(--jn-muted);
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+
+        .ministry-card-divider {
+            width: 45px;
+            height: 2px;
+            background: var(--jn-gold);
+            margin: 22px auto 0;
+        }
+
+
+        /* ================================================
+           FOOTER
+        ================================================ */
+
+        footer {
+            background: var(--jn-deep);
+            border-top: 2px solid var(--jn-gold);
+            padding: 50px 22px 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+
+        footer p {
+            max-width: 850px;
+            margin: 12px auto;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+
+        footer strong {
+            color: var(--jn-gold-light);
+        }
+
+
+        /* ================================================
+           ACCESSIBILITY AND RESPONSIVE
+        ================================================ */
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible {
+            outline: 3px solid var(--jn-gold);
+            outline-offset: 4px;
+        }
+
+
+        @media (max-width: 900px) {
+
+            .ministry-services-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .hero-content {
+                padding: 65px 20px;
+            }
+
+
+            .hero-content h1 {
+                font-size: clamp(31px, 8vw, 46px);
+            }
+
+
+            .welcome,
+            .about,
+            .pastor-section,
+            .ministry-services {
+                padding-top: 65px;
+                padding-bottom: 65px;
+            }
+
+
+            .pastor-features {
+                grid-template-columns: 1fr;
+            }
+
+
+            .ministry-services-container {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+
+            header nav ul li a {
+                padding: 12px 15px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+
+            .hero-buttons .btn {
+                text-align: center;
+            }
+
+
+            .hero-content > p {
+                font-size: 13px;
+            }
+
+
+            .welcome p {
+                font-size: 13px;
+            }
+
+
+            .pastor-section > h2 {
+                line-height: 1.5;
+            }
+
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+        }
+
+    </style>
+
+
+    <!-- ORGANIZATION STRUCTURED DATA -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Jeeva Nadi Ministries",
+        "alternateName": "The River of Life",
+        "url": "https://www.jeevanadiministries.org/",
+        "logo": "https://www.jeevanadiministries.org/images/Logo.jpg",
+        "description": "Jeeva Nadi Ministries is committed to worship, prayer, Biblical teaching and Christian fellowship."
+    }
+    </script>
 
 </head>
 
+
 <body>
 
-<!-- =========================================================
-     PAGE BACKGROUND
-========================================================= -->
 
-<div
-    class="jn-books-page-glow"
-    aria-hidden="true"
-></div>
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-<!-- =========================================================
-     SITE HEADER
-========================================================= -->
+<header>
 
-<header class="jn-books-header">
+    <div class="logo">
 
-<div class="jn-books-header-inner">
+        <a href="index.html" aria-label="Jeeva Nadi Ministries Home">
 
-    <!-- BRAND -->
+            <img
+                src="images/Logo.jpg"
+                alt="Jeeva Nadi Ministries Logo">
 
-    <a
-        href="index.html"
-        class="jn-books-brand"
-        aria-label="Jeeva Nadi Books — return to home"
-    >
+        </a>
 
-        <span
-            class="jn-books-brand-mark"
-            aria-hidden="true"
-        >
-            JN
-        </span>
 
-        <span class="jn-books-brand-copy">
+        <h2>
+            Jeeva Nadi Ministries
+        </h2>
 
-            <strong>
-                Jeeva Nadi
-            </strong>
+    </div>
 
-            <small>
-                BOOKS &amp; RESOURCES
-            </small>
 
-        </span>
+   
+<!-- PREMIUM MOBILE NAVIGATION TOGGLE -->
 
+<button
+    type="button"
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+    aria-controls="primaryNavigation">
+
+    <span class="menu-toggle-inner" aria-hidden="true">
+        <span class="menu-line menu-line-top"></span>
+        <span class="menu-line menu-line-middle"></span>
+        <span class="menu-line menu-line-bottom"></span>
+    </span>
+
+</button>
+
+
+    <!-- MAIN NAVIGATION -->
+
+    <nav id="primaryNavigation" aria-label="Main navigation">
+
+        <ul>
+
+            <li>
+                <a href="books.html">
+                    Books
+                </a>
+            </li>
+
+
+            <li>
+    <a href="index.html" aria-current="page">
+        Ministry
     </a>
+</li>
 
 
-    <!-- NAVIGATION -->
-
-    <nav
-        class="jn-books-header-actions"
-        aria-label="Books navigation"
-    >
-
-        <a
-            href="index.html"
-            class="jn-books-header-link"
-        >
-
-            <span
-                aria-hidden="true"
-            >
-                ←
-            </span>
-
-            <span>
-                Home
-            </span>
-
-        </a>
+            <li>
+                <a href="about.html">
+                    About
+                </a>
+            </li>
 
 
-        <a
-            href="account.html"
-            class="jn-books-header-link"
-        >
+            <li>
+                <a href="pastors.html">
+                    Pastors
+                </a>
+            </li>
 
-            <span
-                aria-hidden="true"
-            >
-                ♙
-            </span>
 
-            <span>
-                Account
-            </span>
+            <li>
+                <a href="sermons.html">
+                    Sermons
+                </a>
+            </li>
 
-        </a>
+
+            <li>
+                <a href="events.html">
+                    Events
+                </a>
+            </li>
+
+
+            <li>
+                <a href="contact.html">
+                    Contact
+                </a>
+            </li>
+
+        </ul>
 
     </nav>
 
-</div>
-
-
 </header>
 
-<!-- =========================================================
-     ANNOUNCEMENT BAR
-========================================================= -->
-
-<div
-    class="jn-books-announcement"
-    role="note"
->
 
 
-<div class="jn-books-shell jn-books-announcement-inner">
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
 
-    <span
-        class="jn-books-announcement-symbol"
-        aria-hidden="true"
-    >
-        ✦
-    </span>
+<section id="home" class="hero">
 
-    <span>
-        Every resource is prepared to serve
-        <strong>
-            faith, worship &amp; ministry.
-        </strong>
-    </span>
+    <div class="hero-content">
 
-</div>
-
-</div>
-
-<!-- =========================================================
-     MAIN
-========================================================= -->
-
-<main id="main-content">
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section
-    class="jn-books-hero"
-    aria-labelledby="books-hero-title"
->
+        <span class="hero-eyebrow">
+            ✦ THE RIVER OF LIFE ✦
+        </span>
 
 
-<!-- Decorative atmosphere -->
-
-<div
-    class="jn-books-hero-orbit orbit-one"
-    aria-hidden="true"
-></div>
-
-<div
-    class="jn-books-hero-orbit orbit-two"
-    aria-hidden="true"
-></div>
-
-
-<div class="jn-books-shell jn-books-hero-inner">
-
-
-    <!-- HERO COPY -->
-
-    <div class="jn-books-hero-content">
-
-        <p class="jn-books-kicker">
-            Jeeva Nadi Ministries
-        </p>
-
-
-        <h1
-            id="books-hero-title"
-            class="jn-books-hero-title"
-        >
-
-            Resources for
-
-            <span>
-                Faith &amp; Worship
-            </span>
-
+        <h1>
+            Welcome to
+            <span>Jeeva Nadi Ministries</span>
         </h1>
 
 
-        <p class="jn-books-hero-description">
+        <p>
 
-            Discover carefully selected Bibles,
-            worship songbooks, Bible covers,
-            calendars, promise cards and
-            Christian gifts prepared for your
-            home, church and ministry.
+            A Christ-centered ministry dedicated to
+            <strong>worship, prayer, Biblical teaching and fellowship.</strong>
+
+            Through the grace of God, we seek to share
+            the hope of the Gospel and the transforming
+            love of Jesus Christ with every generation.
 
         </p>
 
 
-        <div
-            class="jn-books-hero-points"
-            aria-label="Store benefits"
-        >
+        <div class="hero-buttons">
 
-            <div class="jn-books-hero-point">
+            <a
+                href="sermons.html"
+                class="btn"
+                aria-label="Explore sermons">
 
-                <span
-                    class="jn-books-point-icon"
-                    aria-hidden="true"
-                >
-                    ✦
-                </span>
+                📖 Explore Sermons
 
-                <span>
-                    Faith-centered
-                </span>
-
-            </div>
+            </a>
 
 
-            <div class="jn-books-hero-point">
+            <a
+                href="https://www.youtube.com/@JeevaNadiTheRiverofLife"
+                class="btn btn-live"
+                target="_blank"
+                rel="noopener noreferrer">
 
-                <span
-                    class="jn-books-point-icon"
-                    aria-hidden="true"
-                >
-                    ✦
-                </span>
+                ▶ Watch Worship
 
-                <span>
-                    Ministry resources
-                </span>
-
-            </div>
-
-
-            <div class="jn-books-hero-point">
-
-                <span
-                    class="jn-books-point-icon"
-                    aria-hidden="true"
-                >
-                    ✦
-                </span>
-
-                <span>
-                    Simple ordering
-                </span>
-
-            </div>
+            </a>
 
         </div>
 
     </div>
-
-
-    <!-- HERO SEARCH -->
-
-    <div class="jn-books-hero-search-card">
-
-        <div class="jn-books-search-heading">
-
-            <span
-                class="jn-books-search-icon"
-                aria-hidden="true"
-            >
-                ⌕
-            </span>
-
-            <div>
-
-                <strong>
-                    Find a resource
-                </strong>
-
-                <small>
-                    Search the Jeeva Nadi collection
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <form
-            class="jn-books-search"
-            id="book-search-form"
-            role="search"
-        >
-
-            <label
-                class="jn-books-sr-only"
-                for="book-search"
-            >
-                Search products
-            </label>
-
-
-            <input
-                type="search"
-                id="book-search"
-                name="search"
-                placeholder="Search books, Bibles, covers..."
-                autocomplete="off"
-                spellcheck="false"
-                enterkeyhint="search"
-                aria-controls="product-grid"
-            >
-
-
-            <button
-                type="submit"
-                id="search-button"
-                class="jn-books-search-button"
-                aria-label="Search products"
-            >
-
-                <span
-                    aria-hidden="true"
-                >
-                    ⌕
-                </span>
-
-            </button>
-
-        </form>
-
-
-        <p class="jn-books-search-hint">
-
-            Try
-            <span>“Bible”</span>,
-            <span>“Songs”</span>,
-            <span>“Calendar”</span>
-            or
-            <span>“Promise Cards”</span>
-
-        </p>
-
-    </div>
-
-</div>
-
 
 </section>
 
-<!-- =========================================================
-     STORE
-========================================================= -->
 
-<section
-    class="jn-books-store"
-    aria-labelledby="collection-title"
->
 
-<div class="jn-books-shell">
+<!-- =====================================================
+     WELCOME SECTION
+===================================================== -->
 
+<section class="welcome">
 
-    <!-- =================================================
-         SECTION INTRO
-    ================================================== -->
+    <h2>
+        A Place to Grow in Faith
+    </h2>
 
-    <div class="jn-books-section-heading">
 
-        <div>
+    <p>
 
-            <p class="jn-books-section-label">
-                The Collection
-            </p>
+        We are a community of believers committed to
+        following Jesus Christ, growing in God's Word,
+        strengthening one another through prayer,
+        and sharing the message of salvation.
 
-            <h2 id="collection-title">
+        We warmly welcome you to worship, learn,
+        serve and fellowship with us.
 
-                Browse our
+    </p>
 
-                <span>
-                    resources
-                </span>
+</section>
 
-            </h2>
 
-        </div>
 
+<!-- =====================================================
+     MEMORY VERSE
+===================================================== -->
 
-        <p class="jn-books-section-description">
+<section class="memory-verse">
 
-            Choose a category to discover
-            resources prepared for personal
-            devotion, family worship and
-            church use.
+    <div class="memory-verse-container">
 
-        </p>
+        <span class="memory-verse-label">
+            ✦ TODAY'S WORD ✦
+        </span>
 
-    </div>
-
-
-    <!-- =================================================
-         CATEGORY NAVIGATION
-    ================================================== -->
-
-    <div
-        class="jn-books-category-wrapper"
-        id="category-tabs"
-        role="tablist"
-        aria-label="Product categories"
-    >
-
-        <button
-            type="button"
-            class="jn-books-category-tab active"
-            data-category="all"
-            role="tab"
-            aria-selected="true"
-            aria-controls="product-grid"
-        >
-
-            <span aria-hidden="true">
-                ✦
-            </span>
-
-            <span>
-                All
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="jn-books-category-tab"
-            data-category="songs"
-            role="tab"
-            aria-selected="false"
-            aria-controls="product-grid"
-        >
-
-            <span aria-hidden="true">
-                ♫
-            </span>
-
-            <span>
-                Songs
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="jn-books-category-tab"
-            data-category="bibles"
-            role="tab"
-            aria-selected="false"
-            aria-controls="product-grid"
-        >
-
-            <span aria-hidden="true">
-                ▤
-            </span>
-
-            <span>
-                Bibles
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="jn-books-category-tab"
-            data-category="covers"
-            role="tab"
-            aria-selected="false"
-            aria-controls="product-grid"
-        >
-
-            <span aria-hidden="true">
-                ◈
-            </span>
-
-            <span>
-                Bible Covers
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="jn-books-category-tab"
-            data-category="calendars"
-            role="tab"
-            aria-selected="false"
-            aria-controls="product-grid"
-        >
-
-            <span aria-hidden="true">
-                □
-            </span>
-
-            <span>
-                Calendars
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="jn-books-category-tab"
-            data-category="promises"
-            role="tab"
-            aria-selected="false"
-            aria-controls="product-grid"
-        >
-
-            <span aria-hidden="true">
-                ◇
-            </span>
-
-            <span>
-                Promise Cards
-            </span>
-
-        </button>
-
-
-        <button
-            type="button"
-            class="jn-books-category-tab"
-            data-category="gifts"
-            role="tab"
-            aria-selected="false"
-            aria-controls="product-grid"
-        >
-
-            <span aria-hidden="true">
-                ✧
-            </span>
-
-            <span>
-                Gifts
-            </span>
-
-        </button>
-
-    </div>
-
-
-    <!-- =================================================
-         PRODUCT TOOLBAR
-    ================================================== -->
-
-    <div class="jn-books-toolbar">
-
-        <div class="jn-books-toolbar-left">
-
-            <span
-                class="jn-books-result-dot"
-                aria-hidden="true"
-            ></span>
-
-            <span
-                id="result-count"
-                class="jn-books-result-count"
-                aria-live="polite"
-            >
-                Showing all products
-            </span>
-
-        </div>
-
-
-        <div class="jn-books-toolbar-right">
-
-            <label
-                class="jn-books-sort-wrap"
-                for="sort-products"
-            >
-
-                <span>
-                    Sort
-                </span>
-
-                <select
-                    id="sort-products"
-                    class="jn-books-sort"
-                    aria-label="Sort products"
-                >
-
-                    <option value="featured">
-                        Featured
-                    </option>
-
-                    <option value="low">
-                        Price: Low to High
-                    </option>
-
-                    <option value="high">
-                        Price: High to Low
-                    </option>
-
-                    <option value="name">
-                        Name: A–Z
-                    </option>
-
-                </select>
-
-            </label>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         PRODUCT GRID
-    ================================================== -->
-
-    <div
-        id="product-grid"
-        class="jn-books-product-grid"
-        aria-live="polite"
-    >
-
-
-    <!-- =================================================
-         01 — SONGS BOOK
-    ================================================== -->
-
-    <article
-        class="jn-books-product-card jn-books-featured-product"
-        data-product-card
-        data-product-id="songs-book"
-        data-category="songs"
-        data-name="Jeeva Nadi Songs Book"
-        data-price="200"
-        data-search="songs songbook worship hymns christian songs telugu hindi english"
-    >
-
-        <div class="jn-books-product-media">
-
-            <span class="jn-books-product-badge">
-                Featured
-            </span>
-
-            <span class="jn-books-product-number">
-                01
-            </span>
-
-
-            <button
-                type="button"
-                class="jn-books-gallery-button left"
-                aria-label="Previous image of Jeeva Nadi Songs Book"
-            >
-                ‹
-            </button>
-
-
-            <img
-                class="jn-books-product-image"
-                src="images/Songs Book 1.jpg"
-                data-images='[
-                    "images/Songs Book 1.jpg",
-                    "images/Songs Book 2.jpg",
-                    "images/Songs Book 3.jpg"
-                ]'
-                data-index="0"
-                alt="Jeeva Nadi Songs Book"
-                loading="eager"
-                decoding="async"
-            >
-
-
-            <button
-                type="button"
-                class="jn-books-gallery-button right"
-                aria-label="Next image of Jeeva Nadi Songs Book"
-            >
-                ›
-            </button>
-
-
-            <div
-                class="jn-books-image-dots"
-                aria-hidden="true"
-            ></div>
-
-        </div>
-
-
-        <div class="jn-books-product-info">
-
-            <p class="jn-books-product-category">
-                Worship Collection
-            </p>
-
-            <h3 class="jn-books-product-title">
-                Jeeva Nadi Songs Book
-            </h3>
-
-            <p class="jn-books-product-description">
-                A carefully arranged collection
-                of traditional Christian hymns
-                and worship songs for personal,
-                family and congregational use.
-            </p>
-
-
-            <div class="jn-books-product-bottom">
-
-                <div class="jn-books-product-price">
-                    ₹200
-                    <small>
-                        / book
-                    </small>
-                </div>
-
-
-                <button
-                    type="button"
-                    class="jn-books-add-cart"
-                    data-product="Jeeva Nadi Songs Book"
-                    data-price="200"
-                    data-variant=""
-                    data-category="songs"
-                    data-image="images/Songs Book 1.jpg"
-                >
-
-                    <span aria-hidden="true">
-                        +
-                    </span>
-
-                    Add to Cart
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <!-- =================================================
-         02 — TELUGU BIBLE
-    ================================================== -->
-
-    <article
-        class="jn-books-product-card"
-        data-product-card
-        data-product-id="telugu-bible-bsi"
-        data-category="bibles"
-        data-name="Telugu Bible — BSI"
-        data-price="300"
-        data-search="telugu bible bsi holy bible scripture bible"
-    >
-
-        <div class="jn-books-product-media">
-
-            <span class="jn-books-product-badge">
-                BSI Bible
-            </span>
-
-            <span class="jn-books-product-number">
-                02
-            </span>
-
-
-            <button
-                type="button"
-                class="jn-books-gallery-button left"
-                aria-label="Previous image of Telugu Bible BSI"
-            >
-                ‹
-            </button>
-
-
-            <img
-                class="jn-books-product-image"
-                src="images/Telugu Bible BSI 1.png"
-                data-images='[
-                    "images/Telugu Bible BSI 1.png",
-                    "images/Telugu Bible BSI 2.jpg",
-                    "images/Telugu Bible BSI 3.jpg"
-                ]'
-                data-index="0"
-                alt="Telugu Bible BSI"
-                loading="lazy"
-                decoding="async"
-            >
-
-
-            <button
-                type="button"
-                class="jn-books-gallery-button right"
-                aria-label="Next image of Telugu Bible BSI"
-            >
-                ›
-            </button>
-
-
-            <div
-                class="jn-books-image-dots"
-                aria-hidden="true"
-            ></div>
-
-        </div>
-
-
-        <div class="jn-books-product-info">
-
-            <p class="jn-books-product-category">
-                Holy Bible • Telugu
-            </p>
-
-            <h3 class="jn-books-product-title">
-                Telugu Bible — BSI
-            </h3>
-
-            <p class="jn-books-product-description">
-                Telugu Holy Bible edition for
-                personal reading, family worship
-                and church use.
-            </p>
-
-
-            <div class="jn-books-product-bottom">
-
-                <div class="jn-books-product-price">
-                    ₹300
-                    <small>
-                        / Bible
-                    </small>
-                </div>
-
-
-                <button
-                    type="button"
-                    class="jn-books-add-cart"
-                    data-product="Telugu Bible — BSI"
-                    data-price="300"
-                    data-variant="Language: Telugu"
-                    data-category="bibles"
-                    data-image="images/Telugu Bible BSI 1.png"
-                >
-
-                    <span aria-hidden="true">
-                        +
-                    </span>
-
-                    Add to Cart
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <!-- =================================================
-         03 — ENGLISH BIBLE
-    ================================================== -->
-
-    <article
-        class="jn-books-product-card jn-books-coming-soon-card"
-        data-product-card
-        data-product-id="english-bible"
-        data-category="bibles"
-        data-name="English Bible"
-        data-price="0"
-        data-coming-soon="true"
-        data-search="english bible holy bible scripture coming soon"
-    >
-
-        <div class="jn-books-product-media">
-
-            <span class="jn-books-product-badge">
-                Coming Soon
-            </span>
-
-            <span class="jn-books-product-number">
-                03
-            </span>
-
-
-            <div
-                class="jn-books-placeholder"
-                aria-label="English Bible coming soon"
-            >
-
-                <span
-                    class="jn-books-placeholder-icon"
-                    aria-hidden="true"
-                >
-                    ▤
-                </span>
-
-                <strong>
-                    English Bible
-                </strong>
-
-                <small>
-                    Image &amp; availability coming soon
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="jn-books-product-info">
-
-            <p class="jn-books-product-category">
-                Holy Bible • English
-            </p>
-
-            <h3 class="jn-books-product-title">
-                English Bible
-            </h3>
-
-            <p class="jn-books-product-description">
-                English Bible edition for
-                personal reading and worship.
-                Pricing will be announced soon.
-            </p>
-
-
-            <div class="jn-books-product-bottom">
-
-                <div class="jn-books-product-price coming-soon-price">
-                    Coming Soon
-                </div>
-
-
-                <button
-                    type="button"
-                    class="jn-books-add-cart"
-                    disabled
-                    aria-disabled="true"
-                >
-                    Coming Soon
-                </button>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <!-- =================================================
-         04 — BIBLE COVERS
-    ================================================== -->
-
-    <article
-        class="jn-books-product-card jn-books-bible-covers-card"
-        data-product-card
-        data-product-id="bible-covers"
-        data-category="covers"
-        data-name="Bible Covers"
-        data-price="100"
-        data-search="bible cover bible covers floral fabric leather bible cover english telugu regular small"
-    >
-
-        <div class="jn-books-product-media">
-
-            <span class="jn-books-product-badge">
-                Bible Covers
-            </span>
-
-            <span class="jn-books-product-number">
-                04
-            </span>
-
-
-            <div class="jn-books-cover-image-wrap">
-
-                <img
-                    id="selected-cover-image"
-                    class="jn-books-product-image jn-books-cover-main-image"
-                    src="images/bc 8 english.jpeg"
-                    alt="Selected Bible cover"
-                    loading="lazy"
-                    decoding="async"
-                >
-
-
-                <button
-                    type="button"
-                    id="cover-gallery-prev"
-                    class="jn-books-gallery-button left"
-                    aria-label="Previous Bible cover image"
-                >
-                    ‹
-                </button>
-
-
-                <button
-                    type="button"
-                    id="cover-gallery-next"
-                    class="jn-books-gallery-button right"
-                    aria-label="Next Bible cover image"
-                >
-                    ›
-                </button>
-
-            </div>
-
-
-            <div
-                id="cover-image-dots"
-                class="jn-books-image-dots"
-                aria-hidden="true"
-            ></div>
-
-        </div>
-
-
-        <div class="jn-books-product-info">
-
-            <p class="jn-books-product-category">
-                Bible Accessories
-            </p>
-
-
-            <h3
-                id="selected-cover-name"
-                class="jn-books-product-title"
-            >
-                Floral Fabric &amp; Leather Bible Covers
-            </h3>
-
-
-            <p
-                id="cover-design-description"
-                class="jn-books-product-description"
-            >
-                Beautiful Bible covers available
-                in floral fabric and leather designs,
-                suitable for regular and small Bibles.
-            </p>
-
-
-            <!-- LANGUAGE -->
-
-            <div class="jn-books-variant-row">
-
-                <label for="cover-language">
-                    Bible Language
-                </label>
-
-                <select
-                    id="cover-language"
-                    class="jn-books-cover-language"
-                    data-cover-language
-                >
-
-                    <option value="English">
-                        English
-                    </option>
-
-                    <option value="Telugu">
-                        Telugu
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- SIZE -->
-
-            <div class="jn-books-variant-row">
-
-                <label for="cover-size">
-                    Bible Size
-                </label>
-
-                <select
-                    id="cover-size"
-                    class="jn-books-cover-size"
-                    data-cover-size
-                >
-
-                    <option value="Regular">
-                        Regular
-                    </option>
-
-                    <option value="Small">
-                        Small
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- DESIGN -->
-
-            <div class="jn-books-variant-row">
-
-                <label for="cover-design">
-                    Cover Design
-                </label>
-
-                <select
-                    id="cover-design"
-                    class="jn-books-cover-design"
-                    data-cover-design
-                >
-
-                    <optgroup label="Regular Covers">
-
-                        <option
-                            value="Floral Fabric"
-                            data-price="100"
-                            data-size="Regular"
-                            data-type="Floral Fabric"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Floral Fabric — ₹100
-                        </option>
-
-                        <option
-                            value="Dark Brown Leather"
-                            data-price="150"
-                            data-size="Regular"
-                            data-type="Leather"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Dark Brown Leather — ₹150
-                        </option>
-
-                        <option
-                            value="Black Leather"
-                            data-price="100"
-                            data-size="Regular"
-                            data-type="Leather"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Black Leather — ₹100
-                        </option>
-
-                        <option
-                            value="Maroon Patterned Leather"
-                            data-price="250"
-                            data-size="Regular"
-                            data-type="Leather"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Maroon Patterned Leather — ₹250
-                        </option>
-
-                        <option
-                            value="Paisley Patterned Leather"
-                            data-price="500"
-                            data-size="Regular"
-                            data-type="Leather"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Paisley Patterned Leather — ₹500
-                        </option>
-
-                        <option
-                            value="Black Leather Bible Pouch"
-                            data-price="150"
-                            data-size="Regular"
-                            data-type="Leather"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Black Leather Bible Pouch — ₹150
-                        </option>
-
-                        <option
-                            value="Red-Yellow Patterned Leather"
-                            data-price="500"
-                            data-size="Regular"
-                            data-type="Leather"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Red-Yellow Patterned Leather — ₹500
-                        </option>
-
-                        <option
-                            value="Black Smooth Leather"
-                            data-price="200"
-                            data-size="Regular"
-                            data-type="Leather"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Black Smooth Leather — ₹200
-                        </option>
-
-                        <option
-                            value="Brown Classic Leather"
-                            data-price="200"
-                            data-size="Regular"
-                            data-type="Leather"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Brown Classic Leather — ₹200
-                        </option>
-
-                    </optgroup>
-
-
-                    <optgroup label="Small Covers">
-
-                        <option
-                            value="Small Black Leather"
-                            data-price="100"
-                            data-size="Small"
-                            data-type="Leather"
-                            data-image="images/bc 8 english.jpeg"
-                        >
-                            Small Black Leather — ₹100
-                        </option>
-
-                    </optgroup>
-
-                </select>
-
-            </div>
-
-
-            <!-- SELECTED COVER SUMMARY -->
-
-            <div class="jn-books-cover-selected-info">
-
-                <div class="jn-books-cover-selected-row">
-
-                    <span>
-                        Bible:
-                    </span>
-
-                    <strong id="selected-cover-display-name">
-                        Floral Fabric English Bible
-                    </strong>
-
-                </div>
-
-
-                <div class="jn-books-cover-selected-row">
-
-                    <span>
-                        Language:
-                    </span>
-
-                    <strong id="selected-cover-language">
-                        English
-                    </strong>
-
-                </div>
-
-
-                <div class="jn-books-cover-selected-row">
-
-                    <span>
-                        Size:
-                    </span>
-
-                    <strong id="selected-cover-size">
-                        Regular
-                    </strong>
-
-                </div>
-
-
-                <div class="jn-books-cover-selected-row">
-
-                    <span>
-                        Design:
-                    </span>
-
-                    <strong id="selected-cover-design">
-                        Floral Fabric
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRICE -->
-
-            <div
-                id="cover-selected-price"
-                class="jn-books-product-price jn-books-cover-display-price"
-                data-cover-price
-            >
-
-                ₹100
-
-                <small>
-                    / Regular cover
-                </small>
-
-            </div>
-
-
-            <!-- CART -->
-
-            <button
-                type="button"
-                class="jn-books-add-cart"
-                id="add-cover-to-cart"
-                data-add-cover
-                data-product="Bible Cover"
-                data-price="100"
-                data-variant="English — Floral Fabric — Regular"
-                data-category="covers"
-                data-image="images/bc 8 english.jpeg"
-            >
-
-                <span aria-hidden="true">
-                    +
-                </span>
-
-                Add Selected Cover
-
-            </button>
-
-        </div>
-
-    </article>
-
-
-    <!-- =================================================
-         05 — CALENDAR 15 × 20
-    ================================================== -->
-
-    <article
-        class="jn-books-product-card"
-        data-product-card
-        data-product-id="calendar-15x20"
-        data-category="calendars"
-        data-name="Jeeva Nadi Calendar 15 x 20"
-        data-price="50"
-        data-search="calendar 15 20 telugu english"
-    >
-
-        <div class="jn-books-product-media">
-
-            <span class="jn-books-product-badge">
-                15 × 20
-            </span>
-
-            <span class="jn-books-product-number">
-                05
-            </span>
-
-
-            <div
-                class="jn-books-placeholder"
-                aria-label="15 by 20 calendar image coming soon"
-            >
-
-                <span
-                    class="jn-books-placeholder-icon"
-                    aria-hidden="true"
-                >
-                    □
-                </span>
-
-                <strong>
-                    15 × 20 Calendar
-                </strong>
-
-                <small>
-                    Product image coming soon
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="jn-books-product-info">
-
-            <p class="jn-books-product-category">
-                Calendar
-            </p>
-
-            <h3 class="jn-books-product-title">
-                Calendar — 15 × 20
-            </h3>
-
-            <p class="jn-books-product-description">
-                Jeeva Nadi calendar in the
-                15 × 20 inch format.
-            </p>
-
-
-            <div class="jn-books-product-bottom">
-
-                <div class="jn-books-product-price">
-
-                    ₹50
-
-                    <small>
-                        / each
-                    </small>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="jn-books-add-cart"
-                    data-product="Calendar 15 x 20"
-                    data-price="50"
-                    data-variant="15 × 20"
-                    data-category="calendars"
-                >
-
-                    <span aria-hidden="true">
-                        +
-                    </span>
-
-                    Add to Cart
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <!-- =================================================
-         06 — CALENDAR 18 × 23
-    ================================================== -->
-
-    <article
-        class="jn-books-product-card"
-        data-product-card
-        data-product-id="calendar-18x23"
-        data-category="calendars"
-        data-name="Jeeva Nadi Calendar 18 x 23"
-        data-price="70"
-        data-search="calendar 18 23 telugu english"
-    >
-
-        <div class="jn-books-product-media">
-
-            <span class="jn-books-product-badge">
-                18 × 23
-            </span>
-
-            <span class="jn-books-product-number">
-                06
-            </span>
-
-
-            <div
-                class="jn-books-placeholder"
-                aria-label="18 by 23 calendar image coming soon"
-            >
-
-                <span
-                    class="jn-books-placeholder-icon"
-                    aria-hidden="true"
-                >
-                    □
-                </span>
-
-                <strong>
-                    18 × 23 Calendar
-                </strong>
-
-                <small>
-                    Product image coming soon
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="jn-books-product-info">
-
-            <p class="jn-books-product-category">
-                Calendar
-            </p>
-
-            <h3 class="jn-books-product-title">
-                Calendar — 18 × 23
-            </h3>
-
-            <p class="jn-books-product-description">
-                Jeeva Nadi calendar in the
-                larger 18 × 23 inch format.
-            </p>
-
-
-            <div class="jn-books-product-bottom">
-
-                <div class="jn-books-product-price">
-
-                    ₹70
-
-                    <small>
-                        / each
-                    </small>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="jn-books-add-cart"
-                    data-product="Calendar 18 x 23"
-                    data-price="70"
-                    data-variant="18 × 23"
-                    data-category="calendars"
-                >
-
-                    <span aria-hidden="true">
-                        +
-                    </span>
-
-                    Add to Cart
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <!-- =================================================
-         07 — PROMISE CARDS
-    ================================================== -->
-
-    <article
-        class="jn-books-product-card"
-        data-product-card
-        data-product-id="promise-cards"
-        data-category="promises"
-        data-name="Promise Cards"
-        data-price="100"
-        data-search="promise cards christian promise cards"
-    >
-
-        <div class="jn-books-product-media">
-
-            <span class="jn-books-product-badge">
-                Select Pack
-            </span>
-
-            <span class="jn-books-product-number">
-                07
-            </span>
-
-
-            <div
-                class="jn-books-placeholder"
-                aria-label="Promise Cards"
-            >
-
-                <span
-                    class="jn-books-placeholder-icon"
-                    aria-hidden="true"
-                >
-                    ◇
-                </span>
-
-                <strong>
-                    Promise Cards
-                </strong>
-
-                <small>
-                    Product image coming soon
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="jn-books-product-info">
-
-            <p class="jn-books-product-category">
-                Faith Resources
-            </p>
-
-            <h3 class="jn-books-product-title">
-                Promise Cards
-            </h3>
-
-            <p class="jn-books-product-description">
-                Choose the number of promise
-                cards you would like to receive.
-            </p>
-
-
-            <div class="jn-books-variant-row">
-
-                <label for="promise-quantity">
-                    Number of Cards
-                </label>
-
-                <select
-                    id="promise-quantity"
-                    class="jn-books-promise-select"
-                >
-
-                    <option
-                        value="100"
-                        data-price="100"
-                    >
-                        100 Cards — ₹100
-                    </option>
-
-                    <option
-                        value="200"
-                        data-price="200"
-                    >
-                        200 Cards — ₹200
-                    </option>
-
-                    <option
-                        value="300"
-                        data-price="300"
-                    >
-                        300 Cards — ₹300
-                    </option>
-
-                    <option
-                        value="400"
-                        data-price="400"
-                    >
-                        400 Cards — ₹400
-                    </option>
-
-                    <option
-                        value="500"
-                        data-price="500"
-                    >
-                        500 Cards — ₹500
-                    </option>
-
-                    <option
-                        value="600"
-                        data-price="600"
-                    >
-                        600 Cards — ₹600
-                    </option>
-
-                    <option
-                        value="700"
-                        data-price="700"
-                    >
-                        700 Cards — ₹700
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div
-                class="jn-books-product-price jn-books-promise-price"
-            >
-
-                ₹100
-
-                <small>
-                    selected pack
-                </small>
-
-            </div>
-
-
-            <button
-                type="button"
-                class="jn-books-add-cart"
-                data-product="Promise Cards"
-                data-price="100"
-                data-variant="100 Cards"
-                data-category="promises"
-            >
-
-                <span aria-hidden="true">
-                    +
-                </span>
-
-                Add Selected Pack
-
-            </button>
-
-        </div>
-
-    </article>
-
-
-    <!-- =================================================
-         08 — PHOTO FRAMES
-    ================================================== -->
-
-    <article
-        class="jn-books-product-card jn-books-coming-soon-card"
-        data-product-card
-        data-product-id="christian-photo-frames"
-        data-category="gifts"
-        data-name="Christian Photo Frames"
-        data-price="0"
-        data-coming-soon="true"
-        data-search="photo frames christian gifts frame coming soon"
-    >
-
-        <div class="jn-books-product-media">
-
-            <span class="jn-books-product-badge">
-                Coming Soon
-            </span>
-
-            <span class="jn-books-product-number">
-                08
-            </span>
-
-
-            <div
-                class="jn-books-placeholder"
-                aria-label="Christian photo frames coming soon"
-            >
-
-                <span
-                    class="jn-books-placeholder-icon"
-                    aria-hidden="true"
-                >
-                    ▣
-                </span>
-
-                <strong>
-                    Photo Frames
-                </strong>
-
-                <small>
-                    Product image coming soon
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="jn-books-product-info">
-
-            <p class="jn-books-product-category">
-                Christian Gifts
-            </p>
-
-            <h3 class="jn-books-product-title">
-                Photo Frames
-            </h3>
-
-            <p class="jn-books-product-description">
-                Meaningful Christian photo frames
-                for homes, families and gifts.
-            </p>
-
-
-            <div class="jn-books-product-bottom">
-
-                <div class="jn-books-product-price coming-soon-price">
-                    Coming Soon
-                </div>
-
-                <button
-                    type="button"
-                    class="jn-books-add-cart"
-                    disabled
-                    aria-disabled="true"
-                >
-                    Coming Soon
-                </button>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    <!-- =================================================
-         09 — KEY CHAINS
-    ================================================== -->
-
-    <article
-        class="jn-books-product-card jn-books-coming-soon-card"
-        data-product-card
-        data-product-id="christian-key-chains"
-        data-category="gifts"
-        data-name="Christian Key Chains"
-        data-price="0"
-        data-coming-soon="true"
-        data-search="key chains christian gifts keychain coming soon"
-    >
-
-        <div class="jn-books-product-media">
-
-            <span class="jn-books-product-badge">
-                Coming Soon
-            </span>
-
-            <span class="jn-books-product-number">
-                09
-            </span>
-
-
-            <div
-                class="jn-books-placeholder"
-                aria-label="Christian key chains coming soon"
-            >
-
-                <span
-                    class="jn-books-placeholder-icon"
-                    aria-hidden="true"
-                >
-                    ◉
-                </span>
-
-                <strong>
-                    Christian Key Chains
-                </strong>
-
-                <small>
-                    Product image coming soon
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="jn-books-product-info">
-
-            <p class="jn-books-product-category">
-                Christian Gifts
-            </p>
-
-            <h3 class="jn-books-product-title">
-                Key Chains
-            </h3>
-
-            <p class="jn-books-product-description">
-                Small Christian gifts suitable
-                for personal use and ministry
-                gifting.
-            </p>
-
-
-            <div class="jn-books-product-bottom">
-
-                <div class="jn-books-product-price coming-soon-price">
-                    Coming Soon
-                </div>
-
-
-                <button
-                    type="button"
-                    class="jn-books-add-cart"
-                    disabled
-                    aria-disabled="true"
-                >
-                    Coming Soon
-                </button>
-
-            </div>
-
-        </div>
-
-    </article>
-
-
-    </div>
-
-
-    <!-- =================================================
-         EMPTY SEARCH STATE
-    ================================================== -->
-
-    <div
-        id="empty-state"
-        class="jn-books-empty-state"
-        hidden
-    >
 
         <div
-            class="jn-books-empty-symbol"
-            aria-hidden="true"
-        >
-            ⌕
+            class="memory-verse-icon"
+            aria-hidden="true">
+
+            ✝
+
         </div>
 
-        <p class="jn-books-empty-label">
-            Nothing matched
-        </p>
 
         <h2>
-            We couldn't find that resource
+            Memory Verse
         </h2>
 
+
+        <p
+            class="memory-verse-text"
+            id="memoryVerseText"
+            aria-live="polite">
+
+            “Trust in the Lord with all your heart
+            and lean not on your own understanding.”
+
+        </p>
+
+
+        <span
+            class="memory-verse-reference"
+            id="memoryVerseReference">
+
+            — Proverbs 3:5
+
+        </span>
+
+
+        <div class="verse-divider"></div>
+
+
+        <p class="memory-verse-message">
+
+            Trust Him with all your heart,
+            rely on His wisdom,
+            and let Him lead your way.
+
+        </p>
+
+
+        <!-- LANGUAGE SELECTOR -->
+
+        <div class="language-section">
+
+            <h3>
+                🌐 Read This Verse in Your Language
+            </h3>
+
+
+            <button
+                type="button"
+                class="verse-language-btn"
+                id="languageBtn"
+                aria-expanded="false"
+                aria-controls="languageSelector">
+
+                🌐 Choose Language
+
+            </button>
+
+
+            <div
+                class="language-selector"
+                id="languageSelector">
+
+                <div class="language-search-box">
+
+                    <input
+                        type="search"
+                        id="languageSearch"
+                        placeholder="🔎 Search a language..."
+                        autocomplete="off"
+                        aria-label="Search languages">
+
+                </div>
+
+
+                <div
+                    class="language-list"
+                    id="languageList">
+
+
+                    <button type="button" data-lang="English">🇬🇧 English</button>
+
+                    <button type="button" data-lang="Telugu">🇮🇳 తెలుగు</button>
+
+                    <button type="button" data-lang="Hindi">🇮🇳 हिन्दी</button>
+
+                    <button type="button" data-lang="Tamil">🇮🇳 தமிழ்</button>
+
+                    <button type="button" data-lang="Kannada">🇮🇳 ಕನ್ನಡ</button>
+
+                    <button type="button" data-lang="Malayalam">🇮🇳 മലയാളം</button>
+
+                    <button type="button" data-lang="Bengali">🇮🇳 বাংলা</button>
+
+                    <button type="button" data-lang="Marathi">🇮🇳 मराठी</button>
+
+                    <button type="button" data-lang="Gujarati">🇮🇳 ગુજરાતી</button>
+
+                    <button type="button" data-lang="Punjabi">🇮🇳 ਪੰਜਾਬੀ</button>
+
+                    <button type="button" data-lang="Spanish">🇪🇸 Español</button>
+
+                    <button type="button" data-lang="French">🇫🇷 Français</button>
+
+                    <button type="button" data-lang="German">🇩🇪 Deutsch</button>
+
+                    <button type="button" data-lang="Italian">🇮🇹 Italiano</button>
+
+                    <button type="button" data-lang="Portuguese">🇵🇹 Português</button>
+
+                    <button type="button" data-lang="Dutch">🇳🇱 Nederlands</button>
+
+                    <button type="button" data-lang="Greek">🇬🇷 Ελληνικά</button>
+
+                    <button type="button" data-lang="Russian">🇷🇺 Русский</button>
+
+                    <button type="button" data-lang="Ukrainian">🇺🇦 Українська</button>
+
+                    <button type="button" data-lang="Polish">🇵🇱 Polski</button>
+
+                    <button type="button" data-lang="Romanian">🇷🇴 Română</button>
+
+                    <button type="button" data-lang="Chinese">🇨🇳 中文</button>
+
+                    <button type="button" data-lang="Japanese">🇯🇵 日本語</button>
+
+                    <button type="button" data-lang="Korean">🇰🇷 한국어</button>
+
+                    <button type="button" data-lang="Arabic">🇸🇦 العربية</button>
+
+                    <button type="button" data-lang="Hebrew">🇮🇱 עברית</button>
+
+                    <button type="button" data-lang="Turkish">🇹🇷 Türkçe</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT SECTION
+===================================================== -->
+
+<section class="about" id="about">
+
+    <div class="about-container">
+
+        <div class="about-text">
+
+            <span class="ministry-eyebrow">
+                OUR PURPOSE • OUR CALLING
+            </span>
+
+
+            <h2>
+                About Jeeva Nadi Ministries
+            </h2>
+
+
+            <p>
+
+                Jeeva Nadi Ministries is committed to serving God
+                through worship, prayer, Biblical teaching
+                and Christian fellowship.
+
+            </p>
+
+
+            <p>
+
+                Through our churches and ministry activities,
+                we desire to proclaim the Gospel of Jesus Christ,
+                strengthen families and encourage believers
+                to grow in their faith.
+
+            </p>
+
+
+            <a href="about.html" class="btn">
+                Discover Our Ministry →
+            </a>
+
+        </div>
+
+
+        <div class="about-image">
+
+            <img
+                src="images/about-church.webp"
+                alt="Jeeva Nadi Church worship community"
+                loading="lazy">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SENIOR PASTOR
+===================================================== -->
+
+<section class="pastor-section">
+
+    <h2>
+        Meet Our Senior Pastor
+    </h2>
+
+
+    <div class="pastor-container">
+
+        <div class="pastor-image">
+
+            <img
+                src="images/pastor-christina.jpg"
+                alt="Pastor Christina Malligary"
+                loading="lazy">
+
+        </div>
+
+
+        <div class="pastor-content">
+
+            <span class="badge">
+                ✝ Senior Pastor
+            </span>
+
+
+            <h3>
+                Pastor Christina Malligary
+            </h3>
+
+
+            <p class="verse">
+
+                "Be shepherds of God's flock
+                that is under your care."
+
+                <br>
+
+                — 1 Peter 5:2
+
+            </p>
+
+
+            <p>
+
+                Pastor Christina Malligary faithfully shepherds
+                Jeeva Nadi Ministries through Biblical teaching,
+                prayer, worship and compassionate pastoral care.
+
+            </p>
+
+
+            <div class="pastor-features">
+
+                <div>
+                    📖 Biblical Teaching
+                </div>
+
+
+                <div>
+                    🙏 Prayer Ministry
+                </div>
+
+
+                <div>
+                    ❤️ Community Outreach
+                </div>
+
+
+                <div>
+                    ⛪ Church Leadership
+                </div>
+
+            </div>
+
+
+            <a href="pastors.html" class="btn">
+
+                Meet Our Pastors
+
+                <span aria-hidden="true">→</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MINISTRY SERVICES
+===================================================== -->
+
+<section class="ministry-services" id="ministries">
+
+    <div class="ministry-services-header">
+
+        <span class="ministry-eyebrow">
+            ✦ GROW • SERVE • FELLOWSHIP ✦
+        </span>
+
+
+        <h2>
+            Growing Together in Christ
+        </h2>
+
+
         <p>
-            Try another search term or browse
-            one of the categories above.
+
+            Discover opportunities to worship,
+            learn God's Word, pray together
+            and strengthen your walk with Jesus Christ.
+
         </p>
 
     </div>
 
 
-    <!-- =================================================
-         FEATURED STORY
-    ================================================== -->
-
-    <section
-        class="jn-books-story-panel"
-        aria-labelledby="featured-resource-title"
-    >
-
-        <div class="jn-books-story-content">
-
-            <p class="jn-books-section-label">
-                Featured Resource
-            </p>
+    <div class="ministry-services-container">
 
 
-            <h2 id="featured-resource-title">
+        <!-- SUNDAY WORSHIP -->
 
-                More Than a
-
-                <span>
-                    Songbook.
-                </span>
-
-            </h2>
-
-
-            <p class="jn-books-story-text">
-
-                The Jeeva Nadi Songs Book brings
-                together a carefully arranged
-                collection of Christian hymns
-                and worship songs designed to
-                encourage singing, devotion
-                and congregational worship.
-
-            </p>
-
-        </div>
-
-
-        <div class="jn-books-story-stat-grid">
-
-            <div class="jn-books-story-stat">
-
-                <strong>
-                    320
-                </strong>
-
-                <span>
-                    Pages
-                </span>
-
-            </div>
-
-
-            <div class="jn-books-story-stat">
-
-                <strong aria-hidden="true">
-                    ♫
-                </strong>
-
-                <span>
-                    Worship
-                </span>
-
-            </div>
-
-
-            <div class="jn-books-story-stat">
-
-                <strong aria-hidden="true">
-                    ✦
-                </strong>
-
-                <span>
-                    Ministry
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         STORE INFORMATION
-    ================================================== -->
-
-    <section
-        class="jn-books-information-grid"
-        aria-label="Store information"
-    >
-
-        <article class="jn-books-information-card">
+        <article class="ministry-service-card">
 
             <div
-                class="jn-books-information-icon"
-                aria-hidden="true"
-            >
-                ₹
-            </div>
+                class="ministry-service-icon"
+                aria-hidden="true">
 
-
-            <div>
-
-                <p class="jn-books-information-label">
-                    Payment
-                </p>
-
-                <h3>
-                    Simple UPI Checkout
-                </h3>
-
-                <p>
-                    Orders can currently be paid
-                    using the available UPI / QR
-                    payment method during checkout.
-                </p>
+                ⛪
 
             </div>
+
+
+            <h3>
+                Sunday Worship
+            </h3>
+
+
+            <p>
+
+                Join us every Sunday at 10 AM for
+                worship, Biblical teaching and
+                fellowship in God's presence.
+
+            </p>
+
+
+            <div class="ministry-card-divider"></div>
 
         </article>
 
 
-        <article class="jn-books-information-card">
+
+        <!-- PRAYER AND FELLOWSHIP -->
+
+        <article class="ministry-service-card">
 
             <div
-                class="jn-books-information-icon"
-                aria-hidden="true"
-            >
-                ✓
-            </div>
+                class="ministry-service-icon"
+                aria-hidden="true">
 
-
-            <div>
-
-                <p class="jn-books-information-label">
-                    Order Support
-                </p>
-
-                <h3>
-                    Need Help?
-                </h3>
-
-                <p>
-                    Contact the church office if you
-                    need assistance with products,
-                    ordering or ministry resources.
-                </p>
+                🙏
 
             </div>
 
-        </article>
 
-    </section>
+            <h3>
+                Prayer & Fellowship
+            </h3>
 
 
-    <!-- =================================================
-         CONTACT
-    ================================================== -->
+            <p>
 
-    <section
-        class="jn-books-contact-section"
-        aria-labelledby="contact-title"
-    >
+                Come together in prayer and fellowship
+                as we encourage one another and grow
+                stronger in faith.
 
-        <div class="jn-books-contact-heading">
-
-            <p class="jn-books-section-label">
-                Jeeva Nadi Ministry
             </p>
 
 
-            <h2 id="contact-title">
+            <div class="ministry-card-divider"></div>
 
-                We're here to
-
-                <span>
-                    help.
-                </span>
-
-            </h2>
-
-        </div>
+        </article>
 
 
-        <div class="jn-books-contact-grid">
+
+        <!-- BIBLE STUDY -->
+
+        <article class="ministry-service-card">
+
+            <div
+                class="ministry-service-icon"
+                aria-hidden="true">
+
+                📖
+
+            </div>
 
 
-            <!-- PHONE -->
-
-            <a
-                href="tel:+919347348805"
-                class="jn-books-contact-card"
-                aria-label="Call Jeeva Nadi Church Office"
-            >
-
-                <span
-                    class="jn-books-contact-icon"
-                    aria-hidden="true"
-                >
-                    ☎
-                </span>
+            <h3>
+                Bible Study & Teaching
+            </h3>
 
 
-                <span class="jn-books-contact-copy">
+            <p>
 
-                    <small>
-                        Church Office
-                    </small>
+                Grow deeper in God's Word through
+                Bible study, teaching and meaningful
+                spiritual learning.
 
-                    <strong>
-                        +91 93473 48805
-                    </strong>
-
-                    <em>
-                        Call for assistance
-                    </em>
-
-                </span>
-
-            </a>
+            </p>
 
 
-            <!-- EMAIL -->
+            <div class="ministry-card-divider"></div>
 
-            <a
-                href="mailto:nadijeeva4@gmail.com"
-                class="jn-books-contact-card"
-                aria-label="Email Jeeva Nadi Ministry"
-            >
-
-                <span
-                    class="jn-books-contact-icon"
-                    aria-hidden="true"
-                >
-                    @
-                </span>
+        </article>
 
 
-                <span class="jn-books-contact-copy">
-
-                    <small>
-                        Ministry Email
-                    </small>
-
-                    <strong>
-                        nadijeeva4@gmail.com
-                    </strong>
-
-                    <em>
-                        Prayer &amp; ministry enquiries
-                    </em>
-
-                </span>
-
-            </a>
-
-        </div>
-
-    </section>
-
-</div>
+    </div>
 
 
-</section>
+    <div style="text-align:center; margin-top:35px;">
 
-</main>
+       <a href="index.html#ministries" class="btn">
 
-<!-- =========================================================
-     FLOATING CART
-========================================================= -->
-
-<a
-href="cart.html"
-class="jn-books-cart-float"
-aria-label="Open shopping cart"
-
->
-
-<span
-    class="jn-books-cart-icon"
-    aria-hidden="true"
->
-    🛒
-</span>
-
-
-<span class="jn-books-cart-label">
-    Cart
-</span>
-
-
-<span
-    id="cart-count"
-    class="jn-books-cart-count"
-    aria-live="polite"
->
-    0
-</span>
+    Explore Our Ministries →
 
 </a>
 
-<!-- =========================================================
-     STORE TOAST
-========================================================= -->
+    </div>
 
-<div
-    id="store-toast"
-    class="jn-books-toast"
-    role="status"
-    aria-live="polite"
-></div>
+</section>
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
 
-<script
-    type="module"
-    src="js/books.js"
-></script>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <p>
+
+        <strong>
+            Jeeva Nadi Ministries
+        </strong>
+
+    </p>
+
+
+    <p>
+
+        <span style="color:#ead5a4; letter-spacing:2px;">
+            THE RIVER OF LIFE
+        </span>
+
+    </p>
+
+
+    <p>
+
+        Serving the Kingdom of God through
+
+        <strong>Calvary Fundamental Baptist Church</strong>,
+
+        <strong>Rehoboth Baptist Church</strong>,
+
+        and
+
+        <strong>Emmanuel Baptist Church</strong>.
+
+    </p>
+
+
+    <p>
+
+        "The Lord is my Shepherd; I shall not want."
+
+        <br>
+
+        <strong>
+            Psalm 23:1
+        </strong>
+
+    </p>
+
+
+    <p>
+        Hyderabad, Telangana, India
+    </p>
+
+
+    <p>
+
+        © 2026 Jeeva Nadi Ministries.
+        All Rights Reserved.
+
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     MAIN JAVASCRIPT
+
+     No Books Store popup.
+     No automatic popup notifications.
+===================================================== -->
+
+<script src="js/script.js"></script>
+
 
 </body>
 
