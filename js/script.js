@@ -1,27 +1,35 @@
-/* =====================================================
+
+/* ============================================================
    JEEVA NADI MINISTRIES
    MAIN JAVASCRIPT
-   -----------------------------------------------------
-   1. Sermon Search
-   2. Registration & Payment
-   3. Firebase Registration
-   4. Jeeva Nadi Books Store Popup
-   5. Countdown Timer
-   6. Mobile Navigation
-   7. Smooth Scroll
-   8. Fade-in Animation
-   9. Back to Top
-   10. Memory Verse Language Selector
-   11. Global UI Improvements
-===================================================== */
+   VERSION 2.0
+
+   RESPONSIVE | ACCESSIBLE | MODULAR
+
+   FEATURES
+   01. Sermon Search
+   02. Registration & Payment
+   03. Firebase Registration
+   04. Countdown Timer
+   05. Mobile Navigation
+   06. Smooth Scroll
+   07. Fade-in Animation
+   08. Back to Top
+   09. Memory Verse Language Selector
+   10. Mobile-Friendly Behaviour
+
+   NOTE:
+   Books Store popup functionality has been removed.
+   The Books page remains accessible through navigation.
+============================================================ */
 
 
 document.addEventListener("DOMContentLoaded", function () {
 
 
-    /* =================================================
-       1. SERMON SEARCH
-    ================================================= */
+    /* ========================================================
+       01. SERMON SEARCH
+    ======================================================== */
 
     const searchBox =
         document.getElementById("sermonSearch");
@@ -32,58 +40,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (searchBox && sermonCards.length) {
 
-        searchBox.addEventListener(
-            "input",
-            function () {
+        searchBox.addEventListener("input", function () {
 
-                const searchValue =
-                    searchBox.value
-                        .toLowerCase()
-                        .trim();
+            const searchValue =
+                searchBox.value.toLowerCase().trim();
 
 
-                sermonCards.forEach(
-                    function (card) {
+            sermonCards.forEach(function (card) {
 
-                        const title =
-                            card.querySelector("h3")
-                                ?.textContent
-                                .toLowerCase() || "";
+                const title =
+                    card.querySelector("h3")
+                        ?.textContent.toLowerCase() || "";
 
 
-                        const speaker =
-                            card.querySelector(".speaker")
-                                ?.textContent
-                                .toLowerCase() || "";
+                const speaker =
+                    card.querySelector(".speaker")
+                        ?.textContent.toLowerCase() || "";
 
 
-                        const description =
-                            card.querySelector("p")
-                                ?.textContent
-                                .toLowerCase() || "";
+                const description =
+                    card.querySelector("p")
+                        ?.textContent.toLowerCase() || "";
 
 
-                        const matches =
-                            title.includes(searchValue) ||
-                            speaker.includes(searchValue) ||
-                            description.includes(searchValue);
+                const matches =
+                    title.includes(searchValue) ||
+                    speaker.includes(searchValue) ||
+                    description.includes(searchValue);
 
 
-                        card.style.display =
-                            matches ? "" : "none";
+                card.style.display =
+                    matches ? "" : "none";
 
-                    }
-                );
+            });
 
-            }
-        );
+        });
 
     }
 
 
-    /* =================================================
-       2. REGISTRATION & PAYMENT
-    ================================================= */
+
+    /* ========================================================
+       02. REGISTRATION & PAYMENT
+    ======================================================== */
 
     const payButton =
         document.getElementById("payButton");
@@ -92,14 +91,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("paymentBox");
 
     const continueToVerification =
-        document.getElementById(
-            "continueToVerification"
-        );
+        document.getElementById("continueToVerification");
 
     const paymentVerification =
-        document.getElementById(
-            "paymentVerification"
-        );
+        document.getElementById("paymentVerification");
 
     const continueButton =
         document.getElementById("continueButton");
@@ -117,9 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let registrationData = {};
 
 
-    /* =================================================
-       2A. COHORT / REGISTRATION FEE
-    ================================================= */
+
+    /* ========================================================
+       02A. UPDATE REGISTRATION FEE
+    ======================================================== */
 
     function updateRegistrationFee() {
 
@@ -128,9 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
             !registrationFeeDisplay ||
             !amountPayableDisplay
         ) {
-
             return;
-
         }
 
 
@@ -161,52 +155,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =================================================
-       2B. GET REGISTRATION DATA
-    ================================================= */
+
+    /* ========================================================
+       02B. GET REGISTRATION DATA
+    ======================================================== */
 
     function getRegistrationData() {
 
         const fullName =
             document.getElementById("fullName")
-                ?.value
-                .trim() || "";
+                ?.value.trim() || "";
 
 
         const age =
             document.getElementById("age")
-                ?.value
-                .trim() || "";
+                ?.value.trim() || "";
 
 
         const phone =
             document.getElementById("phone")
-                ?.value
-                .trim() || "";
+                ?.value.trim() || "";
 
 
         const email =
             document.getElementById("email")
-                ?.value
-                .trim() || "";
+                ?.value.trim() || "";
 
 
         const location =
             document.getElementById("location")
-                ?.value
-                .trim() || "";
+                ?.value.trim() || "";
 
 
         const church =
             document.getElementById("church")
-                ?.value
-                .trim() || "";
+                ?.value.trim() || "";
 
 
         const studentClass =
             document.getElementById("cohortSelect")
-                ?.value
-                .trim() || "";
+                ?.value.trim() || "";
 
 
         const fee =
@@ -214,7 +202,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         return {
-
             fullName,
             age,
             phone,
@@ -223,23 +210,21 @@ document.addEventListener("DOMContentLoaded", function () {
             church,
             studentClass,
             fee
-
         };
 
     }
 
 
-    /* =================================================
-       2C. VALIDATE REGISTRATION
-    ================================================= */
+
+    /* ========================================================
+       02C. VALIDATE REGISTRATION
+    ======================================================== */
 
     function validateRegistration(data) {
 
         if (!data.fullName) {
 
-            alert(
-                "Please enter Full Name."
-            );
+            alert("Please enter Full Name.");
 
             return false;
 
@@ -248,9 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!data.age) {
 
-            alert(
-                "Please enter Age."
-            );
+            alert("Please enter Age.");
 
             return false;
 
@@ -259,9 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!data.phone) {
 
-            alert(
-                "Please enter Phone Number."
-            );
+            alert("Please enter Phone Number.");
 
             return false;
 
@@ -281,23 +262,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!data.email) {
 
-            alert(
-                "Please enter Email Address."
-            );
+            alert("Please enter Email Address.");
 
             return false;
 
         }
 
 
-        if (
-            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-                .test(data.email)
-        ) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
 
-            alert(
-                "Please enter a valid email address."
-            );
+            alert("Please enter a valid email address.");
 
             return false;
 
@@ -306,9 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!data.location) {
 
-            alert(
-                "Please enter Location."
-            );
+            alert("Please enter Location.");
 
             return false;
 
@@ -317,9 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!data.church) {
 
-            alert(
-                "Please enter Church Name."
-            );
+            alert("Please enter Church Name.");
 
             return false;
 
@@ -328,9 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!data.studentClass) {
 
-            alert(
-                "Please select a Group."
-            );
+            alert("Please select a Group.");
 
             return false;
 
@@ -353,94 +321,104 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =================================================
-       2D. OPEN PAYMENT SECTION
-    ================================================= */
 
-    if (payButton) {
+    /* ========================================================
+       02D. SCROLL TO SECTION
+    ======================================================== */
 
-        payButton.addEventListener(
-            "click",
-            function (event) {
+    function scrollToSection(element) {
 
-                event.preventDefault();
-
-
-                registrationData =
-                    getRegistrationData();
+        if (!element) {
+            return;
+        }
 
 
-                if (
-                    !validateRegistration(
-                        registrationData
-                    )
-                ) {
+        requestAnimationFrame(function () {
 
-                    return;
+            element.scrollIntoView({
 
-                }
+                behavior: "smooth",
 
+                block: "center"
 
-                /* -------------------------------------
-                   SAVE REGISTRATION LOCALLY
-                ------------------------------------- */
+            });
 
-                localStorage.setItem(
-                    "registrationData",
-                    JSON.stringify(
-                        registrationData
-                    )
-                );
-
-
-                /* -------------------------------------
-                   UPDATE PAYMENT AMOUNT
-                ------------------------------------- */
-
-                if (amountPayableDisplay) {
-
-                    amountPayableDisplay.textContent =
-                        "₹" +
-                        registrationData.fee;
-
-                }
-
-
-                /* -------------------------------------
-                   SHOW PAYMENT BOX
-                ------------------------------------- */
-
-                if (paymentBox) {
-
-                    paymentBox.style.display =
-                        "block";
-
-
-                    requestAnimationFrame(
-                        function () {
-
-                            paymentBox.scrollIntoView({
-
-                                behavior: "smooth",
-
-                                block: "center"
-
-                            });
-
-                        }
-                    );
-
-                }
-
-            }
-        );
+        });
 
     }
 
 
-    /* =================================================
-       2E. OPEN UTR VERIFICATION
-    ================================================= */
+
+    /* ========================================================
+       02E. OPEN PAYMENT SECTION
+    ======================================================== */
+
+    if (payButton) {
+
+        payButton.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+
+            registrationData =
+                getRegistrationData();
+
+
+            if (!validateRegistration(registrationData)) {
+
+                return;
+
+            }
+
+
+            try {
+
+                localStorage.setItem(
+                    "registrationData",
+                    JSON.stringify(registrationData)
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to save registration locally:",
+                    error
+                );
+
+                alert(
+                    "Unable to continue. Please check your browser settings."
+                );
+
+                return;
+
+            }
+
+
+            if (amountPayableDisplay) {
+
+                amountPayableDisplay.textContent =
+                    "₹" + registrationData.fee;
+
+            }
+
+
+            if (paymentBox) {
+
+                paymentBox.style.display = "block";
+
+                scrollToSection(paymentBox);
+
+            }
+
+        });
+
+    }
+
+
+
+    /* ========================================================
+       02F. OPEN UTR VERIFICATION
+    ======================================================== */
 
     if (continueToVerification) {
 
@@ -451,10 +429,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
 
-                const savedData =
-                    localStorage.getItem(
-                        "registrationData"
+                let savedData;
+
+
+                try {
+
+                    savedData =
+                        localStorage.getItem("registrationData");
+
+                } catch (error) {
+
+                    console.error(
+                        "Unable to access registration data:",
+                        error
                     );
+
+                }
 
 
                 if (!savedData) {
@@ -470,23 +460,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (paymentVerification) {
 
-                    paymentVerification.style.display =
-                        "block";
+                    paymentVerification.style.display = "block";
 
-
-                    requestAnimationFrame(
-                        function () {
-
-                            paymentVerification.scrollIntoView({
-
-                                behavior: "smooth",
-
-                                block: "center"
-
-                            });
-
-                        }
-                    );
+                    scrollToSection(paymentVerification);
 
                 }
 
@@ -496,9 +472,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =================================================
-       2F. FINAL PAYMENT CONFIRMATION
-    ================================================= */
+
+    /* ========================================================
+       02G. FINAL PAYMENT CONFIRMATION
+    ======================================================== */
 
     if (continueButton) {
 
@@ -509,24 +486,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
 
-                /* -------------------------------------
-                   PREVENT DOUBLE SUBMISSION
-                ------------------------------------- */
-
                 if (
-                    continueButton.dataset.submitting ===
-                    "true"
+                    continueButton.dataset.submitting === "true"
                 ) {
-
                     return;
-
                 }
 
 
-                const savedData =
-                    localStorage.getItem(
-                        "registrationData"
+                let savedData;
+
+
+                try {
+
+                    savedData =
+                        localStorage.getItem("registrationData");
+
+                } catch (error) {
+
+                    console.error(
+                        "Unable to read registration data:",
+                        error
                     );
+
+                }
 
 
                 if (!savedData) {
@@ -545,8 +527,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 try {
 
-                    data =
-                        JSON.parse(savedData);
+                    data = JSON.parse(savedData);
 
                 } catch (error) {
 
@@ -554,7 +535,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Invalid registration data:",
                         error
                     );
-
 
                     alert(
                         "Registration data is invalid. Please register again."
@@ -567,19 +547,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const utr =
                     document.getElementById("utr")
-                        ?.value
-                        .trim() || "";
+                        ?.value.trim() || "";
 
 
                 const confirmPayment =
-                    document.getElementById(
-                        "confirmPayment"
-                    )?.checked || false;
+                    document.getElementById("confirmPayment")
+                        ?.checked || false;
 
 
-                /* -------------------------------------
+
+                /* --------------------------------------------
                    VALIDATE UTR
-                ------------------------------------- */
+                -------------------------------------------- */
 
                 if (!/^[0-9]{12}$/.test(utr)) {
 
@@ -592,9 +571,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* -------------------------------------
+
+                /* --------------------------------------------
                    CONFIRM PAYMENT
-                ------------------------------------- */
+                -------------------------------------------- */
 
                 if (!confirmPayment) {
 
@@ -607,9 +587,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* -------------------------------------
-                   CHECK FIREBASE
-                ------------------------------------- */
+
+                /* --------------------------------------------
+                   CHECK FIREBASE DATABASE
+                -------------------------------------------- */
 
                 if (
                     typeof db === "undefined" ||
@@ -620,7 +601,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Firebase database object 'db' is unavailable."
                     );
 
-
                     alert(
                         "Registration system is currently unavailable. Please try again later."
                     );
@@ -630,16 +610,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* -------------------------------------
-                   DISABLE SUBMIT BUTTON
-                ------------------------------------- */
 
-                continueButton.dataset.submitting =
-                    "true";
+                /* --------------------------------------------
+                   PREVENT DOUBLE SUBMISSION
+                -------------------------------------------- */
 
+                continueButton.dataset.submitting = "true";
 
-                continueButton.disabled =
-                    true;
+                continueButton.disabled = true;
 
 
                 const originalButtonText =
@@ -650,9 +628,30 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Submitting...";
 
 
-                /* -------------------------------------
-                   SAVE TO FIRESTORE
-                ------------------------------------- */
+
+                /* --------------------------------------------
+                   FIREBASE TIMESTAMP
+                -------------------------------------------- */
+
+                let registeredAt = new Date();
+
+
+                if (
+                    typeof firebase !== "undefined" &&
+                    firebase.firestore &&
+                    firebase.firestore.FieldValue
+                ) {
+
+                    registeredAt =
+                        firebase.firestore.FieldValue.serverTimestamp();
+
+                }
+
+
+
+                /* --------------------------------------------
+                   SAVE REGISTRATION TO FIRESTORE
+                -------------------------------------------- */
 
                 try {
 
@@ -660,67 +659,45 @@ document.addEventListener("DOMContentLoaded", function () {
                         .collection("participants")
                         .add({
 
-                            Name:
-                                data.fullName,
+                            Name: data.fullName,
 
-                            Age:
-                                data.age,
+                            Age: data.age,
 
-                            Phone:
-                                data.phone,
+                            Phone: data.phone,
 
-                            Email:
-                                data.email,
+                            Email: data.email,
 
-                            Location:
-                                data.location,
+                            Location: data.location,
 
-                            Church:
-                                data.church,
+                            Church: data.church,
 
-                            Group:
-                                data.studentClass,
+                            Group: data.studentClass,
 
-                            Fee:
-                                data.fee,
+                            Fee: data.fee,
 
-                            UTR:
-                                utr,
+                            UTR: utr,
 
-                            PaymentStatus:
-                                "Completed",
+                            PaymentStatus: "Completed",
 
-                            RegisteredAt:
-                                firebase
-                                    ?.firestore
-                                    ?.FieldValue
-                                    ?.serverTimestamp
-                                    ? firebase
-                                        .firestore
-                                        .FieldValue
-                                        .serverTimestamp()
-                                    : new Date()
+                            RegisteredAt: registeredAt
 
                         });
 
 
-                    console.log(
-                        "Registration saved successfully."
-                    );
 
-
-                    /* ---------------------------------
-                       CLEAR LOCAL DATA
-                    --------------------------------- */
+                    /* ----------------------------------------
+                       CLEAR LOCAL REGISTRATION DATA
+                    ---------------------------------------- */
 
                     localStorage.removeItem(
                         "registrationData"
                     );
 
 
-                    /* ---------------------------------
+
+                    /* ----------------------------------------
                        SUCCESS MESSAGE
-                    --------------------------------- */
+                    ---------------------------------------- */
 
                     alert(
                         "🎉 Registration Completed Successfully!\n\n" +
@@ -735,7 +712,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } catch (error) {
 
                     console.error(
-                        "Firestore Error:",
+                        "Firestore Registration Error:",
                         error
                     );
 
@@ -746,13 +723,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                    continueButton.disabled =
-                        false;
+                    continueButton.disabled = false;
 
-
-                    continueButton.dataset.submitting =
-                        "false";
-
+                    continueButton.dataset.submitting = "false";
 
                     continueButton.textContent =
                         originalButtonText;
@@ -764,290 +737,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-/* =================================================
-   3. JEEVA NADI BOOKS STORE POPUP
-================================================= */
 
-const booksPopup =
-    document.getElementById("booksPopup");
 
-const closeBooksPopup =
-    document.getElementById("closeBooksPopup");
-
-const booksLaterBtn =
-    document.getElementById("booksLaterBtn");
-
-const exploreBooksBtn =
-    document.getElementById("exploreBooksBtn");
-
-
-/* -------------------------------------------------
-   OPEN BOOKS POPUP
-------------------------------------------------- */
-
-function openBooksPopup() {
-
-    if (!booksPopup) {
-        console.warn("Books popup element not found.");
-        return;
-    }
-
-    /* ---------------------------------------------
-       Remove hidden state FIRST
-    --------------------------------------------- */
-
-    booksPopup.hidden = false;
-    booksPopup.removeAttribute("hidden");
-
-    /* ---------------------------------------------
-       Prevent background scrolling
-    --------------------------------------------- */
-
-    document.body.classList.add(
-        "books-popup-open"
-    );
-
-    /* ---------------------------------------------
-       Wait for browser to render the visible state
-       before starting animation
-    --------------------------------------------- */
-
-    requestAnimationFrame(function () {
-
-        requestAnimationFrame(function () {
-
-            booksPopup.classList.add(
-                "books-popup-visible"
-            );
-
-        });
-
-    });
-
-}
-
-
-/* -------------------------------------------------
-   CLOSE BOOKS POPUP
-------------------------------------------------- */
-
-function closeBooksStorePopup() {
-
-    if (!booksPopup) {
-        return;
-    }
-
-    /* ---------------------------------------------
-       Remove visible state
-    --------------------------------------------- */
-
-    booksPopup.classList.remove(
-        "books-popup-visible"
-    );
-
-    /* ---------------------------------------------
-       Restore page scrolling
-    --------------------------------------------- */
-
-    document.body.classList.remove(
-        "books-popup-open"
-    );
-
-    /* ---------------------------------------------
-       Wait for closing animation
-    --------------------------------------------- */
-
-    setTimeout(function () {
-
-        /*
-           Only hide if popup is still closed.
-           Prevents a race condition if the popup
-           is opened again during the animation.
-        */
-
-        if (
-            !booksPopup.classList.contains(
-                "books-popup-visible"
-            )
-        ) {
-
-            booksPopup.hidden = true;
-
-            booksPopup.setAttribute(
-                "hidden",
-                ""
-            );
-
-        }
-
-    }, 350);
-
-}
-
-
-/* -------------------------------------------------
-   CLOSE BUTTON
-------------------------------------------------- */
-
-if (closeBooksPopup) {
-
-    closeBooksPopup.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            closeBooksStorePopup();
-
-        }
-    );
-
-}
-
-
-/* -------------------------------------------------
-   MAYBE LATER BUTTON
-------------------------------------------------- */
-
-if (booksLaterBtn) {
-
-    booksLaterBtn.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            /*
-               Remember that the visitor dismissed
-               the popup during this browser session.
-            */
-
-            sessionStorage.setItem(
-                "jeevaNadiBooksPopupDismissed",
-                "true"
-            );
-
-            closeBooksStorePopup();
-
-        }
-    );
-
-}
-
-
-/* -------------------------------------------------
-   EXPLORE BOOKS BUTTON
-------------------------------------------------- */
-
-if (exploreBooksBtn) {
-
-    exploreBooksBtn.addEventListener(
-        "click",
-        function () {
-
-            /*
-               Remember that the visitor has already
-               interacted with the popup.
-            */
-
-            sessionStorage.setItem(
-                "jeevaNadiBooksPopupDismissed",
-                "true"
-            );
-
-        }
-    );
-
-}
-
-
-/* -------------------------------------------------
-   CLICK OUTSIDE POPUP
-------------------------------------------------- */
-
-if (booksPopup) {
-
-    booksPopup.addEventListener(
-        "click",
-        function (event) {
-
-            /*
-               Only close when the dark overlay itself
-               is clicked, not the popup content.
-            */
-
-            if (
-                event.target === booksPopup
-            ) {
-
-                closeBooksStorePopup();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* -------------------------------------------------
-   ESCAPE KEY
-------------------------------------------------- */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (
-            event.key === "Escape" &&
-            booksPopup &&
-            !booksPopup.hidden
-        ) {
-
-            closeBooksStorePopup();
-
-        }
-
-    }
-);
-
-
-/* -------------------------------------------------
-   AUTOMATICALLY SHOW BOOKS POPUP
-------------------------------------------------- */
-
-const booksPopupDismissed =
-    sessionStorage.getItem(
-        "jeevaNadiBooksPopupDismissed"
-    );
-
-
-/*
-   Popup appears after 4 seconds.
-
-   It will not appear again during the same
-   browser session after the visitor chooses
-   "Maybe Later" or "Explore Books".
-*/
-
-if (
-    booksPopup &&
-    !booksPopupDismissed
-) {
-
-    setTimeout(
-        function () {
-
-            openBooksPopup();
-
-        },
-        4000
-    );
-
-}
-    /* =================================================
-       4. COUNTDOWN TIMER
-    ================================================= */
+    /* ========================================================
+       03. COUNTDOWN TIMER
+    ======================================================== */
 
     const daysElement =
         document.getElementById("days");
@@ -1069,11 +763,16 @@ if (
         secondsElement
     ) {
 
+
         /*
-           Bible Quiz 2026
-           August 15, 2026
-           09:00 AM
-           India Standard Time
+           BIBLE QUIZ 2026
+
+           Original event date:
+           15 August 2026
+           09:00 AM IST
+
+           Update this date when scheduling
+           a new event.
         */
 
         const eventDate =
@@ -1084,28 +783,20 @@ if (
 
         function updateCountdown() {
 
-            const now =
-                Date.now();
+            const now = Date.now();
 
-
-            const distance =
-                eventDate - now;
+            const distance = eventDate - now;
 
 
             if (distance <= 0) {
 
-                daysElement.textContent =
-                    "00";
+                daysElement.textContent = "00";
 
-                hoursElement.textContent =
-                    "00";
+                hoursElement.textContent = "00";
 
-                minutesElement.textContent =
-                    "00";
+                minutesElement.textContent = "00";
 
-                secondsElement.textContent =
-                    "00";
-
+                secondsElement.textContent = "00";
 
                 return false;
 
@@ -1114,38 +805,31 @@ if (
 
             const days =
                 Math.floor(
-                    distance /
-                    (1000 * 60 * 60 * 24)
+                    distance / (1000 * 60 * 60 * 24)
                 );
 
 
             const hours =
                 Math.floor(
                     (
-                        distance %
-                        (1000 * 60 * 60 * 24)
-                    ) /
-                    (1000 * 60 * 60)
+                        distance % (1000 * 60 * 60 * 24)
+                    ) / (1000 * 60 * 60)
                 );
 
 
             const minutes =
                 Math.floor(
                     (
-                        distance %
-                        (1000 * 60 * 60)
-                    ) /
-                    (1000 * 60)
+                        distance % (1000 * 60 * 60)
+                    ) / (1000 * 60)
                 );
 
 
             const seconds =
                 Math.floor(
                     (
-                        distance %
-                        (1000 * 60)
-                    ) /
-                    1000
+                        distance % (1000 * 60)
+                    ) / 1000
                 );
 
 
@@ -1174,483 +858,319 @@ if (
 
 
         const countdownTimer =
-            setInterval(
-                function () {
+            setInterval(function () {
 
-                    if (
-                        !updateCountdown()
-                    ) {
+                if (!updateCountdown()) {
 
-                        clearInterval(
-                            countdownTimer
-                        );
+                    clearInterval(countdownTimer);
 
-                    }
+                }
 
-                },
-                1000
-            );
+            }, 1000);
 
     }
 
 
-    /* =================================================
-       5. MOBILE NAVIGATION
-    ================================================= */
 
-    const menuToggle =
-        document.querySelector(
-            ".menu-toggle"
-        );
+/* ========================================================
+   04. MOBILE NAVIGATION
+   PAGE NAVIGATION + RESPONSIVE MENU
+======================================================== */
 
+const menuToggle =
+    document.getElementById("menuToggle");
 
-    const navMenu =
-        document.querySelector(
-            "header nav ul"
-        );
+const navMenu =
+    document.getElementById("primaryNavigation");
 
 
-    function closeMobileMenu() {
+function closeMobileMenu() {
 
-        if (!navMenu) {
+    if (!navMenu) return;
 
-            return;
+    navMenu.querySelector("ul")?.classList.remove("show");
+
+    menuToggle?.classList.remove("active");
+
+    menuToggle?.setAttribute("aria-expanded", "false");
+
+    menuToggle?.setAttribute(
+        "aria-label",
+        "Open navigation menu"
+    );
+
+    document.body.classList.remove("menu-open");
+
+}
+
+
+function openMobileMenu() {
+
+    if (!navMenu) return;
+
+    navMenu.querySelector("ul")?.classList.add("show");
+
+    menuToggle?.classList.add("active");
+
+    menuToggle?.setAttribute("aria-expanded", "true");
+
+    menuToggle?.setAttribute(
+        "aria-label",
+        "Close navigation menu"
+    );
+
+    document.body.classList.add("menu-open");
+
+}
+
+
+if (menuToggle && navMenu) {
+
+    const navList = navMenu.querySelector("ul");
+
+    menuToggle.setAttribute("aria-expanded", "false");
+
+    menuToggle.setAttribute(
+        "aria-label",
+        "Open navigation menu"
+    );
+
+
+    /* OPEN / CLOSE MOBILE MENU */
+
+    menuToggle.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+        const isOpen =
+            navList?.classList.contains("show");
+
+        if (isOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+
+    });
+
+
+    /* CLOSE MENU AFTER NAVIGATION LINK CLICK */
+
+    navMenu.querySelectorAll("a[href]").forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            closeMobileMenu();
+
+            /*
+               IMPORTANT:
+               Do not use preventDefault() here.
+               The browser must follow the actual href.
+            */
+
+        });
+
+    });
+
+
+    /* CLOSE WHEN CLICKING OUTSIDE */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !navMenu.contains(event.target) &&
+            !menuToggle.contains(event.target)
+        ) {
+
+            closeMobileMenu();
 
         }
 
-
-        navMenu.classList.remove(
-            "show"
-        );
+    });
 
 
-        if (menuToggle) {
+    /* CLOSE USING ESCAPE */
 
-            menuToggle.classList.remove(
-                "active"
-            );
+    document.addEventListener("keydown", function (event) {
 
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-
-            menuToggle.setAttribute(
-                "aria-label",
-                "Open navigation menu"
-            );
-
+        if (event.key === "Escape") {
+            closeMobileMenu();
         }
 
-
-        document.body.classList.remove(
-            "menu-open"
-        );
-
-    }
+    });
 
 
-    function openMobileMenu() {
+    /* RESET ON DESKTOP */
 
-        if (!navMenu) {
+    window.addEventListener("resize", function () {
 
-            return;
-
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
         }
 
+    });
 
-        navMenu.classList.add(
-            "show"
-        );
-
-
-        if (menuToggle) {
-
-            menuToggle.classList.add(
-                "active"
-            );
+}
 
 
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "true"
-            );
+
+    /* ========================================================
+       05. SMOOTH SCROLL
+    ======================================================== */
+
+    document.querySelectorAll('a[href^="#"]').forEach(
+        function (anchor) {
+
+            anchor.addEventListener("click", function (event) {
+
+                const href =
+                    this.getAttribute("href");
 
 
-            menuToggle.setAttribute(
-                "aria-label",
-                "Close navigation menu"
-            );
-
-        }
+                if (!href || href === "#") {
+                    return;
+                }
 
 
-        document.body.classList.add(
-            "menu-open"
-        );
-
-    }
+                let target;
 
 
-    if (
-        menuToggle &&
-        navMenu
-    ) {
+                try {
 
-        menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-        );
+                    target = document.querySelector(href);
 
+                } catch (error) {
 
-        menuToggle.setAttribute(
-            "aria-label",
-            "Open navigation menu"
-        );
+                    return;
+
+                }
 
 
-        menuToggle.addEventListener(
-            "click",
-            function (event) {
+                if (!target) {
+                    return;
+                }
+
 
                 event.preventDefault();
 
-                event.stopPropagation();
 
-
-                const isOpen =
-                    navMenu.classList.contains(
-                        "show"
-                    );
-
-
-                if (isOpen) {
-
-                    closeMobileMenu();
-
-                } else {
-
-                    openMobileMenu();
-
-                }
-
-            }
-        );
-
-
-        /* ---------------------------------------------
-           CLOSE AFTER NAVIGATION
-        --------------------------------------------- */
-
-        navMenu
-            .querySelectorAll("a")
-            .forEach(
-                function (link) {
-
-                    link.addEventListener(
-                        "click",
-                        function () {
-
-                            closeMobileMenu();
-
-                        }
-                    );
-
-                }
-            );
-
-
-        /* ---------------------------------------------
-           CLICK OUTSIDE
-        --------------------------------------------- */
-
-        document.addEventListener(
-            "click",
-            function (event) {
-
-                const clickedInsideMenu =
-                    navMenu.contains(
-                        event.target
-                    );
-
-
-                const clickedToggle =
-                    menuToggle.contains(
-                        event.target
-                    );
-
-
-                if (
-                    !clickedInsideMenu &&
-                    !clickedToggle
-                ) {
+                if (typeof closeMobileMenu === "function") {
 
                     closeMobileMenu();
 
                 }
 
-            }
-        );
+
+                const header =
+                    document.querySelector("header");
 
 
-        /* ---------------------------------------------
-           ESCAPE
-        --------------------------------------------- */
-
-        document.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (
-                    event.key === "Escape"
-                ) {
-
-                    closeMobileMenu();
-
-                }
-
-            }
-        );
+                const headerHeight =
+                    header ? header.offsetHeight : 0;
 
 
-        /* ---------------------------------------------
-           DESKTOP RESET
-        --------------------------------------------- */
-
-        window.addEventListener(
-            "resize",
-            function () {
-
-                if (
-                    window.innerWidth > 768
-                ) {
-
-                    closeMobileMenu();
-
-                }
-
-            }
-        );
-
-    }
+                const targetPosition =
+                    target.getBoundingClientRect().top +
+                    window.scrollY -
+                    headerHeight -
+                    15;
 
 
-    /* =================================================
-       6. SMOOTH SCROLL
-    ================================================= */
+                window.scrollTo({
 
-    document
-        .querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(
-            function (anchor) {
+                    top: Math.max(0, targetPosition),
 
-                anchor.addEventListener(
-                    "click",
-                    function (event) {
+                    behavior: "smooth"
 
-                        const href =
-                            this.getAttribute(
-                                "href"
-                            );
+                });
+
+            });
+
+        }
+    );
 
 
-                        if (
-                            !href ||
-                            href === "#"
-                        ) {
 
-                            return;
-
-                        }
-
-
-                        let target;
-
-
-                        try {
-
-                            target =
-                                document.querySelector(
-                                    href
-                                );
-
-                        } catch (error) {
-
-                            return;
-
-                        }
-
-
-                        if (!target) {
-
-                            return;
-
-                        }
-
-
-                        event.preventDefault();
-
-
-                        closeMobileMenu();
-
-
-                        const header =
-                            document.querySelector(
-                                "header"
-                            );
-
-
-                        const headerHeight =
-                            header
-                                ? header.offsetHeight
-                                : 0;
-
-
-                        const targetPosition =
-                            target
-                                .getBoundingClientRect()
-                                .top +
-                            window.scrollY -
-                            headerHeight -
-                            15;
-
-
-                        window.scrollTo({
-
-                            top:
-                                Math.max(
-                                    0,
-                                    targetPosition
-                                ),
-
-                            behavior:
-                                "smooth"
-
-                        });
-
-                    }
-                );
-
-            }
-        );
-
-
-    /* =================================================
-       7. FADE-IN ANIMATION
-    ================================================= */
+    /* ========================================================
+       06. FADE-IN ANIMATION
+    ======================================================== */
 
     const fadeElements =
-        document.querySelectorAll(
-            ".fade-in"
-        );
+        document.querySelectorAll(".fade-in");
 
 
     if (fadeElements.length) {
 
-        if (
-            "IntersectionObserver" in window
-        ) {
+        if ("IntersectionObserver" in window) {
 
             const fadeObserver =
                 new IntersectionObserver(
-                    function (
-                        entries,
-                        observer
-                    ) {
+                    function (entries, observer) {
 
-                        entries.forEach(
-                            function (entry) {
+                        entries.forEach(function (entry) {
 
-                                if (
-                                    entry.isIntersecting
-                                ) {
+                            if (entry.isIntersecting) {
 
-                                    entry.target
-                                        .classList
-                                        .add(
-                                            "visible"
-                                        );
+                                entry.target.classList.add("visible");
 
-
-                                    observer.unobserve(
-                                        entry.target
-                                    );
-
-                                }
+                                observer.unobserve(entry.target);
 
                             }
-                        );
+
+                        });
 
                     },
                     {
 
                         threshold: 0.12,
 
-                        rootMargin:
-                            "0px 0px -40px 0px"
+                        rootMargin: "0px 0px -40px 0px"
 
                     }
                 );
 
 
-            fadeElements.forEach(
-                function (element) {
+            fadeElements.forEach(function (element) {
 
-                    fadeObserver.observe(
-                        element
-                    );
+                fadeObserver.observe(element);
 
-                }
-            );
+            });
 
         } else {
 
-            fadeElements.forEach(
-                function (element) {
+            fadeElements.forEach(function (element) {
 
-                    element.classList.add(
-                        "visible"
-                    );
+                element.classList.add("visible");
 
-                }
-            );
+            });
 
         }
 
     }
 
 
-    /* =================================================
-       8. BACK TO TOP
-    ================================================= */
+
+    /* ========================================================
+       07. BACK TO TOP
+    ======================================================== */
 
     const backToTop =
-        document.getElementById(
-            "backToTop"
-        );
+        document.getElementById("backToTop");
 
 
     if (backToTop) {
 
         function updateBackToTop() {
 
-            if (
-                window.scrollY > 400
-            ) {
+            if (window.scrollY > 400) {
 
-                backToTop.classList.add(
-                    "show"
-                );
+                backToTop.classList.add("show");
 
             } else {
 
-                backToTop.classList.remove(
-                    "show"
-                );
+                backToTop.classList.remove("show");
 
             }
 
@@ -1660,75 +1180,59 @@ if (
         window.addEventListener(
             "scroll",
             updateBackToTop,
-            {
-                passive: true
-            }
+            { passive: true }
         );
 
 
         updateBackToTop();
 
 
-        backToTop.addEventListener(
-            "click",
-            function (event) {
+        backToTop.addEventListener("click", function (event) {
 
-                event.preventDefault();
+            event.preventDefault();
 
 
-                window.scrollTo({
+            window.scrollTo({
 
-                    top: 0,
+                top: 0,
 
-                    behavior: "smooth"
+                behavior: "smooth"
 
-                });
+            });
 
-            }
-        );
+        });
 
     }
 
 
-    /* =================================================
-       9. MEMORY VERSE
-          LANGUAGE SELECTOR
-    ================================================= */
+
+    /* ========================================================
+       08. MEMORY VERSE LANGUAGE SELECTOR
+    ======================================================== */
 
     const languageButton =
-        document.querySelector(
-            ".verse-language-btn"
-        );
+        document.querySelector(".verse-language-btn");
 
 
     const languageSelector =
-        document.querySelector(
-            ".language-selector"
-        );
+        document.querySelector(".language-selector");
 
 
     const languageSearch =
-        document.getElementById(
-            "languageSearch"
-        );
+        document.getElementById("languageSearch");
 
 
     const languageList =
-        document.getElementById(
-            "languageList"
-        );
+        document.getElementById("languageList");
 
 
     const verseText =
-        document.getElementById(
-            "memoryVerseText"
-        );
+        document.getElementById("memoryVerseText");
 
 
     const verseReference =
-        document.getElementById(
-            "memoryVerseReference"
-        );
+        document.getElementById("memoryVerseReference");
+
 
 
     if (
@@ -1739,316 +1243,159 @@ if (
         verseReference
     ) {
 
+
+        /* --------------------------------------------
+           MEMORY VERSES
+        -------------------------------------------- */
+
         const verses = {
 
             English: {
-
-                text:
-                    "Trust in the Lord with all your heart and lean not on your own understanding.",
-
-                reference:
-                    "— Proverbs 3:5"
-
+                text: "Trust in the Lord with all your heart and lean not on your own understanding.",
+                reference: "— Proverbs 3:5"
             },
-
 
             Telugu: {
-
-                text:
-                    "నీ పూర్ణహృదయముతో యెహోవాను నమ్ముకొనుము, నీ స్వబుద్ధిని ఆధారము చేసికొనకుము.",
-
-                reference:
-                    "— సామెతలు 3:5"
-
+                text: "నీ పూర్ణహృదయముతో యెహోవాను నమ్ముకొనుము, నీ స్వబుద్ధిని ఆధారము చేసికొనకుము.",
+                reference: "— సామెతలు 3:5"
             },
-
 
             Hindi: {
-
-                text:
-                    "तू अपने सम्पूर्ण मन से यहोवा पर भरोसा रखना, और अपनी समझ का सहारा न लेना।",
-
-                reference:
-                    "— नीतिवचन 3:5"
-
+                text: "तू अपने सम्पूर्ण मन से यहोवा पर भरोसा रखना, और अपनी समझ का सहारा न लेना।",
+                reference: "— नीतिवचन 3:5"
             },
-
 
             Tamil: {
-
-                text:
-                    "உன் முழு இருதயத்தோடும் கர்த்தரில் நம்பிக்கையாயிரு; உன் சுயபுத்தியின்மேல் சாயாதே.",
-
-                reference:
-                    "— நீதிமொழிகள் 3:5"
-
+                text: "உன் முழு இருதயத்தோடும் கர்த்தரில் நம்பிக்கையாயிரு; உன் சுயபுத்தியின்மேல் சாயாதே.",
+                reference: "— நீதிமொழிகள் 3:5"
             },
-
 
             Kannada: {
-
-                text:
-                    "ನಿನ್ನ ಪೂರ್ಣ ಹೃದಯದಿಂದ ಕರ್ತನನ್ನು ನಂಬಿಕೊ; ನಿನ್ನ ಸ್ವಂತ ವಿವೇಕದ ಮೇಲೆ ಆಧಾರಪಡಬೇಡ.",
-
-                reference:
-                    "— ಜ್ಞಾನೋಕ್ತಿಗಳು 3:5"
-
+                text: "ನಿನ್ನ ಪೂರ್ಣ ಹೃದಯದಿಂದ ಕರ್ತನನ್ನು ನಂಬಿಕೊ; ನಿನ್ನ ಸ್ವಂತ ವಿವೇಕದ ಮೇಲೆ ಆಧಾರಪಡಬೇಡ.",
+                reference: "— ಜ್ಞಾನೋಕ್ತಿಗಳು 3:5"
             },
-
 
             Malayalam: {
-
-                text:
-                    "പൂർണ്ണഹൃദയത്തോടെ യഹോവയിൽ ആശ്രയിക്ക; സ്വന്തം വിവേകത്തിൽ ആശ്രയിക്കരുത്.",
-
-                reference:
-                    "— സദൃശവാക്യങ്ങൾ 3:5"
-
+                text: "പൂർണ്ണഹൃദയത്തോടെ യഹോവയിൽ ആശ്രയിക്ക; സ്വന്തം വിവേകത്തിൽ ആശ്രയിക്കരുത്.",
+                reference: "— സദൃശവാക്യങ്ങൾ 3:5"
             },
-
 
             Bengali: {
-
-                text:
-                    "তোমার সমস্ত হৃদয় দিয়ে সদাপ্রভুর উপর নির্ভর কর এবং নিজের বুদ্ধির উপর নির্ভর করো না।",
-
-                reference:
-                    "— হিতোপদেশ 3:5"
-
+                text: "তোমার সমস্ত হৃদয় দিয়ে সদাপ্রভুর উপর নির্ভর কর এবং নিজের বুদ্ধির উপর নির্ভর করো না।",
+                reference: "— হিতোপদেশ 3:5"
             },
-
 
             Marathi: {
-
-                text:
-                    "तू आपल्या संपूर्ण अंतःकरणाने परमेश्वरावर भाव ठेव आणि स्वतःच्या बुद्धीवर अवलंबून राहू नकोस.",
-
-                reference:
-                    "— नीतिसूत्रे 3:5"
-
+                text: "तू आपल्या संपूर्ण अंतःकरणाने परमेश्वरावर भाव ठेव आणि स्वतःच्या बुद्धीवर अवलंबून राहू नकोस.",
+                reference: "— नीतिसूत्रे 3:5"
             },
-
 
             Gujarati: {
-
-                text:
-                    "તારા પૂરા હૃદયથી યહોવા પર ભરોસો રાખ અને પોતાની સમજ પર આધાર ન રાખ.",
-
-                reference:
-                    "— નીતિવચનો 3:5"
-
+                text: "તારા પૂરા હૃદયથી યહોવા પર ભરોસો રાખ અને પોતાની સમજ પર આધાર ન રાખ.",
+                reference: "— નીતિવચનો 3:5"
             },
-
 
             Punjabi: {
-
-                text:
-                    "ਆਪਣੇ ਪੂਰੇ ਦਿਲ ਨਾਲ ਯਹੋਵਾਹ ਉੱਤੇ ਭਰੋਸਾ ਰੱਖ ਅਤੇ ਆਪਣੀ ਸਮਝ ਉੱਤੇ ਨਿਰਭਰ ਨਾ ਹੋ।",
-
-                reference:
-                    "— ਕਹਾਉਤਾਂ 3:5"
-
+                text: "ਆਪਣੇ ਪੂਰੇ ਦਿਲ ਨਾਲ ਯਹੋਵਾਹ ਉੱਤੇ ਭਰੋਸਾ ਰੱਖ ਅਤੇ ਆਪਣੀ ਸਮਝ ਉੱਤੇ ਨਿਰਭਰ ਨਾ ਹੋ।",
+                reference: "— ਕਹਾਉਤਾਂ 3:5"
             },
-
 
             Spanish: {
-
-                text:
-                    "Confía en el Señor con todo tu corazón y no te apoyes en tu propia prudencia.",
-
-                reference:
-                    "— Proverbios 3:5"
-
+                text: "Confía en el Señor con todo tu corazón y no te apoyes en tu propia prudencia.",
+                reference: "— Proverbios 3:5"
             },
-
 
             French: {
-
-                text:
-                    "Confie-toi en l'Éternel de tout ton cœur et ne t'appuie pas sur ta propre intelligence.",
-
-                reference:
-                    "— Proverbes 3:5"
-
+                text: "Confie-toi en l'Éternel de tout ton cœur et ne t'appuie pas sur ta propre intelligence.",
+                reference: "— Proverbes 3:5"
             },
-
 
             German: {
-
-                text:
-                    "Vertraue auf den HERRN von ganzem Herzen und verlass dich nicht auf deinen Verstand.",
-
-                reference:
-                    "— Sprüche 3:5"
-
+                text: "Vertraue auf den HERRN von ganzem Herzen und verlass dich nicht auf deinen Verstand.",
+                reference: "— Sprüche 3:5"
             },
-
 
             Italian: {
-
-                text:
-                    "Confida nel Signore con tutto il tuo cuore e non appoggiarti sul tuo discernimento.",
-
-                reference:
-                    "— Proverbi 3:5"
-
+                text: "Confida nel Signore con tutto il tuo cuore e non appoggiarti sul tuo discernimento.",
+                reference: "— Proverbi 3:5"
             },
-
 
             Portuguese: {
-
-                text:
-                    "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.",
-
-                reference:
-                    "— Provérbios 3:5"
-
+                text: "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.",
+                reference: "— Provérbios 3:5"
             },
-
 
             Dutch: {
-
-                text:
-                    "Vertrouw op de HEER met heel je hart en steun niet op je eigen inzicht.",
-
-                reference:
-                    "— Spreuken 3:5"
-
+                text: "Vertrouw op de HEER met heel je hart en steun niet op je eigen inzicht.",
+                reference: "— Spreuken 3:5"
             },
-
 
             Greek: {
-
-                text:
-                    "Ἔλπιζε ἐπὶ Κύριον ἐξ ὅλης τῆς καρδίας σου, καὶ μὴ ἐπαίρου ἐπὶ τῇ σῇ φρονήσει.",
-
-                reference:
-                    "— Παροιμίαι 3:5"
-
+                text: "Ἔλπιζε ἐπὶ Κύριον ἐξ ὅλης τῆς καρδίας σου, καὶ μὴ ἐπαίρου ἐπὶ τῇ σῇ φρονήσει.",
+                reference: "— Παροιμίαι 3:5"
             },
-
 
             Russian: {
-
-                text:
-                    "Надейся на Господа всем сердцем твоим и не полагайся на разум твой.",
-
-                reference:
-                    "— Притчи 3:5"
-
+                text: "Надейся на Господа всем сердцем твоим и не полагайся на разум твой.",
+                reference: "— Притчи 3:5"
             },
-
 
             Ukrainian: {
-
-                text:
-                    "Надійся на Господа всім своїм серцем і не покладайся на власний розум.",
-
-                reference:
-                    "— Приповісті 3:5"
-
+                text: "Надійся на Господа всім своїм серцем і не покладайся на власний розум.",
+                reference: "— Приповісті 3:5"
             },
-
 
             Polish: {
-
-                text:
-                    "Zaufaj Panu z całego swego serca i nie polegaj na własnym rozumie.",
-
-                reference:
-                    "— Przysłów 3:5"
-
+                text: "Zaufaj Panu z całego swego serca i nie polegaj na własnym rozumie.",
+                reference: "— Przysłów 3:5"
             },
-
 
             Romanian: {
-
-                text:
-                    "Încrede-te în Domnul din toată inima ta și nu te bizui pe înțelepciunea ta.",
-
-                reference:
-                    "— Proverbele 3:5"
-
+                text: "Încrede-te în Domnul din toată inima ta și nu te bizui pe înțelepciunea ta.",
+                reference: "— Proverbele 3:5"
             },
-
 
             Chinese: {
-
-                text:
-                    "你要专心仰赖耶和华，不可倚靠自己的聪明。",
-
-                reference:
-                    "— 箴言 3:5"
-
+                text: "你要专心仰赖耶和华，不可倚靠自己的聪明。",
+                reference: "— 箴言 3:5"
             },
-
 
             Japanese: {
-
-                text:
-                    "心をつくして主に信頼し、自分の悟りにたよってはならない。",
-
-                reference:
-                    "— 箴言 3:5"
-
+                text: "心をつくして主に信頼し、自分の悟りにたよってはならない。",
+                reference: "— 箴言 3:5"
             },
-
 
             Korean: {
-
-                text:
-                    "너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라.",
-
-                reference:
-                    "— 잠언 3:5"
-
+                text: "너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라.",
+                reference: "— 잠언 3:5"
             },
-
 
             Arabic: {
-
-                text:
-                    "تَوَكَّلْ عَلَى الرَّبِّ بِكُلِّ قَلْبِكَ، وَعَلَى فَهْمِكَ لَا تَعْتَمِدْ.",
-
-                reference:
-                    "— أمثال 3:5"
-
+                text: "تَوَكَّلْ عَلَى الرَّبِّ بِكُلِّ قَلْبِكَ، وَعَلَى فَهْمِكَ لَا تَعْتَمِدْ.",
+                reference: "— أمثال 3:5"
             },
-
 
             Hebrew: {
-
-                text:
-                    "בְּטַח אֶל־יְהוָה בְּכָל־לִבֶּךָ וְאֶל־בִּינָתְךָ אַל־תִּשָּׁעֵן.",
-
-                reference:
-                    "— משלי 3:5"
-
+                text: "בְּטַח אֶל־יְהוָה בְּכָל־לִבֶּךָ וְאֶל־בִּינָתְךָ אַל־תִּשָּׁעֵן.",
+                reference: "— משלי 3:5"
             },
 
-
             Turkish: {
-
-                text:
-                    "Bütün yüreğinle RAB'be güven ve kendi anlayışına dayanma.",
-
-                reference:
-                    "— Süleyman'ın Özdeyişleri 3:5"
-
+                text: "Bütün yüreğinle RAB'be güven ve kendi anlayışına dayanma.",
+                reference: "— Süleyman'ın Özdeyişleri 3:5"
             }
 
         };
 
 
-        /* ---------------------------------------------
+
+        /* --------------------------------------------
            OPEN LANGUAGE SELECTOR
-        --------------------------------------------- */
+        -------------------------------------------- */
 
         function openLanguageSelector() {
 
-            languageSelector.classList.add(
-                "active"
-            );
+            languageSelector.classList.add("active");
 
 
             languageButton.setAttribute(
@@ -2059,29 +1406,25 @@ if (
 
             if (languageSearch) {
 
-                setTimeout(
-                    function () {
+                setTimeout(function () {
 
-                        languageSearch.focus();
+                    languageSearch.focus();
 
-                    },
-                    100
-                );
+                }, 100);
 
             }
 
         }
 
 
-        /* ---------------------------------------------
+
+        /* --------------------------------------------
            CLOSE LANGUAGE SELECTOR
-        --------------------------------------------- */
+        -------------------------------------------- */
 
         function closeLanguageSelector() {
 
-            languageSelector.classList.remove(
-                "active"
-            );
+            languageSelector.classList.remove("active");
 
 
             languageButton.setAttribute(
@@ -2092,222 +1435,195 @@ if (
         }
 
 
+
         languageButton.setAttribute(
             "aria-expanded",
             "false"
         );
 
 
-        /* ---------------------------------------------
+
+        /* --------------------------------------------
            LANGUAGE BUTTON
-        --------------------------------------------- */
+        -------------------------------------------- */
 
-        languageButton.addEventListener(
-            "click",
-            function (event) {
+        languageButton.addEventListener("click", function (event) {
 
-                event.preventDefault();
+            event.preventDefault();
 
-                event.stopPropagation();
+            event.stopPropagation();
 
 
-                const isOpen =
-                    languageSelector.classList.contains(
-                        "active"
-                    );
+            const isOpen =
+                languageSelector.classList.contains("active");
 
 
-                if (isOpen) {
+            if (isOpen) {
 
-                    closeLanguageSelector();
+                closeLanguageSelector();
 
-                } else {
+            } else {
 
-                    openLanguageSelector();
-
-                }
+                openLanguageSelector();
 
             }
-        );
+
+        });
 
 
-        /* ---------------------------------------------
+
+        /* --------------------------------------------
            LANGUAGE SEARCH
-        --------------------------------------------- */
+        -------------------------------------------- */
 
         if (languageSearch) {
 
-            languageSearch.addEventListener(
-                "input",
-                function () {
+            languageSearch.addEventListener("input", function () {
 
-                    const searchValue =
-                        languageSearch.value
-                            .toLowerCase()
-                            .trim();
+                const searchValue =
+                    languageSearch.value.toLowerCase().trim();
 
 
-                    const languages =
-                        languageList
-                            .querySelectorAll(
-                                "button"
-                            );
+                const languageButtons =
+                    languageList.querySelectorAll("button");
 
 
-                    languages.forEach(
-                        function (button) {
+                languageButtons.forEach(function (button) {
 
-                            const language =
-                                button.textContent
-                                    .toLowerCase();
+                    const language =
+                        button.textContent.toLowerCase();
 
 
-                            button.style.display =
-                                language.includes(
-                                    searchValue
-                                )
-                                    ? ""
-                                    : "none";
+                    button.style.display =
+                        language.includes(searchValue) ? "" : "none";
 
-                        }
-                    );
+                });
 
-                }
-            );
+            });
 
         }
 
 
-        /* ---------------------------------------------
+
+        /* --------------------------------------------
            LANGUAGE SELECTION
-        --------------------------------------------- */
+        -------------------------------------------- */
 
-        languageList.addEventListener(
-            "click",
-            function (event) {
+        languageList.addEventListener("click", function (event) {
 
-                const button =
-                    event.target.closest(
-                        "button"
-                    );
+            const button =
+                event.target.closest("button");
 
 
-                if (!button) {
-
-                    return;
-
-                }
+            if (!button) {
+                return;
+            }
 
 
-                const language =
-                    button.dataset.lang;
+            const language =
+                button.dataset.lang;
 
 
-                if (
-                    !language ||
-                    !verses[language]
-                ) {
+            if (!language || !verses[language]) {
+                return;
+            }
 
-                    return;
 
-                }
+            languageList
+                .querySelectorAll("button")
+                .forEach(function (btn) {
+
+                    btn.classList.remove("active");
+
+                });
+
+
+            button.classList.add("active");
+
+
+            verseText.textContent =
+                "“" + verses[language].text + "”";
+
+
+            verseReference.textContent =
+                verses[language].reference;
+
+
+            closeLanguageSelector();
+
+
+            if (languageSearch) {
+
+                languageSearch.value = "";
 
 
                 languageList
-                    .querySelectorAll(
-                        "button"
-                    )
-                    .forEach(
-                        function (btn) {
+                    .querySelectorAll("button")
+                    .forEach(function (btn) {
 
-                            btn.classList.remove(
-                                "active"
-                            );
+                        btn.style.display = "";
 
-                        }
-                    );
+                    });
+
+            }
+
+        });
 
 
-                button.classList.add(
-                    "active"
-                );
 
+        /* --------------------------------------------
+           CLICK OUTSIDE
+        -------------------------------------------- */
 
-                verseText.textContent =
-                    "“" +
-                    verses[language].text +
-                    "”";
+        document.addEventListener("click", function (event) {
 
-
-                verseReference.textContent =
-                    verses[language].reference;
-
+            if (
+                !languageSelector.contains(event.target) &&
+                !languageButton.contains(event.target)
+            ) {
 
                 closeLanguageSelector();
 
             }
-        );
+
+        });
 
 
-        /* ---------------------------------------------
-           CLICK OUTSIDE
-        --------------------------------------------- */
 
-        document.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    !languageSelector.contains(
-                        event.target
-                    )
-                ) {
-
-                    closeLanguageSelector();
-
-                }
-
-            }
-        );
-
-
-        /* ---------------------------------------------
+        /* --------------------------------------------
            ESCAPE KEY
-        --------------------------------------------- */
+        -------------------------------------------- */
 
-        document.addEventListener(
-            "keydown",
-            function (event) {
+        document.addEventListener("keydown", function (event) {
 
-                if (
-                    event.key === "Escape"
-                ) {
+            if (event.key === "Escape") {
 
-                    closeLanguageSelector();
-
-                }
+                closeLanguageSelector();
 
             }
-        );
+
+        });
 
     }
 
 
-    /* =================================================
-       10. MOBILE-FRIENDLY TOUCH BEHAVIOR
-    ================================================= */
+
+    /* ========================================================
+       09. MOBILE-FRIENDLY BEHAVIOUR
+    ======================================================== */
 
     /*
        Prevent accidental horizontal overflow.
+       This does not replace responsive CSS.
     */
 
-    document.documentElement.style
-        .overflowX = "hidden";
+    document.documentElement.style.overflowX = "hidden";
 
 
-    /* =================================================
-       11. INITIAL UI STATE
-    ================================================= */
+
+    /* ========================================================
+       10. INITIAL UI STATE
+    ======================================================== */
 
     if (paymentBox) {
 
@@ -2329,12 +1645,13 @@ if (
     }
 
 
-    /* =================================================
+
+    /* ========================================================
        SCRIPT READY
-    ================================================= */
+    ======================================================== */
 
     console.log(
-        "Jeeva Nadi Ministries — JavaScript loaded successfully."
+        "Jeeva Nadi Ministries | Main JavaScript loaded successfully."
     );
 
 });
