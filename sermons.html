@@ -1,542 +1,440 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sermons | Jeeva Nadi Ministries</title>
+    <title>Sermon Library | Jeeva Nadi Ministries</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Explore biblical sermons, Christian messages, prayer, faith and spiritual encouragement from Jeeva Nadi Ministries.">
+    <meta name="theme-color" content="#061a40">
 
-   <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/Wb.png">
+    <link rel="canonical" href="https://www.jeevanadiministries.org/sermons.html">
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/Wb.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 
+<body class="sermons-page">
+
+    <!-- HEADER -->
+    <header class="main-header" id="mainHeader">
+
+        <a href="index.html" class="logo" aria-label="Jeeva Nadi Ministries Home">
+            <img src="images/Logo.jpg" alt="Jeeva Nadi Ministries Logo">
+            <span class="brand-name">
+                <strong>Jeeva Nadi Ministries</strong>
+                <small>The River of Life</small>
+            </span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="primaryNavigation">
 
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="primaryNavigation" aria-label="Main navigation">
+            <ul>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="index.html">Ministry</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="pastors.html">Pastors</a></li>
+                <li><a class="active" href="sermons.html" aria-current="page">Sermons</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-<body>
+    </header>
 
 
-<!-- ==========================
-        HEADER
-=========================== -->
+    <main>
+
+        <!-- HERO -->
+        <section class="sermon-hero">
+
+            <div class="sermon-hero-background"></div>
+            <div class="sermon-hero-pattern"></div>
+
+            <div class="sermon-hero-content">
+
+                <span class="sermon-eyebrow">
+                    <span class="eyebrow-line"></span>
+                    GROW IN THE WORD
+                    <span class="eyebrow-line"></span>
+                </span>
+
+                <h1>
+                    Words of Life.
+                    <span>Truth for Every Season.</span>
+                </h1>
+
+                <p>
+                    Discover biblical messages that strengthen faith,
+                    renew hearts, and draw us closer to Jesus Christ.
+                </p>
 
+                <a href="#sermonLibrary" class="sermon-hero-button">
+                    Explore Sermons
+                    <span aria-hidden="true">↓</span>
+                </a>
 
-<header>
+                <div class="sermon-hero-verse">
+                    <span class="verse-mark">“</span>
+                    Your word is a lamp to my feet and a light to my path.
+                    <strong>Psalm 119:105</strong>
+                </div>
 
+            </div>
 
-<div class="logo">
+            <div class="sermon-hero-bottom">
+                <span>JEEVA NADI MINISTRIES</span>
+                <span class="hero-bottom-line"></span>
+                <span>THE RIVER OF LIFE</span>
+            </div>
 
-<img src="images/Logo.jpg"
-alt="Jeeva Nadi Ministries Logo">
+        </section>
 
-<h2>
-Jeeva Nadi Ministries
-</h2>
 
-</div>
+        <!-- INTRODUCTION -->
+        <section class="sermon-intro reveal">
 
+            <span class="sermon-section-label">LISTEN • LEARN • GROW</span>
 
+            <h2>
+                A Message for <span>Every Heart</span>
+            </h2>
 
-<nav>
+            <p>
+                Whether you are seeking encouragement, growing in faith,
+                or learning more about God's Word, explore messages
+                prepared to inspire your walk with Christ.
+            </p>
 
-<ul>
+            <div class="sermon-intro-divider">
+                <span></span>
+                <i>✦</i>
+                <span></span>
+            </div>
 
-<li><a href="index.html">Home</a></li>
+        </section>
 
-<li><a href="about.html">About</a></li>
 
-<li><a href="pastors.html">Pastors</a></li>
+        <!-- SERMON LIBRARY -->
+        <section class="sermon-library" id="sermonLibrary">
 
-<li><a class="active" href="sermons.html">Sermons</a></li>
-  
-<li><a href="books.html">Books</a></li>
+            <div class="sermon-library-heading reveal">
 
-<li><a href="events.html">Events</a></li>
+                <div>
+                    <span class="sermon-section-label">THE MESSAGE COLLECTION</span>
+                    <h2>Explore the <span>Sermon Library</span></h2>
+                    <p>Find messages by topic or search for a particular teaching.</p>
+                </div>
 
-<li><a href="contact.html">Contact</a></li>
+                <div class="sermon-library-count">
+                    <span id="sermonCount">03</span>
+                    <small>MESSAGES</small>
+                </div>
 
-</ul>
+            </div>
 
-</nav>
 
+            <!-- SEARCH -->
+            <div class="sermon-tools reveal">
 
-</header>
+                <label class="sermon-search-box" for="sermonSearch">
+                    <span aria-hidden="true">⌕</span>
+                    <input
+                        type="search"
+                        id="sermonSearch"
+                        placeholder="Search by sermon, speaker or Scripture..."
+                        autocomplete="off">
+                    <kbd>SEARCH</kbd>
+                </label>
 
+                <div class="sermon-filter-heading">
+                    <span>EXPLORE BY TOPIC</span>
+                    <span class="filter-decoration"></span>
+                </div>
 
+                <div class="category-buttons" aria-label="Filter sermons by topic">
 
+                    <button class="filter-btn active" type="button" data-category="all" aria-pressed="true">All Messages</button>
+                    <button class="filter-btn" type="button" data-category="faith" aria-pressed="false">Faith</button>
+                    <button class="filter-btn" type="button" data-category="prayer" aria-pressed="false">Prayer</button>
+                    <button class="filter-btn" type="button" data-category="healing" aria-pressed="false">Healing</button>
+                    <button class="filter-btn" type="button" data-category="family" aria-pressed="false">Family</button>
+                    <button class="filter-btn" type="button" data-category="youth" aria-pressed="false">Youth</button>
 
-<!-- ==========================
-        HERO SECTION
-=========================== -->
+                </div>
 
+            </div>
 
-<section class="sermon-hero">
 
+            <!-- SERMON CARDS -->
+            <div class="sermon-grid" id="sermonGrid">
 
-<h1>
-📖 Sermon Library
-</h1>
+                <!-- SERMON 01 -->
+                <article class="sermon-card reveal" data-category="faith">
 
+                    <a
+                        class="sermon-card-link"
+                        href="https://youtu.be/YOUR_VIDEO_LINK"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch Walking With Christ sermon on YouTube">
 
-<p>
+                        <div class="sermon-image">
 
-Powerful messages, Biblical teaching,
-and life-changing words from Jeeva Nadi Ministries.
+                            <img
+                                src="images/sermon1.jpg"
+                                alt="Walking With Christ sermon"
+                                loading="lazy">
 
-</p>
+                            <span class="sermon-card-number">01</span>
 
+                            <div class="sermon-image-overlay">
+                                <span class="sermon-play-icon">▶</span>
+                                <span>WATCH MESSAGE</span>
+                            </div>
 
-</section>
+                            <span class="sermon-image-category">FAITH</span>
 
+                        </div>
 
+                    </a>
 
+                    <div class="sermon-content">
 
+                        <span class="sermon-tag">FEATURED MESSAGE</span>
 
+                        <h3>Walking With Christ</h3>
 
-<!-- ==========================
-        SEARCH SECTION
-=========================== -->
+                        <p class="sermon-description">
+                            A message about following Jesus and building
+                            a life rooted in His truth.
+                        </p>
 
+                        <div class="sermon-meta">
+                            <span>PASTOR</span>
+                            <strong>Christina Malligary</strong>
+                        </div>
 
-<section class="sermon-tools">
+                        <div class="sermon-card-footer">
+                            <span class="sermon-scripture">John 14:6</span>
+                            <span class="sermon-date">July 2026</span>
+                        </div>
 
+                    </div>
 
-<input type="text"
-id="sermonSearch"
-placeholder="🔍 Search Sermons...">
+                </article>
 
 
-<div class="category-buttons">
+                <!-- SERMON 02 -->
+                <article class="sermon-card reveal" data-category="prayer">
 
+                    <a
+                        class="sermon-card-link"
+                        href="https://youtu.be/YOUR_VIDEO_LINK"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch The Power of Prayer sermon on YouTube">
 
-<button class="filter-btn active"
-data-category="all">
+                        <div class="sermon-image">
 
-All
+                            <img
+                                src="images/sermon2.jpg"
+                                alt="The Power of Prayer sermon"
+                                loading="lazy">
 
-</button>
+                            <span class="sermon-card-number">02</span>
 
+                            <div class="sermon-image-overlay">
+                                <span class="sermon-play-icon">▶</span>
+                                <span>WATCH MESSAGE</span>
+                            </div>
 
-<button class="filter-btn"
-data-category="faith">
+                            <span class="sermon-image-category">PRAYER</span>
 
-Faith
+                        </div>
 
-</button>
+                    </a>
 
+                    <div class="sermon-content">
 
-<button class="filter-btn"
-data-category="prayer">
+                        <span class="sermon-tag">PRAYER & DEVOTION</span>
 
-Prayer
+                        <h3>The Power of Prayer</h3>
 
-</button>
+                        <p class="sermon-description">
+                            Discover the importance of prayer and
+                            drawing near to God with a sincere heart.
+                        </p>
 
+                        <div class="sermon-meta">
+                            <span>PASTOR</span>
+                            <strong>Christina Malligary</strong>
+                        </div>
 
-<button class="filter-btn"
-data-category="healing">
+                        <div class="sermon-card-footer">
+                            <span class="sermon-scripture">James 5:16</span>
+                            <span class="sermon-date">July 2026</span>
+                        </div>
 
-Healing
+                    </div>
 
-</button>
+                </article>
 
 
-<button class="filter-btn"
-data-category="family">
+                <!-- SERMON 03 -->
+                <article class="sermon-card reveal" data-category="healing">
 
-Family
+                    <a
+                        class="sermon-card-link"
+                        href="https://youtu.be/YOUR_VIDEO_LINK"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Watch God Still Heals sermon on YouTube">
 
-</button>
+                        <div class="sermon-image">
 
+                            <img
+                                src="images/sermon3.jpg"
+                                alt="God Still Heals sermon"
+                                loading="lazy">
 
-<button class="filter-btn"
-data-category="youth">
+                            <span class="sermon-card-number">03</span>
 
-Youth
+                            <div class="sermon-image-overlay">
+                                <span class="sermon-play-icon">▶</span>
+                                <span>WATCH MESSAGE</span>
+                            </div>
 
-</button>
+                            <span class="sermon-image-category">HEALING</span>
 
+                        </div>
 
-</div>
+                    </a>
 
+                    <div class="sermon-content">
 
-</section>
+                        <span class="sermon-tag">HOPE & HEALING</span>
 
+                        <h3>God Still Heals</h3>
 
+                        <p class="sermon-description">
+                            Be encouraged by the hope, compassion,
+                            and healing power of God.
+                        </p>
 
+                        <div class="sermon-meta">
+                            <span>PASTOR</span>
+                            <strong>Christina Malligary</strong>
+                        </div>
 
+                        <div class="sermon-card-footer">
+                            <span class="sermon-scripture">Jeremiah 17:14</span>
+                            <span class="sermon-date">June 2026</span>
+                        </div>
 
+                    </div>
 
+                </article>
 
-<!-- ==========================
-        SERMON GRID
-=========================== -->
+            </div>
 
 
-<section class="sermon-section">
+            <div class="sermon-empty-state" id="sermonEmpty" hidden>
+                <span>✦</span>
+                <h3>No messages found</h3>
+                <p>Try another search term or choose a different topic.</p>
+                <button type="button" id="resetSermons">View All Messages</button>
+            </div>
 
+            <p class="sermon-library-note">
+                More messages will be added to this library as they become available.
+            </p>
 
-<div class="sermon-grid">
+        </section>
 
 
+        <!-- CLOSING SCRIPTURE -->
+        <section class="sermon-closing reveal">
 
+            <div class="closing-ornament">✦</div>
 
+            <span>LET THE WORD OF CHRIST DWELL IN YOU</span>
 
-<!-- SERMON CARD 1 -->
+            <h2>
+                Growing Together<br>
+                <em>Through His Word.</em>
+            </h2>
 
+            <p>
+                May every message lead us to know Christ more deeply
+                and live according to His Word.
+            </p>
 
-<a href="https://youtu.be/YOUR_VIDEO_LINK"
-target="_blank"
-class="sermon-card"
-data-category="faith">
+            <strong>Colossians 3:16</strong>
 
+            <a href="contact.html" class="sermon-contact-link">
+                Connect With Our Ministry <span>→</span>
+            </a>
 
-<div class="sermon-image">
+        </section>
 
+    </main>
 
-<img src="images/sermon1.jpg"
-alt="Walking With Christ">
 
+    <!-- FOOTER -->
+    <footer class="main-footer">
 
-<div class="play-overlay">
+        <div class="footer-brand">
+            <img src="images/Logo.jpg" alt="Jeeva Nadi Ministries">
+            <h2>Jeeva Nadi Ministries</h2>
+            <span>THE RIVER OF LIFE</span>
+        </div>
 
-<div class="play-circle">
+        <div class="footer-divider"></div>
 
-▶
+        <p class="footer-message">
+            Serving Christ through Calvary Fundamental Baptist Church,
+            Rehoboth Baptist Church, and Emmanuel Baptist Church.
+        </p>
 
-</div>
+        <p class="footer-verse">
+            “The Lord is my shepherd; I shall not want.”
+            <strong>Psalm 23:1</strong>
+        </p>
 
+        <div class="footer-social">
+            <a href="https://www.youtube.com/@JeevaNadiTheRiverofLife" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://www.instagram.com/jeevanadi_theriveroflife/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
 
-<span>
-Watch Sermon
-</span>
+        <p class="footer-copyright">
+            © 2026 Jeeva Nadi Ministries. All Rights Reserved.
+        </p>
 
+    </footer>
 
-</div>
 
-
-</div>
-
-
-
-<div class="sermon-content">
-
-
-<span class="sermon-tag">
-
-Latest Sermon
-
-</span>
-
-
-
-<h3>
-
-Walking With Christ
-
-</h3>
-
-
-
-<p class="speaker">
-
-🎤 Pastor Christina Malligary
-
-</p>
-
-
-
-<p>
-
-📖 John 14:6
-
-</p>
-
-
-
-<p class="date">
-
-📅 July 2026
-
-</p>
-
-
-
-</div>
-
-
-</a>
-
-
-
-
-
-
-<!-- SERMON CARD 2 -->
-
-
-<a href="https://youtu.be/YOUR_VIDEO_LINK"
-target="_blank"
-class="sermon-card"
-data-category="prayer">
-
-
-<div class="sermon-image">
-
-
-<img src="images/sermon2.jpg"
-alt="Power of Prayer">
-
-
-<div class="play-overlay">
-
-<div class="play-circle">
-
-▶
-
-</div>
-
-
-<span>
-
-Watch Sermon
-
-</span>
-
-
-</div>
-
-
-</div>
-
-
-
-<div class="sermon-content">
-
-
-<span class="sermon-tag">
-
-Prayer
-
-</span>
-
-
-<h3>
-
-The Power of Prayer
-
-</h3>
-
-
-<p class="speaker">
-
-🎤 Pastor Christina Malligary
-
-</p>
-
-
-<p>
-
-📖 James 5:16
-
-</p>
-
-
-<p class="date">
-
-📅 July 2026
-
-</p>
-
-
-</div>
-
-
-</a>
-
-
-
-
-
-
-
-<!-- SERMON CARD 3 -->
-
-
-<a href="https://youtu.be/YOUR_VIDEO_LINK"
-target="_blank"
-class="sermon-card"
-data-category="healing">
-
-
-<div class="sermon-image">
-
-
-<img src="images/sermon3.jpg"
-alt="God Heals">
-
-
-<div class="play-overlay">
-
-<div class="play-circle">
-
-▶
-
-</div>
-
-
-<span>
-
-Watch Sermon
-
-</span>
-
-
-</div>
-
-
-</div>
-
-
-
-<div class="sermon-content">
-
-
-<span class="sermon-tag">
-
-Healing
-
-</span>
-
-
-<h3>
-
-God Still Heals
-
-</h3>
-
-
-<p class="speaker">
-
-🎤 Pastor Christina Malligary
-
-</p>
-
-
-<p>
-
-📖 Jeremiah 17:14
-
-</p>
-
-
-<p class="date">
-
-📅 June 2026
-
-</p>
-
-
-</div>
-
-
-</a>
-
-
-
-
-
-
-
-<!-- COPY THE ABOVE CARD
-     FOR SERMON 4 TO 100 -->
-
-
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-<!-- ==========================
-        FOOTER
-=========================== -->
-
-
-<footer>
-
-
-<p>
-
-<strong>
-Jeeva Nadi Ministries
-</strong>
-
-</p>
-
-
-
-<p>
-
-Serving Christ through
-
-Calvary Fundamental Baptist Church,
-
-Rehoboth Baptist Church,
-
-and Emmanuel Baptist Church.
-
-</p>
-
-
-
-<p>
-
-"The Lord is my Shepherd;
-I shall not want."
-
-<br>
-
-<strong>
-Psalm 23:1
-</strong>
-
-</p>
-
-
-
-<p>
-
-© 2026 Jeeva Nadi Ministries.
-All Rights Reserved.
-
-</p>
-
-
-
-</footer>
-
-
-
-<!-- Javascript -->
-
-<script src="js/script.js"></script>
-
+    <script src="js/sermons.js"></script>
 
 </body>
-
-
 </html>
