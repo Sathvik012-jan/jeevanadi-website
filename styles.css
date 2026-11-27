@@ -12615,39 +12615,26 @@ body.books-popup-open {
     letter-spacing: 3px;
 }
 
-/* =========================================
-   PASTORS PAGE – MOBILE RESPONSIVENESS
-========================================= */
+/* ============================================================
+   22. PASTORS PAGE — SCOPED RESPONSIVE CORRECTIONS
+   IMPORTANT: Every selector is limited to .pastors-page.
+   These rules must never control another page's header/navigation.
+============================================================ */
 
-/* Tablets and smaller laptops */
 @media (max-width: 900px) {
-
-    .pastor-container {
+    .pastors-page .pastor-container {
         gap: 30px;
         padding: 25px;
     }
 
-    .pastor-container img {
+    .pastors-page .pastor-container img {
         max-width: 100%;
         height: auto;
     }
 }
 
-/* Mobile phones */
 @media (max-width: 768px) {
-
-    /* Header */
-    header {
-        flex-wrap: wrap;
-    }
-
-    header nav ul {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    /* Pastor layout */
-    .pastor-container {
+    .pastors-page .pastor-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -12656,229 +12643,226 @@ body.books-popup-open {
         padding: 20px;
     }
 
-    .pastor-image {
+    .pastors-page .pastor-image {
         width: 100%;
         max-width: 320px;
         margin: auto;
     }
 
-    .pastor-image img {
+    .pastors-page .pastor-image img {
         width: 100%;
         height: auto;
         object-fit: contain;
     }
 
-    .pastor-content {
+    .pastors-page .pastor-content {
         width: 100%;
     }
 
-    .pastor-content h2,
-    .pastor-content h3 {
+    .pastors-page .pastor-content h2,
+    .pastors-page .pastor-content h3 {
         font-size: 23px;
         line-height: 1.5;
     }
 
-    .pastor-content p {
+    .pastors-page .pastor-content p {
         font-size: 14px;
         line-height: 1.8;
     }
 
-    /* Pastor cards */
-    .pastors-grid {
+    .pastors-page .pastors-grid {
         grid-template-columns: 1fr;
     }
 
-    /* Buttons */
-    .pastor-content .btn {
+    .pastors-page .pastor-content .btn {
         display: inline-flex;
         justify-content: center;
         max-width: 100%;
     }
 }
 
-/* Very small phones */
 @media (max-width: 480px) {
-
-    .pastor-container {
+    .pastors-page .pastor-container {
         padding: 15px;
     }
 
-    .pastor-image {
+    .pastors-page .pastor-image {
         max-width: 270px;
     }
 
-    .pastor-content h2,
-    .pastor-content h3 {
+    .pastors-page .pastor-content h2,
+    .pastors-page .pastor-content h3 {
         font-size: 20px;
     }
 }
 
 
 /* ============================================================
-   JEEVA NADI MINISTRIES
-   MOBILE NAVIGATION FIX
-   Matches script.js:
-   #menuToggle, #primaryNavigation, ul.show
+   23. MINISTRY HOME PAGE — MOBILE NAVIGATION
+   HTML hooks: #menuToggle, #primaryNavigation, ul.show
+   JavaScript toggles .show on the navigation UL.
+   These ID selectors are unique to the Ministry homepage.
 ============================================================ */
 
-@media (max-width: 768px) {
+#menuToggle {
+    display: none;
+}
 
-    /* Keep logo and hamburger on the same row */
-    header {
+@media (max-width: 768px) {
+    /* Keep the Ministry header on one row. */
+    header:has(#primaryNavigation) {
         position: sticky;
         top: 0;
-        z-index: 10000;
-
+        z-index: 1100;
         display: flex;
-        flex-direction: row;
+        flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
-
-        width: 100%;
         gap: 12px;
-
-        padding: 12px 16px;
+        min-height: 72px;
+        padding: 10px 16px;
     }
 
-    header .logo {
+    header:has(#primaryNavigation) .logo {
         min-width: 0;
-        flex: 1;
+        flex: 1 1 auto;
     }
 
-    header .logo img {
-        height: 40px;
+    header:has(#primaryNavigation) .logo img {
         width: auto;
+        height: 42px;
+        flex: 0 0 auto;
+        margin-right: 9px;
     }
 
-    header .logo h2 {
-        font-size: clamp(14px, 4vw, 19px);
-        line-height: 1.3;
+    header:has(#primaryNavigation) .logo h2 {
+        min-width: 0;
+        font-size: clamp(13px, 3.8vw, 18px);
+        line-height: 1.25;
+        letter-spacing: 0.4px;
+        overflow-wrap: normal;
     }
 
-    /* Show the hamburger button */
-    #menuToggle.menu-toggle {
-        display: flex;
+    #menuToggle {
+        display: inline-flex;
         flex: 0 0 46px;
-
         width: 46px;
         height: 46px;
-
+        align-items: center;
+        justify-content: center;
         margin-left: auto;
-        z-index: 10002;
     }
 
-    /* Mobile dropdown container */
     #primaryNavigation {
         position: absolute;
         top: 100%;
         left: 0;
-
+        right: 0;
+        z-index: 1101;
+        display: block;
         width: 100%;
-        padding: 0 16px;
-
-        background: #041326;
-
-        border-bottom: 1px solid rgba(201, 164, 92, 0.35);
-
-        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
-
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-
-        transform: translateY(-8px);
-
-        transition:
-            opacity 0.25s ease,
-            transform 0.25s ease,
-            visibility 0.25s ease;
-
-        z-index: 10001;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
     }
 
-    /* Navigation list */
-    #primaryNavigation ul {
-        display: flex;
+    #primaryNavigation > ul {
+        display: none;
         flex-direction: column;
         align-items: stretch;
-
-        width: 100%;
+        justify-content: flex-start;
         gap: 0;
-
+        width: 100%;
+        max-height: min(72vh, 560px);
+        overflow-y: auto;
         margin: 0;
-        padding: 8px 0 14px;
-
+        padding: 8px 16px 14px;
         list-style: none;
+        background: #041326;
+        border-top: 1px solid rgba(212, 175, 55, 0.28);
+        box-shadow: 0 16px 28px rgba(0, 0, 0, 0.25);
     }
 
-    #primaryNavigation ul li {
-        width: 100%;
-        margin: 0;
-    }
-
-    #primaryNavigation ul li a {
-        display: block;
-
-        width: 100%;
-        padding: 13px 15px;
-
-        color: #ffffff;
-
-        font-size: 15px;
-        font-weight: 500;
-
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
-        border-radius: 5px;
-
-        white-space: normal;
-    }
-
-    #primaryNavigation ul li:last-child a {
-        border-bottom: none;
-    }
-
-    #primaryNavigation ul li a:hover,
-    #primaryNavigation ul li a[aria-current="page"] {
-        color: #ead5a4;
-        background: rgba(201, 164, 92, 0.10);
-    }
-
-    /* IMPORTANT: JavaScript adds .show to the UL */
-    #primaryNavigation ul.show {
+    #primaryNavigation > ul.show {
         display: flex;
     }
 
-    #primaryNavigation:has(ul.show) {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-
-        transform: translateY(0);
+    #primaryNavigation > ul > li {
+        display: block;
+        width: 100%;
+        margin: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.09);
     }
 
+    #primaryNavigation > ul > li:last-child {
+        border-bottom: 0;
+    }
+
+    #primaryNavigation > ul > li > a {
+        display: block;
+        width: 100%;
+        padding: 13px 8px;
+        color: #fff;
+        font-size: 13px;
+        line-height: 1.5;
+        text-align: left;
+        white-space: normal;
+        border-radius: 4px;
+    }
+
+    #primaryNavigation > ul > li > a::after {
+        display: none;
+    }
+
+    #primaryNavigation > ul > li > a:hover,
+    #primaryNavigation > ul > li > a[aria-current="page"] {
+        color: #ffd700;
+        background: rgba(201, 164, 92, 0.12);
+        transform: none;
+    }
 }
 
-/* Very small mobile screens */
 @media (max-width: 380px) {
-
-    header {
-        padding: 10px 12px;
+    header:has(#primaryNavigation) {
+        padding-right: 12px;
+        padding-left: 12px;
     }
 
-    header .logo img {
-        height: 35px;
+    header:has(#primaryNavigation) .logo img {
+        height: 37px;
+        margin-right: 7px;
     }
 
-    header .logo h2 {
-        font-size: 14px;
-        letter-spacing: 0.3px;
+    header:has(#primaryNavigation) .logo h2 {
+        font-size: 12px;
     }
 
-    #menuToggle.menu-toggle {
-        width: 43px;
-        height: 43px;
-        flex-basis: 43px;
+    #menuToggle {
+        flex-basis: 42px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
+
+/* ============================================================
+   24. SHARED ACCESSIBILITY / REDUCED-MOTION SAFETY
+   Page-specific animation rules above remain unchanged.
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
