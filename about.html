@@ -1,105 +1,307 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
+    <!-- =====================================================
+         JEEVA NADI MINISTRIES
+         ABOUT US PAGE
+         Premium Ministry Experience
+    ====================================================== -->
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Discover Jeeva Nadi Ministries — The River of Life. Learn about our Christian ministry, mission, faith, senior pastor, worship, prayer, fellowship and ministry activities.">
+
+    <meta name="keywords"
+        content="Jeeva Nadi Ministries, The River of Life, Christian Ministry, Baptist Church, Biblical Teaching, Christian Fellowship, Hyderabad">
+
+    <meta name="author" content="Jeeva Nadi Ministries">
+
+    <meta name="robots" content="index, follow">
+
+    <meta name="theme-color" content="#071b36">
+
+    <link rel="canonical"
+        href="https://www.jeevanadiministries.org/about.html">
+
+    <title>About Us | Jeeva Nadi Ministries – The River of Life</title>
+
+
+    <!-- FAVICON -->
 
     <link rel="icon" type="image/png" href="images/Wb.png">
 
-    <title>About Us | Jeeva Nadi Ministries</title>
 
-    <!-- Google Fonts -->
+    <!-- GOOGLE FONTS -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-    <!-- About Page CSS -->
+
+    <!-- FONT AWESOME ICONS -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- ABOUT PAGE STYLESHEET -->
+
     <link rel="stylesheet" href="about.css">
+
+
+    <!-- SOCIAL SHARING -->
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:title"
+        content="About Jeeva Nadi Ministries | The River of Life">
+
+    <meta property="og:description"
+        content="Discover our story, mission, leadership and ministry activities.">
+
+    <meta property="og:url"
+        content="https://www.jeevanadiministries.org/about.html">
+
+    <meta property="og:image"
+        content="https://www.jeevanadiministries.org/images/Logo.jpg">
+
+
+    <!-- ORGANIZATION STRUCTURED DATA -->
+
+    <script type="application/ld+json">
+
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Jeeva Nadi Ministries",
+        "alternateName": "The River of Life",
+        "url": "https://www.jeevanadiministries.org/",
+        "logo": "https://www.jeevanadiministries.org/images/Logo.jpg",
+        "description": "Jeeva Nadi Ministries is committed to worship, prayer, Biblical teaching, Christian fellowship and sharing the Gospel of Jesus Christ.",
+        "sameAs": [
+            "https://www.youtube.com/@JeevaNadiTheRiverofLife",
+            "https://www.instagram.com/jeevanadi_theriveroflife/"
+        ]
+    }
+
+    </script>
+
 </head>
+
 
 <body>
 
+
 <!-- =====================================================
-     HEADER
+     HEADER AND NAVIGATION
 ===================================================== -->
 
 <header class="main-header" id="mainHeader">
 
     <div class="logo">
-        <img
-            src="images/Logo.jpg"
-            alt="Jeeva Nadi Ministries Logo"
-        >
 
-        <h2>Jeeva Nadi Ministries</h2>
+        <a href="index.html"
+           aria-label="Jeeva Nadi Ministries homepage">
+
+            <img
+                src="images/Logo.jpg"
+                alt="Jeeva Nadi Ministries Logo">
+
+        </a>
+
+
+        <a href="index.html" class="brand-name">
+
+            <h2>
+                Jeeva Nadi Ministries
+            </h2>
+
+            <span>
+                THE RIVER OF LIFE
+            </span>
+
+        </a>
+
     </div>
 
-    <nav>
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="primaryNavigation">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+
+    <!-- MAIN NAVIGATION -->
+
+    <nav id="primaryNavigation" aria-label="Main navigation">
+
         <ul>
-            <li>
-                <a href="index.html">Home</a>
-            </li>
 
             <li>
-                <a href="about.html" class="active">About</a>
+                <a href="books.html">
+                    Books
+                </a>
             </li>
 
-            <li>
-                <a href="events.html">Events</a>
-            </li>
 
             <li>
-                <a href="sermons.html">Sermons</a>
+                <a href="index.html">
+                    Ministry
+                </a>
             </li>
 
+
             <li>
-                <a href="books.html">Books</a>
+                <a href="about.html"
+                   class="active"
+                   aria-current="page">
+
+                    About
+
+                </a>
             </li>
+
+
+            <li>
+                <a href="pastors.html">
+                    Pastors
+                </a>
+            </li>
+
+
+            <li>
+                <a href="sermons.html">
+                    Sermons
+                </a>
+            </li>
+
+
+            <li>
+                <a href="events.html">
+                    Events
+                </a>
+            </li>
+
+
+            <li>
+                <a href="contact.html">
+                    Contact
+                </a>
+            </li>
+
         </ul>
+
     </nav>
 
 </header>
 
 
+
 <!-- =====================================================
-     HERO
+     HERO SECTION
 ===================================================== -->
 
-<section class="about-hero">
+<main>
+
+<section class="about-hero" id="aboutHome">
 
     <div class="hero-overlay"></div>
+
 
     <div class="about-hero-content">
 
         <span class="hero-badge">
-            ✦ OUR STORY ✦
+            ✦ OUR STORY • OUR CALLING ✦
         </span>
 
+
         <h1>
-            About Jeeva Nadi Ministries
+
+            About
+
+            <span>
+                Jeeva Nadi Ministries
+            </span>
+
         </h1>
 
+
+        <div class="hero-divider"></div>
+
+
         <p>
-            Serving God, sharing His Word, and reaching lives
-            with the love of Jesus Christ.
+
+            Serving God, sharing His Word,
+            strengthening believers and reaching lives
+            with the everlasting love of Jesus Christ.
+
         </p>
 
-        <a href="#our-story" class="hero-btn">
-            Discover Our Story
-        </a>
+
+        <div class="hero-actions">
+
+            <a href="#our-story" class="hero-btn">
+
+                Discover Our Story
+
+                <i class="fa-solid fa-arrow-down"
+                   aria-hidden="true"></i>
+
+            </a>
+
+
+            <a href="sermons.html" class="hero-outline-btn">
+
+                <i class="fa-solid fa-book-bible"
+                   aria-hidden="true"></i>
+
+                Explore Sermons
+
+            </a>
+
+        </div>
+
+
+        <div class="hero-bottom-label">
+
+            <span></span>
+
+            THE RIVER OF LIFE
+
+            <span></span>
+
+        </div>
 
     </div>
 
 </section>
 
 
+
 <!-- =====================================================
-     WELCOME
+     WELCOME SECTION
 ===================================================== -->
 
 <section class="welcome" id="our-story">
@@ -107,24 +309,61 @@
     <div class="section-heading">
 
         <span class="small-heading">
-            WELCOME
+            WELCOME TO OUR MINISTRY
         </span>
 
+
         <h2>
-            Jeeva Nadi Ministries
+            A Ministry Rooted in Faith
         </h2>
+
 
         <div class="gold-line"></div>
 
+
+        <p>
+            A place to worship, grow, serve and experience
+            the transforming love of Jesus Christ.
+        </p>
+
     </div>
 
-    <p class="welcome-text">
-        Jeeva Nadi Ministries exists to proclaim the Gospel of
-        Jesus Christ, encourage believers in their faith, and
-        bring hope to people through the Word of God.
-    </p>
+
+    <div class="welcome-content">
+
+        <div class="welcome-symbol" aria-hidden="true">
+            ✝
+        </div>
+
+
+        <p class="welcome-text">
+
+            Jeeva Nadi Ministries exists to proclaim the
+            Gospel of Jesus Christ, encourage believers
+            in their faith, and bring hope to people
+            through the Word of God.
+
+        </p>
+
+
+        <p class="welcome-secondary">
+
+            We believe in the importance of prayer,
+            worship, Biblical teaching and Christian
+            fellowship as we seek to grow together
+            in our relationship with God.
+
+        </p>
+
+
+        <span class="welcome-reference">
+            THE RIVER OF LIFE
+        </span>
+
+    </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -135,37 +374,93 @@
 
     <div class="about-container">
 
+
+        <!-- STORY CONTENT -->
+
         <div class="about-text">
 
             <span class="small-heading">
                 WHO WE ARE
             </span>
 
+
             <h2>
                 Our Story
             </h2>
 
+
             <div class="gold-line left"></div>
 
-            <p>
-                Jeeva Nadi Ministries is dedicated to spreading
-                the message of God's love and helping people
-                grow in faith through the Word of God.
-            </p>
 
             <p>
+
+                Jeeva Nadi Ministries is dedicated to
+                spreading the message of God's love
+                and helping people grow in faith
+                through the Word of God.
+
+            </p>
+
+
+            <p>
+
                 Through worship, prayer, Bible teaching,
-                fellowship, outreach, and service, the ministry
-                seeks to touch lives and glorify Jesus Christ.
+                fellowship, outreach and service,
+                the ministry seeks to touch lives
+                and glorify Jesus Christ.
+
             </p>
 
+
             <p>
-                Our desire is to help people discover hope,
-                purpose, and new life through Jesus Christ.
+
+                Our desire is to help people discover
+                hope, purpose and new life through
+                Jesus Christ.
+
             </p>
+
+
+            <div class="story-highlight">
+
+                <span class="story-highlight-icon">
+                    ✦
+                </span>
+
+
+                <div>
+
+                    <h3>
+                        Our Heart
+                    </h3>
+
+                    <p>
+
+                        To proclaim God's Word,
+                        encourage faith and share
+                        the hope of the Gospel.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a href="index.html" class="story-link">
+
+                Discover Our Ministry
+
+                <i class="fa-solid fa-arrow-right"
+                   aria-hidden="true"></i>
+
+            </a>
 
         </div>
 
+
+
+        <!-- STORY IMAGE -->
 
         <div class="about-image">
 
@@ -173,9 +468,18 @@
 
                 <img
                     src="images/about-1.jpg"
-                    alt="Jeeva Nadi Ministries"
-                    loading="lazy"
-                >
+                    alt="Jeeva Nadi Ministries community and ministry">
+
+            </div>
+
+
+            <div class="image-decoration">
+
+                <span>✝</span>
+
+                <p>
+                    Faith • Hope • Love
+                </p>
 
             </div>
 
@@ -186,133 +490,253 @@
 </section>
 
 
+
 <!-- =====================================================
-     MINISTRY VALUES
+     OUR MISSION AND VALUES
 ===================================================== -->
 
-<section class="ministry-section">
+<section class="ministry-section" id="our-values">
+
 
     <div class="section-heading">
 
         <span class="small-heading">
-            OUR MISSION
+            OUR FOUNDATION
         </span>
+
 
         <h2>
             What We Believe In
         </h2>
 
+
         <div class="gold-line"></div>
+
+
+        <p>
+
+            Our ministry is guided by values that
+            encourage believers to grow in Christ
+            and serve others with love.
+
+        </p>
 
     </div>
 
 
+
     <div class="ministry-grid">
 
+
+        <!-- FAITH -->
+
         <article class="ministry-card">
 
-            <div class="card-icon">✝</div>
+            <div class="card-icon">
+                <i class="fa-solid fa-cross"
+                   aria-hidden="true"></i>
+            </div>
 
-            <h3>Faith</h3>
+
+            <span class="value-number">
+                01
+            </span>
+
+
+            <h3>
+                Faith
+            </h3>
+
 
             <p>
+
                 Growing in faith through God's Word,
-                prayer, worship, and fellowship.
+                prayer, worship and fellowship.
+
             </p>
+
+
+            <div class="card-bottom-line"></div>
 
         </article>
 
 
+
+        <!-- LOVE -->
+
         <article class="ministry-card">
 
-            <div class="card-icon">♡</div>
+            <div class="card-icon">
+                <i class="fa-solid fa-heart"
+                   aria-hidden="true"></i>
+            </div>
 
-            <h3>Love</h3>
+
+            <span class="value-number">
+                02
+            </span>
+
+
+            <h3>
+                Love
+            </h3>
+
 
             <p>
-                Demonstrating the love of Christ through
-                compassion, kindness, and service.
+
+                Demonstrating the love of Christ
+                through compassion, kindness
+                and service.
+
             </p>
+
+
+            <div class="card-bottom-line"></div>
 
         </article>
 
 
+
+        <!-- HOPE -->
+
         <article class="ministry-card">
 
-            <div class="card-icon">☀</div>
+            <div class="card-icon">
+                <i class="fa-solid fa-sun"
+                   aria-hidden="true"></i>
+            </div>
 
-            <h3>Hope</h3>
+
+            <span class="value-number">
+                03
+            </span>
+
+
+            <h3>
+                Hope
+            </h3>
+
 
             <p>
-                Sharing the hope, peace, and new life
+
+                Sharing the hope, peace and new life
                 found through Jesus Christ.
+
             </p>
+
+
+            <div class="card-bottom-line"></div>
 
         </article>
 
+
+
+        <!-- SERVICE -->
 
         <article class="ministry-card">
 
-            <div class="card-icon">♕</div>
+            <div class="card-icon">
+                <i class="fa-solid fa-hands-praying"
+                   aria-hidden="true"></i>
+            </div>
 
-            <h3>Service</h3>
+
+            <span class="value-number">
+                04
+            </span>
+
+
+            <h3>
+                Service
+            </h3>
+
 
             <p>
+
                 Serving God and people with humility,
-                dedication, and love.
+                dedication and love.
+
             </p>
 
+
+            <div class="card-bottom-line"></div>
+
         </article>
+
 
     </div>
 
 </section>
 
 
+
 <!-- =====================================================
      SENIOR PASTOR
 ===================================================== -->
 
-<section class="senior-pastor">
+<section class="senior-pastor" id="senior-pastor">
+
 
     <div class="pastor-heading">
 
         <span class="section-label">
-            ✦ LEADERSHIP ✦
+            ✦ LEADERSHIP AND SERVICE ✦
         </span>
 
+
         <h2>
-            Senior Pastor
+            Our Senior Pastor
         </h2>
 
+
+        <div class="gold-line"></div>
+
+
         <p>
-            A life dedicated to prayer, preaching, service,
-            and the work of God.
+
+            A life dedicated to prayer, preaching,
+            service and the work of God.
+
         </p>
 
     </div>
 
 
+
     <div class="senior-pastor-container">
 
 
-        <!-- ================= PASTOR IMAGE ================= -->
+        <!-- PASTOR PHOTOGRAPH -->
 
         <div class="pastor-hero-image">
 
             <div class="image-glow"></div>
+
 
             <div class="pastor-image-frame">
 
                 <img
                     src="images/about-5.jpg"
                     alt="Senior Pastor Christina Malligary"
-                    loading="lazy"
-                >
+                    loading="lazy">
+
 
                 <div class="image-caption">
+
                     <span>✦</span>
-                    Senior Pastor
+
+                    <div>
+
+                        <strong>
+                            Pastor Christina Malligary
+                        </strong>
+
+                        <small>
+                            SENIOR PASTOR
+                        </small>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -320,24 +744,29 @@
         </div>
 
 
-        <!-- ================= PASTOR CONTENT ================= -->
+
+        <!-- PASTOR INFORMATION -->
 
         <div class="senior-pastor-content">
 
+
             <span class="pastor-badge">
-                SERVING GOD
+                SERVING GOD FAITHFULLY
             </span>
+
 
             <h3>
                 Pastor Christina Malligary
             </h3>
+
 
             <div class="qualification">
                 B.Com. • B.D.
             </div>
 
 
-            <!-- VERSE -->
+
+            <!-- BIBLE VERSE -->
 
             <div class="pastor-verse">
 
@@ -345,10 +774,14 @@
                     “
                 </span>
 
+
                 <p>
+
                     Trust in the LORD with all your heart
                     and lean not on your own understanding.
+
                 </p>
+
 
                 <strong>
                     — Proverbs 3:5
@@ -357,135 +790,198 @@
             </div>
 
 
+
             <!-- INTRODUCTION -->
 
             <p class="pastor-introduction">
-                Pastor Christina Malligary is a devoted servant
-                of God who has dedicated her life to prayer,
-                preaching, and serving the Lord.
+
+                Pastor Christina Malligary is a devoted
+                servant of God who has dedicated her life
+                to prayer, preaching and serving the Lord.
+
             </p>
 
-            <p>
-                Her ministry is centered on seeking God's
-                guidance, faithfully proclaiming His Word,
-                praying for people, and encouraging believers
-                to grow in their relationship with Jesus Christ.
-            </p>
 
             <p>
-                Through a life of continuous prayer, preaching,
-                worship, and service, she seeks to remain
-                faithful to the calling God has placed upon
-                her life.
+
+                Her ministry is centered on seeking
+                God's guidance, faithfully proclaiming
+                His Word, praying for people and
+                encouraging believers to grow in their
+                relationship with Jesus Christ.
+
             </p>
+
+
+            <p>
+
+                Through a life of continuous prayer,
+                preaching, worship and service,
+                she seeks to remain faithful to the
+                calling God has placed upon her life.
+
+            </p>
+
 
 
             <!-- MINISTRY HIGHLIGHTS -->
 
             <div class="ministry-highlights">
 
+
                 <div class="ministry-item">
 
                     <div class="ministry-icon">
-                        🙏
+                        <i class="fa-solid fa-hands-praying"
+                           aria-hidden="true"></i>
                     </div>
 
+
                     <div>
+
                         <h4>
                             Prayer
                         </h4>
 
+
                         <p>
-                            A life devoted to prayer and
-                            intercession for people and
-                            the ministry.
+
+                            A life devoted to prayer
+                            and intercession for people
+                            and the ministry.
+
                         </p>
+
                     </div>
 
                 </div>
 
 
+
                 <div class="ministry-item">
 
                     <div class="ministry-icon">
-                        📖
+                        <i class="fa-solid fa-book-bible"
+                           aria-hidden="true"></i>
                     </div>
 
+
                     <div>
+
                         <h4>
                             Preaching
                         </h4>
 
+
                         <p>
-                            Faithfully sharing the Word
-                            of God and encouraging
+
+                            Faithfully sharing the
+                            Word of God and encouraging
                             believers in their faith.
+
                         </p>
+
                     </div>
 
                 </div>
 
 
+
                 <div class="ministry-item">
 
                     <div class="ministry-icon">
-                        ❤️
+                        <i class="fa-solid fa-heart"
+                           aria-hidden="true"></i>
                     </div>
 
+
                     <div>
+
                         <h4>
                             Compassion
                         </h4>
 
+
                         <p>
+
                             Caring for people and
                             demonstrating Christ's love
                             through service.
+
                         </p>
+
                     </div>
 
                 </div>
+
 
 
                 <div class="ministry-item">
 
                     <div class="ministry-icon">
-                        ✝
+                        <i class="fa-solid fa-cross"
+                           aria-hidden="true"></i>
                     </div>
 
+
                     <div>
+
                         <h4>
                             Dedication
                         </h4>
 
+
                         <p>
+
                             Giving her life to God's
-                            calling and faithfully serving
-                            His purpose.
+                            calling and faithfully
+                            serving His purpose.
+
                         </p>
+
                     </div>
 
                 </div>
 
+
             </div>
 
 
-            <!-- MISSION -->
+
+            <!-- PASTOR'S MISSION -->
 
             <div class="pastor-mission">
 
-                <span>✦</span>
+                <span>
+                    ✦
+                </span>
+
 
                 <p>
+
                     <strong>
                         Her desire is simple:
                     </strong>
-                    to serve God faithfully, proclaim His Word,
-                    remain devoted to prayer, and help people
-                    come closer to Jesus Christ.
+
+                    to serve God faithfully, proclaim
+                    His Word, remain devoted to prayer
+                    and help people come closer
+                    to Jesus Christ.
+
                 </p>
 
             </div>
+
+
+
+            <a href="pastors.html" class="pastor-more-link">
+
+                Meet Our Pastors
+
+                <i class="fa-solid fa-arrow-right"
+                   aria-hidden="true"></i>
+
+            </a>
 
         </div>
 
@@ -494,11 +990,13 @@
 </section>
 
 
+
 <!-- =====================================================
-     MINISTRY GALLERY
+     MINISTRY PHOTO GALLERY
 ===================================================== -->
 
-<section class="gallery-section">
+<section class="gallery-section" id="gallery">
+
 
     <div class="section-heading">
 
@@ -506,87 +1004,173 @@
             OUR JOURNEY
         </span>
 
+
         <h2>
             Moments From Our Ministry
         </h2>
 
+
         <div class="gold-line"></div>
 
+
         <p>
-            A glimpse of the ministry, fellowship,
-            and outreach activities of Jeeva Nadi Ministries.
+
+            A glimpse of the ministry, fellowship
+            and outreach activities of
+            Jeeva Nadi Ministries.
+
         </p>
 
     </div>
+
 
 
     <div class="gallery-grid">
 
-        <div class="gallery-card">
+
+        <figure class="gallery-card">
+
             <img
                 src="images/sermon4.jpg"
-                alt="Ministry moment"
-                loading="lazy"
-            >
-        </div>
+                alt="Ministry preaching and worship"
+                loading="lazy">
 
-        <div class="gallery-card">
+
+            <figcaption>
+                <span>✦</span>
+                Worship and Ministry
+            </figcaption>
+
+        </figure>
+
+
+
+        <figure class="gallery-card">
+
             <img
                 src="images/about-2.jpg"
-                alt="Ministry moment"
-                loading="lazy"
-            >
-        </div>
+                alt="Jeeva Nadi ministry gathering"
+                loading="lazy">
 
-        <div class="gallery-card">
+
+            <figcaption>
+                <span>✦</span>
+                Ministry Fellowship
+            </figcaption>
+
+        </figure>
+
+
+
+        <figure class="gallery-card">
+
             <img
                 src="images/about-3.jpg"
-                alt="Ministry moment"
-                loading="lazy"
-            >
-        </div>
+                alt="Christian ministry activity"
+                loading="lazy">
 
-        <div class="gallery-card">
+
+            <figcaption>
+                <span>✦</span>
+                Serving Together
+            </figcaption>
+
+        </figure>
+
+
+
+        <figure class="gallery-card">
+
             <img
                 src="images/about-4.jpg"
-                alt="Ministry moment"
-                loading="lazy"
-            >
-        </div>
+                alt="Ministry celebration and fellowship"
+                loading="lazy">
+
+
+            <figcaption>
+                <span>✦</span>
+                Growing in Faith
+            </figcaption>
+
+        </figure>
+
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
+
+<!-- =====================================================
      VIDEO MINISTRY
-========================================================= -->
+     PORTRAIT VIDEO GALLERY — YOUTUBE SHORTS STYLE
+===================================================== -->
 
 <section class="video-section" id="videos">
 
+
     <div class="section-heading">
 
-        <span class="small-heading">MEDIA MINISTRY</span>
+        <span class="small-heading">
+            ✦ MEDIA MINISTRY ✦
+        </span>
 
-        <h2>Watch & Be Inspired</h2>
+
+        <h2>
+            Watch & Be Inspired
+        </h2>
+
 
         <div class="gold-line"></div>
 
+
         <p>
-            Watch moments from our ministry, worship, service,
-            and Scripture memory videos.
+
+            Discover moments from our ministry,
+            worship, teaching, service and
+            Scripture memory videos.
+
         </p>
 
     </div>
 
 
+
+    <!-- VIDEO INTRODUCTION -->
+
+    <div class="video-intro">
+
+        <span class="video-intro-icon">
+            <i class="fa-solid fa-circle-play"
+               aria-hidden="true"></i>
+        </span>
+
+
+        <div>
+
+            <h3>
+                Faith in Every Moment
+            </h3>
+
+
+            <p>
+                Watch, learn and grow through
+                messages and moments from our ministry.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- VIDEO GALLERY -->
+
     <div class="video-grid">
 
 
-        <!-- =================================================
-             VIDEO 1 — THANKSGIVING SERVICE
-        ================================================== -->
+
+        <!-- VIDEO 01 -->
 
         <article class="video-card">
 
@@ -596,28 +1180,42 @@
                     controls
                     preload="metadata"
                     playsinline
-                >
+                    aria-label="Thanksgiving Service video">
 
                     <source
                         src="images/Thanksgiving Service.mp4"
-                        type="video/mp4"
-                    >
+                        type="video/mp4">
 
                     Your browser does not support HTML5 video.
 
                 </video>
 
+
+                <span class="video-frame-label">
+                    MINISTRY MOMENTS
+                </span>
+
             </div>
+
 
             <div class="video-content">
 
-                <span class="video-number">01</span>
+                <span class="video-number">
+                    VIDEO 01
+                </span>
 
-                <h3>Thanksgiving Service</h3>
+
+                <h3>
+                    Thanksgiving Service
+                </h3>
+
 
                 <p>
-                    A special time of thanksgiving, fellowship,
-                    and serving people with the love of Christ.
+
+                    A special time of thanksgiving,
+                    fellowship and serving people
+                    with the love of Christ.
+
                 </p>
 
             </div>
@@ -625,9 +1223,8 @@
         </article>
 
 
-        <!-- =================================================
-             VIDEO 2 — TEN COMMANDMENTS
-        ================================================== -->
+
+        <!-- VIDEO 02 -->
 
         <article class="video-card">
 
@@ -637,28 +1234,42 @@
                     controls
                     preload="metadata"
                     playsinline
-                >
+                    aria-label="Ten Commandments video">
 
                     <source
                         src="images/Ten Commandments.mp4"
-                        type="video/mp4"
-                    >
+                        type="video/mp4">
 
                     Your browser does not support HTML5 video.
 
                 </video>
 
+
+                <span class="video-frame-label">
+                    BIBLICAL TEACHING
+                </span>
+
             </div>
+
 
             <div class="video-content">
 
-                <span class="video-number">02</span>
+                <span class="video-number">
+                    VIDEO 02
+                </span>
 
-                <h3>Ten Commandments</h3>
+
+                <h3>
+                    Ten Commandments
+                </h3>
+
 
                 <p>
-                    Learning and remembering God's commandments
-                    through Scripture and teaching.
+
+                    Learning and remembering
+                    God's commandments through
+                    Scripture and teaching.
+
                 </p>
 
             </div>
@@ -666,9 +1277,8 @@
         </article>
 
 
-        <!-- =================================================
-             VIDEO 3 — MEMORY VERSE
-        ================================================== -->
+
+        <!-- VIDEO 03 -->
 
         <article class="video-card">
 
@@ -678,28 +1288,42 @@
                     controls
                     preload="metadata"
                     playsinline
-                >
+                    aria-label="Memory Verse video">
 
                     <source
                         src="images/Memory Verse 5 by Thilak .mp4"
-                        type="video/mp4"
-                    >
+                        type="video/mp4">
 
                     Your browser does not support HTML5 video.
 
                 </video>
 
+
+                <span class="video-frame-label">
+                    SCRIPTURE MEMORY
+                </span>
+
             </div>
+
 
             <div class="video-content">
 
-                <span class="video-number">03</span>
+                <span class="video-number">
+                    VIDEO 03
+                </span>
 
-                <h3>Memory Verse</h3>
+
+                <h3>
+                    Memory Verse
+                </h3>
+
 
                 <p>
-                    Encouraging children and believers to learn,
-                    remember, and live by God's Word.
+
+                    Encouraging children and believers
+                    to learn, remember and live
+                    by God's Word.
+
                 </p>
 
             </div>
@@ -707,9 +1331,8 @@
         </article>
 
 
-        <!-- =================================================
-             VIDEO 4 — ARMOR OF GOD
-        ================================================== -->
+
+        <!-- VIDEO 04 -->
 
         <article class="video-card">
 
@@ -719,28 +1342,42 @@
                     controls
                     preload="metadata"
                     playsinline
-                >
+                    aria-label="Armor of God video">
 
                     <source
                         src="images/ArmorOfGod.mp4"
-                        type="video/mp4"
-                    >
+                        type="video/mp4">
 
                     Your browser does not support HTML5 video.
 
                 </video>
 
+
+                <span class="video-frame-label">
+                    WORD OF GOD
+                </span>
+
             </div>
+
 
             <div class="video-content">
 
-                <span class="video-number">04</span>
+                <span class="video-number">
+                    VIDEO 04
+                </span>
 
-                <h3>Armor of God</h3>
+
+                <h3>
+                    Armor of God
+                </h3>
+
 
                 <p>
-                    A Scripture-based message reminding us to put
-                    on the full armor of God.
+
+                    A Scripture-based message
+                    reminding us to put on
+                    the full armor of God.
+
                 </p>
 
             </div>
@@ -748,9 +1385,8 @@
         </article>
 
 
-        <!-- =================================================
-             VIDEO 5 — PALM SUNDAY
-        ================================================== -->
+
+        <!-- VIDEO 05 -->
 
         <article class="video-card">
 
@@ -760,28 +1396,42 @@
                     controls
                     preload="metadata"
                     playsinline
-                >
+                    aria-label="Palm Sunday video">
 
                     <source
                         src="images/Palm Sunday .mp4"
-                        type="video/mp4"
-                    >
+                        type="video/mp4">
 
                     Your browser does not support HTML5 video.
 
                 </video>
 
+
+                <span class="video-frame-label">
+                    SPECIAL CELEBRATIONS
+                </span>
+
             </div>
+
 
             <div class="video-content">
 
-                <span class="video-number">05</span>
+                <span class="video-number">
+                    VIDEO 05
+                </span>
 
-                <h3>Palm Sunday</h3>
+
+                <h3>
+                    Palm Sunday
+                </h3>
+
 
                 <p>
-                    Remembering the triumphal entry of Jesus Christ
-                    and reflecting on His journey of love and salvation.
+
+                    Remembering the triumphal entry
+                    of Jesus Christ and reflecting
+                    on His journey of love and salvation.
+
                 </p>
 
             </div>
@@ -791,34 +1441,328 @@
 
     </div>
 
+
+
+    <!-- YOUTUBE CHANNEL -->
+
+    <div class="video-channel">
+
+        <div class="channel-symbol">
+            <i class="fa-brands fa-youtube"
+               aria-hidden="true"></i>
+        </div>
+
+
+        <div class="channel-text">
+
+            <h3>
+                Explore More From Our Ministry
+            </h3>
+
+
+            <p>
+                Watch more messages, worship and
+                ministry videos on our YouTube channel.
+            </p>
+
+        </div>
+
+
+        <a
+            href="https://www.youtube.com/@JeevaNadiTheRiverofLife"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-button">
+
+            <i class="fa-brands fa-youtube"
+               aria-hidden="true"></i>
+
+            Visit YouTube
+
+        </a>
+
+    </div>
+
 </section>
+
+
+
+<!-- =====================================================
+     FINAL INVITATION
+===================================================== -->
+
+<section class="about-invitation">
+
+    <div class="invitation-content">
+
+        <span class="small-heading">
+            GROW • SERVE • FELLOWSHIP
+        </span>
+
+
+        <h2>
+            Let Us Grow Together in Christ
+        </h2>
+
+
+        <p>
+
+            Join us as we worship, learn God's Word,
+            pray together and share the hope
+            of Jesus Christ.
+
+        </p>
+
+
+        <div class="invitation-actions">
+
+            <a href="contact.html" class="invitation-primary">
+
+                Get in Touch
+
+                <i class="fa-solid fa-arrow-right"
+                   aria-hidden="true"></i>
+
+            </a>
+
+
+            <a href="events.html" class="invitation-secondary">
+
+                Explore Events
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
 
 
 <!-- =====================================================
      FOOTER
 ===================================================== -->
 
-<footer>
+<footer class="main-footer">
 
-    <p>
-        <strong>
+
+    <div class="footer-brand">
+
+        <img
+            src="images/Logo.jpg"
+            alt="Jeeva Nadi Ministries Logo"
+            loading="lazy">
+
+
+        <h2>
             Jeeva Nadi Ministries
+        </h2>
+
+
+        <span>
+            THE RIVER OF LIFE
+        </span>
+
+    </div>
+
+
+
+    <div class="footer-divider"></div>
+
+
+
+    <p class="footer-message">
+
+        Sharing God's Word • Serving People •
+        Glorifying Christ
+
+    </p>
+
+
+
+    <p class="footer-churches">
+
+        Serving the Kingdom of God through
+
+        <strong>
+            Calvary Fundamental Baptist Church
+        </strong>,
+
+        <strong>
+            Rehoboth Baptist Church
         </strong>
+
+        and
+
+        <strong>
+            Emmanuel Baptist Church
+        </strong>.
+
     </p>
 
-    <p>
-        Sharing God's Word • Serving People • Glorifying Christ
+
+
+    <p class="footer-verse">
+
+        "The Lord is my Shepherd; I shall not want."
+
+        <strong>
+            Psalm 23:1
+        </strong>
+
     </p>
 
-    <p>
-        © 2026 Jeeva Nadi Ministries. All Rights Reserved.
+
+
+    <div class="footer-social">
+
+        <a
+            href="https://www.youtube.com/@JeevaNadiTheRiverofLife"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Jeeva Nadi Ministries on YouTube">
+
+            <i class="fa-brands fa-youtube"
+               aria-hidden="true"></i>
+
+        </a>
+
+
+        <a
+            href="https://www.instagram.com/jeevanadi_theriveroflife/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Jeeva Nadi Ministries on Instagram">
+
+            <i class="fa-brands fa-instagram"
+               aria-hidden="true"></i>
+
+        </a>
+
+    </div>
+
+
+
+    <p class="footer-location">
+        Hyderabad, Telangana, India
     </p>
+
+
+
+    <p class="footer-copyright">
+
+        © 2026 Jeeva Nadi Ministries.
+        All Rights Reserved.
+
+    </p>
+
 
 </footer>
 
 
-<!-- About Page JavaScript -->
+
+<!-- =====================================================
+     ABOUT PAGE JAVASCRIPT
+===================================================== -->
+
 <script src="js/about.js"></script>
 
+
+<!-- =====================================================
+     MOBILE NAVIGATION
+===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuToggle = document.getElementById("menuToggle");
+
+    const navigation = document.getElementById("primaryNavigation");
+
+
+    if (!menuToggle || !navigation) {
+        return;
+    }
+
+
+    function closeNavigation() {
+
+        navigation.classList.remove("open");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        menuToggle.setAttribute(
+            "aria-label",
+            "Open navigation menu"
+        );
+
+    }
+
+
+    menuToggle.addEventListener("click", function () {
+
+        const isOpen = navigation.classList.toggle("open");
+
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
+
+
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
+        );
+
+    });
+
+
+    navigation.querySelectorAll("a").forEach(function (link) {
+
+        link.addEventListener("click", closeNavigation);
+
+    });
+
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !navigation.contains(event.target) &&
+            !menuToggle.contains(event.target)
+        ) {
+
+            closeNavigation();
+
+        }
+
+    });
+
+
+    window.addEventListener("resize", function () {
+
+        if (window.innerWidth > 900) {
+
+            closeNavigation();
+
+        }
+
+    });
+
+});
+
+</script>
+
+
 </body>
+
 </html>
