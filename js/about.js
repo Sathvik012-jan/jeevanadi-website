@@ -1,34 +1,74 @@
-/* =========================================================
+
+/* ============================================================
    JEEVA NADI MINISTRIES
    ABOUT PAGE JAVASCRIPT
-   ========================================================= */
+   ------------------------------------------------------------
+   VERSION 2.0
+
+   Features:
+   01. Header scroll effect
+   02. Smooth anchor navigation
+   03. Accessible scroll reveal
+   04. Pastor image interaction
+   05. Staggered section animations
+   06. Active navigation detection
+   07. Image loading error handling
+   08. Video playback management
+   09. Video lazy loading
+   10. Reduced motion accessibility
+   11. Performance-conscious event handling
+
+   No external libraries required.
+============================================================ */
+
+
+"use strict";
+
+
+/* ============================================================
+   01. INITIALIZATION
+============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       HEADER SCROLL EFFECT
-    ===================================================== */
+    const body = document.body;
+
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+
+    /* ========================================================
+       02. HEADER SCROLL EFFECT
+    ======================================================== */
 
     const header = document.getElementById("mainHeader");
 
     if (header) {
 
-        window.addEventListener("scroll", () => {
+        const updateHeader = () => {
 
-            if (window.scrollY > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
+            header.classList.toggle(
+                "scrolled",
+                window.scrollY > 50
+            );
 
-        });
+        };
+
+        updateHeader();
+
+        window.addEventListener(
+            "scroll",
+            updateHeader,
+            { passive: true }
+        );
 
     }
 
 
-    /* =====================================================
-       SMOOTH SCROLL
-    ===================================================== */
+    /* ========================================================
+       03. SMOOTH INTERNAL NAVIGATION
+    ======================================================== */
 
     const scrollLinks = document.querySelectorAll(
         'a[href^="#"]'
@@ -36,124 +76,124 @@ document.addEventListener("DOMContentLoaded", () => {
 
     scrollLinks.forEach(link => {
 
-        link.addEventListener("click", function (event) {
+        link.addEventListener("click", event => {
 
-            const targetId = this.getAttribute("href");
+            const targetId = link.getAttribute("href");
 
-            if (!targetId || targetId === "#") {
+            if (
+                !targetId ||
+                targetId === "#" ||
+                !targetId.startsWith("#")
+            ) {
                 return;
             }
 
-            const target = document.querySelector(targetId);
+            let target;
 
-            if (target) {
-
-                event.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
+            try {
+                target = document.querySelector(targetId);
+            } catch {
+                return;
             }
+
+            if (!target) {
+                return;
+            }
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: prefersReducedMotion
+                    ? "auto"
+                    : "smooth",
+
+                block: "start"
+            });
 
         });
 
     });
 
 
-    /* =====================================================
-       SCROLL REVEAL ANIMATION
-    ===================================================== */
+    /* ========================================================
+       04. SCROLL REVEAL ANIMATIONS
+
+       Elements become visible when they enter the viewport.
+
+       If IntersectionObserver is unavailable, the elements
+       remain visible instead of being hidden permanently.
+    ======================================================== */
+
+    const revealSelectors = [
+        ".section-heading",
+        ".about-container",
+        ".gallery-card",
+        ".ministry-card",
+        ".senior-pastor-container",
+        ".pastor-heading",
+        ".ministry-item",
+        ".pastor-mission",
+        ".video-card"
+    ];
 
     const revealElements = document.querySelectorAll(
-        ".section-heading, " +
-        ".about-container, " +
-        ".gallery-card, " +
-        ".ministry-card, " +
-        ".pastor-container, " +
-        ".video-card, " +
-        ".senior-pastor-container, " +
-        ".pastor-heading, " +
-        ".ministry-item, " +
-        ".pastor-mission"
+        revealSelectors.join(", ")
     );
 
 
-    revealElements.forEach(element => {
+    if (
+        !prefersReducedMotion &&
+        "IntersectionObserver" in window
+    ) {
 
-        element.classList.add("reveal");
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
 
-    });
+                entries.forEach(entry => {
 
+                    if (entry.isIntersecting) {
 
-    const revealObserver = new IntersectionObserver(
-        (entries, observer) => {
+                        entry.target.classList.add("visible");
 
-            entries.forEach(entry => {
+                        observer.unobserve(entry.target);
 
-                if (entry.isIntersecting) {
+                    }
 
-                    entry.target.classList.add("visible");
+                });
 
-                    observer.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.12
-        }
-    );
-
-
-    revealElements.forEach(element => {
-
-        revealObserver.observe(element);
-
-    });
-
-
-    /* =====================================================
-       SENIOR PASTOR IMAGE PARALLAX
-    ===================================================== */
-
-    const pastorImage = document.querySelector(
-        ".pastor-image-frame"
-    );
-
-    if (pastorImage) {
-
-        window.addEventListener("scroll", () => {
-
-            const rect =
-                pastorImage.getBoundingClientRect();
-
-            const windowHeight = window.innerHeight;
-
-            if (
-                rect.top < windowHeight &&
-                rect.bottom > 0
-            ) {
-
-                const movement =
-                    (windowHeight / 2 - rect.top) * 0.015;
-
-                pastorImage.style.transform =
-                    `rotate(-1deg) translateY(${movement}px)`;
-
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -35px 0px"
             }
+        );
+
+
+        revealElements.forEach(element => {
+
+            element.classList.add("reveal");
+
+            revealObserver.observe(element);
+
+        });
+
+    } else {
+
+        revealElements.forEach(element => {
+
+            element.classList.add("visible");
 
         });
 
     }
 
 
-    /* =====================================================
-       SENIOR PASTOR IMAGE HOVER
-    ===================================================== */
+    /* ========================================================
+       05. PASTOR IMAGE INTERACTION
+
+       A single interaction system avoids conflicts between
+       scroll-based transforms and hover-based transforms.
+    ======================================================== */
 
     const pastorFrame = document.querySelector(
         ".pastor-image-frame"
@@ -161,127 +201,163 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (pastorFrame) {
 
-        pastorFrame.addEventListener(
-            "mouseenter",
-            () => {
+        if (!prefersReducedMotion) {
 
-                pastorFrame.classList.add("image-hover");
+            pastorFrame.addEventListener(
+                "mouseenter",
+                () => {
 
-            }
-        );
+                    pastorFrame.classList.add("image-hover");
 
-        pastorFrame.addEventListener(
-            "mouseleave",
-            () => {
+                }
+            );
 
-                pastorFrame.classList.remove("image-hover");
+            pastorFrame.addEventListener(
+                "mouseleave",
+                () => {
 
-            }
-        );
+                    pastorFrame.classList.remove("image-hover");
+
+                }
+            );
+
+        }
 
     }
 
 
-    /* =====================================================
-       MINISTRY HIGHLIGHT STAGGER
-    ===================================================== */
+    /* ========================================================
+       06. STAGGERED CARD ANIMATIONS
 
-    const ministryItems = document.querySelectorAll(
-        ".ministry-item"
-    );
+       Small visual delays create a smooth sequence when
+       cards appear on the screen.
+    ======================================================== */
 
-    ministryItems.forEach((item, index) => {
-
-        item.style.transitionDelay =
-            `${index * 0.1}s`;
-
-    });
-
-
-    /* =====================================================
-       GALLERY STAGGER
-    ===================================================== */
-
-    const galleryCards = document.querySelectorAll(
-        ".gallery-card"
-    );
-
-    galleryCards.forEach((card, index) => {
-
-        card.style.transitionDelay =
-            `${index * 0.08}s`;
-
-    });
+    const staggerGroups = [
+        {
+            selector: ".ministry-item",
+            delay: 75
+        },
+        {
+            selector: ".gallery-card",
+            delay: 65
+        },
+        {
+            selector: ".ministry-card",
+            delay: 85
+        },
+        {
+            selector: ".video-card",
+            delay: 90
+        }
+    ];
 
 
-    /* =====================================================
-       MINISTRY CARDS STAGGER
-    ===================================================== */
+    if (!prefersReducedMotion) {
 
-    const ministryCards = document.querySelectorAll(
-        ".ministry-card"
-    );
+        staggerGroups.forEach(group => {
 
-    ministryCards.forEach((card, index) => {
+            const elements = document.querySelectorAll(
+                group.selector
+            );
 
-        card.style.transitionDelay =
-            `${index * 0.1}s`;
+            elements.forEach((element, index) => {
 
-    });
+                element.style.setProperty(
+                    "--stagger-delay",
+                    `${index * group.delay}ms`
+                );
 
+            });
 
-    /* =====================================================
-       VIDEO CARDS STAGGER
-    ===================================================== */
+        });
 
-    const videoCards = document.querySelectorAll(
-        ".video-card"
-    );
-
-    videoCards.forEach((card, index) => {
-
-        card.style.transitionDelay =
-            `${index * 0.1}s`;
-
-    });
+    }
 
 
-    /* =====================================================
-       ACTIVE NAVIGATION
-       ===================================================== */
+    /* ========================================================
+       07. ACTIVE NAVIGATION
 
-    const currentPage =
+       Main website navigation:
+       Books    -> books.html
+       Ministry -> index.html
+       About    -> about.html
+       Pastors  -> pastors.html
+       Sermons  -> sermons.html
+       Events   -> events.html
+       Contact  -> contact.html
+    ======================================================== */
+
+    const currentPage = (
         window.location.pathname
             .split("/")
-            .pop()
-            .toLowerCase();
+            .filter(Boolean)
+            .pop() || "index.html"
+    ).toLowerCase();
 
-    const navLinks =
-        document.querySelectorAll("nav a");
+
+    const navLinks = document.querySelectorAll(
+        ".main-header nav a"
+    );
+
 
     navLinks.forEach(link => {
 
-        const linkPage =
-            link.getAttribute("href")
-                ?.split("/")
-                .pop()
-                .toLowerCase();
+        const href = link.getAttribute("href");
 
-        if (linkPage === currentPage) {
+        if (!href || href.startsWith("#")) {
+            return;
+        }
 
-            link.classList.add("active");
+        let linkPage;
+
+        try {
+
+            linkPage = new URL(
+                href,
+                window.location.href
+            ).pathname
+                .split("/")
+                .filter(Boolean)
+                .pop();
+
+        } catch {
+            return;
+        }
+
+        linkPage = (linkPage || "index.html").toLowerCase();
+
+        const isCurrentPage = linkPage === currentPage;
+
+        link.classList.toggle(
+            "active",
+            isCurrentPage
+        );
+
+        if (isCurrentPage) {
+
+            link.setAttribute(
+                "aria-current",
+                "page"
+            );
+
+        } else {
+
+            link.removeAttribute("aria-current");
 
         }
 
     });
 
 
-    /* =====================================================
-       IMAGE ERROR HANDLING
-       ===================================================== */
+    /* ========================================================
+       08. IMAGE ERROR HANDLING
 
-    const images =
-        document.querySelectorAll("img");
+       Adds an error class to images that fail to load.
+       Does not replace images with invented paths.
+    ======================================================== */
+
+    const images = document.querySelectorAll("img");
 
     images.forEach(image => {
 
@@ -289,30 +365,268 @@ document.addEventListener("DOMContentLoaded", () => {
 
             image.classList.add("image-error");
 
+            console.warn(
+                "Image could not be loaded:",
+                image.getAttribute("src")
+            );
+
+        });
+
+        image.addEventListener("load", () => {
+
+            image.classList.remove("image-error");
+
         });
 
     });
 
 
-    /* =====================================================
-       REDUCED MOTION ACCESSIBILITY
-       ===================================================== */
+    /* ========================================================
+       09. VIDEO MANAGEMENT
 
-    const prefersReducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
+       Features:
+       - Only one video plays at a time.
+       - Pauses other videos when a new video starts.
+       - Supports portrait and landscape videos.
+       - Preserves native video controls.
+       - Does not automatically play videos.
+       - Does not force videos to restart.
+    ======================================================== */
+
+    const videos = document.querySelectorAll(
+        ".video-wrapper video"
+    );
+
+
+    videos.forEach(video => {
+
+        /* Ensure browser-native controls are available. */
+
+        if (!video.hasAttribute("controls")) {
+
+            video.setAttribute("controls", "");
+
+        }
+
+        /* Inline playback on supported mobile browsers. */
+
+        video.setAttribute(
+            "playsinline",
+            ""
+        );
+
+        /*
+           Avoid automatic playback.
+
+           Videos should play only when the visitor
+           deliberately presses the play button.
+        */
+
+        video.autoplay = false;
+
+
+        /* Pause every other video when this one starts. */
+
+        video.addEventListener("play", () => {
+
+            videos.forEach(otherVideo => {
+
+                if (
+                    otherVideo !== video &&
+                    !otherVideo.paused
+                ) {
+
+                    otherVideo.pause();
+
+                }
+
+            });
+
+        });
+
+
+        /* Log media errors without breaking the page. */
+
+        video.addEventListener("error", () => {
+
+            console.warn(
+                "Video could not be loaded:",
+                video.currentSrc ||
+                video.querySelector("source")?.src ||
+                "Unknown video source"
+            );
+
+            video.classList.add("video-error");
+
+        });
+
+
+        video.addEventListener("loadedmetadata", () => {
+
+            video.classList.remove("video-error");
+
+        });
+
+    });
+
+
+    /* ========================================================
+       10. VIDEO VISIBILITY OPTIMIZATION
+
+       Videos are not automatically played.
+
+       If the visitor scrolls away from a playing video,
+       it is paused to avoid unnecessary background playback.
+    ======================================================== */
+
+    if (
+        "IntersectionObserver" in window &&
+        !prefersReducedMotion
+    ) {
+
+        const videoObserver = new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        !entry.isIntersecting &&
+                        entry.target instanceof HTMLVideoElement
+                    ) {
+
+                        if (!entry.target.paused) {
+
+                            entry.target.pause();
+
+                        }
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.05
+            }
+        );
+
+
+        videos.forEach(video => {
+
+            videoObserver.observe(video);
+
+        });
+
+    }
+
+
+    /* ========================================================
+       11. OPTIONAL VIDEO SOURCE LAZY LOADING
+
+       For this feature, HTML video sources should use:
+
+       <video controls playsinline preload="none">
+           <source
+               data-src="images/example.mp4"
+               type="video/mp4"
+           >
+       </video>
+
+       The source is loaded when the video approaches
+       the visible screen area.
+
+       Existing src attributes are left unchanged.
+    ======================================================== */
+
+    const lazyVideoSources = document.querySelectorAll(
+        ".video-wrapper video source[data-src]"
+    );
+
+
+    if (
+        lazyVideoSources.length &&
+        "IntersectionObserver" in window
+    ) {
+
+        const lazyVideoObserver = new IntersectionObserver(
+            (entries, observer) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        const video = entry.target;
+
+                        const source = video.querySelector(
+                            "source[data-src]"
+                        );
+
+                        if (source) {
+
+                            source.src = source.dataset.src;
+
+                            source.removeAttribute("data-src");
+
+                            video.load();
+
+                        }
+
+                        observer.unobserve(video);
+
+                    }
+
+                });
+
+            },
+            {
+                rootMargin: "250px 0px"
+            }
+        );
+
+
+        lazyVideoSources.forEach(source => {
+
+            const video = source.closest("video");
+
+            if (video) {
+
+                lazyVideoObserver.observe(video);
+
+            }
+
+        });
+
+    }
+
+
+    /* ========================================================
+       12. REDUCED MOTION ACCESSIBILITY
+    ======================================================== */
 
     if (prefersReducedMotion) {
 
         document.documentElement.style.scrollBehavior =
             "auto";
 
+        document.querySelectorAll(
+            ".reveal, .visible"
+        ).forEach(element => {
+
+            element.classList.add("visible");
+
+        });
+
     }
 
 
-    console.log(
-        "Jeeva Nadi Ministries — About Page Loaded"
+    /* ========================================================
+       13. PAGE READY
+    ======================================================== */
+
+    body.classList.add("page-loaded");
+
+    console.info(
+        "Jeeva Nadi Ministries | About Page | Version 2.0"
     );
 
 });
