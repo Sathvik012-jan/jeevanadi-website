@@ -8592,7 +8592,7 @@ body.books-popup-open {
 .pastors-page .pastors-section-heading h2 {
     margin-bottom: 20px;
 
-    color: var(--pastor-navy);
+    color: #ffd700;
 
     font-family: "Cinzel", serif;
 
@@ -9942,7 +9942,7 @@ body.books-popup-open {
 .sermon-intro h2,
 .sermon-library-heading h2 {
     margin: 0;
-    color: var(--sermon-navy);
+    color: #a7ad48;
     font-family: "Cinzel", serif;
     font-size: clamp(26px, 4vw, 39px);
     font-weight: 600;
@@ -12559,4 +12559,58 @@ body.books-popup-open {
 .contact-page .contact-intro p {
     color: #555;
     line-height: 1.8;
+}
+
+/* ==========================================
+   GOLD HIGHLIGHT FIX — SERMONS & PASTORS
+========================================== */
+
+/* SERMONS PAGE */
+.sermons-page .sermon-hero h1 span {
+    background: linear-gradient(
+        135deg,
+        #d4af37,
+        #f3d98b,
+        #d4af37
+    );
+
+    color: #061a40 !important;
+
+    -webkit-text-fill-color: #061a40;
+
+    padding: 5px 14px;
+    border-radius: 5px;
+}
+
+
+/* PASTORS PAGE */
+.pastors-page .pastors-section-label {
+    background: linear-gradient(
+        135deg,
+        #d4af37,
+        #f3d98b,
+        #d4af37
+    );
+
+    color: #061a40 !important;
+
+    padding: 7px 16px;
+    border-radius: 5px;
+}
+/* =====================================================
+   PASTORS — GOLD SECTION LABEL
+===================================================== */
+
+.pastors-page .pastors-introduction .pastors-section-label {
+    display: inline-block;
+    padding: 8px 18px;
+
+    color: #071b3b !important;
+    background: linear-gradient(135deg, #d6b66b, #f2dfad, #d6b66b);
+
+    border-radius: 4px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
 }
