@@ -13970,3 +13970,147 @@ main, section, article, .pastors-grid, .sermon-grid,
         background: rgba(212, 175, 55, 0.12) !important;
     }
 }
+
+
+
+
+/* =========================================================
+   FINAL FIX — PASTORS & SERMONS HAMBURGER ICON
+   Supports both direct-span and nested menu-line HTML.
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .pastors-page #menuToggle,
+    .sermons-page #menuToggle {
+        display: inline-flex !important;
+        flex: 0 0 44px;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0 !important;
+        margin: 0;
+        border: 1px solid rgba(212, 175, 55, 0.7);
+        border-radius: 9px;
+        background: linear-gradient(145deg, #102b50, #071b3b);
+        cursor: pointer;
+        box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* OPTION 1: Three direct child spans */
+
+    .pastors-page #menuToggle > span:not(.menu-toggle-inner),
+    .sermons-page #menuToggle > span:not(.menu-toggle-inner) {
+        display: block;
+        width: 22px;
+        height: 2px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 5px;
+        background: #f3d98b;
+        transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+
+    .pastors-page #menuToggle:not(:has(.menu-toggle-inner)),
+    .sermons-page #menuToggle:not(:has(.menu-toggle-inner)) {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    /* OPTION 2: Nested premium hamburger structure */
+
+    .pastors-page #menuToggle .menu-toggle-inner,
+    .sermons-page #menuToggle .menu-toggle-inner {
+        position: relative;
+        display: block;
+        flex: 0 0 22px;
+        width: 22px;
+        height: 18px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pastors-page #menuToggle .menu-line,
+    .sermons-page #menuToggle .menu-line {
+        position: absolute;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 5px;
+        background: #f3d98b;
+        transition: top 0.25s ease, transform 0.25s ease,
+                    opacity 0.2s ease, width 0.25s ease;
+    }
+
+    .pastors-page #menuToggle .menu-line-top,
+    .sermons-page #menuToggle .menu-line-top {
+        top: 1px;
+    }
+
+    .pastors-page #menuToggle .menu-line-middle,
+    .sermons-page #menuToggle .menu-line-middle {
+        top: 8px;
+        width: 75%;
+    }
+
+    .pastors-page #menuToggle .menu-line-bottom,
+    .sermons-page #menuToggle .menu-line-bottom {
+        top: 15px;
+    }
+
+    /* Direct-span animation */
+
+    .pastors-page #menuToggle.active > span:first-child,
+    .sermons-page #menuToggle.active > span:first-child {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .pastors-page #menuToggle.active > span:nth-child(2),
+    .sermons-page #menuToggle.active > span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .pastors-page #menuToggle.active > span:last-child,
+    .sermons-page #menuToggle.active > span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Nested-span animation */
+
+    .pastors-page #menuToggle[aria-expanded="true"] .menu-line-top,
+    .sermons-page #menuToggle[aria-expanded="true"] .menu-line-top {
+        top: 8px;
+        transform: rotate(45deg);
+    }
+
+    .pastors-page #menuToggle[aria-expanded="true"] .menu-line-middle,
+    .sermons-page #menuToggle[aria-expanded="true"] .menu-line-middle {
+        opacity: 0;
+    }
+
+    .pastors-page #menuToggle[aria-expanded="true"] .menu-line-bottom,
+    .sermons-page #menuToggle[aria-expanded="true"] .menu-line-bottom {
+        top: 8px;
+        transform: rotate(-45deg);
+    }
+
+    .pastors-page #menuToggle:hover,
+    .sermons-page #menuToggle:hover {
+        border-color: #f3d98b;
+        background: linear-gradient(145deg, #173b67, #0a2346);
+    }
+
+    .pastors-page #menuToggle:focus-visible,
+    .sermons-page #menuToggle:focus-visible {
+        outline: 3px solid #f3d98b;
+        outline-offset: 3px;
+    }
+}
+
