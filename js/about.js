@@ -3,8 +3,7 @@
    JEEVA NADI MINISTRIES
    ABOUT PAGE JAVASCRIPT
    ------------------------------------------------------------
-   VERSION 2.0
-
+   VERSION 2.0 
    Features:
    01. Header scroll effect
    02. Smooth anchor navigation
