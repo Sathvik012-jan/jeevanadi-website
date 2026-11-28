@@ -12697,30 +12697,42 @@ body.books-popup-open {
 }
 
 
+
 /* ============================================================
-   23. MINISTRY HOME PAGE — MOBILE NAVIGATION
-   HTML hooks: #menuToggle, #primaryNavigation, ul.show
-   JavaScript toggles .show on the navigation UL.
-   These ID selectors are unique to the Ministry homepage.
+   23. MINISTRY HOME PAGE — RESPONSIVE MOBILE NAVIGATION
+   Matches About Page Mobile Navigation
+   HTML: #menuToggle, #primaryNavigation
+   JavaScript: toggles .show on the navigation UL
 ============================================================ */
 
 #menuToggle {
     display: none;
 }
 
-@media (max-width: 768px) {
-    /* Keep the Ministry header on one row. */
+/* TABLET AND MOBILE NAVIGATION */
+
+@media (max-width: 850px) {
+
+    /* Header layout */
+
     header:has(#primaryNavigation) {
         position: sticky;
         top: 0;
         z-index: 1100;
+
         display: flex;
+        flex-direction: row;
         flex-wrap: nowrap;
+
         align-items: center;
         justify-content: space-between;
+
         gap: 12px;
+
         min-height: 72px;
         padding: 10px 16px;
+
+        overflow: visible;
     }
 
     header:has(#primaryNavigation) .logo {
@@ -12731,68 +12743,105 @@ body.books-popup-open {
     header:has(#primaryNavigation) .logo img {
         width: auto;
         height: 42px;
+
         flex: 0 0 auto;
+
         margin-right: 9px;
     }
 
     header:has(#primaryNavigation) .logo h2 {
         min-width: 0;
+
         font-size: clamp(13px, 3.8vw, 18px);
         line-height: 1.25;
         letter-spacing: 0.4px;
-        overflow-wrap: normal;
     }
 
+    /* HAMBURGER BUTTON */
+
     #menuToggle {
-        display: inline-flex;
+        display: inline-flex !important;
+
         flex: 0 0 46px;
+
         width: 46px;
         height: 46px;
+
         align-items: center;
         justify-content: center;
+
         margin-left: auto;
     }
 
+    /* DROPDOWN CONTAINER */
+
     #primaryNavigation {
         position: absolute;
+
         top: 100%;
         left: 0;
         right: 0;
+
         z-index: 1101;
+
         display: block;
+
         width: 100%;
+
         margin: 0;
         padding: 0;
+
         background: transparent;
+
         border: 0;
         box-shadow: none;
     }
 
+    /* HIDE MENU OPTIONS INITIALLY */
+
     #primaryNavigation > ul {
         display: none;
+
         flex-direction: column;
         align-items: stretch;
         justify-content: flex-start;
+
         gap: 0;
+
         width: 100%;
+
         max-height: min(72vh, 560px);
+
         overflow-y: auto;
+
         margin: 0;
-        padding: 8px 16px 14px;
+
+        padding: 12px 18px 16px;
+
         list-style: none;
+
         background: #041326;
-        border-top: 1px solid rgba(212, 175, 55, 0.28);
+
+        border-top: 1px solid rgba(212, 175, 55, 0.35);
+
         box-shadow: 0 16px 28px rgba(0, 0, 0, 0.25);
     }
 
+    /* SHOW MENU WHEN HAMBURGER IS CLICKED */
+
     #primaryNavigation > ul.show {
-        display: flex;
+        display: flex !important;
     }
+
+    /* MENU ITEMS */
 
     #primaryNavigation > ul > li {
         display: block;
+
         width: 100%;
+
         margin: 0;
+
         border-bottom: 1px solid rgba(255, 255, 255, 0.09);
     }
 
@@ -12800,15 +12849,24 @@ body.books-popup-open {
         border-bottom: 0;
     }
 
+    /* MENU LINKS */
+
     #primaryNavigation > ul > li > a {
         display: block;
+
         width: 100%;
+
         padding: 13px 8px;
-        color: #fff;
+
+        color: #ffffff;
+
         font-size: 13px;
         line-height: 1.5;
+
         text-align: left;
+
         white-space: normal;
+
         border-radius: 4px;
     }
 
@@ -12816,15 +12874,23 @@ body.books-popup-open {
         display: none;
     }
 
+    /* HOVER AND ACTIVE LINKS */
+
     #primaryNavigation > ul > li > a:hover,
+    #primaryNavigation > ul > li > a.active,
     #primaryNavigation > ul > li > a[aria-current="page"] {
         color: #ffd700;
+
         background: rgba(201, 164, 92, 0.12);
+
         transform: none;
     }
 }
 
+/* SMALL MOBILE SCREENS */
+
 @media (max-width: 380px) {
+
     header:has(#primaryNavigation) {
         padding-right: 12px;
         padding-left: 12px;
@@ -12843,6 +12909,23 @@ body.books-popup-open {
         flex-basis: 42px;
         width: 42px;
         height: 42px;
+    }
+}
+
+/* DESKTOP — HIDE HAMBURGER */
+
+@media (min-width: 851px) {
+
+    #menuToggle {
+        display: none !important;
+    }
+
+    #primaryNavigation {
+        position: static;
+    }
+
+    #primaryNavigation > ul {
+        display: flex;
     }
 }
 
