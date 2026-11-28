@@ -10,87 +10,87 @@ document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
 
+
     /* =====================================================
-       01. MOBILE NAVIGATION
+       01. MOBILE NAVIGATION — FIXED
     ===================================================== */
 
     const menuToggle = document.getElementById("menuToggle");
     const navigation = document.getElementById("primaryNavigation");
+    const navigationList = navigation
+        ? navigation.querySelector("ul")
+        : null;
 
-    if (menuToggle && navigation) {
+    if (menuToggle && navigation && navigationList) {
+
+        const openMenu = () => {
+            navigationList.classList.add("show");
+            menuToggle.classList.add("active");
+
+            menuToggle.setAttribute("aria-expanded", "true");
+            menuToggle.setAttribute("aria-label", "Close navigation menu");
+        };
 
         const closeMenu = () => {
-
-            navigation.classList.remove("open");
+            navigationList.classList.remove("show");
             menuToggle.classList.remove("active");
 
             menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.setAttribute(
-                "aria-label",
-                "Open navigation menu"
-            );
-
+            menuToggle.setAttribute("aria-label", "Open navigation menu");
         };
 
+        menuToggle.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
 
-        menuToggle.addEventListener("click", () => {
+            const isOpen = navigationList.classList.contains("show");
 
-            const isOpen = navigation.classList.toggle("open");
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
 
-            menuToggle.classList.toggle("active", isOpen);
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                String(isOpen)
+            console.log(
+                "Jeeva Nadi: Mobile navigation",
+                isOpen ? "CLOSED" : "OPENED"
             );
-
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen
-                    ? "Close navigation menu"
-                    : "Open navigation menu"
-            );
-
         });
 
-
-        navigation.querySelectorAll("a").forEach(link => {
-
+        navigationList.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", closeMenu);
-
         });
 
-
-        document.addEventListener("click", event => {
-
+        document.addEventListener("click", (event) => {
             if (
                 !navigation.contains(event.target) &&
                 !menuToggle.contains(event.target)
             ) {
                 closeMenu();
             }
-
         });
 
-
-        document.addEventListener("keydown", event => {
-
+        document.addEventListener("keydown", (event) => {
             if (event.key === "Escape") {
                 closeMenu();
             }
-
         });
 
-
         window.addEventListener("resize", () => {
-
             if (window.innerWidth > 850) {
                 closeMenu();
             }
-
         });
 
+        console.log("Jeeva Nadi: Mobile navigation initialized.");
+
+    } else {
+        console.error(
+            "Jeeva Nadi: Mobile navigation elements not found.",
+            { menuToggle, navigation, navigationList }
+        );
     }
+
 
 
     /* =====================================================
@@ -251,4 +251,3 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 });
-
