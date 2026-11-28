@@ -2209,7 +2209,7 @@ function setupWristbands() {
 
     updateWristbandSelection();
 }
-
+ 
 
 /* ============================================================
    26. PROMISE CARDS PRICING & IMAGE CONFIGURATION
