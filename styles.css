@@ -13610,3 +13610,280 @@ main, section, article, .pastors-grid, .sermon-grid,
     }
 
 }
+
+
+/* =====================================================
+   CONTACT PAGE — MOBILE HAMBURGER MENU FIX
+   Add this at the VERY END of styles.css
+===================================================== */
+
+@media (max-width: 850px) {
+
+    body.contact-page .main-header {
+        position: sticky !important;
+        top: 0;
+        z-index: 3000;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 70px;
+        padding: 10px 16px;
+        background: #061a40;
+    }
+
+    /* Hamburger button */
+    body.contact-page #menuToggle {
+        display: inline-flex !important;
+        flex: 0 0 44px;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        padding: 9px;
+        margin-left: auto;
+        border: 1px solid #d4af37;
+        border-radius: 7px;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    body.contact-page #menuToggle span {
+        display: block;
+        width: 23px;
+        height: 2px;
+        margin: 0;
+        background: #f3d98b;
+        border-radius: 2px;
+        transition: 0.25s ease;
+    }
+
+    /* Hamburger animation */
+    body.contact-page #menuToggle.active span:first-child {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    body.contact-page #menuToggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    body.contact-page #menuToggle.active span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Navigation dropdown container */
+    body.contact-page #primaryNavigation {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 3001;
+        display: block !important;
+        width: 100%;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Hide links until hamburger is clicked */
+    body.contact-page #primaryNavigation > ul {
+        display: none !important;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+        max-height: 70vh;
+        margin: 0;
+        padding: 10px 16px;
+        overflow-y: auto;
+        list-style: none;
+        background: #041326;
+        border-top: 1px solid rgba(212, 175, 55, 0.4);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Show links when JavaScript adds .show */
+    body.contact-page #primaryNavigation > ul.show {
+        display: flex !important;
+    }
+
+    body.contact-page #primaryNavigation > ul > li {
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    body.contact-page #primaryNavigation > ul > li > a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        min-height: 46px;
+        padding: 12px 10px;
+        color: #ffffff;
+        font-size: 13px;
+        text-decoration: none;
+    }
+
+    body.contact-page #primaryNavigation > ul > li > a:hover,
+    body.contact-page #primaryNavigation > ul > li > a.active {
+        color: #ffd700;
+        background: rgba(212, 175, 55, 0.12);
+    }
+}
+
+@media (min-width: 851px) {
+    body.contact-page #menuToggle {
+        display: none !important;
+    }
+
+    body.contact-page #primaryNavigation {
+        position: static;
+        display: block;
+    }
+
+    body.contact-page #primaryNavigation > ul {
+        display: flex;
+    }
+}
+
+
+/* =====================================================
+   MOBILE NAVIGATION — FORCE DROPDOWN VISIBILITY
+===================================================== */
+
+@media (max-width: 850px) {
+
+    body.contact-page #mainHeader {
+        position: relative !important;
+        overflow: visible !important;
+        z-index: 9999 !important;
+    }
+
+    body.contact-page #primaryNavigation {
+        position: absolute !important;
+        display: block !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        z-index: 10000 !important;
+    }
+
+    body.contact-page #primaryNavigation ul {
+        display: none !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: 70vh !important;
+        overflow-y: auto !important;
+        margin: 0 !important;
+        padding: 12px 18px !important;
+        background: #041326 !important;
+        list-style: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    body.contact-page #primaryNavigation ul.show {
+        display: flex !important;
+    }
+
+    body.contact-page #primaryNavigation ul li {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    body.contact-page #primaryNavigation ul li a {
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        min-height: 48px !important;
+        color: #ffffff !important;
+        padding: 12px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+/* ========================================================
+   CONTACT PAGE — MOBILE HAMBURGER MENU FIX
+======================================================== */
+
+@media screen and (max-width: 850px) {
+
+    /* Header must allow the dropdown to appear */
+    body.contact-page #mainHeader {
+        position: relative !important;
+        overflow: visible !important;
+        z-index: 9999 !important;
+    }
+
+    /* Navigation dropdown container */
+    body.contact-page #primaryNavigation {
+        position: absolute !important;
+        display: block !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        z-index: 10000 !important;
+        background: #041326 !important;
+    }
+
+    /* Hide menu options by default */
+    body.contact-page #primaryNavigation > ul {
+        display: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        max-height: 70vh !important;
+        overflow-y: auto !important;
+        margin: 0 !important;
+        padding: 12px 18px !important;
+        list-style: none !important;
+        background: #041326 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Show menu options when hamburger is clicked */
+    body.contact-page #primaryNavigation > ul.show {
+        display: flex !important;
+    }
+
+    /* Individual menu items */
+    body.contact-page #primaryNavigation > ul li {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* Navigation links */
+    body.contact-page #primaryNavigation > ul li a {
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        min-height: 48px !important;
+        padding: 12px 15px !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Hover and active links */
+    body.contact-page #primaryNavigation > ul li a:hover,
+    body.contact-page #primaryNavigation > ul li a.active {
+        color: #d4af37 !important;
+        background: rgba(212, 175, 55, 0.12) !important;
+    }
+}
