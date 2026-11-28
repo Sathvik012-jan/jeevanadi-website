@@ -28,59 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ========================================================
-       01. SERMON SEARCH
-    ======================================================== */
-
-    const searchBox =
-        document.getElementById("sermonSearch");
-
-    const sermonCards =
-        document.querySelectorAll(".sermon-card");
-
-
-    if (searchBox && sermonCards.length) {
-
-        searchBox.addEventListener("input", function () {
-
-            const searchValue =
-                searchBox.value.toLowerCase().trim();
-
-
-            sermonCards.forEach(function (card) {
-
-                const title =
-                    card.querySelector("h3")
-                        ?.textContent.toLowerCase() || "";
-
-
-                const speaker =
-                    card.querySelector(".speaker")
-                        ?.textContent.toLowerCase() || "";
-
-
-                const description =
-                    card.querySelector("p")
-                        ?.textContent.toLowerCase() || "";
-
-
-                const matches =
-                    title.includes(searchValue) ||
-                    speaker.includes(searchValue) ||
-                    description.includes(searchValue);
-
-
-                card.style.display =
-                    matches ? "" : "none";
-
-            });
-
-        });
-
-    }
-
-
-
-    /* ========================================================
        02. REGISTRATION & PAYMENT
     ======================================================== */
 
@@ -872,151 +819,87 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
 /* ========================================================
-   04. MOBILE NAVIGATION
-   PAGE NAVIGATION + RESPONSIVE MENU
+   04. MOBILE NAVIGATION — INTEGRATED FIX
 ======================================================== */
 
-const menuToggle =
-    document.getElementById("menuToggle");
-
-const navMenu =
-    document.getElementById("primaryNavigation");
-
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("primaryNavigation");
+const navList = navMenu
+    ? navMenu.querySelector("ul")
+    : null;
 
 function closeMobileMenu() {
+    if (!menuToggle || !navList) return;
 
-    if (!navMenu) return;
-
-    navMenu.querySelector("ul")?.classList.remove("show");
-
-    menuToggle?.classList.remove("active");
-
-    menuToggle?.setAttribute("aria-expanded", "false");
-
-    menuToggle?.setAttribute(
-        "aria-label",
-        "Open navigation menu"
-    );
-
-    document.body.classList.remove("menu-open");
-
-}
-
-
-function openMobileMenu() {
-
-    if (!navMenu) return;
-
-    navMenu.querySelector("ul")?.classList.add("show");
-
-    menuToggle?.classList.add("active");
-
-    menuToggle?.setAttribute("aria-expanded", "true");
-
-    menuToggle?.setAttribute(
-        "aria-label",
-        "Close navigation menu"
-    );
-
-    document.body.classList.add("menu-open");
-
-}
-
-
-if (menuToggle && navMenu) {
-
-    const navList = navMenu.querySelector("ul");
+    navList.classList.remove("show");
+    menuToggle.classList.remove("active");
 
     menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
 
-    menuToggle.setAttribute(
-        "aria-label",
-        "Open navigation menu"
-    );
+    document.body.classList.remove("menu-open");
+}
 
+function openMobileMenu() {
+    if (!menuToggle || !navList) return;
 
-    /* OPEN / CLOSE MOBILE MENU */
+    navList.classList.add("show");
+    menuToggle.classList.add("active");
+
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Close navigation menu");
+
+    document.body.classList.add("menu-open");
+}
+
+if (menuToggle && navMenu && navList) {
 
     menuToggle.addEventListener("click", function (event) {
-
         event.preventDefault();
-
         event.stopPropagation();
 
-        const isOpen =
-            navList?.classList.contains("show");
-
-        if (isOpen) {
+        if (navList.classList.contains("show")) {
             closeMobileMenu();
         } else {
             openMobileMenu();
         }
-
     });
 
-
-    /* CLOSE MENU AFTER NAVIGATION LINK CLICK */
-
-    navMenu.querySelectorAll("a[href]").forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-            closeMobileMenu();
-
-            /*
-               IMPORTANT:
-               Do not use preventDefault() here.
-               The browser must follow the actual href.
-            */
-
-        });
-
+    navList.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", closeMobileMenu);
     });
-
-
-    /* CLOSE WHEN CLICKING OUTSIDE */
 
     document.addEventListener("click", function (event) {
-
         if (
+            navList.classList.contains("show") &&
             !navMenu.contains(event.target) &&
             !menuToggle.contains(event.target)
         ) {
-
             closeMobileMenu();
-
         }
-
     });
 
-
-    /* CLOSE USING ESCAPE */
-
     document.addEventListener("keydown", function (event) {
-
         if (event.key === "Escape") {
             closeMobileMenu();
         }
-
     });
-
-
-    /* RESET ON DESKTOP */
 
     window.addEventListener("resize", function () {
-
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > 850) {
             closeMobileMenu();
         }
-
     });
 
+    console.log("Jeeva Nadi: Mobile navigation initialized.");
+
+} else {
+    console.warn("Jeeva Nadi: Mobile navigation elements not found.");
 }
 
-
-
-    /* ========================================================
+/* ========================================================
        05. SMOOTH SCROLL
     ======================================================== */
 
