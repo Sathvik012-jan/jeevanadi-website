@@ -1863,266 +1863,410 @@ body.events-page section {
 
 
 /* ============================================================
-   15. FOOTER
+   JEEVA NADI MINISTRIES
+   FAMILY CHRISTMAS CELEBRATION — EVENTS PAGE
+
+   RESPONSIVE FOOTER, NAVIGATION AND PAGE REFINEMENTS
+
+   Design:
+   • Midnight Navy
+   • Antique Gold
+   • Warm Ivory
+   • Elegant Editorial Typography
+
+   Responsive breakpoints:
+   • 1500px — Wide desktop
+   • 1100px — Small laptops
+   • 1024px — Tablets
+   • 820px  — Mobile navigation
+   • 760px  — Mobile content
+   • 400px  — Small phones
+   • 340px  — Very small phones
+
+   Accessibility:
+   • Keyboard-friendly navigation
+   • Touch-friendly mobile controls
+   • Reduced-motion support
+
+   HTML: events.html
+   CSS:  events.css
 ============================================================ */
 
-.site-footer {
+
+/* ============================================================
+   15. FOOTER — DESKTOP FOUNDATION
+============================================================ */
+
+body.events-page .site-footer {
+    width: 100%;
     padding: 65px 22px 0;
 
     background: var(--navy-deep);
     color: var(--white);
 
-    border-top: 1px solid rgba(214,179,106,.38);
+    border-top: 1px solid rgba(214, 179, 106, 0.38);
 }
 
-.footer-content {
+body.events-page .footer-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 28px;
 
+    width: 100%;
     max-width: var(--page-width);
-    margin: auto;
+
+    margin: 0 auto;
 
     text-align: center;
 }
 
-.footer-brand {
+body.events-page .footer-brand {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
 }
 
-.footer-brand > span {
+body.events-page .footer-brand > span {
     color: var(--gold);
     font-size: 36px;
+    flex-shrink: 0;
 }
 
-.footer-brand div {
+body.events-page .footer-brand div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
 }
 
-.footer-brand strong {
+body.events-page .footer-brand strong {
     font-family: var(--display);
     font-size: 20px;
     letter-spacing: 2px;
 }
 
-.footer-brand small {
+body.events-page .footer-brand small {
     color: var(--gold-light);
     font-size: 9px;
     letter-spacing: 3px;
 }
 
-.footer-content > p {
+body.events-page .footer-content > p {
+    max-width: 620px;
+    margin: 0;
+
     color: #ADB6C2;
     font-family: var(--serif);
     font-size: 20px;
+    line-height: 1.7;
 }
 
-.footer-navigation {
+body.events-page .footer-navigation {
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 26px;
+
+    width: 100%;
+    gap: 18px 26px;
 }
 
-.footer-navigation a {
+body.events-page .footer-navigation a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 38px;
+
     color: #AEB7C2;
     font-size: 11px;
-    transition: color var(--transition);
+    white-space: nowrap;
+
+    transition:
+        color var(--transition),
+        opacity var(--transition);
 }
 
-.footer-navigation a:hover {
+body.events-page .footer-navigation a:hover,
+body.events-page .footer-navigation a:focus-visible {
     color: var(--gold-light);
 }
 
-.footer-bottom {
+body.events-page .footer-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+
+    width: 100%;
+    max-width: var(--page-width);
+
     gap: 15px;
 
-    max-width: var(--page-width);
     margin: 50px auto 0;
     padding: 23px 0;
 
-    border-top: 1px solid rgba(255,255,255,.11);
+    border-top: 1px solid rgba(255, 255, 255, 0.11);
 
     color: #8F9AA9;
     font-size: 10px;
+    line-height: 1.7;
+
+    text-align: center;
 }
 
-.footer-bottom a {
+body.events-page .footer-bottom p {
+    margin: 0;
+}
+
+body.events-page .footer-bottom a {
     color: var(--gold-light);
+
     transition: color var(--transition);
 }
 
-.footer-bottom a:hover {
+body.events-page .footer-bottom a:hover,
+body.events-page .footer-bottom a:focus-visible {
     color: var(--white);
 }
 
 
 /* ============================================================
-   16. TABLET AND SMALL LAPTOPS
+   16. GLOBAL RESPONSIVE SAFEGUARDS
 ============================================================ */
 
-@media (max-width: 1100px) {
-    :root {
-        --section-space: 90px;
-    }
+body.events-page {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
-    .nav-container {
-        gap: 15px;
-    }
+body.events-page *,
+body.events-page *::before,
+body.events-page *::after {
+    box-sizing: border-box;
+}
 
-    .desktop-navigation {
-        gap: 12px;
-    }
+body.events-page img {
+    display: block;
+    max-width: 100%;
+}
 
-    .desktop-navigation a {
-        font-size: 10px;
-    }
+body.events-page a {
+    -webkit-tap-highlight-color: transparent;
+}
 
-    .brand-details strong {
-        font-size: 16px;
-    }
-
-    .brand-details small {
-        font-size: 8px;
-        letter-spacing: 2px;
-    }
-
-    .featured-event-inner {
-        gap: 45px;
-    }
-
-    .guest-card {
-        gap: 45px;
-        padding: 40px;
-    }
-
-    .venue-content {
-        padding: 45px 35px;
-    }
+body.events-page section {
+    scroll-margin-top: 85px;
 }
 
 
 /* ============================================================
-   17. MOBILE NAVIGATION
+   17. TABLET AND SMALL LAPTOP REFINEMENTS
 ============================================================ */
 
-@media (max-width: 820px) {
-    .site-header {
-        background: rgba(7,15,28,.96);
+@media (max-width: 1100px) {
+
+    :root {
+        --section-space: 90px;
     }
 
-    .nav-container {
-        min-height: 76px;
+    body.events-page .nav-container {
+        gap: 15px;
     }
 
-    .brand-icon {
-        font-size: 29px;
+    body.events-page .desktop-navigation {
+        gap: 12px;
     }
 
-    .brand-details strong {
+    body.events-page .desktop-navigation a {
+        font-size: 10px;
+    }
+
+    body.events-page .brand-details strong {
         font-size: 16px;
     }
 
-    .desktop-navigation {
+    body.events-page .brand-details small {
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+
+    body.events-page .featured-event-inner {
+        gap: 45px;
+    }
+
+    body.events-page .guest-card {
+        gap: 45px;
+        padding: 40px;
+    }
+
+    body.events-page .venue-content {
+        padding: 45px 35px;
+    }
+
+}
+
+
+/* ============================================================
+   18. MOBILE NAVIGATION
+============================================================ */
+
+@media (max-width: 820px) {
+
+    body.events-page .site-header {
+        background: rgba(7, 15, 28, 0.96);
+    }
+
+    body.events-page .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+        min-height: 76px;
+
+        padding: 0 20px;
+    }
+
+    body.events-page .brand-icon {
+        font-size: 29px;
+    }
+
+    body.events-page .brand-details strong {
+        font-size: 16px;
+    }
+
+    body.events-page .desktop-navigation {
         display: none;
     }
 
-    .mobile-navigation {
+    body.events-page .mobile-navigation {
         display: block;
         position: relative;
+        z-index: 110;
+
+        flex-shrink: 0;
     }
 
-    .mobile-navigation summary {
+    body.events-page .mobile-navigation summary {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        width: 46px;
+        height: 46px;
+
         gap: 6px;
 
-        width: 44px;
-        height: 44px;
-
-        border: 1px solid rgba(214,179,106,.55);
+        border: 1px solid rgba(214, 179, 106, 0.55);
+        border-radius: 4px;
 
         list-style: none;
         cursor: pointer;
+        touch-action: manipulation;
     }
 
-    .mobile-navigation summary::-webkit-details-marker {
+    body.events-page .mobile-navigation summary::-webkit-details-marker {
         display: none;
     }
 
-    .mobile-navigation summary span {
+    body.events-page .mobile-navigation summary::marker {
+        content: "";
+    }
+
+    body.events-page .mobile-navigation summary span {
         display: block;
-        width: 20px;
-        height: 1px;
+
+        width: 21px;
+        height: 2px;
+
         background: var(--gold-light);
-        transition: transform var(--transition), opacity var(--transition);
+
+        transition:
+            transform 0.25s ease,
+            opacity 0.25s ease;
     }
 
-    .mobile-navigation[open] summary span:first-child {
-        transform: translateY(7px) rotate(45deg);
+    body.events-page .mobile-navigation[open] summary span:first-child {
+        transform: translateY(8px) rotate(45deg);
     }
 
-    .mobile-navigation[open] summary span:nth-child(2) {
+    body.events-page .mobile-navigation[open] summary span:nth-child(2) {
         opacity: 0;
     }
 
-    .mobile-navigation[open] summary span:last-child {
-        transform: translateY(-7px) rotate(-45deg);
+    body.events-page .mobile-navigation[open] summary span:last-child {
+        transform: translateY(-8px) rotate(-45deg);
     }
 
-    .mobile-navigation nav {
+    body.events-page .mobile-navigation nav {
         position: absolute;
-        top: calc(100% + 14px);
+        top: calc(100% + 13px);
         right: 0;
+        z-index: 120;
 
         display: flex;
         flex-direction: column;
 
-        width: min(290px, 85vw);
+        width: min(290px, calc(100vw - 30px));
+        max-height: calc(100svh - 110px);
+
         padding: 12px;
+        gap: 3px;
 
-        background: #111D2D;
-        border: 1px solid rgba(214,179,106,.35);
+        overflow-y: auto;
+        overscroll-behavior: contain;
 
-        box-shadow: 0 22px 50px rgba(0,0,0,.4);
+        background: #101827;
+        border: 1px solid rgba(214, 179, 106, 0.4);
 
-        animation: menu-appear .25s ease both;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+
+        animation: events-menu-appear 0.25s ease both;
     }
 
-    .mobile-navigation nav a {
-        padding: 14px 15px;
+    body.events-page .mobile-navigation nav a {
+        display: flex;
+        align-items: center;
 
-        border-bottom: 1px solid rgba(255,255,255,.075);
+        width: 100%;
+        min-height: 46px;
+
+        padding: 12px 15px;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.075);
 
         color: var(--white);
         font-size: 13px;
+        letter-spacing: 0.5px;
+        text-decoration: none;
 
-        transition: color var(--transition), padding var(--transition);
+        transition:
+            color 0.2s ease,
+            background 0.2s ease,
+            padding 0.2s ease;
     }
 
-    .mobile-navigation nav a:last-child {
+    body.events-page .mobile-navigation nav a:last-child {
         border-bottom: 0;
     }
 
-    .mobile-navigation nav a:hover,
-    .mobile-navigation nav a.active {
+    body.events-page .mobile-navigation nav a:hover,
+    body.events-page .mobile-navigation nav a:focus-visible,
+    body.events-page .mobile-navigation nav a.active {
         padding-left: 21px;
+
         color: var(--gold-light);
+        background: rgba(214, 179, 106, 0.09);
     }
+
 }
 
-@keyframes menu-appear {
+@keyframes events-menu-appear {
     from {
         opacity: 0;
         transform: translateY(-8px);
@@ -2136,1034 +2280,786 @@ body.events-page section {
 
 
 /* ============================================================
-   18. MOBILE HERO
+   19. MOBILE HERO
 ============================================================ */
 
 @media (max-width: 760px) {
-    .christmas-hero {
-        min-height: 720px;
-        height: 100svh;
-        max-height: 880px;
-    }
 
-    .hero-image {
-        background-position: 60% center;
-    }
-
-    .hero-shade {
-        background:
-            linear-gradient(
-                180deg,
-                rgba(5,12,24,.79),
-                rgba(5,12,24,.65) 45%,
-                rgba(5,12,24,.94)
-            );
-    }
-
-    .hero-content {
-        margin-top: 60px;
-    }
-
-    .hero-pretitle {
-        gap: 8px;
-        margin-bottom: 23px;
-
-        font-size: 8px;
-        letter-spacing: 2px;
-    }
-
-    .hero-pretitle span {
-        width: 19px;
-    }
-
-    .hero-script {
-        font-size: 31px;
-    }
-
-    .hero-family {
-        font-size: clamp(52px, 14vw, 78px);
-    }
-
-    .hero-christmas {
-        font-size: clamp(47px, 12.5vw, 83px);
-        letter-spacing: -2px;
-    }
-
-    .hero-celebration {
-        font-size: clamp(49px, 13vw, 78px);
-    }
-
-    .hero-separator {
-        margin: 22px 0;
-    }
-
-    .hero-description {
-        max-width: 340px;
-        font-size: 18px;
-    }
-
-    .hero-date {
-        margin-top: 25px;
-    }
-
-    .hero-bottom-line {
-        bottom: 23px;
-        gap: 9px;
-        font-size: 8px;
-    }
-
-    .hero-scroll {
-        display: none;
-    }
-
-    .star-one {
-        left: 6%;
-    }
-
-    .star-two {
-        right: 7%;
-    }
-}
-
-
-/* ============================================================
-   19. MOBILE CONTENT LAYOUT
-============================================================ */
-
-@media (max-width: 760px) {
-    .introduction-section {
-        padding: 82px 22px;
-    }
-
-    .introduction-text {
-        font-size: 19px;
-        line-height: 1.85;
-    }
-
-    .scripture-card {
-        margin-top: 40px;
-        padding: 34px 23px;
-    }
-
-    .scripture-card blockquote {
-        font-size: 22px;
-    }
-
-    .featured-event-section {
-        padding: 85px 22px;
-    }
-
-    .featured-event-inner {
-        grid-template-columns: 1fr;
-        gap: 55px;
-    }
-
-    .featured-copy h2 {
-        font-size: 43px;
-    }
-
-    .featured-copy > p {
-        font-size: 19px;
-    }
-
-    .poster-showcase {
-        max-width: 390px;
-    }
-
-    .guest-section {
-        padding: 85px 18px;
-    }
-
-    .guest-section-header {
-        margin-bottom: 45px;
-    }
-
-    .guest-card {
-        grid-template-columns: 1fr;
-        gap: 38px;
-        padding: 29px 22px;
-    }
-
-    .guest-image-frame {
-        max-width: 285px;
-    }
-
-    .guest-content {
-        text-align: center;
-    }
-
-    .guest-content h3 {
-        font-size: 44px;
-    }
-
-    .guest-divider {
-        margin: 25px auto;
-    }
-
-    .guest-content > p {
-        font-size: 19px;
-        text-align: left;
-    }
-
-    .guest-welcome {
-        justify-content: center;
-    }
-
-    .details-section {
-        padding: 85px 20px;
-    }
-
-    .details-grid {
-        grid-template-columns: 1fr;
-        max-width: 430px;
-        gap: 18px;
-    }
-
-    .detail-card {
-        min-height: 215px;
-    }
-
-    .venue-section {
-        grid-template-columns: 1fr;
-    }
-
-    .venue-photo {
-        min-height: 410px;
-    }
-
-    .venue-content {
-        padding: 65px 30px;
-    }
-
-    .closing-section {
-        padding: 90px 23px;
-    }
-
-    .closing-section > p {
-        font-size: 20px;
-    }
-
-    .contact-section {
-        padding: 85px 20px;
-    }
-
-    .contact-list {
-        flex-direction: column;
-        max-width: 340px;
-        margin: auto;
-    }
-
-    .contact-list a {
-        justify-content: center;
-    }
-
-    .site-footer {
-        padding-top: 55px;
-    }
-
-    .footer-navigation {
-        gap: 18px;
-    }
-}
-
-
-/* ============================================================
-   20. EXTRA SMALL PHONES
-============================================================ */
-
-@media (max-width: 400px) {
-    .brand-details strong {
-        font-size: 14px;
-    }
-
-    .brand-details small {
-        font-size: 7px;
-        letter-spacing: 1.7px;
-    }
-
-    .hero-pretitle {
-        font-size: 7px;
-        letter-spacing: 1.1px;
-    }
-
-    .hero-family {
-        font-size: 51px;
-    }
-
-    .hero-christmas {
-        font-size: clamp(42px, 12vw, 48px);
-        letter-spacing: -1.5px;
-    }
-
-    .hero-celebration {
-        font-size: 47px;
-    }
-
-    .hero-script {
-        font-size: 27px;
-    }
-
-    .hero-description {
-        max-width: 290px;
-        font-size: 16px;
-    }
-
-    .hero-date {
-        padding: 13px 20px;
-    }
-
-    .date-number {
-        font-size: 49px;
-    }
-
-    .hero-bottom-line {
-        gap: 7px;
-        font-size: 7px;
-        letter-spacing: 1.5px;
-    }
-
-    .editorial-heading {
-        font-size: 35px;
-    }
-
-    .guest-card {
-        padding: 25px 17px;
-    }
-
-    .guest-content h3 {
-        font-size: 37px;
-    }
-
-    .closing-date > strong {
-        font-size: 49px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-
-/* ============================================================
-   21. WIDE DESKTOP REFINEMENT
-============================================================ */
-
-@media (min-width: 1500px) {
-    .christmas-hero {
-        min-height: 900px;
-    }
-
-    .hero-content {
-        max-width: 1050px;
-    }
-
-    .featured-event-inner {
-        gap: 110px;
-    }
-}
-
-
-/* ============================================================
-   22. IMAGE AND CONTENT SAFETY
-============================================================ */
-
-.poster-showcase img,
-.guest-image-frame img,
-.venue-photo img {
-    color: var(--text-dark);
-}
-
-.poster-showcase img {
-    min-height: 150px;
-}
-
-.guest-image-frame img {
-    min-height: 220px;
-}
-
-.venue-photo img {
-    background: var(--navy-mid);
-}
-
-
-/* ============================================================
-   23. REDUCED MOTION ACCESSIBILITY
-============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-    }
-
-    .paper-atmosphere {
-        display: none;
-    }
-}
-
-
-/* ============================================================
-   END — JEEVA NADI CHRISTMAS EVENTS PAGE
-============================================================ */
-
-/* ============================================================
-   JEVA NADI MINISTRIES
-   FAMILY CHRISTMAS CELEBRATION
-   MOBILE RESPONSIVE ENHANCEMENTS
-   ============================================================ */
-
-/* ---------- GLOBAL RESPONSIVE SAFEGUARDS ---------- */
-
-.events-page {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-.events-page *,
-.events-page *::before,
-.events-page *::after {
-    box-sizing: border-box;
-}
-
-.events-page img {
-    display: block;
-    max-width: 100%;
-}
-
-.events-page a {
-    -webkit-tap-highlight-color: transparent;
-}
-
-.events-page section {
-    scroll-margin-top: 85px;
-}
-
-/* ---------- TABLETS ---------- */
-
-@media (max-width: 1024px) {
-
-    .nav-container {
-        padding-left: 28px;
-        padding-right: 28px;
-    }
-
-    .desktop-navigation {
-        gap: 19px;
-    }
-
-    .christmas-hero {
-        min-height: 760px;
-    }
-
-    .hero-content {
-        width: min(90%, 760px);
-    }
-
-    .featured-event-inner {
-        gap: 45px;
-    }
-
-    .guest-card {
-        gap: 35px;
-    }
-
-    .details-grid {
-        gap: 18px;
-    }
-
-}
-
-/* ---------- MOBILE NAVIGATION ---------- */
-
-@media (max-width: 760px) {
-
-    .site-header {
-        padding: 0;
-    }
-
-    .nav-container {
-        min-height: 72px;
-        padding: 0 20px;
-    }
-
-    .desktop-navigation {
-        display: none;
-    }
-
-    .mobile-navigation {
-        display: block;
+    body.events-page .christmas-hero {
         position: relative;
-    }
 
-    .mobile-navigation summary {
-        width: 46px;
-        height: 46px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        cursor: pointer;
-        list-style: none;
-        border: 1px solid rgba(214, 179, 106, 0.45);
-        border-radius: 4px;
-    }
-
-    .mobile-navigation summary::-webkit-details-marker {
-        display: none;
-    }
-
-    .mobile-navigation summary span {
-        display: block;
-        width: 21px;
-        height: 2px;
-        background: #D6B36A;
-        transition: transform 0.25s ease, opacity 0.25s ease;
-    }
-
-    .mobile-navigation[open] summary span:first-child {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .mobile-navigation[open] summary span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .mobile-navigation[open] summary span:last-child {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-    .mobile-navigation nav {
-        position: absolute;
-        top: calc(100% + 15px);
-        right: 0;
-        width: min(290px, calc(100vw - 40px));
-        display: flex;
-        flex-direction: column;
-        padding: 15px;
-        gap: 3px;
-        background: #101827;
-        border: 1px solid rgba(214, 179, 106, 0.35);
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
-        z-index: 100;
-    }
-
-    .mobile-navigation nav a {
-        display: block;
-        padding: 14px 15px;
-        color: #F7F2E9;
-        text-decoration: none;
-        font-size: 13px;
-        letter-spacing: 1px;
-    }
-
-    .mobile-navigation nav a.active,
-    .mobile-navigation nav a:hover {
-        color: #D6B36A;
-        background: rgba(214, 179, 106, 0.09);
-    }
-
-    /* ---------- HERO ---------- */
-
-    .christmas-hero {
-        min-height: 720px;
-        min-height: min(820px, 100svh);
-        padding: 120px 20px 95px;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        width: 100%;
+        height: auto;
+
+        min-height: max(720px, 100svh);
+        max-height: none;
+
+        padding: 115px 19px 105px;
+
+        overflow: hidden;
     }
 
-    .hero-image {
+    body.events-page .hero-image {
         background-position: 58% center;
     }
 
-    .hero-content {
+    body.events-page .hero-shade {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(5, 12, 24, 0.79),
+                rgba(5, 12, 24, 0.65) 45%,
+                rgba(5, 12, 24, 0.94)
+            );
+    }
+
+    body.events-page .hero-content {
+        position: relative;
+        z-index: 3;
+
         width: 100%;
         max-width: 540px;
-        padding: 20px 0;
+
+        margin: 0 auto;
+        padding: 12px 0;
+
         text-align: center;
     }
 
-    .hero-pretitle {
+    body.events-page .hero-pretitle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        width: 100%;
+        max-width: 100%;
+
+        gap: 8px;
+        margin: 0 auto 22px;
+
         font-size: 9px;
-        letter-spacing: 2px;
-        gap: 9px;
+        letter-spacing: 1.8px;
+        line-height: 1.7;
+
+        text-align: center;
+        white-space: normal;
+        overflow-wrap: anywhere;
     }
 
-    .hero-script {
+    body.events-page .hero-pretitle span {
+        display: block;
+        flex: 0 1 20px;
+        min-width: 12px;
+    }
+
+    body.events-page .hero-script {
+        margin-bottom: 8px;
         font-size: clamp(24px, 6vw, 35px);
-        margin-bottom: 12px;
     }
 
-    .hero-content h1 {
+    body.events-page .hero-content h1 {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        width: 100%;
+        max-width: 100%;
+
         line-height: 0.95;
+        text-align: center;
     }
 
-    .hero-family {
+    body.events-page .hero-family {
         font-size: clamp(43px, 12vw, 66px);
     }
 
-    .hero-christmas {
-        font-size: clamp(58px, 15vw, 88px);
+    body.events-page .hero-christmas {
+        font-size: clamp(48px, 13vw, 82px);
+        letter-spacing: -2px;
     }
 
-    .hero-celebration {
+    body.events-page .hero-celebration {
         font-size: clamp(35px, 9vw, 55px);
     }
 
-    .hero-description {
-        max-width: 340px;
+    body.events-page .hero-separator {
+        margin: 22px 0;
+    }
+
+    body.events-page .hero-description {
+        width: 100%;
+        max-width: 480px;
+
         margin: 18px auto;
-        font-size: 13px;
+
+        font-size: 14px;
         line-height: 1.8;
     }
 
-    .hero-date {
+    body.events-page .hero-date {
         justify-content: center;
+
+        max-width: 100%;
         margin: 25px auto;
     }
 
-    .hero-cta {
+    body.events-page .hero-cta {
         display: inline-flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+
         min-height: 49px;
+        max-width: 100%;
+
         padding: 0 22px;
     }
 
-    .hero-bottom-line {
+    body.events-page .hero-bottom-line {
+        position: absolute;
         bottom: 22px;
-        width: 100%;
+
+        display: flex;
+        align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
+
+        width: calc(100% - 30px);
+        max-width: calc(100% - 30px);
+
         gap: 10px;
+
         font-size: 8px;
         letter-spacing: 1.5px;
+        text-align: center;
     }
 
-    .hero-scroll {
+    body.events-page .hero-scroll {
         display: none;
     }
 
-    .hero-star {
+    body.events-page .hero-star {
         opacity: 0.5;
     }
 
-    /* ---------- INTRODUCTION ---------- */
+    body.events-page .star-one {
+        left: 6%;
+    }
 
-    .introduction-section {
+    body.events-page .star-two {
+        right: 7%;
+    }
+
+}
+
+
+/* ============================================================
+   20. MOBILE CONTENT LAYOUT
+============================================================ */
+
+@media (max-width: 760px) {
+
+    /* INTRODUCTION */
+
+    body.events-page .introduction-section {
         padding: 85px 23px;
     }
 
-    .editorial-heading {
+    body.events-page .editorial-heading {
         font-size: clamp(35px, 9vw, 49px);
         line-height: 1.12;
     }
 
-    .introduction-text {
+    body.events-page .introduction-text {
         max-width: 560px;
-        font-size: 14px;
-        line-height: 1.95;
+
+        font-size: 16px;
+        line-height: 1.9;
     }
 
-    .scripture-card {
+    body.events-page .scripture-card {
         width: 100%;
         max-width: 520px;
-        padding: 35px 23px;
+
         margin: 35px auto 0;
+        padding: 35px 23px;
     }
 
-    .scripture-card blockquote {
+    body.events-page .scripture-card blockquote {
         font-size: clamp(22px, 6vw, 29px);
         line-height: 1.5;
     }
 
-    /* ---------- FEATURED EVENT ---------- */
 
-    .featured-event-section {
+    /* FEATURED EVENT */
+
+    body.events-page .featured-event-section {
         padding: 75px 22px;
     }
 
-    .featured-event-inner {
+    body.events-page .featured-event-inner {
         display: flex;
         flex-direction: column;
         align-items: center;
+
         gap: 50px;
     }
 
-    .featured-copy {
+    body.events-page .featured-copy {
         width: 100%;
     }
 
-    .featured-copy h2 {
+    body.events-page .featured-copy h2 {
         font-size: clamp(35px, 9vw, 48px);
         line-height: 1.15;
     }
 
-    .featured-copy p {
-        font-size: 14px;
+    body.events-page .featured-copy > p {
+        font-size: 16px;
         line-height: 1.9;
     }
 
-    .poster-showcase {
+    body.events-page .poster-showcase {
         width: 100%;
         max-width: 410px;
+
         margin: 0 auto;
     }
 
-    .poster-showcase img {
+    body.events-page .poster-showcase img {
         width: 100%;
         height: auto;
+
         object-fit: contain;
     }
 
-    /* ---------- GUEST SPEAKER ---------- */
 
-    .guest-section {
+    /* GUEST SPEAKER */
+
+    body.events-page .guest-section {
         padding: 85px 22px;
     }
 
-    .guest-section-header {
+    body.events-page .guest-section-header {
         margin-bottom: 40px;
     }
 
-    .guest-card {
+    body.events-page .guest-card {
         display: flex;
         flex-direction: column;
-        gap: 35px;
+
         width: 100%;
         max-width: 520px;
-        margin: auto;
+
+        gap: 35px;
+
+        margin: 0 auto;
         padding: 25px;
     }
 
-    .guest-image-column {
+    body.events-page .guest-image-column {
         width: 100%;
     }
 
-    .guest-image-frame {
+    body.events-page .guest-image-frame {
         width: 100%;
         max-width: 340px;
-        margin: auto;
+
+        margin: 0 auto;
     }
 
-    .guest-image-frame img {
+    body.events-page .guest-image-frame img {
         width: 100%;
         height: auto;
+
         aspect-ratio: 4 / 5;
         object-fit: cover;
     }
 
-    .guest-image-caption {
+    body.events-page .guest-image-caption {
         display: block;
-        text-align: center;
+
         margin-top: 17px;
+
+        text-align: center;
     }
 
-    .guest-content {
+    body.events-page .guest-content {
         width: 100%;
         text-align: center;
     }
 
-    .guest-content h3 {
+    body.events-page .guest-content h3 {
         font-size: clamp(34px, 9vw, 46px);
     }
 
-    .guest-divider {
-        margin-left: auto;
-        margin-right: auto;
+    body.events-page .guest-divider {
+        margin: 25px auto;
     }
 
-    .guest-content p {
-        font-size: 14px;
+    body.events-page .guest-content > p {
+        font-size: 16px;
         line-height: 1.9;
+        text-align: left;
     }
 
-    /* ---------- EVENT DETAILS ---------- */
+    body.events-page .guest-welcome {
+        justify-content: center;
+    }
 
-    .details-section {
+
+    /* EVENT DETAILS */
+
+    body.events-page .details-section {
         padding: 85px 22px;
     }
 
-    .details-grid {
+    body.events-page .details-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 17px;
+
         width: 100%;
         max-width: 460px;
+
+        gap: 17px;
+
         margin: 40px auto 0;
     }
 
-    .detail-card {
+    body.events-page .detail-card {
         min-height: 210px;
         padding: 30px 24px;
     }
 
-    /* ---------- VENUE ---------- */
 
-    .venue-section {
+    /* VENUE */
+
+    body.events-page .venue-section {
         display: flex;
         flex-direction: column;
     }
 
-    .venue-photo {
-        min-height: 370px;
+    body.events-page .venue-photo {
         width: 100%;
+        min-height: 370px;
     }
 
-    .venue-photo img {
+    body.events-page .venue-photo img {
         width: 100%;
         height: 100%;
         min-height: 370px;
+
         object-fit: cover;
     }
 
-    .venue-photo-caption {
+    body.events-page .venue-photo-caption {
         padding: 25px;
     }
 
-    .venue-photo-caption h2 {
+    body.events-page .venue-photo-caption h2 {
         font-size: clamp(32px, 8vw, 44px);
     }
 
-    .venue-content {
+    body.events-page .venue-content {
         width: 100%;
         padding: 65px 25px;
     }
 
-    .venue-content h3 {
+    body.events-page .venue-content h3 {
         font-size: clamp(34px, 9vw, 47px);
     }
 
-    .venue-address {
+    body.events-page .venue-address {
         align-items: flex-start;
     }
 
-    .map-link {
+    body.events-page .venue-address address {
+        color: #59616C;
+
+        font-family: var(--serif);
+        font-size: 18px;
+        font-style: normal;
+        line-height: 1.75;
+    }
+
+    body.events-page .map-link {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
+
         gap: 8px;
     }
 
-    /* ---------- CLOSING INVITATION ---------- */
 
-    .closing-section {
+    /* CLOSING INVITATION */
+
+    body.events-page .closing-section {
         padding: 90px 23px;
     }
 
-    .closing-section h2 {
+    body.events-page .closing-section h2 {
         font-size: clamp(37px, 9vw, 51px);
         line-height: 1.15;
     }
 
-    .closing-section p {
+    body.events-page .closing-section > p {
         max-width: 450px;
-        font-size: 14px;
+
+        font-size: 16px;
         line-height: 1.9;
     }
 
-    .closing-date {
+    body.events-page .closing-date {
         justify-content: center;
     }
 
-    .closing-button {
+    body.events-page .closing-button {
         display: inline-flex;
-        min-height: 50px;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+
+        min-height: 50px;
         padding: 0 23px;
     }
 
-    /* ---------- CONTACT ---------- */
 
-    .contact-section {
+    /* CONTACT */
+
+    body.events-page .contact-section {
         padding: 80px 22px;
     }
 
-    .contact-section h2 {
+    body.events-page .contact-section h2 {
         font-size: clamp(35px, 9vw, 48px);
     }
 
-    .contact-list {
+    body.events-page .contact-list {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        width: 100%;
+        max-width: 340px;
+
         gap: 14px;
+
+        margin: 0 auto;
     }
 
-    .contact-list a {
+    body.events-page .contact-list a {
         display: flex;
         align-items: center;
         justify-content: center;
+
         width: 100%;
         max-width: 300px;
         min-height: 49px;
     }
 
-    /* ---------- FOOTER ---------- */
 
-    .footer-content {
+    /* FOOTER */
+
+    body.events-page .site-footer {
+        padding: 48px 18px 0;
+    }
+
+    body.events-page .footer-content {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        width: 100%;
+        gap: 23px;
+
+        padding: 0;
+
         text-align: center;
-        gap: 25px;
-        padding: 50px 22px;
     }
 
-    .footer-navigation {
-        display: flex;
-        flex-wrap: wrap;
+    body.events-page .footer-brand {
         justify-content: center;
-        gap: 16px 22px;
     }
 
-    .footer-bottom {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    body.events-page .footer-content > p {
+        width: 100%;
+        max-width: 320px;
+
+        margin: 0 auto;
+
+        font-size: 18px;
+        line-height: 1.6;
         text-align: center;
-        gap: 15px;
-        padding: 20px;
     }
 
-}
+    body.events-page .footer-navigation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
 
-/* ---------- SMALL MOBILE PHONES ---------- */
+        width: 100%;
 
-@media (max-width: 400px) {
-
-    .nav-container {
-        padding-left: 15px;
-        padding-right: 15px;
+        gap: 8px 18px;
+        padding: 0 5px;
     }
 
-    .brand-details strong {
-        font-size: 15px;
-    }
+    body.events-page .footer-navigation a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
 
-    .brand-details small {
-        font-size: 8px;
-    }
+        min-height: 42px;
+        padding: 5px 2px;
 
-    .christmas-hero {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .hero-pretitle {
-        font-size: 8px;
-        letter-spacing: 1.5px;
-    }
-
-    .hero-family {
-        font-size: 42px;
-    }
-
-    .hero-christmas {
-        font-size: 55px;
-    }
-
-    .hero-celebration {
-        font-size: 34px;
-    }
-
-    .hero-bottom-line {
-        gap: 7px;
-        font-size: 7px;
-    }
-
-    .introduction-section,
-    .guest-section,
-    .details-section,
-    .closing-section,
-    .contact-section {
-        padding-left: 17px;
-        padding-right: 17px;
-    }
-
-    .guest-card {
-        padding: 18px;
-    }
-
-    .poster-showcase {
-        max-width: 100%;
-    }
-
-    .venue-content {
-        padding: 55px 20px;
-    }
-
-}
-
-/* ---------- VERY SMALL SCREENS ---------- */
-
-@media (max-width: 340px) {
-
-    .hero-family {
-        font-size: 37px;
-    }
-
-    .hero-christmas {
-        font-size: 48px;
-    }
-
-    .hero-celebration {
-        font-size: 30px;
-    }
-
-    .hero-description {
         font-size: 12px;
     }
 
-    .hero-bottom-line {
+    body.events-page .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+
+        gap: 12px;
+
+        margin: 30px auto 0;
+        padding: 20px 5px;
+
+        text-align: center;
+        line-height: 1.7;
+    }
+
+    body.events-page .footer-bottom p {
+        display: block;
+
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0 auto;
+
+        text-align: center;
+    }
+
+    body.events-page .footer-bottom a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 40px;
+    }
+
+}
+
+
+/* ============================================================
+   21. EXTRA SMALL PHONES
+============================================================ */
+
+@media (max-width: 400px) {
+
+    /* HEADER */
+
+    body.events-page .nav-container {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    body.events-page .brand-details strong {
+        font-size: 14px;
+    }
+
+    body.events-page .brand-details small {
+        font-size: 7px;
+        letter-spacing: 1.7px;
+    }
+
+
+    /* HERO */
+
+    body.events-page .christmas-hero {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    body.events-page .hero-pretitle {
+        gap: 6px;
+
+        font-size: 8px;
+        letter-spacing: 1.3px;
+    }
+
+    body.events-page .hero-pretitle span {
+        flex-basis: 13px;
+    }
+
+    body.events-page .hero-script {
+        font-size: 27px;
+    }
+
+    body.events-page .hero-family {
+        font-size: 42px;
+    }
+
+    body.events-page .hero-christmas {
+        font-size: clamp(42px, 12vw, 48px);
+        letter-spacing: -1.5px;
+    }
+
+    body.events-page .hero-celebration {
+        font-size: 34px;
+    }
+
+    body.events-page .hero-description {
+        max-width: 290px;
+        font-size: 14px;
+    }
+
+    body.events-page .hero-date {
+        padding: 13px 20px;
+    }
+
+    body.events-page .date-number {
+        font-size: 49px;
+    }
+
+    body.events-page .hero-bottom-line {
+        gap: 7px;
+
+        font-size: 7px;
+        letter-spacing: 1.5px;
+    }
+
+
+    /* CONTENT */
+
+    body.events-page .introduction-section,
+    body.events-page .guest-section,
+    body.events-page .details-section,
+    body.events-page .closing-section,
+    body.events-page .contact-section {
+        padding-right: 17px;
+        padding-left: 17px;
+    }
+
+    body.events-page .editorial-heading {
+        font-size: 35px;
+    }
+
+    body.events-page .guest-card {
+        padding: 18px;
+    }
+
+    body.events-page .guest-content h3 {
+        font-size: 37px;
+    }
+
+    body.events-page .poster-showcase {
+        max-width: 100%;
+    }
+
+    body.events-page .venue-content {
+        padding: 55px 20px;
+    }
+
+    body.events-page .closing-date > strong {
+        font-size: 49px;
+    }
+
+
+    /* FOOTER */
+
+    body.events-page .site-footer {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    body.events-page .footer-navigation {
+        column-gap: 13px;
+        row-gap: 5px;
+    }
+
+    body.events-page .footer-navigation a {
+        font-size: 11px;
+    }
+
+    body.events-page .footer-bottom {
+        padding-right: 5px;
+        padding-left: 5px;
+
+        font-size: 10px;
+        text-align: center;
+    }
+
+}
+
+
+/* ============================================================
+   22. VERY SMALL SCREENS
+============================================================ */
+
+@media (max-width: 340px) {
+
+    body.events-page .hero-family {
+        font-size: 37px;
+    }
+
+    body.events-page .hero-christmas {
+        font-size: 48px;
+    }
+
+    body.events-page .hero-celebration {
+        font-size: 30px;
+    }
+
+    body.events-page .hero-description {
+        font-size: 12px;
+    }
+
+    body.events-page .hero-bottom-line {
+        gap: 7px;
         letter-spacing: 1px;
     }
 
-}
-
-/* ---------- ACCESSIBILITY: REDUCED MOTION ---------- */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .events-page *,
-    .events-page *::before,
-    .events-page *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    body.events-page .footer-navigation {
+        column-gap: 10px;
     }
 
 }
 
-/* ============================================================
-   JEEVA NADI MINISTRIES
-   EVENTS PAGE — FINAL HERO RESPONSIVE FIX
-   VERSION 1.0
 
-   Fixes:
-   01. Prevents hero content from being clipped.
-   02. Keeps "JEEVA NADI MINISTRIES PRESENTS" visible.
-   03. Removes unnecessary vertical offset.
-   04. Allows hero height to grow with its content.
-   05. Improves desktop, tablet and mobile layouts.
-   06. Preserves the existing design and animations.
+/* ============================================================
+   23. WIDE DESKTOP REFINEMENTS
 ============================================================ */
 
+@media (min-width: 1500px) {
 
-/* ---------- 01. MAIN HERO HEIGHT AND POSITION ---------- */
+    body.events-page .christmas-hero {
+        min-height: 900px;
+    }
+
+    body.events-page .hero-content {
+        max-width: 1050px;
+    }
+
+    body.events-page .featured-event-inner {
+        gap: 110px;
+    }
+
+}
+
+
+/* ============================================================
+   24. HERO HEIGHT AND CONTENT VISIBILITY
+============================================================ */
+
+/* Desktop and laptop */
 
 body.events-page .christmas-hero {
     position: relative;
@@ -3181,9 +3077,6 @@ body.events-page .christmas-hero {
     overflow: hidden;
 }
 
-
-/* ---------- 02. HERO CONTENT ---------- */
-
 body.events-page .hero-content {
     position: relative;
     z-index: 3;
@@ -3196,9 +3089,6 @@ body.events-page .hero-content {
 
     text-align: center;
 }
-
-
-/* ---------- 03. PRETITLE VISIBILITY ---------- */
 
 body.events-page .hero-pretitle {
     display: flex;
@@ -3221,12 +3111,10 @@ body.events-page .hero-pretitle {
 
 body.events-page .hero-pretitle span {
     display: block;
+
     flex: 0 1 35px;
     min-width: 12px;
 }
-
-
-/* ---------- 04. HERO TEXT SAFEGUARDS ---------- */
 
 body.events-page .christmas-hero h1 {
     width: 100%;
@@ -3236,16 +3124,14 @@ body.events-page .christmas-hero h1 {
 body.events-page .hero-description {
     width: 100%;
     max-width: 620px;
-    margin-left: auto;
+
     margin-right: auto;
+    margin-left: auto;
 }
 
 body.events-page .hero-cta {
     max-width: 100%;
 }
-
-
-/* ---------- 05. BOTTOM DECORATION ---------- */
 
 body.events-page .hero-bottom-line {
     bottom: 28px;
@@ -3257,9 +3143,9 @@ body.events-page .hero-scroll {
 }
 
 
-/* ---------- 06. TABLET ---------- */
+/* Tablet hero */
 
-@media (max-width: 1024px) {
+@media (min-width: 761px) and (max-width: 1024px) {
 
     body.events-page .christmas-hero {
         min-height: max(760px, 100svh);
@@ -3273,7 +3159,7 @@ body.events-page .hero-scroll {
 }
 
 
-/* ---------- 07. MOBILE ---------- */
+/* Mobile hero */
 
 @media (max-width: 760px) {
 
@@ -3323,7 +3209,9 @@ body.events-page .hero-scroll {
 
     body.events-page .hero-bottom-line {
         bottom: 22px;
+
         gap: 10px;
+
         font-size: 8px;
         letter-spacing: 2px;
     }
@@ -3335,17 +3223,18 @@ body.events-page .hero-scroll {
 }
 
 
-/* ---------- 08. SMALL MOBILE ---------- */
+/* Very small mobile hero */
 
 @media (max-width: 400px) {
 
     body.events-page .christmas-hero {
-        padding-left: 15px;
         padding-right: 15px;
+        padding-left: 15px;
     }
 
     body.events-page .hero-pretitle {
         gap: 6px;
+
         font-size: 8px;
         letter-spacing: 1.3px;
     }
@@ -3356,6 +3245,7 @@ body.events-page .hero-scroll {
 
     body.events-page .hero-bottom-line {
         gap: 7px;
+
         font-size: 7px;
         letter-spacing: 1.5px;
     }
@@ -3363,13 +3253,14 @@ body.events-page .hero-scroll {
 }
 
 
-/* ---------- 09. SHORT DESKTOP SCREENS ---------- */
+/* Short desktop screens */
 
 @media (min-width: 761px) and (max-height: 820px) {
 
     body.events-page .christmas-hero {
         min-height: 790px;
         height: auto;
+
         padding-top: 125px;
         padding-bottom: 115px;
     }
@@ -3385,14 +3276,87 @@ body.events-page .hero-scroll {
 }
 
 
-/* ---------- 10. FINAL SAFETY ---------- */
+/* ============================================================
+   25. IMAGE AND CONTENT SAFEGUARDS
+============================================================ */
+
+body.events-page .poster-showcase img,
+body.events-page .guest-image-frame img,
+body.events-page .venue-photo img {
+    color: var(--text-dark);
+}
+
+body.events-page .poster-showcase img {
+    min-height: 150px;
+}
+
+body.events-page .guest-image-frame img {
+    min-height: 220px;
+}
+
+body.events-page .venue-photo img {
+    background: var(--navy-mid);
+}
+
+
+/* ============================================================
+   26. ACCESSIBILITY — REDUCED MOTION
+============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
+
+    body.events-page *,
+    body.events-page *::before,
+    body.events-page *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+    body.events-page .paper-atmosphere {
+        display: none;
+    }
 
     body.events-page .hero-content,
     body.events-page .hero-image,
     body.events-page .hero-star {
-        animation: none;
+        animation: none !important;
     }
 
+}
+
+
+/* ============================================================
+   END OF RESPONSIVE EVENTS PAGE STYLESHEET SECTION
+
+   JEEVA NADI MINISTRIES
+   FAMILY CHRISTMAS CELEBRATION 2026
+============================================================ */
+/* =====================================================
+   EVENTS PAGE — FOOTER COPYRIGHT ALIGNMENT
+===================================================== */
+
+@media (min-width: 821px) {
+    body.events-page .footer-bottom {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+    }
+
+    body.events-page .footer-bottom > span {
+        grid-column: 2;
+        justify-self: center;
+        text-align: center;
+    }
+
+    body.events-page .footer-bottom > a {
+        grid-column: 3;
+        justify-self: end;
+        text-align: right;
+    }
 }
