@@ -1,99 +1,17 @@
-
 /* =========================================================
    JEEVA NADI MINISTRIES
-   SERMONS PAGE — INTERACTIONS
-   Version 1.0
+   SERMONS PAGE — PAGE-SPECIFIC INTERACTIONS
+   Shared navigation, sticky header and smooth scrolling are
+   handled by js/script.js. Do not duplicate them here.
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
     "use strict";
 
-    /* =====================================================
-       1. MOBILE NAVIGATION
-    ===================================================== */
-
-    const menuToggle = document.getElementById("menuToggle");
-    const navigation = document.getElementById("primaryNavigation");
-
-    if (menuToggle && navigation) {
-
-        const closeMenu = () => {
-            navigation.classList.remove("open");
-            menuToggle.classList.remove("active");
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.setAttribute("aria-label", "Open navigation menu");
-        };
-
-        menuToggle.addEventListener("click", () => {
-
-            const isOpen = navigation.classList.toggle("open");
-
-            menuToggle.classList.toggle("active", isOpen);
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen ? "Close navigation menu" : "Open navigation menu"
-            );
-
-        });
-
-        navigation.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", closeMenu);
-        });
-
-        document.addEventListener("click", event => {
-
-            if (
-                !navigation.contains(event.target) &&
-                !menuToggle.contains(event.target)
-            ) {
-                closeMenu();
-            }
-
-        });
-
-        window.addEventListener("resize", () => {
-            if (window.innerWidth > 850) {
-                closeMenu();
-            }
-        });
-
-        document.addEventListener("keydown", event => {
-            if (event.key === "Escape") {
-                closeMenu();
-            }
-        });
-
-    }
-
-
-    /* =====================================================
-       2. HEADER SCROLL EFFECT
-    ===================================================== */
-
-    const header = document.getElementById("mainHeader");
-
-    const updateHeader = () => {
-        if (header) {
-            header.classList.toggle("scrolled", window.scrollY > 40);
-        }
-    };
-
-    updateHeader();
-
-    window.addEventListener("scroll", updateHeader, {
-        passive: true
-    });
-
-
-    /* =====================================================
-       3. SERMON SEARCH AND CATEGORY FILTERS
-    ===================================================== */
-
+    /* 1. SERMON SEARCH AND TOPIC FILTERS */
     const searchInput = document.getElementById("sermonSearch");
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const sermonCards = document.querySelectorAll(".sermon-card");
+    const filterButtons = [...document.querySelectorAll(".filter-btn")];
+    const sermonCards = [...document.querySelectorAll(".sermon-card")];
     const sermonCount = document.getElementById("sermonCount");
     const emptyState = document.getElementById("sermonEmpty");
     const resetButton = document.getElementById("resetSermons");
@@ -101,34 +19,20 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeCategory = "all";
 
     const updateSermons = () => {
-
-        const searchTerm = searchInput
-            ? searchInput.value.trim().toLowerCase()
-            : "";
-
+        const term = (searchInput?.value || "").trim().toLocaleLowerCase();
         let visibleCount = 0;
 
         sermonCards.forEach(card => {
+            const category = (card.dataset.category || "all").toLocaleLowerCase();
+            const searchableText = card.textContent.toLocaleLowerCase();
 
-            const category = card.dataset.category || "all";
-            const cardText = card.textContent.toLowerCase();
+            const categoryMatch =
+                activeCategory === "all" || category === activeCategory;
+            const searchMatch = !term || searchableText.includes(term);
+            const visible = categoryMatch && searchMatch;
 
-            const matchesCategory =
-                activeCategory === "all" ||
-                category === activeCategory;
-
-            const matchesSearch =
-                searchTerm === "" ||
-                cardText.includes(searchTerm);
-
-            const shouldShow = matchesCategory && matchesSearch;
-
-            card.hidden = !shouldShow;
-
-            if (shouldShow) {
-                visibleCount++;
-            }
-
+            card.hidden = !visible;
+            if (visible) visibleCount += 1;
         });
 
         if (sermonCount) {
@@ -138,163 +42,75 @@ document.addEventListener("DOMContentLoaded", () => {
         if (emptyState) {
             emptyState.hidden = visibleCount !== 0;
         }
-
     };
 
+    const setActiveCategory = category => {
+        activeCategory = category || "all";
+
+        filterButtons.forEach(button => {
+            const active =
+                (button.dataset.category || "all") === activeCategory;
+
+            button.classList.toggle("active", active);
+            button.setAttribute("aria-pressed", String(active));
+        });
+
+        updateSermons();
+    };
 
     filterButtons.forEach(button => {
-
         button.addEventListener("click", () => {
-
-            activeCategory = button.dataset.category || "all";
-
-            filterButtons.forEach(item => {
-                const isActive = item === button;
-
-                item.classList.toggle("active", isActive);
-                item.setAttribute("aria-pressed", String(isActive));
-            });
-
-            updateSermons();
-
+            setActiveCategory(button.dataset.category || "all");
         });
-
     });
 
+    searchInput?.addEventListener("input", updateSermons);
 
-    if (searchInput) {
-        searchInput.addEventListener("input", updateSermons);
-    }
-
-
-    if (resetButton) {
-
-        resetButton.addEventListener("click", () => {
-
-            activeCategory = "all";
-
-            if (searchInput) {
-                searchInput.value = "";
-            }
-
-            filterButtons.forEach(button => {
-
-                const isActive = button.dataset.category === "all";
-
-                button.classList.toggle("active", isActive);
-                button.setAttribute("aria-pressed", String(isActive));
-
-            });
-
-            updateSermons();
-
-        });
-
-    }
-
-    updateSermons();
-
-
-    /* =====================================================
-       4. SCROLL REVEAL ANIMATIONS
-    ===================================================== */
-
-    const revealElements = document.querySelectorAll(".reveal");
-
-    if ("IntersectionObserver" in window) {
-
-        const revealObserver = new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("visible");
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12,
-                rootMargin: "0px 0px -35px 0px"
-            }
-        );
-
-        revealElements.forEach(element => {
-            revealObserver.observe(element);
-        });
-
-    } else {
-
-        revealElements.forEach(element => {
-            element.classList.add("visible");
-        });
-
-    }
-
-
-    /* =====================================================
-       5. SMOOTH SCROLL FOR INTERNAL LINKS
-    ===================================================== */
-
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-
-        link.addEventListener("click", event => {
-
-            const targetId = link.getAttribute("href");
-
-            if (!targetId || targetId === "#") {
-                return;
-            }
-
-            const target = document.querySelector(targetId);
-
-            if (target) {
-
-                event.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: window.matchMedia(
-                        "(prefers-reduced-motion: reduce)"
-                    ).matches ? "auto" : "smooth",
-                    block: "start"
-                });
-
-            }
-
-        });
-
+    resetButton?.addEventListener("click", () => {
+        if (searchInput) searchInput.value = "";
+        setActiveCategory("all");
+        searchInput?.focus();
     });
 
-
-    /* =====================================================
-       6. SERMON IMAGE ERROR HANDLING
-    ===================================================== */
-
-    document.querySelectorAll(".sermon-image img").forEach(image => {
-
-        image.addEventListener("error", () => {
-
-            image.style.opacity = "0.25";
-            image.alt = "Sermon image currently unavailable";
-
-        });
-
-    });
-
-
-    /* =====================================================
-       7. PAGE INITIALIZATION
-    ===================================================== */
-
-    document.body.classList.add("page-loaded");
-
-    console.log(
-        "Jeeva Nadi Ministries | Sermons page initialized successfully."
+    // Initialize from the button marked active in the HTML, if present.
+    const initiallyActive = filterButtons.find(button =>
+        button.classList.contains("active")
     );
+    setActiveCategory(initiallyActive?.dataset.category || "all");
 
+    /* 2. SCROLL-REVEAL ANIMATIONS */
+    const revealItems = document.querySelectorAll(".reveal");
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if ("IntersectionObserver" in window && !reduceMotion) {
+        const observer = new IntersectionObserver((entries, currentObserver) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("visible");
+                currentObserver.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: "0px 0px -30px 0px"
+        });
+
+        revealItems.forEach((element, index) => {
+            element.style.transitionDelay = `${(index % 4) * 60}ms`;
+            observer.observe(element);
+        });
+    } else {
+        revealItems.forEach(element => element.classList.add("visible"));
+    }
+
+    /* 3. SERMON THUMBNAIL FALLBACK */
+    document.querySelectorAll(".sermon-image img").forEach(image => {
+        image.addEventListener("error", () => {
+            image.classList.add("image-unavailable");
+            image.alt = "Sermon thumbnail unavailable";
+        }, { once: true });
+    });
+
+    console.info("Jeeva Nadi Ministries: Sermons interactions ready.");
 });
