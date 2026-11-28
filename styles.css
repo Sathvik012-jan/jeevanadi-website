@@ -13515,3 +13515,100 @@ main, section, article, .pastors-grid, .sermon-grid,
         margin-right: auto;
     }
 }
+
+
+/* ============================================================
+   SERMONS — RESPONSIVE LAYOUT
+============================================================ */
+
+@media (max-width: 1024px) {
+
+    .sermon-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .sermons,
+    .sermon-section {
+        padding: 65px 20px;
+    }
+
+    .sermon-hero {
+        padding: 100px 22px 65px;
+    }
+
+    .sermon-hero h1 {
+        font-size: clamp(30px, 8vw, 42px);
+    }
+
+    .sermon-hero p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .sermon-tools {
+        padding: 38px 20px;
+    }
+
+    #sermonSearch {
+        width: 100%;
+        max-width: 100%;
+        padding: 14px 19px;
+        font-size: 14px;
+    }
+
+    .category-buttons {
+        gap: 9px;
+    }
+
+    .filter-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .sermon-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        max-width: 480px;
+        margin-inline: auto;
+    }
+
+    .sermon-card {
+        width: 100%;
+    }
+
+    .sermon-content {
+        padding: 20px;
+    }
+
+    .sermon-content h3 {
+        font-size: 20px;
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .sermon-hero {
+        padding-inline: 17px;
+    }
+
+    .sermon-section,
+    .sermon-tools {
+        padding-inline: 16px;
+    }
+
+    .filter-btn {
+        padding: 9px 13px;
+        font-size: 12px;
+    }
+
+    .sermon-content h3 {
+        font-size: 18px;
+    }
+
+}
