@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +15,7 @@
 
     <title>Our Pastors | Jeeva Nadi Ministries</title>
 
-    <!-- Google Fonts -->
+    <!-- GOOGLE FONTS -->       
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -23,10 +24,10 @@
         rel="stylesheet"
     >
 
-    <!-- Main Website Stylesheet -->
+    <!-- MAIN WEBSITE STYLESHEET -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Favicon -->
+    <!-- FAVICON -->
     <link rel="icon" type="image/jpeg" href="images/pastor logo.jpg">
 
 </head>
@@ -34,12 +35,17 @@
 <body class="pastors-page">
 
     <!-- =====================================================
-         HEADER
+         01. WEBSITE HEADER & MOBILE NAVIGATION
     ====================================================== -->
 
     <header class="jn-site-header">
 
-        <a class="jn-brand" href="index.html" aria-label="Jeeva Nadi Ministries home">
+        <!-- BRAND LOGO -->
+        <a
+            class="jn-brand"
+            href="index.html"
+            aria-label="Jeeva Nadi Ministries home"
+        >
 
             <img
                 src="images/Logo.jpg"
@@ -53,40 +59,76 @@
         </a>
 
 
-        <!-- MAIN NAVIGATION -->
+        <!-- MOBILE HAMBURGER BUTTON -->
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="primaryNavigation"
+        >
 
-        <nav class="jn-main-nav" aria-label="Main navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <!-- MAIN WEBSITE NAVIGATION -->
+        <nav
+            class="jn-main-nav"
+            id="primaryNavigation"
+            aria-label="Main navigation"
+        >
 
             <ul>
 
                 <li>
-                    <a href="books.html">Books</a>
+                    <a href="books.html">
+                        Books
+                    </a>
                 </li>
 
                 <li>
-                    <a href="index.html">Ministry</a>
+                    <a href="index.html">
+                        Ministry
+                    </a>
                 </li>
 
                 <li>
-                    <a href="about.html">About</a>
+                    <a href="about.html">
+                        About
+                    </a>
                 </li>
 
                 <li>
-                    <a href="pastors.html" class="active" aria-current="page">
+                    <a
+                        href="pastors.html"
+                        class="active"
+                        aria-current="page"
+                    >
                         Pastors
                     </a>
                 </li>
 
                 <li>
-                    <a href="sermons.html">Sermons</a>
+                    <a href="sermons.html">
+                        Sermons
+                    </a>
                 </li>
 
                 <li>
-                    <a href="events.html">Events</a>
+                    <a href="events.html">
+                        Events
+                    </a>
                 </li>
 
                 <li>
-                    <a href="contact.html">Contact</a>
+                    <a href="contact.html">
+                        Contact
+                    </a>
                 </li>
 
             </ul>
@@ -96,17 +138,26 @@
     </header>
 
 
+    <!-- =====================================================
+         02. MAIN CONTENT
+    ====================================================== -->
+
     <main>
 
+
         <!-- =================================================
-             PASTORS HERO
+             PASTORS HERO SECTION
         ================================================== -->
 
         <section class="pastors-hero">
 
-            <div class="pastors-hero-decoration" aria-hidden="true">
+            <div
+                class="pastors-hero-decoration"
+                aria-hidden="true"
+            >
                 ✦
             </div>
+
 
             <div class="pastors-hero-content">
 
@@ -114,19 +165,35 @@
                     JEEVA NADI MINISTRIES
                 </span>
 
-                <div class="pastors-cross" aria-hidden="true">
+
+                <div
+                    class="pastors-cross"
+                    aria-hidden="true"
+                >
                     ✝
                 </div>
+
 
                 <h1>
                     Our Pastors
                 </h1>
 
-                <div class="pastors-gold-divider" aria-hidden="true">
+
+                <div
+                    class="pastors-gold-divider"
+                    aria-hidden="true"
+                >
+
                     <span></span>
-                    <span class="divider-diamond">◆</span>
+
+                    <span class="divider-diamond">
+                        ◆
+                    </span>
+
                     <span></span>
+
                 </div>
+
 
                 <p>
                     Called to serve, guided by God's Word, and committed
@@ -138,8 +205,9 @@
         </section>
 
 
+
         <!-- =================================================
-             INTRODUCTION
+             INTRODUCTION SECTION
         ================================================== -->
 
         <section class="pastors-introduction">
@@ -148,9 +216,11 @@
                 SERVING IN HIS KINGDOM
             </span>
 
+
             <h2>
                 Shepherds With a Heart for God's People
             </h2>
+
 
             <p>
                 We are grateful for the pastors who faithfully serve
@@ -163,11 +233,15 @@
         </section>
 
 
+
         <!-- =================================================
-             PASTOR PROFILES
+             PASTOR PROFILES SECTION
         ================================================== -->
 
-        <section class="pastors-section" aria-labelledby="pastorsHeading">
+        <section
+            class="pastors-section"
+            aria-labelledby="pastorsHeading"
+        >
 
             <div class="pastors-section-heading">
 
@@ -175,9 +249,11 @@
                     OUR LEADERSHIP
                 </span>
 
+
                 <h2 id="pastorsHeading">
                     Meet Our Pastors
                 </h2>
+
 
                 <p>
                     Dedicated to the ministry of the Gospel and the
@@ -187,10 +263,14 @@
             </div>
 
 
+
+            <!-- PASTOR PROFILE CARDS -->
             <div class="pastors-grid">
 
 
-                <!-- SENIOR PASTOR -->
+                <!-- =========================================
+                     SENIOR PASTOR
+                ========================================== -->
 
                 <article class="pastor-card fade-in">
 
@@ -202,11 +282,13 @@
                             loading="lazy"
                         >
 
+
                         <span class="pastor-image-caption">
                             Senior Pastor
                         </span>
 
                     </div>
+
 
 
                     <div class="pastor-card-content">
@@ -215,29 +297,44 @@
                             ✦ SENIOR PASTOR ✦
                         </span>
 
+
                         <h3>
                             Christina Malligary
                         </h3>
 
+
                         <div class="pastor-card-divider"></div>
 
+
                         <blockquote>
+
                             “Feed my sheep.”
-                            <cite>John 21:17</cite>
+
+                            <cite>
+                                John 21:17
+                            </cite>
+
                         </blockquote>
+
 
                         <p class="pastor-description">
                             Serving the church through spiritual guidance,
                             prayer, Biblical teaching and pastoral care.
                         </p>
 
+
                         <a
                             class="pastor-contact"
                             href="tel:+919347348805"
                             aria-label="Call Christina Malligary"
                         >
-                            <span aria-hidden="true">☎</span>
+
+                            <span aria-hidden="true">
+                                ☎
+                            </span>
+
                             +91 93473 48805
+
                         </a>
 
                     </div>
@@ -245,7 +342,10 @@
                 </article>
 
 
-                <!-- ASSOCIATE PASTOR -->
+
+                <!-- =========================================
+                     ASSOCIATE PASTOR
+                ========================================== -->
 
                 <article class="pastor-card fade-in">
 
@@ -257,11 +357,13 @@
                             loading="lazy"
                         >
 
+
                         <span class="pastor-image-caption">
                             Associate Pastor
                         </span>
 
                     </div>
+
 
 
                     <div class="pastor-card-content">
@@ -270,29 +372,44 @@
                             ✦ ASSOCIATE PASTOR ✦
                         </span>
 
+
                         <h3>
                             Caleb Malligary
                         </h3>
 
+
                         <div class="pastor-card-divider"></div>
 
+
                         <blockquote>
+
                             “The Lord is my light and my salvation.”
-                            <cite>Psalm 27:1</cite>
+
+                            <cite>
+                                Psalm 27:1
+                            </cite>
+
                         </blockquote>
+
 
                         <p class="pastor-description">
                             Serving in ministry with a commitment to
                             fellowship, encouragement and the Word of God.
                         </p>
 
+
                         <a
                             class="pastor-contact"
                             href="tel:+917702713577"
                             aria-label="Call Caleb Malligary"
                         >
-                            <span aria-hidden="true">☎</span>
+
+                            <span aria-hidden="true">
+                                ☎
+                            </span>
+
                             +91 77027 13577
+
                         </a>
 
                     </div>
@@ -305,6 +422,7 @@
         </section>
 
 
+
         <!-- =================================================
              SCRIPTURE SECTION
         ================================================== -->
@@ -313,18 +431,24 @@
 
             <div class="pastors-scripture-inner">
 
-                <span class="scripture-cross" aria-hidden="true">
+                <span
+                    class="scripture-cross"
+                    aria-hidden="true"
+                >
                     ✝
                 </span>
+
 
                 <p class="scripture-label">
                     A WORD FOR THOSE WHO SERVE
                 </p>
 
+
                 <blockquote>
                     “Be shepherds of God's flock that is under your care,
                     watching over them.”
                 </blockquote>
+
 
                 <span class="scripture-reference">
                     1 Peter 5:2
@@ -334,11 +458,13 @@
 
         </section>
 
+
     </main>
 
 
+
     <!-- =====================================================
-         FOOTER
+         03. WEBSITE FOOTER
     ====================================================== -->
 
     <footer class="jn-pastors-footer">
@@ -347,17 +473,26 @@
             JEEVA NADI MINISTRIES
         </div>
 
+
         <div class="footer-gold-line"></div>
+
 
         <p>
             Serving Christ through Calvary Fundamental Baptist Church,
             Rehoboth Baptist Church and Emmanuel Baptist Church.
         </p>
 
+
         <p class="footer-verse">
+
             “The Lord is my Shepherd; I shall not want.”
-            <strong>Psalm 23:1</strong>
+
+            <strong>
+                Psalm 23:1
+            </strong>
+
         </p>
+
 
         <p class="footer-copyright">
             © 2026 Jeeva Nadi Ministries. All Rights Reserved.
@@ -366,36 +501,54 @@
     </footer>
 
 
+
     <!-- =====================================================
-         FADE-IN ANIMATION
+         04. CONTACT PAGE JAVASCRIPT
+         Reuses the mobile navigation functionality
+    ====================================================== -->
+
+    <script src="js/contact.js"></script>
+
+
+
+    <!-- =====================================================
+         05. PASTORS PAGE FADE-IN ANIMATIONS
     ====================================================== -->
 
     <script>
+
         document.addEventListener("DOMContentLoaded", () => {
 
             const elements = document.querySelectorAll(".fade-in");
 
+
             if ("IntersectionObserver" in window) {
 
-                const observer = new IntersectionObserver((entries, observer) => {
+                const observer = new IntersectionObserver(
+                    (entries, observer) => {
 
-                    entries.forEach(entry => {
+                        entries.forEach(entry => {
 
-                        if (entry.isIntersecting) {
+                            if (entry.isIntersecting) {
 
-                            entry.target.classList.add("visible");
+                                entry.target.classList.add("visible");
 
-                            observer.unobserve(entry.target);
+                                observer.unobserve(entry.target);
 
-                        }
+                            }
 
-                    });
+                        });
 
-                }, {
-                    threshold: 0.12
+                    },
+                    {
+                        threshold: 0.12
+                    }
+                );
+
+
+                elements.forEach(element => {
+                    observer.observe(element);
                 });
-
-                elements.forEach(element => observer.observe(element));
 
             } else {
 
@@ -406,7 +559,9 @@
             }
 
         });
+
     </script>
+
 
 </body>
 </html>
